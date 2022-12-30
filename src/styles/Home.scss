@@ -1,0 +1,18 @@
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        display: flex;
+        width: 100%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    img {
+        border: 5px solid black;
+    }
+}
