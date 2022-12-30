@@ -1,16 +1,31 @@
-import React from "react"
-import "../styles/GlobalStyles.scss"
-import "../styles/Home.scss"
-import MainCake from "../assets/imgs/cakes/main-cake.jpg"
+import "../styles/Home.scss";
 
 const Home = () => {
-  return (
-    <div className="main-content-container">
-      <div className="img-container">
-        <img className="img-source" src={MainCake} alt="main-cake" />
-      </div>
-    </div>
-  )
-}
+    return (
+        <body className="homepage-container">
+            <div className="home-sweets-options-container">
+                <div className="home-sweets-option">
+                    <span>
+                        Choose
+                        <br />
+                        Your
+                        <br />
+                        Sweets
+                    </span>
+                </div>
 
-export default Home
+                <div className="home-sweets-option">
+                    <span>
+                        Sample
+                        <br />
+                        Our
+                        <br />
+                        Sweets
+                    </span>
+                </div>
+            </div>
+        </body>
+    );
+};
+
+export default Home;
