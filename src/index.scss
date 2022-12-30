@@ -10,3 +10,9 @@
     --cake-red: #b42033;
     --cupcake-pink: rgb(255, 155, 172);
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    flex: 15;
+}

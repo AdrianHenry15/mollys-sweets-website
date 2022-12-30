@@ -1,10 +1,11 @@
 import "../styles/Home.scss";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
         <body className="homepage-container">
             <div className="home-sweets-options-container">
-                <div className="home-sweets-option">
+                <Link to={"/choose-your-sweets"} className="home-sweets-option">
                     <span>
                         Choose
                         <br />
@@ -12,9 +13,9 @@ const Home = () => {
                         <br />
                         Sweets
                     </span>
-                </div>
+                </Link>
 
-                <div className="home-sweets-option">
+                <Link to={"/sample-our-sweets"} className="home-sweets-option">
                     <span>
                         Sample
                         <br />
@@ -22,7 +23,7 @@ const Home = () => {
                         <br />
                         Sweets
                     </span>
-                </div>
+                </Link>
             </div>
         </body>
     );

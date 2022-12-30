@@ -1,0 +1,26 @@
+{
+    "Cakes": [
+        {
+            "id": 1,
+            "name": "Vanilla",
+            "description": "This that cake",
+            "src": ""
+        }
+    ],
+    "Cupcakes": [
+        {
+            "id": 1,
+            "name": "Vanilla",
+            "description": "This that cake",
+            "src": ""
+        }
+    ],
+    "Cookies": [
+        {
+            "id": 1,
+            "name": "Vanilla",
+            "description": "This that cake",
+            "src": ""
+        }
+    ]
+}

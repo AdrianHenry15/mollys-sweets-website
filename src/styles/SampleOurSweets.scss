@@ -1,0 +1,41 @@
+.sos-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--tertiary-bg-color);
+
+    h1 {
+        font-family: "Rubik Vinyl", cursive;
+        font-size: 60px;
+        font-weight: 900;
+    }
+
+    .scroll-wrapper {
+        display: flex;
+        width: 100%;
+
+        .scroll-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 20px;
+
+            .scroll-items-title {
+                display: flex;
+                font-size: 20px;
+            }
+
+            .scroll-items-container {
+                display: flex;
+
+                .scroll-items {
+                    display: flex;
+                    background-color: purple;
+                    width: 250px;
+                    height: 150px;
+                    margin: 0px 20px 20px 0px;
+                    border-radius: 15px;
+                }
+            }
+        }
+    }
+}
