@@ -7,6 +7,7 @@ import Cupcakes from "./pages/Cupcakes";
 import Cookies from "./pages/Cookies";
 import Cakes from "./pages/Cakes";
 import Footer from "./components/Footer";
+import SampleOurSweets from "./pages/SampleOurSweets";
 
 function App() {
     return (
@@ -14,6 +15,10 @@ function App() {
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />}></Route>
+                <Route
+                    path="/sample-our-sweets"
+                    element={<SampleOurSweets />}
+                ></Route>
                 <Route path="/cakes" element={<Cakes />}></Route>
                 <Route path="/cookies" element={<Cookies />}></Route>
                 <Route path="/cupcakes" element={<Cupcakes />}></Route>
