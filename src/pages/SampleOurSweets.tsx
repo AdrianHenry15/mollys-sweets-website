@@ -2,12 +2,14 @@
 import "../styles/SampleOurSweets.scss";
 
 // framework
-import ScrollContainer from "react-indiana-drag-scroll";
+import ScrollContainer, {
+    ScrollContainerProps,
+} from "react-indiana-drag-scroll";
 // data
 import { Sweets } from "../data/Sweets";
 import { SweetCategories } from "../data/Sweets";
 
-const SampleOurSweets = () => {
+const SampleOurSweets = (props: ScrollContainerProps) => {
     return (
         <body className="sos-container">
             <h1>Our Sweets</h1>
@@ -18,14 +20,17 @@ const SampleOurSweets = () => {
                     >
                 ).map((key) => {
                     return (
-                        <ScrollContainer className="scroll-container">
-                            <div
-                                key={`div-${key}`}
-                                className="dev-scroll-container"
+                        <div
+                            key={`div-${key}`}
+                            className="dev-scroll-container"
+                        >
+                            <h3 className="scroll-items-title">
+                                {SweetCategories[key]}
+                            </h3>
+                            <ScrollContainer
+                                horizontal
+                                className="scroll-container"
                             >
-                                <h3 className="scroll-items-title">
-                                    {SweetCategories[key]}
-                                </h3>
                                 <div className="scroll-items-container">
                                     {Sweets[SweetCategories[key]].map(
                                         ({ id, name, description, src }) => {
@@ -50,8 +55,8 @@ const SampleOurSweets = () => {
                                         }
                                     )}
                                 </div>
-                            </div>
-                        </ScrollContainer>
+                            </ScrollContainer>
+                        </div>
                     );
                 })}
             </div>

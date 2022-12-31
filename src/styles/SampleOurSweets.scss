@@ -27,6 +27,7 @@
 
             .scroll-items-title {
                 display: flex;
+                position: sticky;
                 font-size: 20px;
             }
 
@@ -47,6 +48,7 @@
                     }
 
                     .scroll-name {
+                        margin-top: 5px;
                         font-size: 15px;
                     }
 
