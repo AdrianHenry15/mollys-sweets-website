@@ -9,7 +9,7 @@ import Cakes from "./pages/Cakes";
 import Footer from "./components/Footer";
 import SampleOurSweets from "./pages/SampleOurSweets";
 
-function App() {
+const App = () => {
     return (
         <div className="app snow">
             <Navbar />
@@ -27,6 +27,6 @@ function App() {
             <Footer />
         </div>
     );
-}
+};
 
 export default App;

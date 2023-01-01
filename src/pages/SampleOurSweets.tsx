@@ -1,17 +1,17 @@
 // Styles
 import "../styles/SampleOurSweets.scss";
+import "../styles/GlobalStyles.scss";
 
-// framework
-import ScrollContainer, {
-    ScrollContainerProps,
-} from "react-indiana-drag-scroll";
-// data
+// Frameworks
+import ScrollContainer from "react-indiana-drag-scroll";
+
+// Data
 import { Sweets } from "../data/Sweets";
 import { SweetCategories } from "../data/Sweets";
 
-const SampleOurSweets = (props: ScrollContainerProps) => {
+const SampleOurSweets = () => {
     return (
-        <body className="sos-container">
+        <body className="row-container">
             <h1>Our Sweets</h1>
             <div className="scroll-wrapper">
                 {(

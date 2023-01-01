@@ -1,5 +1,3 @@
-import { specialCharMap } from "@testing-library/user-event/dist/keyboard";
-
 // Cakes
 const MainCake = require("../assets/imgs/cakes/main-cake.jpg");
 const ChocolateCake = require("../assets/imgs/cakes/backdrop_cake.jpg");

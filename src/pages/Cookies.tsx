@@ -1,7 +1,15 @@
+// Styles
+import "../styles/Cookies.scss";
 import "../styles/GlobalStyles.scss";
-import { CakeOptions } from "./Cakes";
 
-export const Flavors: CakeOptions = [
+// Data
+import { SweetGenres } from "./Cakes";
+import { Sweets } from "../data/Sweets";
+
+// Frameworks
+import ScrollContainer from "react-indiana-drag-scroll";
+
+export const Flavors: SweetGenres = [
     {
         id: 1,
         name: "Chocolate Chip",
@@ -54,96 +62,40 @@ export const Flavors: CakeOptions = [
 
 const Cookies = () => {
     return (
-        <>
-            <h5 className="main-section-header-title cupcake">Cookies</h5>
-            <div className="main-section-container">
-                <div className="img-section-container">
-                    <div className="img-section">
-                        <img
-                            alt="chocolate-chip"
-                            className="display-img chocolate-chip-cookie"
-                        />
-                    </div>
-                </div>
-                <div className="description-container">
-                    <div className="flavors-container">
-                        <div className="flavors-title-container">
-                            <h3 className="flavors-title">Flavors</h3>
+        <body className="row-container">
+            <h1>Cookies</h1>
+            <div className="scroll-wrapper">
+                <div className="dev-scroll-container">
+                    <h3 className="scroll-items-title">Cookies</h3>
+                    <ScrollContainer horizontal className="scroll-container">
+                        <div className="scroll-items-container">
+                            {Sweets.Cookies.map(
+                                ({ id, name, description, src }) => {
+                                    return (
+                                        <div
+                                            key={`div-${name}${id}`}
+                                            className="scroll-items-wrapper"
+                                        >
+                                            <img
+                                                src={src}
+                                                alt={name}
+                                                className="scroll-items"
+                                            />
+                                            <h5 className="scroll-name">
+                                                {name}
+                                            </h5>
+                                            <i className="scroll-description">
+                                                {description}
+                                            </i>
+                                        </div>
+                                    );
+                                }
+                            )}
                         </div>
-                        <div className="flavors-content-container">
-                            <div className="flavors-list-container">
-                                <ul className="flavors-content">
-                                    {Flavors.map(({ id, name }) => {
-                                        if (id <= 3) {
-                                            return (
-                                                <li
-                                                    key={id}
-                                                    className="flavor-item"
-                                                >
-                                                    {name}
-                                                </li>
-                                            );
-                                        } else {
-                                            return null;
-                                        }
-                                    })}
-                                </ul>
-                                <ul className="flavors-content">
-                                    {Flavors.map(({ id, name }) => {
-                                        if (id > 3 && id <= 6) {
-                                            return (
-                                                <li
-                                                    key={id}
-                                                    className="flavor-item"
-                                                >
-                                                    {name}
-                                                </li>
-                                            );
-                                        } else {
-                                            return null;
-                                        }
-                                    })}
-                                </ul>
-                            </div>
-                            <div className="flavors-list-container">
-                                <ul className="flavors-content">
-                                    {Flavors.map(({ id, name }) => {
-                                        if (id > 6 && id <= 9) {
-                                            return (
-                                                <li
-                                                    key={id}
-                                                    className="flavor-item"
-                                                >
-                                                    {name}
-                                                </li>
-                                            );
-                                        } else {
-                                            return null;
-                                        }
-                                    })}
-                                </ul>
-                                <ul className="flavors-content">
-                                    {Flavors.map(({ id, name }) => {
-                                        if (id > 9) {
-                                            return (
-                                                <li
-                                                    key={id}
-                                                    className="flavor-item"
-                                                >
-                                                    {name}
-                                                </li>
-                                            );
-                                        } else {
-                                            return <div></div>;
-                                        }
-                                    })}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    </ScrollContainer>
                 </div>
             </div>
-        </>
+        </body>
     );
 };
 

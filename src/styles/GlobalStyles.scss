@@ -1,147 +1,85 @@
-// Home, Cakes, Cupcakes, Cookies
-.main-content-container {
-    display: flex;
-    flex: 10;
-}
-
-// Cakes, Cupcakes, Cookies
-.main-section-header-title {
-    align-self: center;
-    font-size: 150px;
-    letter-spacing: 30px;
-    font-weight: 100;
-    color: black;
-    bottom: 400px;
-    font-family: "Dancing Script", cursive;
-
-    /* cool effect */
-    --b: 0.1em; /* the thickness of the line */
-    --c: var(--address-color); /* the color */
-    color: #0000;
-    padding-block: var(--b);
-    background: linear-gradient(var(--c) 50%, #000 0) 0%
-            calc(100% - var(--_p, 0%)) / 100% 200%,
-        linear-gradient(var(--c) 0 0) 0% var(--_p, 0%) / var(--_p, 0%) var(--b)
-            no-repeat;
-    -webkit-background-clip: text, padding-box;
-    background-clip: text, padding-box;
-    transition: 0.3s var(--_s, 0s) linear,
-        background-size 0.3s calc(0.3s - var(--_s, 0s));
-}
-
-.main-section-header-title:hover {
-    --_p: 100%;
-    --_s: 0.3s;
-}
-
-/* image section */
-.main-section-container {
+.row-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
+    background-color: var(--tertiary-bg-color);
+    color: rgb(255, 255, 255);
 
-    .img-section-container {
+    h1 {
+        font-family: "Rubik Vinyl", cursive;
+        font-size: 60px;
+        font-weight: 900;
+        color: black;
+    }
+
+    .scroll-wrapper {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        flex: 1;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgb(44, 61, 42);
+        padding-bottom: 50px;
 
-        .display-img {
+        .dev-scroll-container {
             display: flex;
-            height: 430px;
-            border: 5px solid var(--border-color);
-            box-shadow: 1px 1px 18px 5px;
+            flex-direction: column;
+            width: 100%;
+            padding: 50px 20px 0px 20px;
+            overflow-x: hidden;
+
+            .scroll-items-title {
+                display: flex;
+                position: sticky;
+                font-size: 20px;
+            }
+
+            .scroll-items-container {
+                display: flex;
+                width: 240px;
+
+                .scroll-items-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0px 10px 0px 10px;
+
+                    .scroll-items {
+                        display: flex;
+                        width: 250px;
+                        height: 150px;
+                        border-radius: 15px;
+                    }
+
+                    .scroll-name {
+                        margin-top: 5px;
+                        font-size: 15px;
+                    }
+
+                    .scroll-description {
+                        font-size: 12px;
+                    }
+                }
+            }
         }
     }
 }
 
-.description-container {
+.flavors-container {
     display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    width: 95%;
     flex-direction: column;
-    font-size: 18px;
-    font-family: "Pacifico", cursive;
-    max-height: 570px;
-}
+    width: 50%;
+    color: black;
 
-.flavors-title-container,
-.fillings-title-container,
-.frostings-title-container {
-    text-decoration: underline;
-}
-
-.flavors-container,
-.fillings-container,
-.frostings-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.flavors-content-container,
-.fillings-content-container,
-.frostings-content-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.flavors-list-container,
-.fillings-list-container,
-.frostings-list-container {
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-.flavor-item,
-.fillings-item,
-.frostings-item {
-    margin-top: 7px;
-    list-style-type: none;
-}
-
-// Tablets
-@media (min-width: 481px) and (max-width: 1200px) {
-    .main-section-container {
-        flex-direction: column !important;
+    h4 {
+        font-family: "Shadows Into Light", cursive;
     }
 
-    .display-img {
-        height: 340px !important;
-    }
+    .flavor-items-container {
+        display: flex;
 
-    .description-container {
-        font-size: 15px !important;
-        max-height: 520px !important;
-    }
-
-    .main-section-header-title {
-        font-size: 100px !important;
-        bottom: 811px !important;
-        margin-left: 40px !important;
-    }
-}
-
-/* Mobile Devices */
-@media (min-width: 320px) and (max-width: 480px) {
-    .main-section-container {
-        flex-direction: column !important;
-    }
-
-    .display-img {
-        height: 180px !important;
-    }
-
-    .description-container {
-        font-size: 10px !important;
-        max-height: 520px !important;
-    }
-
-    .main-section-header-title {
-        display: none !important;
+        .flavor-items {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            font-size: 15px;
+            font-family: "Lobster", cursive;
+        }
     }
 }
