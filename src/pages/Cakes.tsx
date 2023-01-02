@@ -7,8 +7,6 @@ import { Fillings, Flavors, Frostings, Sweets } from "../data/SweetsData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
-import { SweetGenres } from "../store/Enums";
-import { render } from "@testing-library/react";
 
 const Cakes = () => {
     return (
