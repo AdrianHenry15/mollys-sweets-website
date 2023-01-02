@@ -3,124 +3,12 @@ import "../styles/Cakes.scss";
 import "../styles/GlobalStyles.scss";
 
 // Data
-import { Sweets } from "../data/Sweets";
+import { Fillings, Flavors, Frostings, Sweets } from "../data/SweetsData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
-
-export type SweetGenres = {
-    id: number;
-    name: string;
-}[];
-
-export const CakeFlavors: SweetGenres = [
-    {
-        id: 1,
-        name: "Vanilla Bean",
-    },
-    {
-        id: 2,
-        name: "Almond",
-    },
-    {
-        id: 3,
-        name: "Carrot",
-    },
-    {
-        id: 4,
-        name: "Coconut",
-    },
-    {
-        id: 5,
-        name: "Chocolate Earthquake",
-    },
-    {
-        id: 6,
-        name: "Strawberry Champagne",
-    },
-    {
-        id: 7,
-        name: "Red Velvet",
-    },
-    {
-        id: 8,
-        name: "Chocolate",
-    },
-    {
-        id: 9,
-        name: "Birthday",
-    },
-    {
-        id: 10,
-        name: "Oreo",
-    },
-    {
-        id: 11,
-        name: "Brown Butter",
-    },
-    {
-        id: 12,
-        name: "Lemon",
-    },
-];
-
-export const CakeFillings: SweetGenres = [
-    {
-        id: 1,
-        name: "Blueberry Jam",
-    },
-    {
-        id: 2,
-        name: "Strawberry Jam",
-    },
-    {
-        id: 3,
-        name: "Ganache",
-    },
-    {
-        id: 4,
-        name: "Vanilla Mousse",
-    },
-    {
-        id: 5,
-        name: "Chocolate Mousse",
-    },
-    {
-        id: 6,
-        name: "Strawberry Mousse",
-    },
-    {
-        id: 7,
-        name: "Caramel Mousse",
-    },
-    {
-        id: 8,
-        name: "Peanut Butter Mousse",
-    },
-    {
-        id: 9,
-        name: "Boston Cream",
-    },
-    {
-        id: 10,
-        name: "Fresh Fruit",
-    },
-];
-
-export const Frostings: SweetGenres = [
-    {
-        id: 1,
-        name: "Swiss Buttercream",
-    },
-    {
-        id: 2,
-        name: "Cream Cheese Buttercream",
-    },
-    {
-        id: 3,
-        name: "Buttercream",
-    },
-];
+import { SweetGenres } from "../store/Enums";
+import { render } from "@testing-library/react";
 
 const Cakes = () => {
     return (
@@ -157,12 +45,51 @@ const Cakes = () => {
                     </ScrollContainer>
                 </div>
             </div>
-            <div className="flavors-container">
-                <h4>Flavors</h4>
-                <div className="flavor-items-container">
-                    {CakeFlavors.map(({ id, name }) => {
-                        return <div className="flavor-items">{name}</div>;
-                    })}
+            <div className="genres-container">
+                <div className="flavors-container">
+                    <h4>Flavors</h4>
+                    <div className="flavors-items-container">
+                        {Flavors.map(({ id, name }) => {
+                            return (
+                                <span
+                                    key={`${id}${name}`}
+                                    className="flavors-items"
+                                >
+                                    {name}
+                                </span>
+                            );
+                        })}
+                    </div>
+                </div>
+                <div className="frostings-container">
+                    <h4>Frostings</h4>
+                    <div className="frostings-items-container">
+                        {Frostings.map(({ id, name }) => {
+                            return (
+                                <span
+                                    key={`${id}${name}`}
+                                    className="frostings-items"
+                                >
+                                    {name}
+                                </span>
+                            );
+                        })}
+                    </div>
+                </div>
+                <div className="fillings-container">
+                    <h4>Fillings</h4>
+                    <div className="fillings-items-container">
+                        {Fillings.map(({ id, name }) => {
+                            return (
+                                <span
+                                    key={`${id}${name}`}
+                                    className="fillings-items"
+                                >
+                                    {name}
+                                </span>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </body>

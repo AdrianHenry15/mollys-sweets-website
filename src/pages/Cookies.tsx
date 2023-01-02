@@ -3,62 +3,10 @@ import "../styles/Cookies.scss";
 import "../styles/GlobalStyles.scss";
 
 // Data
-import { SweetGenres } from "./Cakes";
-import { Sweets } from "../data/Sweets";
+import { CookieTypes, Sweets } from "../data/SweetsData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
-
-export const Flavors: SweetGenres = [
-    {
-        id: 1,
-        name: "Chocolate Chip",
-    },
-    {
-        id: 2,
-        name: "Sugar Cookie",
-    },
-    {
-        id: 3,
-        name: "Peanut Butter",
-    },
-    {
-        id: 4,
-        name: "Oatmeal Raisin",
-    },
-    {
-        id: 5,
-        name: "Snickerdoodle",
-    },
-    {
-        id: 6,
-        name: "Dark Chocolate",
-    },
-    {
-        id: 7,
-        name: "Red Velvet",
-    },
-    {
-        id: 8,
-        name: "Birthday Cake",
-    },
-    {
-        id: 9,
-        name: "Brownie",
-    },
-    {
-        id: 11,
-        name: "Oreo",
-    },
-    {
-        id: 12,
-        name: "Coconut",
-    },
-    {
-        id: 13,
-        name: "Drop Cookies",
-    },
-];
 
 const Cookies = () => {
     return (
@@ -93,6 +41,23 @@ const Cookies = () => {
                             )}
                         </div>
                     </ScrollContainer>
+                </div>
+            </div>
+            <div className="genres-container">
+                <div className="flavors-container">
+                    <h4>Flavors</h4>
+                    <div className="flavors-items-container">
+                        {CookieTypes.map(({ id, name }) => {
+                            return (
+                                <span
+                                    key={`${id}${name}`}
+                                    className="flavors-items"
+                                >
+                                    {name}
+                                </span>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </body>

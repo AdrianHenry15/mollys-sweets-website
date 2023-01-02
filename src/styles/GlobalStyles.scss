@@ -61,25 +61,79 @@
     }
 }
 
-.flavors-container {
+.genres-container {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
     color: black;
+    padding: 30px;
 
-    h4 {
-        font-family: "Shadows Into Light", cursive;
-    }
-
-    .flavor-items-container {
+    .flavors-container,
+    .fillings-container,
+    .frostings-container {
         display: flex;
+        flex-direction: column;
 
-        .flavor-items {
+        h4 {
+            font-family: "Shadows Into Light", cursive;
+        }
+
+        .flavors-items-container,
+        .fillings-items-container,
+        .frostings-items-container {
             display: flex;
-            flex-direction: column;
-            margin: 10px;
-            font-size: 15px;
-            font-family: "Lobster", cursive;
+
+            .flavors-items,
+            .fillings-items,
+            .frostings-items {
+                display: flex;
+                flex-direction: column;
+                margin: 10px;
+                font-size: 15px;
+                font-family: "Lobster", cursive;
+            }
+        }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+    .genres-container {
+        flex-direction: row;
+        justify-content: flex-start;
+
+        .flavors-container,
+        .fillings-container,
+        .frostings-container {
+            width: 100%;
+
+            .flavors-items-container,
+            .fillings-items-container,
+            .frostings-items-container {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .genres-container {
+        flex-direction: row;
+        justify-content: flex-start;
+
+        .flavors-container,
+        .fillings-container,
+        .frostings-container {
+            width: 100%;
+
+            .flavors-items-container,
+            .fillings-items-container,
+            .frostings-items-container {
+                display: flex;
+                flex-direction: column;
+            }
         }
     }
 }

@@ -22,6 +22,7 @@ const Gooey_Chocolate_Chip_Cookie = require("../assets/imgs/cookies/gooey.jpg");
 const Grandmas_Chocolate_Chip_Cookie = require("../assets/imgs/cookies/grandmas.jpg");
 const Snickerdoodle_Cookie = require("../assets/imgs/cookies/snickerdoodle.jpg");
 
+// Pictures Object Array
 export const Sweets = {
     Cakes: [
         {
@@ -145,8 +146,167 @@ export const Sweets = {
     ],
 };
 
-export enum SweetCategories {
-    CAKES = "Cakes",
-    CUPCAKES = "Cupcakes",
-    COOKIES = "Cookies",
-}
+export type SweetGenres = {
+    id: number;
+    name: string;
+}[];
+
+export const Flavors: SweetGenres = [
+    {
+        id: 1,
+        name: "Vanilla Bean",
+    },
+    {
+        id: 2,
+        name: "Almond",
+    },
+    {
+        id: 3,
+        name: "Carrot",
+    },
+    {
+        id: 4,
+        name: "Coconut",
+    },
+    {
+        id: 5,
+        name: "Chocolate Earthquake",
+    },
+    {
+        id: 6,
+        name: "Strawberry Champagne",
+    },
+    {
+        id: 7,
+        name: "Red Velvet",
+    },
+    {
+        id: 8,
+        name: "Chocolate",
+    },
+    {
+        id: 9,
+        name: "Birthday",
+    },
+    {
+        id: 10,
+        name: "Oreo",
+    },
+    {
+        id: 11,
+        name: "Brown Butter",
+    },
+    {
+        id: 12,
+        name: "Lemon",
+    },
+];
+
+export const Fillings: SweetGenres = [
+    {
+        id: 1,
+        name: "Blueberry Jam",
+    },
+    {
+        id: 2,
+        name: "Strawberry Jam",
+    },
+    {
+        id: 3,
+        name: "Ganache",
+    },
+    {
+        id: 4,
+        name: "Vanilla Mousse",
+    },
+    {
+        id: 5,
+        name: "Chocolate Mousse",
+    },
+    {
+        id: 6,
+        name: "Strawberry Mousse",
+    },
+    {
+        id: 7,
+        name: "Caramel Mousse",
+    },
+    {
+        id: 8,
+        name: "Peanut Butter Mousse",
+    },
+    {
+        id: 9,
+        name: "Boston Cream",
+    },
+    {
+        id: 10,
+        name: "Fresh Fruit",
+    },
+];
+
+export const Frostings: SweetGenres = [
+    {
+        id: 1,
+        name: "Swiss Buttercream",
+    },
+    {
+        id: 2,
+        name: "Cream Cheese Buttercream",
+    },
+    {
+        id: 3,
+        name: "Buttercream",
+    },
+];
+
+export const CookieTypes: SweetGenres = [
+    {
+        id: 1,
+        name: "Chocolate Chip",
+    },
+    {
+        id: 2,
+        name: "Sugar Cookie",
+    },
+    {
+        id: 3,
+        name: "Peanut Butter",
+    },
+    {
+        id: 4,
+        name: "Oatmeal Raisin",
+    },
+    {
+        id: 5,
+        name: "Snickerdoodle",
+    },
+    {
+        id: 6,
+        name: "Dark Chocolate",
+    },
+    {
+        id: 7,
+        name: "Red Velvet",
+    },
+    {
+        id: 8,
+        name: "Birthday Cake",
+    },
+    {
+        id: 9,
+        name: "Brownie",
+    },
+    {
+        id: 11,
+        name: "Oreo",
+    },
+    {
+        id: 12,
+        name: "Coconut",
+    },
+    {
+        id: 13,
+        name: "Drop Cookies",
+    },
+];

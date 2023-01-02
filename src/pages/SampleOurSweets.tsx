@@ -6,8 +6,8 @@ import "../styles/GlobalStyles.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
 
 // Data
-import { Sweets } from "../data/Sweets";
-import { SweetCategories } from "../data/Sweets";
+import { Sweets } from "../data/SweetsData";
+import { SweetCategories } from "../store/Enums";
 
 const SampleOurSweets = () => {
     return (

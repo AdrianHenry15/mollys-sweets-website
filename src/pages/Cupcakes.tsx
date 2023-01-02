@@ -4,58 +4,10 @@ import "../styles/GlobalStyles.scss";
 
 // Data
 // import { SweetGenres } from "./Cakes";
-import { Sweets } from "../data/Sweets";
+import { Flavors, Frostings, Sweets } from "../data/SweetsData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
-
-// const CupcakeFlavors: SweetGenres = [
-//     {
-//         id: 1,
-//         name: "Chocolate Chip",
-//     },
-//     {
-//         id: 2,
-//         name: "Peanut Butter",
-//     },
-//     {
-//         id: 3,
-//         name: "Snickerdoodle",
-//     },
-//     {
-//         id: 4,
-//         name: "Chocolate",
-//     },
-//     {
-//         id: 5,
-//         name: "Red Velvet",
-//     },
-//     {
-//         id: 6,
-//         name: "Birthday Cake",
-//     },
-
-//     {
-//         id: 7,
-//         name: "Oreo",
-//     },
-//     {
-//         id: 8,
-//         name: "Coconut",
-//     },
-//     {
-//         id: 9,
-//         name: "Vanilla Bean",
-//     },
-//     {
-//         id: 10,
-//         name: "Lemon",
-//     },
-//     {
-//         id: 11,
-//         name: "Strawberry",
-//     },
-// ];
 
 const Cupcakes = () => {
     return (
@@ -90,6 +42,38 @@ const Cupcakes = () => {
                             )}
                         </div>
                     </ScrollContainer>
+                </div>
+            </div>
+            <div className="genres-container">
+                <div className="flavors-container">
+                    <h4>Flavors</h4>
+                    <div className="flavors-items-container">
+                        {Flavors.map(({ id, name }) => {
+                            return (
+                                <span
+                                    key={`${id}${name}`}
+                                    className="flavors-items"
+                                >
+                                    {name}
+                                </span>
+                            );
+                        })}
+                    </div>
+                </div>
+                <div className="frostings-container">
+                    <h4>Frostings</h4>
+                    <div className="frostings-items-container">
+                        {Frostings.map(({ id, name }) => {
+                            return (
+                                <span
+                                    key={`${id}${name}`}
+                                    className="frostings-items"
+                                >
+                                    {name}
+                                </span>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </body>
