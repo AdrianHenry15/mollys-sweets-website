@@ -13,7 +13,7 @@ const Cupcakes = () => {
     return (
         <body className="row-container">
             <h1>Cupcakes</h1>
-            <div className="scroll-wrapper">
+            <section className="scroll-wrapper">
                 <div className="dev-scroll-container">
                     <h3 className="scroll-items-title">Cupcakes</h3>
                     <ScrollContainer horizontal className="scroll-container">
@@ -43,8 +43,8 @@ const Cupcakes = () => {
                         </div>
                     </ScrollContainer>
                 </div>
-            </div>
-            <div className="genres-container">
+            </section>
+            <section className="genres-container">
                 <div className="flavors-container">
                     <h4>Flavors</h4>
                     <div className="flavors-items-container">
@@ -75,7 +75,7 @@ const Cupcakes = () => {
                         })}
                     </div>
                 </div>
-            </div>
+            </section>
         </body>
     );
 };

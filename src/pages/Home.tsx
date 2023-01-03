@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
     return (
         <body className="homepage-container">
-            <div className="home-sweets-options-container">
+            <nav className="home-sweets-options-container">
                 <Link to={"/choose-your-sweets"} className="home-sweets-option">
                     <span>
                         Choose
@@ -24,7 +24,7 @@ const Home = () => {
                         Sweets
                     </span>
                 </Link>
-            </div>
+            </nav>
         </body>
     );
 };

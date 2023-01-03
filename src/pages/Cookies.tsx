@@ -12,7 +12,7 @@ const Cookies = () => {
     return (
         <body className="row-container">
             <h1>Cookies</h1>
-            <div className="scroll-wrapper">
+            <section className="scroll-wrapper">
                 <div className="dev-scroll-container">
                     <h3 className="scroll-items-title">Cookies</h3>
                     <ScrollContainer horizontal className="scroll-container">
@@ -42,8 +42,8 @@ const Cookies = () => {
                         </div>
                     </ScrollContainer>
                 </div>
-            </div>
-            <div className="genres-container">
+            </section>
+            <section className="genres-container">
                 <div className="flavors-container">
                     <h4>Flavors</h4>
                     <div className="flavors-items-container">
@@ -59,7 +59,7 @@ const Cookies = () => {
                         })}
                     </div>
                 </div>
-            </div>
+            </section>
         </body>
     );
 };
