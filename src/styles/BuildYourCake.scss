@@ -1,0 +1,102 @@
+.build-cake-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 14px;
+    background-color: rgb(102, 121, 100);
+
+    .build-cake-container {
+        display: flex;
+        width: 50%;
+        margin: 30px;
+        height: 100%;
+
+        .cake-options-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            background-color: rgb(192, 192, 192);
+            border: black solid 1px;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        h4 {
+            font-size: 20px;
+            white-space: nowrap;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+
+            th,
+            td {
+                border-bottom: solid 1px black;
+            }
+        }
+
+        .customize-cake-container {
+            display: flex;
+            flex-direction: column;
+            flex: 3.5;
+            margin-left: 50px;
+
+            strong {
+                margin-right: 10px;
+            }
+
+            .create-cake-container {
+                display: flex;
+                flex-direction: column;
+
+                .cake-base-container {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .cake-make-container {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    h5 {
+                        font-size: 15px;
+                    }
+                }
+                .choice-container {
+                    display: flex;
+                    text-align: center;
+
+                    .choice {
+                        width: 125px;
+                        border: 1px black solid;
+                        border-radius: 30px;
+                        margin: 10px;
+                    }
+                }
+
+                .cake-size-dropdown {
+                    display: flex;
+                    width: 285px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+    .build-cake-container {
+        width: 90% !important;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+}

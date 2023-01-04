@@ -17,7 +17,7 @@ const Home = () => {
 
                 <Link to={"/sample-our-sweets"} className="home-sweets-option">
                     <span>
-                        Sample
+                        Scan
                         <br />
                         Our
                         <br />

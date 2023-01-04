@@ -1,6 +1,7 @@
-import React from "react";
 import "../styles/Navbar.scss";
 import { Link } from "react-router-dom";
+import { GiFallingLeaf } from "react-icons/gi";
+import { GiLeafSkeleton } from "react-icons/gi";
 
 export const pages = [
     {
@@ -31,7 +32,9 @@ const Navbar = () => {
             <header className="navbar-container shadow-sm">
                 <nav className="title-container">
                     <Link className="title-link" to={"/"}>
+                        <GiFallingLeaf className="leaf" />
                         <h4>Molly's Specialty Sweets</h4>
+                        <GiLeafSkeleton className="leaf" />
                     </Link>
                 </nav>
                 <nav className="navigation-links">
