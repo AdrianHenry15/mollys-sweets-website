@@ -4,6 +4,7 @@ import "../styles/GlobalStyles.scss";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
+import React from "react";
 
 // Data
 import { Sweets } from "../data/SweetsData";
@@ -11,7 +12,7 @@ import { SweetCategories } from "../store/Enums";
 
 const ScanOurSweets = () => {
     return (
-        <body className="row-container">
+        <section className="row-container">
             <h1>Our Sweets</h1>
             <div className="scroll-wrapper">
                 {(
@@ -60,7 +61,7 @@ const ScanOurSweets = () => {
                     );
                 })}
             </div>
-        </body>
+        </section>
     );
 };
 

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import React from "react";
 import { Sweets } from "../data/SweetsData";
 import "../styles/ChooseYourSweets.scss";
 

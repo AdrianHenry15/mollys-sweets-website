@@ -7,10 +7,11 @@ import { CookieTypes, Sweets } from "../data/SweetsData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
+import React from "react";
 
 const Cookies = () => {
     return (
-        <body className="row-container">
+        <section className="row-container">
             <h1>Cookies</h1>
             <section className="scroll-wrapper">
                 <div className="dev-scroll-container">
@@ -60,7 +61,7 @@ const Cookies = () => {
                     </div>
                 </div>
             </section>
-        </body>
+        </section>
     );
 };
 

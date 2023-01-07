@@ -1,8 +1,9 @@
 .build-cake-wrapper {
     display: flex;
+    justify-content: center;
     align-items: center;
     width: 100%;
-    font-size: 14px;
+    font-size: 16px;
     background-color: rgb(102, 121, 100);
 
     .build-cake-container {
@@ -19,7 +20,8 @@
             background-color: rgb(192, 192, 192);
             border: black solid 1px;
             border-radius: 20px;
-            padding: 20px;
+            padding: 20px 30px 20px 30px;
+            height: min-content;
         }
 
         h4 {
@@ -39,8 +41,22 @@
 
             th,
             td {
-                border-bottom: solid 1px black;
+                border-bottom: solid 1px gray;
+                padding-top: 7px;
             }
+
+            th {
+                color: black;
+            }
+
+            td {
+                color: rgb(65, 65, 65);
+            }
+        }
+
+        #custom-flavors {
+            display: flex;
+            margin-top: 50px;
         }
 
         .customize-cake-container {
@@ -53,6 +69,11 @@
                 margin-right: 10px;
             }
 
+            #fruits-section-container {
+                margin-top: 30px;
+                margin-bottom: 50px;
+            }
+
             .create-cake-container {
                 display: flex;
                 flex-direction: column;
@@ -60,6 +81,13 @@
                 .cake-base-container {
                     display: flex;
                     flex-direction: column;
+                    border-bottom: solid rgb(68, 68, 68) 1px;
+                    padding-bottom: 30px;
+                }
+
+                .custom-flavors-container {
+                    padding-top: 15px;
+                    padding-bottom: 15px;
                 }
 
                 .cake-make-container {
@@ -71,9 +99,29 @@
                         font-size: 15px;
                     }
                 }
+
+                #fruit-section {
+                    margin-right: 20px;
+                }
                 .choice-container {
                     display: flex;
                     text-align: center;
+
+                    input {
+                        display: flex;
+                        width: 100%;
+                        margin-left: 10px;
+                    }
+
+                    input[type="radio"] {
+                        color: black;
+                        width: 20px;
+                    }
+
+                    label {
+                        margin-left: 20px;
+                        margin-left: 20px;
+                    }
 
                     .choice {
                         width: 125px;
@@ -85,18 +133,52 @@
 
                 .cake-size-dropdown {
                     display: flex;
+                    border-radius: 10px;
                     width: 285px;
+                    height: 40px;
+                    margin-left: 10px;
                 }
             }
         }
     }
 }
 
+.cake-details-container {
+    display: flex;
+    flex-direction: column;
+
+    .checkbox-container {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 @media (min-width: 481px) and (max-width: 1200px) {
+    .build-cake-wrapper {
+        justify-content: center;
+    }
     .build-cake-container {
-        width: 90% !important;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 0;
     }
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
+    .build-cake-wrapper {
+        justify-content: center;
+    }
+    .build-cake-container {
+        width: 50%;
+
+        flex-direction: column;
+    }
+
+    .customize-cake-container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0;
+    }
 }

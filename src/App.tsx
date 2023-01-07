@@ -1,4 +1,5 @@
 import "./App.scss";
+import React from "react";
 import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -11,11 +12,11 @@ import SampleOurSweets from "./pages/ScanOurSweets";
 import ChooseYourSweets from "./pages/ChooseYourSweets";
 import ChooseYourCookies from "./pages/ChooseYourCookies";
 import ChooseYourCupcakes from "./pages/ChooseYourCupcakes";
-import BuildYourCake from "./pages/BuildYourCake/BuildYourCake";
+import BuildYourCake from "./pages/BuildCakePage.tsx/Main";
 
 const App = () => {
     return (
-        <body className="app snow">
+        <div className="app snow">
             <Navbar />
             <Routes>
                 <Route path="/" element={<Home />}></Route>
@@ -45,7 +46,7 @@ const App = () => {
                 <Route path="/*" element={<PageNotFound />}></Route>
             </Routes>
             <Footer />
-        </body>
+        </div>
     );
 };
 

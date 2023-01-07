@@ -1,11 +1,13 @@
 import "../../styles/BuildYourCake.scss";
+import React from "react";
 import SingleRound from "../../assets/imgs/create_a_cake/single-tier-round-white.png";
 import SingleSheet from "../../assets/imgs/create_a_cake/single-tier-sheet.png";
 import MultipleRound from "../../assets/imgs/create_a_cake/multiple-tier-round-white.png";
+import { RoundSizes } from "../../data/SweetsData";
 
 const CakeBase = () => {
     return (
-        <div className="cake-base-container">
+        <section className="cake-base-container">
             <h3>Choose Cake Base</h3>
             <hr />
 
@@ -61,20 +63,34 @@ const CakeBase = () => {
                 <div className="choice-container">
                     <div className="option">
                         <form action="">
-                            <label>
-                                Choose One
-                                <select
-                                    name="cake-size"
-                                    className="cake-size-dropdown"
-                                >
-                                    <option value=""></option>
-                                </select>
-                            </label>
+                            <select
+                                name="cake-size"
+                                className="cake-size-dropdown"
+                            >
+                                {RoundSizes.map(
+                                    ({ id, size, amountOfPeople, price }) => {
+                                        if (size === "") {
+                                            return (
+                                                <option value="">
+                                                    Choose One
+                                                </option>
+                                            );
+                                        } else {
+                                            return (
+                                                <option
+                                                    key={`${id}`}
+                                                    value={size}
+                                                >{`${size} (${amountOfPeople}) ($${price})`}</option>
+                                            );
+                                        }
+                                    }
+                                )}
+                            </select>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

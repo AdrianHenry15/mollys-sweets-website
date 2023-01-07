@@ -4,14 +4,15 @@ import "../styles/GlobalStyles.scss";
 
 // Data
 // import { SweetGenres } from "./Cakes";
-import { Flavors, Frostings, Sweets } from "../data/SweetsData";
+import { Frostings, MainFlavors, Sweets } from "../data/SweetsData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
+import React from "react";
 
 const Cupcakes = () => {
     return (
-        <body className="row-container">
+        <section className="row-container">
             <h1>Cupcakes</h1>
             <section className="scroll-wrapper">
                 <div className="dev-scroll-container">
@@ -48,7 +49,7 @@ const Cupcakes = () => {
                 <div className="flavors-container">
                     <h4>Flavors</h4>
                     <div className="flavors-items-container">
-                        {Flavors.map(({ id, name }) => {
+                        {MainFlavors.map(({ id, name }) => {
                             return (
                                 <span
                                     key={`${id}${name}`}
@@ -76,7 +77,7 @@ const Cupcakes = () => {
                     </div>
                 </div>
             </section>
-        </body>
+        </section>
     );
 };
 

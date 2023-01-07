@@ -9,3 +9,8 @@ export enum SweetGenres {
     FILLINGS = "Fillings",
     FROSTINGS = "Frostings",
 }
+
+export enum CakeTier {
+    ROUND = "Round",
+    SHEET = "Sheet",
+}

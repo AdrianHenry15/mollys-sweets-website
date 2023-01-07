@@ -1,9 +1,10 @@
 import "../styles/Home.scss";
 import { Link } from "react-router-dom";
+import React from "react";
 
 const Home = () => {
     return (
-        <body className="homepage-container">
+        <section className="homepage-container">
             <nav className="home-sweets-options-container">
                 <Link to={"/choose-your-sweets"} className="home-sweets-option">
                     <span>
@@ -25,7 +26,7 @@ const Home = () => {
                     </span>
                 </Link>
             </nav>
-        </body>
+        </section>
     );
 };
 
