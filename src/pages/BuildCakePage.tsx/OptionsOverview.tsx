@@ -1,4 +1,10 @@
+//data
 import { RoundSizes, SheetSizes } from "../../data/SweetsData";
+
+//styles
+import "../../styles/BuildYourCake/OptionsOverview.scss";
+
+//frameworks
 import React from "react";
 
 const OptionsOverview = () => {

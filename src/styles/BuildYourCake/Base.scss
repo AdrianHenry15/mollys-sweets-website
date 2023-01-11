@@ -1,0 +1,36 @@
+.cake-base-container {
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid rgb(68, 68, 68) 1px;
+    padding-bottom: 30px;
+}
+
+.cake-make-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.choice-container {
+    display: flex;
+    text-align: center;
+}
+
+.choice {
+    width: 125px;
+    border: 1px black solid;
+    border-radius: 30px;
+    margin: 10px;
+}
+
+h5 {
+    font-size: 15px;
+}
+
+.cake-size-dropdown {
+    display: flex;
+    border-radius: 10px;
+    width: 285px;
+    height: 33px;
+    margin-left: 10px;
+}

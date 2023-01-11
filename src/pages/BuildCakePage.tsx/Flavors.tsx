@@ -1,4 +1,10 @@
+//frameworks
 import React from "react";
+
+//styles
+import "../../styles/BuildYourCake/Flavors.scss";
+
+//data
 import { Fillings, Frostings, MainFlavors } from "../../data/SweetsData";
 import { SweetGenres } from "../../store/Enums";
 
@@ -10,9 +16,9 @@ const Flavors = () => {
                     <form action="">
                         <select name="cake-size" className="cake-size-dropdown">
                             {MainFlavors.map(({ id, name, price }) => {
-                                if (id == 0) {
+                                if (id === 0) {
                                     return (
-                                        <option key={id} selected value="">
+                                        <option key={id} defaultValue="">
                                             Choose One
                                         </option>
                                     );
@@ -33,18 +39,17 @@ const Flavors = () => {
                 return (
                     <form action="">
                         <select name="cake-size" className="cake-size-dropdown">
-                            <option value="">Choose One</option>
                             {Frostings.map(({ id, name, price }) => {
-                                if (id == 0) {
+                                if (id === 0) {
                                     return (
-                                        <option key={id} value="">
+                                        <option key={name + id} defaultValue="">
                                             Choose One
                                         </option>
                                     );
                                 } else {
                                     return (
                                         <option
-                                            key={id}
+                                            key={name + id}
                                             value={name}
                                         >{`${name} ($${price})`}</option>
                                     );
@@ -58,18 +63,17 @@ const Flavors = () => {
                 return (
                     <form action="">
                         <select name="cake-size" className="cake-size-dropdown">
-                            <option value="">Choose One</option>
                             {Fillings.map(({ id, name, price }) => {
-                                if (id == 0) {
+                                if (id === 0) {
                                     return (
-                                        <option key={id} value="">
+                                        <option key={name + id} defaultValue="">
                                             Choose One
                                         </option>
                                     );
                                 } else {
                                     return (
                                         <option
-                                            key={id}
+                                            key={name + id}
                                             value={name}
                                         >{`${name} ($${price})`}</option>
                                     );
@@ -92,6 +96,7 @@ const Flavors = () => {
                 (key) => {
                     return (
                         <div
+                            key={key}
                             id="custom-flavors"
                             className="cake-make-container"
                         >

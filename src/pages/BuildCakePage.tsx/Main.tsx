@@ -1,9 +1,10 @@
-import "../../styles/BuildYourCake.scss";
+import "../../styles/BuildYourCake/BuildYourCake.scss";
 import React from "react";
 import CakeBase from "./Base";
 import Flavors from "./Flavors";
 import OptionsOverview from "./OptionsOverview";
 import CakeDetails from "./Details";
+import TotalCost from "./TotalCost";
 
 const BuildYourCake = () => {
     return (
@@ -30,6 +31,9 @@ const BuildYourCake = () => {
                     </section>
                     <section className="create-cake-container">
                         <CakeDetails />
+                    </section>
+                    <section className="create-cake-container">
+                        <TotalCost />
                     </section>
                 </section>
             </div>

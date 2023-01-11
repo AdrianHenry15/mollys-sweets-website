@@ -1,0 +1,53 @@
+.cake-size-dropdown {
+    display: flex;
+    border-radius: 10px;
+    width: 285px;
+    height: 33px;
+    margin-left: 10px;
+}
+
+.custom-flavors-container {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#custom-flavors {
+    display: flex;
+    margin-top: 50px;
+}
+
+.cake-make-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.choice-container {
+    display: flex;
+    text-align: center;
+}
+
+#fruits-section-container {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+input {
+    display: flex;
+    width: 100%;
+    margin-left: 10px;
+}
+
+input[type="radio"] {
+    color: black;
+    width: 20px;
+}
+
+label {
+    margin-left: 20px;
+    margin-left: 20px;
+}
+
+h5 {
+    font-size: 15px;
+}

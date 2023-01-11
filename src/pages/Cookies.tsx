@@ -3,11 +3,13 @@ import "../styles/Cookies.scss";
 import "../styles/GlobalStyles.scss";
 
 // Data
-import { CookieTypes, Sweets } from "../data/SweetsData";
+import { CookieTypes } from "../data/SweetsData";
+import { SweetsImages } from "../data/ImageData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Cookies = () => {
     return (
@@ -18,14 +20,14 @@ const Cookies = () => {
                     <h3 className="scroll-items-title">Cookies</h3>
                     <ScrollContainer horizontal className="scroll-container">
                         <div className="scroll-items-container">
-                            {Sweets.Cookies.map(
+                            {SweetsImages.Cookies.map(
                                 ({ id, name, description, src }) => {
                                     return (
                                         <div
                                             key={`div-${name}${id}`}
                                             className="scroll-items-wrapper"
                                         >
-                                            <img
+                                            <LazyLoadImage
                                                 src={src}
                                                 alt={name}
                                                 className="scroll-items"

@@ -1,3 +1,4 @@
+// MAIN
 .build-cake-wrapper {
     display: flex;
     justify-content: center;
@@ -8,7 +9,7 @@
 
     .build-cake-container {
         display: flex;
-        width: 50%;
+        width: 60%;
         margin: 30px;
         height: 100%;
 
@@ -135,7 +136,7 @@
                     display: flex;
                     border-radius: 10px;
                     width: 285px;
-                    height: 40px;
+                    height: 33px;
                     margin-left: 10px;
                 }
             }
@@ -143,14 +144,53 @@
     }
 }
 
-.cake-details-container {
-    display: flex;
-    flex-direction: column;
+#cake-inscription-container {
+    margin-top: 50px;
+}
 
-    .checkbox-container {
+#cake-occasion {
+    display: flex;
+    border-radius: 10px;
+    width: 285px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+#checkbox-wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.checkbox-container {
+    display: flex;
+
+    .checkbox {
         display: flex;
         flex-direction: column;
+        margin: 0px 10px 0px 10px;
     }
+}
+
+#photo-example-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 50px;
+
+    aside {
+        font-size: 10px;
+        margin-bottom: 20px;
+    }
+
+    textarea {
+        border-radius: 5px;
+        width: 400px;
+        height: 30px;
+    }
+}
+
+.file-option {
+    margin-bottom: 30px;
 }
 
 @media (min-width: 481px) and (max-width: 1200px) {

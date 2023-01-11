@@ -4,11 +4,13 @@ import "../styles/GlobalStyles.scss";
 
 // Data
 // import { SweetGenres } from "./Cakes";
-import { Frostings, MainFlavors, Sweets } from "../data/SweetsData";
+import { Frostings, MainFlavors } from "../data/SweetsData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import React from "react";
+import { SweetsImages } from "../data/ImageData";
 
 const Cupcakes = () => {
     return (
@@ -19,14 +21,14 @@ const Cupcakes = () => {
                     <h3 className="scroll-items-title">Cupcakes</h3>
                     <ScrollContainer horizontal className="scroll-container">
                         <div className="scroll-items-container">
-                            {Sweets.Cupcakes.map(
+                            {SweetsImages.Cupcakes.map(
                                 ({ id, name, description, src }) => {
                                     return (
                                         <div
                                             key={`div-${name}${id}`}
                                             className="scroll-items-wrapper"
                                         >
-                                            <img
+                                            <LazyLoadImage
                                                 src={src}
                                                 alt={name}
                                                 className="scroll-items"

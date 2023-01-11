@@ -3,11 +3,13 @@ import "../styles/Cakes.scss";
 import "../styles/GlobalStyles.scss";
 
 // Data
-import { Fillings, Frostings, MainFlavors, Sweets } from "../data/SweetsData";
+import { Fillings, Frostings, MainFlavors } from "../data/SweetsData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { SweetsImages } from "../data/ImageData";
 
 const Cakes = () => {
     return (
@@ -16,16 +18,18 @@ const Cakes = () => {
             <section className="scroll-wrapper">
                 <div className="dev-scroll-container">
                     <h3 className="scroll-items-title">Cakes</h3>
+
                     <ScrollContainer horizontal className="scroll-container">
                         <div className="scroll-items-container">
-                            {Sweets.Cakes.map(
+                            {SweetsImages.Cakes.map(
                                 ({ id, name, description, src }) => {
                                     return (
                                         <div
                                             key={`div-${name}${id}`}
                                             className="scroll-items-wrapper"
                                         >
-                                            <img
+                                            <LazyLoadImage
+                                                key={name}
                                                 src={src}
                                                 alt={name}
                                                 className="scroll-items"

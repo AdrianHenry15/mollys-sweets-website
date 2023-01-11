@@ -1,8 +1,14 @@
-import "../../styles/BuildYourCake.scss";
+// styles
+import "../../styles/BuildYourCake/BuildYourCake.scss";
+//frameworks
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+//images
 import SingleRound from "../../assets/imgs/create_a_cake/single-tier-round-white.png";
 import SingleSheet from "../../assets/imgs/create_a_cake/single-tier-sheet.png";
 import MultipleRound from "../../assets/imgs/create_a_cake/multiple-tier-round-white.png";
+//data
 import { RoundSizes } from "../../data/SweetsData";
 
 const CakeBase = () => {
@@ -16,7 +22,7 @@ const CakeBase = () => {
                 <h5>Cake Tier</h5>
                 <div className="choice-container">
                     <div className="option">
-                        <img
+                        <LazyLoadImage
                             className="choice"
                             src={SingleRound}
                             alt="round-cake"
@@ -24,7 +30,7 @@ const CakeBase = () => {
                         <h5>Single</h5>
                     </div>
                     <div className="option">
-                        <img
+                        <LazyLoadImage
                             className="choice"
                             src={MultipleRound}
                             alt="round-cake"
@@ -39,7 +45,7 @@ const CakeBase = () => {
                 <h5>Cake Shape</h5>
                 <div className="choice-container">
                     <div className="option">
-                        <img
+                        <LazyLoadImage
                             className="choice"
                             src={SingleRound}
                             alt="round-cake"
@@ -47,7 +53,7 @@ const CakeBase = () => {
                         <h5>Single</h5>
                     </div>
                     <div className="option">
-                        <img
+                        <LazyLoadImage
                             className="choice"
                             src={SingleSheet}
                             alt="round-cake"
@@ -71,7 +77,10 @@ const CakeBase = () => {
                                     ({ id, size, amountOfPeople, price }) => {
                                         if (size === "") {
                                             return (
-                                                <option value="">
+                                                <option
+                                                    key={`${size}${id}`}
+                                                    value=""
+                                                >
                                                     Choose One
                                                 </option>
                                             );
