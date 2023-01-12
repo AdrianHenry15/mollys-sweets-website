@@ -4,11 +4,15 @@ import CakeBase from "./Base";
 import Flavors from "./Flavors";
 import OptionsOverview from "./OptionsOverview";
 import CakeDetails from "./Details";
+import ComingSoon from "../../components/ComingSoon";
 
 const BuildYourCake = () => {
     return (
         <section className="build-cake-wrapper">
-            <div className="build-cake-container">
+            <div>
+                <ComingSoon />
+            </div>
+            {/* <div className="build-cake-container">
                 <OptionsOverview />
                 <section className="customize-cake-container">
                     <aside className="note">
@@ -32,7 +36,7 @@ const BuildYourCake = () => {
                         <CakeDetails />
                     </section>
                 </section>
-            </div>
+            </div> */}
         </section>
     );
 };
