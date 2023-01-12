@@ -1,7 +1,12 @@
 import React from "react";
+import ComingSoon from "../components/ComingSoon";
 
 const ChooseYourCookies = () => {
-    return <div>ChooseYourCookies</div>;
+    return (
+        <div>
+            <ComingSoon />
+        </div>
+    );
 };
 
 export default ChooseYourCookies;

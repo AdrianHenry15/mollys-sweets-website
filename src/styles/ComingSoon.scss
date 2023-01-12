@@ -1,0 +1,23 @@
+.coming-soon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    font-family: "Italianno", cursive;
+    font-size: 300px;
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+    .coming-soon {
+        height: 90vh;
+        font-size: 200px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .coming-soon {
+        height: 85vh;
+        font-size: 70px;
+    }
+}
