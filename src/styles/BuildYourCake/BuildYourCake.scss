@@ -12,6 +12,7 @@
         width: 60%;
         margin: 30px;
         height: 100%;
+        padding-top: 50px;
 
         .cake-options-container {
             display: flex;
@@ -95,6 +96,10 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    border: solid 1px white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    margin: 15px 0 15px 0;
 
                     h5 {
                         font-size: 15px;
@@ -193,6 +198,16 @@
     margin-bottom: 30px;
 }
 
+.costs-container {
+    display: flex;
+    flex-direction: column;
+
+    .costs {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
 @media (min-width: 481px) and (max-width: 1200px) {
     .build-cake-wrapper {
         justify-content: center;
@@ -204,6 +219,10 @@
         flex-direction: column;
         margin-left: 0;
     }
+
+    .customize-cake-container {
+        margin-left: 0 !important;
+    }
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
@@ -212,7 +231,6 @@
     }
     .build-cake-container {
         width: 50%;
-
         flex-direction: column;
     }
 

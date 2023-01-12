@@ -1,5 +1,5 @@
 // styles
-import "../../styles/BuildYourCake/BuildYourCake.scss";
+import "../../styles/BuildYourCake/Base.scss";
 //frameworks
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";

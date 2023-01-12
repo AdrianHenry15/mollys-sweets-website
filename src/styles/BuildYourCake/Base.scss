@@ -34,3 +34,20 @@ h5 {
     height: 33px;
     margin-left: 10px;
 }
+
+@media (min-width: 481px) and (max-width: 1200px) {
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .cake-make-container {
+        flex-direction: column;
+    }
+
+    .choice-container {
+        flex-direction: column;
+    }
+
+    .cake-size-dropdown {
+        width: 150px !important;
+    }
+}

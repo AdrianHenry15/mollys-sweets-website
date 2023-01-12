@@ -1,4 +1,5 @@
 import React from "react";
+import "../../styles/BuildYourCake/TotalCost.scss";
 
 const TotalCost = () => {
     return (
