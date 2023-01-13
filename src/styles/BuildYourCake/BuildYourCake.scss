@@ -139,7 +139,6 @@
 
                 .cake-size-dropdown {
                     display: flex;
-                    border-radius: 10px;
                     width: 285px;
                     height: 33px;
                     margin-left: 10px;
@@ -237,6 +236,13 @@
     .customize-cake-container {
         display: flex;
         flex-direction: column;
-        margin-left: 0;
+        align-items: center;
+        margin-left: 0 !important;
+    }
+
+    .note {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 13px;
     }
 }

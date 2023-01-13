@@ -18,8 +18,8 @@ const CakeBase = () => {
             <hr />
 
             {/* Cake Tier */}
-            <div className="cake-make-container">
-                <h5>Cake Tier</h5>
+            <div className="base-cake-make-container">
+                <h2>Cake Tier</h2>
                 <div className="choice-container">
                     <div className="option">
                         <LazyLoadImage
@@ -41,7 +41,7 @@ const CakeBase = () => {
             </div>
 
             {/* Cake Shape */}
-            <div className="cake-make-container">
+            <div className="base-cake-make-container">
                 <h5>Cake Shape</h5>
                 <div className="choice-container">
                     <div className="option">
@@ -64,14 +64,14 @@ const CakeBase = () => {
             </div>
 
             {/* Cake Size */}
-            <div className="cake-make-container">
+            <div className="base-cake-make-container">
                 <h5>Round Cake Size</h5>
                 <div className="choice-container">
                     <div className="option">
                         <form action="">
                             <select
                                 name="cake-size"
-                                className="cake-size-dropdown"
+                                className="base-cake-size-dropdown"
                             >
                                 {RoundSizes.map(
                                     ({ id, size, amountOfPeople, price }) => {
