@@ -1,5 +1,5 @@
 // MAIN
-.build-cake-wrapper {
+.main-build-cake-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,61 +7,15 @@
     font-size: 16px;
     background-color: rgb(102, 121, 100);
 
-    .build-cake-container {
+    .main-build-cake-container {
         display: flex;
         width: 60%;
         margin: 30px;
         height: 100%;
         padding-top: 50px;
+        padding-bottom: 50px;
 
-        .cake-options-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            background-color: rgb(192, 192, 192);
-            border: black solid 1px;
-            border-radius: 20px;
-            padding: 20px 30px 20px 30px;
-            height: min-content;
-        }
-
-        h4 {
-            font-size: 20px;
-            white-space: nowrap;
-        }
-
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        table {
-            width: 100%;
-
-            th,
-            td {
-                border-bottom: solid 1px gray;
-                padding-top: 7px;
-            }
-
-            th {
-                color: black;
-            }
-
-            td {
-                color: rgb(65, 65, 65);
-            }
-        }
-
-        #custom-flavors {
-            display: flex;
-            margin-top: 50px;
-        }
-
-        .customize-cake-container {
+        .main-customize-cake-container {
             display: flex;
             flex-direction: column;
             flex: 3.5;
@@ -71,147 +25,20 @@
                 margin-right: 10px;
             }
 
-            #fruits-section-container {
-                margin-top: 30px;
-                margin-bottom: 50px;
-            }
-
-            .create-cake-container {
+            .main-create-cake-container {
                 display: flex;
                 flex-direction: column;
-
-                .cake-base-container {
-                    display: flex;
-                    flex-direction: column;
-                    border-bottom: solid rgb(68, 68, 68) 1px;
-                    padding-bottom: 30px;
-                }
-
-                .custom-flavors-container {
-                    padding-top: 15px;
-                    padding-bottom: 15px;
-                }
-
-                .cake-make-container {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    border: solid 1px white;
-                    padding: 20px;
-                    border-radius: 10px;
-                    margin: 15px 0 15px 0;
-
-                    h5 {
-                        font-size: 15px;
-                    }
-                }
-
-                #fruit-section {
-                    margin-right: 20px;
-                }
-                .choice-container {
-                    display: flex;
-                    text-align: center;
-
-                    input {
-                        display: flex;
-                        width: 100%;
-                        margin-left: 10px;
-                    }
-
-                    input[type="radio"] {
-                        color: black;
-                        width: 20px;
-                    }
-
-                    label {
-                        margin-left: 20px;
-                        margin-left: 20px;
-                    }
-
-                    .choice {
-                        width: 125px;
-                        border: 1px black solid;
-                        border-radius: 30px;
-                        margin: 10px;
-                    }
-                }
-
-                .cake-size-dropdown {
-                    display: flex;
-                    width: 285px;
-                    height: 33px;
-                    margin-left: 10px;
-                }
+                width: 100%;
             }
         }
     }
 }
 
-#cake-inscription-container {
-    margin-top: 50px;
-}
-
-#cake-occasion {
-    display: flex;
-    border-radius: 10px;
-    width: 285px;
-    height: 40px;
-    margin-left: 10px;
-}
-
-#checkbox-wrapper {
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-.checkbox-container {
-    display: flex;
-
-    .checkbox {
-        display: flex;
-        flex-direction: column;
-        margin: 0px 10px 0px 10px;
-    }
-}
-
-#photo-example-container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-top: 50px;
-
-    aside {
-        font-size: 10px;
-        margin-bottom: 20px;
-    }
-
-    textarea {
-        border-radius: 5px;
-        width: 400px;
-        height: 30px;
-    }
-}
-
-.file-option {
-    margin-bottom: 30px;
-}
-
-.costs-container {
-    display: flex;
-    flex-direction: column;
-
-    .costs {
-        display: flex;
-        justify-content: space-between;
-    }
-}
-
 @media (min-width: 481px) and (max-width: 1200px) {
-    .build-cake-wrapper {
+    .main-build-cake-wrapper {
         justify-content: center;
     }
-    .build-cake-container {
+    .main-build-cake-container {
         width: 50%;
         justify-content: center;
         align-items: center;
@@ -219,28 +46,28 @@
         margin-left: 0;
     }
 
-    .customize-cake-container {
+    .main-customize-cake-container {
         margin-left: 0 !important;
     }
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-    .build-cake-wrapper {
+    .main-build-cake-wrapper {
         justify-content: center;
     }
-    .build-cake-container {
-        width: 50%;
+    .main-build-cake-container {
+        width: 100% !important;
         flex-direction: column;
     }
 
-    .customize-cake-container {
+    .main-customize-cake-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-left: 0 !important;
     }
 
-    .note {
+    .main-note {
         margin-top: 20px;
         margin-bottom: 10px;
         font-size: 13px;

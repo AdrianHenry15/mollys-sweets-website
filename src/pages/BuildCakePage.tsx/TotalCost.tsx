@@ -12,20 +12,20 @@ const TotalCost = () => {
                 </p>
             </aside>
             <hr />
-            <section className="costs-container">
-                <div id="base-costs-container" className="costs">
+            <section className="total-costs-container">
+                <div id="total-base-costs-container" className="total-costs">
                     <h4>Cake Base</h4>
                     <span>$0.00</span>
                 </div>
-                <div id="flavors-costs-container" className="costs">
+                <div id="total-flavors-costs-container" className="total-costs">
                     <h4>Flavors, Fillings, etc.</h4>
                     <span>$0.00</span>
                 </div>
-                <div id="design-costs-container" className="costs">
+                <div id="total-design-costs-container" className="total-costs">
                     <h4>Design</h4>
                     <span>$0.00</span>
                 </div>
-                <div id="total-costs-container" className="costs">
+                <div id="total-costs-container" className="total-costs">
                     <h4>Total</h4>
                     <span>$0.00</span>
                 </div>

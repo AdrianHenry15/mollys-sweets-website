@@ -14,7 +14,10 @@ const Flavors = () => {
             case SweetGenres.FLAVORS: {
                 return (
                     <form action="">
-                        <select name="cake-size" className="cake-size-dropdown">
+                        <select
+                            name="cake-size"
+                            className="flavors-cake-size-dropdown"
+                        >
                             {MainFlavors.map(({ id, name, price }) => {
                                 if (id === 0) {
                                     return (
@@ -38,7 +41,10 @@ const Flavors = () => {
             case SweetGenres.FROSTINGS: {
                 return (
                     <form action="">
-                        <select name="cake-size" className="cake-size-dropdown">
+                        <select
+                            name="cake-size"
+                            className="flavors-cake-size-dropdown"
+                        >
                             {Frostings.map(({ id, name, price }) => {
                                 if (id === 0) {
                                     return (
@@ -62,7 +68,10 @@ const Flavors = () => {
             case SweetGenres.FILLINGS: {
                 return (
                     <form action="">
-                        <select name="cake-size" className="cake-size-dropdown">
+                        <select
+                            name="cake-size"
+                            className="flavors-cake-size-dropdown"
+                        >
                             {Fillings.map(({ id, name, price }) => {
                                 if (id === 0) {
                                     return (
@@ -89,7 +98,7 @@ const Flavors = () => {
         }
     };
     return (
-        <section className="custom-flavors-container">
+        <section className="flavors-custom-flavors-container">
             <h3>Customize Flavors</h3>
             <hr />
             {(Object.keys(SweetGenres) as Array<keyof typeof SweetGenres>).map(
@@ -97,15 +106,15 @@ const Flavors = () => {
                     return (
                         <div
                             key={key}
-                            id="custom-flavors"
-                            className="cake-make-container"
+                            id="flavors-custom-flavors"
+                            className="flavors-cake-make-container"
                         >
-                            <h5>
+                            <h5 className="flavors-title">
                                 Main {SweetGenres[key].slice(0, -1)}
                                 {}
                             </h5>
-                            <div className="choice-container">
-                                <div className="option">
+                            <div className="flavors-choice-container">
+                                <div className="flavors-option">
                                     {renderSweetGenres(SweetGenres[key])}
                                 </div>
                             </div>
@@ -113,27 +122,33 @@ const Flavors = () => {
                     );
                 }
             )}
-            <div id="fruits-section-container" className="cake-make-container">
-                <h5>Add Fresh Fruit?</h5>
-                <div id="fruit-section" className="choice-container">
+            <div
+                id="flavors-fruits-section-container"
+                className="flavors-cake-make-container"
+            >
+                <h5 className="flavors-title">Add Fresh Fruit?</h5>
+                <div
+                    id="flavors-fruit-section"
+                    className="flavors-choice-container"
+                >
                     <input
                         value="yes"
                         type="radio"
                         name="fruit"
-                        id="fruit-input"
+                        id="flavors-fruit-input"
                     ></input>
                     <label htmlFor="fruit">Yes (Extra Cost*)</label>
                     <input
                         value="no"
                         type="radio"
                         name="fruit"
-                        id="fruit-input"
+                        id="flavors-fruit-input"
                     ></input>
                     <label htmlFor="fruit">No</label>
                 </div>
             </div>
-            <div className="cake-make-container">
-                <h5>Flavors Cost</h5>
+            <div className="flavors-cake-make-container">
+                <h5 className="flavors-title">Flavors Cost</h5>
                 <div>$0.00</div>
             </div>
         </section>

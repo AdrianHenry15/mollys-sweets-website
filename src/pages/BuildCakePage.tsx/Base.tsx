@@ -13,61 +13,61 @@ import { RoundSizes } from "../../data/SweetsData";
 
 const CakeBase = () => {
     return (
-        <section className="cake-base-container">
+        <section className="base-cake-base-container">
             <h3>Choose Cake Base</h3>
             <hr />
 
             {/* Cake Tier */}
             <div className="base-cake-make-container">
-                <h2>Cake Tier</h2>
-                <div className="choice-container">
-                    <div className="option">
+                <h5 className="base-title">Cake Tier</h5>
+                <div className="base-choice-container">
+                    <div className="base-option">
                         <LazyLoadImage
-                            className="choice"
+                            className="base-choice"
                             src={SingleRound}
                             alt="round-cake"
                         />
-                        <h5>Single</h5>
+                        <h5 className="base-option">Single</h5>
                     </div>
-                    <div className="option">
+                    <div className="base-option">
                         <LazyLoadImage
-                            className="choice"
+                            className="base-choice"
                             src={MultipleRound}
                             alt="round-cake"
                         />
-                        <h5>Multiple</h5>
+                        <h5 className="base-option">Multiple</h5>
                     </div>
                 </div>
             </div>
 
             {/* Cake Shape */}
             <div className="base-cake-make-container">
-                <h5>Cake Shape</h5>
-                <div className="choice-container">
-                    <div className="option">
+                <h5 className="base-title">Cake Shape</h5>
+                <div className="base-choice-container">
+                    <div className="base-option">
                         <LazyLoadImage
-                            className="choice"
+                            className="base-choice"
                             src={SingleRound}
                             alt="round-cake"
                         />
-                        <h5>Single</h5>
+                        <h5 className="base-option">Single</h5>
                     </div>
-                    <div className="option">
+                    <div className="base-option">
                         <LazyLoadImage
-                            className="choice"
+                            className="base-choice"
                             src={SingleSheet}
                             alt="round-cake"
                         />
-                        <h5>Sheet</h5>
+                        <h5 className="base-option">Sheet</h5>
                     </div>
                 </div>
             </div>
 
             {/* Cake Size */}
             <div className="base-cake-make-container">
-                <h5>Round Cake Size</h5>
-                <div className="choice-container">
-                    <div className="option">
+                <h5 className="base-title">Round Cake Size</h5>
+                <div className="base-choice-container">
+                    <div className="base-option">
                         <form action="">
                             <select
                                 name="cake-size"
@@ -98,6 +98,10 @@ const CakeBase = () => {
                         </form>
                     </div>
                 </div>
+            </div>
+            <div className="base-cake-make-container">
+                <h5 className="base-title">Cake Base Cost</h5>
+                <div>$0.00</div>
             </div>
         </section>
     );

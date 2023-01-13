@@ -1,32 +1,36 @@
-.cake-make-container {
+.details-cake-make-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
+    border: solid 1px white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0 15px 0;
 }
 
-.cake-size-dropdown {
+.details-cake-size-dropdown {
     display: flex;
     width: 285px;
     height: 33px;
     margin-left: 10px;
 }
 
-#checkbox-wrapper {
+#details-checkbox-wrapper {
     margin-top: 50px;
     margin-bottom: 50px;
 }
 
-.checkbox-container {
+.details-checkbox-container {
     display: flex;
 
-    .checkbox {
+    .details-checkbox {
         display: flex;
         flex-direction: column;
         margin: 0px 10px 0px 10px;
     }
 }
 
-#photo-example-container {
+#details-photo-example-container {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -44,71 +48,71 @@
     }
 }
 
-.file-option {
+.details-file-option {
     margin-bottom: 30px;
 }
 
-#cake-inscription-container {
+#details-cake-inscription-container {
     display: flex;
     align-items: flex-start;
     margin-top: 50px;
 }
 
-#extra-details {
+#details-extra-details {
     font-size: 12px;
     width: 350px;
     height: 100px;
+}
+
+.details-title {
+    font-size: 15px;
 }
 
 @media (min-width: 481px) and (max-width: 1200px) {
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-    .build-cake-container {
-        width: 100% !important;
+    .details-cake-details-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-    .checkbox-container {
+    .details-cake-make-container {
         flex-direction: column;
     }
 
-    .checkbox {
-        flex-direction: row !important;
-    }
-
-    input {
-        width: 15%;
-    }
-
-    .cake-size-dropdown {
-        align-items: center;
-        justify-content: center;
+    .details-cake-size-dropdown {
+        height: 33px;
+        line-height: 26px;
         font-size: 12px;
-        width: 240px !important;
     }
 
-    #cake-inscription-container {
+    #details-photo-example-container {
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        textarea {
+            width: 290px;
+        }
+        textarea::placeholder {
+            line-height: 22px;
+        }
+        aside {
+            font-size: 10px;
+        }
+    }
+
+    #details-cake-inscription-container {
         align-items: center;
     }
 
-    #photo-link {
-        width: 100% !important;
-        height: 100px !important;
+    #details-extra-details {
+        width: 290px;
     }
 
-    .file-option {
-        width: 100%;
-    }
-
-    #extra-details {
-        width: 300px;
-    }
-
-    #photo-example-container {
-        align-items: center;
-        justify-content: center;
-    }
-
-    #extra-details {
-        width: 250px;
+    .details-textbox-container {
+        textarea::placeholder {
+            font-size: 10px;
+        }
     }
 }
