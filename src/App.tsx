@@ -10,9 +10,9 @@ import Cakes from "./pages/Cakes";
 import Footer from "./components/Footer";
 import SampleOurSweets from "./pages/ScanOurSweets";
 import ChooseYourSweets from "./pages/ChooseYourSweets";
-import ChooseYourCookies from "./pages/ChooseYourCookies";
-import ChooseYourCupcakes from "./pages/ChooseYourCupcakes";
 import BuildYourCake from "./pages/BuildCakePage.tsx/Main";
+import ChooseYourCupcakes from "./pages/ChooseYourCupcakes/Main";
+import ChooseYourCookies from "./pages/ChooseYourCookies/Main";
 
 const App = () => {
     return (

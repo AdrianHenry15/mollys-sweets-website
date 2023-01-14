@@ -3,7 +3,7 @@ import "../styles/Cookies.scss";
 import "../styles/GlobalStyles.scss";
 
 // Data
-import { CookieTypes } from "../data/SweetsData";
+import { CookieTypes } from "../data/CookieData";
 import { SweetsImages } from "../data/ImageData";
 
 // Frameworks

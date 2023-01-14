@@ -3,7 +3,7 @@ import "../styles/Cakes.scss";
 import "../styles/GlobalStyles.scss";
 
 // Data
-import { Fillings, Frostings, MainFlavors } from "../data/SweetsData";
+import { Fillings, Frostings, MainFlavors } from "../data/CakesData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";

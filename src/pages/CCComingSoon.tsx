@@ -1,7 +1,7 @@
 import React from "react";
 import ComingSoon from "../components/ComingSoon";
 
-const ChooseYourCupcakes = () => {
+const CCComingSoon = () => {
     return (
         <div>
             <ComingSoon />
@@ -9,4 +9,4 @@ const ChooseYourCupcakes = () => {
     );
 };
 
-export default ChooseYourCupcakes;
+export default CCComingSoon;

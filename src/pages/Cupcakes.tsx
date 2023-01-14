@@ -4,7 +4,7 @@ import "../styles/GlobalStyles.scss";
 
 // Data
 // import { SweetGenres } from "./Cakes";
-import { Frostings, MainFlavors } from "../data/SweetsData";
+import { Frostings, MainFlavors } from "../data/CakesData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";

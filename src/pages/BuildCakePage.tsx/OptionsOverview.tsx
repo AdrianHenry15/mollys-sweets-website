@@ -1,5 +1,5 @@
 //data
-import { RoundSizes, SheetSizes } from "../../data/SweetsData";
+import { RoundSizes, SheetSizes } from "../../data/CakesData";
 
 //styles
 import "../../styles/BuildYourCake/OptionsOverview.scss";

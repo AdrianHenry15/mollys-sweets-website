@@ -5,7 +5,7 @@ import React from "react";
 import "../../styles/BuildYourCake/Flavors.scss";
 
 //data
-import { Fillings, Frostings, MainFlavors } from "../../data/SweetsData";
+import { Fillings, Frostings, MainFlavors } from "../../data/CakesData";
 import { SweetGenres } from "../../store/Enums";
 
 const Flavors = () => {
@@ -103,6 +103,7 @@ const Flavors = () => {
             <hr />
             {(Object.keys(SweetGenres) as Array<keyof typeof SweetGenres>).map(
                 (key) => {
+                    // Flavor, Filling and Frosting
                     return (
                         <div
                             key={key}
@@ -122,6 +123,8 @@ const Flavors = () => {
                     );
                 }
             )}
+
+            {/* Fresh Fruit */}
             <div
                 id="flavors-fruits-section-container"
                 className="flavors-cake-make-container"

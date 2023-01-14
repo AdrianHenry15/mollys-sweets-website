@@ -10,7 +10,17 @@ export enum SweetGenres {
     FROSTINGS = "Frostings",
 }
 
+export enum CupcakeGenres {
+    FLAVORS = "Flavors",
+    FROSTINGS = "Frostings",
+}
+
 export enum CakeTier {
     ROUND = "Round",
     SHEET = "Sheet",
+}
+
+export enum CupcakeSize {
+    REGULAR = "Regular",
+    MINI = "Mini",
 }

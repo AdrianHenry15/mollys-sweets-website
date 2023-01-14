@@ -9,7 +9,7 @@ import SingleRound from "../../assets/imgs/create_a_cake/single-tier-round-white
 import SingleSheet from "../../assets/imgs/create_a_cake/single-tier-sheet.png";
 import MultipleRound from "../../assets/imgs/create_a_cake/multiple-tier-round-white.png";
 //data
-import { RoundSizes } from "../../data/SweetsData";
+import { RoundSizes } from "../../data/CakesData";
 
 const CakeBase = () => {
     return (
