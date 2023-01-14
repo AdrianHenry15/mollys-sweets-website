@@ -1,0 +1,75 @@
+// MAIN
+.main-build-cake-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 16px;
+    background-color: rgb(102, 121, 100);
+
+    .main-build-cake-container {
+        display: flex;
+        width: 60%;
+        margin: 30px;
+        height: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        .main-customize-cake-container {
+            display: flex;
+            flex-direction: column;
+            flex: 3.5;
+            margin-left: 50px;
+
+            strong {
+                margin-right: 10px;
+            }
+
+            .main-create-cake-container {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+    .main-build-cake-wrapper {
+        justify-content: center;
+    }
+    .main-build-cake-container {
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    .main-customize-cake-container {
+        margin-left: 0 !important;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .main-build-cake-wrapper {
+        justify-content: center;
+    }
+    .main-build-cake-container {
+        width: 100% !important;
+        flex-direction: column;
+    }
+
+    .main-customize-cake-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0 !important;
+    }
+
+    .main-note {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+}

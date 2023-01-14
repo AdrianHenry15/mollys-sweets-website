@@ -1,0 +1,62 @@
+.ccf-dropdown {
+    display: flex;
+    width: 285px;
+    height: 33px;
+    margin-left: 10px;
+}
+
+.ccf-container {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.ccf-make-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px 0 30px 0;
+
+    input {
+        display: flex;
+        width: 100%;
+        margin-left: 10px;
+    }
+
+    input[type="radio"] {
+        color: black;
+        width: 20px;
+    }
+
+    label {
+        margin-left: 20px;
+        margin-left: 20px;
+    }
+}
+
+.ccf-choice-container {
+    display: flex;
+    text-align: center;
+}
+
+.ccf-title {
+    font-size: 15px;
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .ccf-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .ccf-make-container {
+        flex-direction: column;
+        width: 100%;
+        margin: 15px 0 15px 0;
+    }
+}

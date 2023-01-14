@@ -1,0 +1,65 @@
+.base-cake-base-container {
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid rgb(68, 68, 68) 1px;
+    padding-bottom: 30px;
+}
+
+.base-cake-make-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0 15px 0;
+}
+
+.base-choice-container {
+    display: flex;
+    text-align: center;
+}
+
+.base-choice {
+    width: 125px;
+    border: 1px black solid;
+    border-radius: 30px;
+    margin: 10px;
+}
+
+.base-title {
+    font-size: 20px;
+}
+.base-option {
+    font-size: 15px;
+}
+
+.base-cake-size-dropdown {
+    display: flex;
+    width: 285px;
+    height: 33px;
+    margin-left: 10px;
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .base-cake-base-container {
+        align-items: center;
+    }
+    .base-cake-make-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .choice-container {
+        flex-direction: column;
+    }
+
+    .base-cake-size-dropdown {
+        width: 230px !important;
+    }
+}

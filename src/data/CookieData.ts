@@ -1,4 +1,5 @@
 import { SweetGenres } from "../store/Types";
+import { SnackType } from "../store/Types";
 
 export const CookieTypes: SweetGenres = [
     {
@@ -65,5 +66,82 @@ export const CookieTypes: SweetGenres = [
         id: 13,
         name: "Drop Cookies",
         price: 2.75,
+    },
+];
+
+export const RegularCookieCount: SnackType = [
+    {
+        id: 0,
+        count: "",
+        amountOfPeople: "",
+        price: 0.0,
+    },
+    {
+        id: 1,
+        count: "12 Regular Cookies",
+        amountOfPeople: "12 People",
+        price: 20.0,
+    },
+    {
+        id: 2,
+        count: "24 Regular Cookies",
+        amountOfPeople: "24 People",
+        price: 40.0,
+    },
+    {
+        id: 3,
+        count: "36 Regular Cookies",
+        amountOfPeople: "36 People",
+        price: 60.0,
+    },
+    {
+        id: 4,
+        count: "48 Regular Cookies",
+        amountOfPeople: "48 People",
+        price: 80.0,
+    },
+    {
+        id: 5,
+        count: "More",
+        amountOfPeople: "",
+        price: 0.0,
+    },
+];
+export const MiniCookieCount: SnackType = [
+    {
+        id: 0,
+        count: "",
+        amountOfPeople: "",
+        price: 0.0,
+    },
+    {
+        id: 1,
+        count: "12 Mini Cookies",
+        amountOfPeople: "6 People",
+        price: 10.0,
+    },
+    {
+        id: 2,
+        count: "24 Mini Cookies",
+        amountOfPeople: "12 People",
+        price: 20.0,
+    },
+    {
+        id: 3,
+        count: "36 Mini Cookies",
+        amountOfPeople: "18 People",
+        price: 30.0,
+    },
+    {
+        id: 4,
+        count: "48 Mini Cookies",
+        amountOfPeople: "24 People",
+        price: 40.0,
+    },
+    {
+        id: 5,
+        count: "More",
+        amountOfPeople: "",
+        price: 0.0,
     },
 ];

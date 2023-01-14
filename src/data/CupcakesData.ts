@@ -1,6 +1,6 @@
-import { CupcakeType } from "../store/Types";
+import { SnackType } from "../store/Types";
 
-export const RegularCupcakeCount: CupcakeType = [
+export const RegularCupcakeCount: SnackType = [
     {
         id: 0,
         count: "",
@@ -38,7 +38,7 @@ export const RegularCupcakeCount: CupcakeType = [
         price: 0.0,
     },
 ];
-export const MiniCupcakeCount: CupcakeType = [
+export const MiniCupcakeCount: SnackType = [
     {
         id: 0,
         count: "",

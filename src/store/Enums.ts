@@ -20,7 +20,7 @@ export enum CakeTier {
     SHEET = "Sheet",
 }
 
-export enum CupcakeSize {
+export enum SnackSize {
     REGULAR = "Regular",
     MINI = "Mini",
 }

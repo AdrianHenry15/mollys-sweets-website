@@ -1,5 +1,3 @@
-import { CupcakeSize } from "./Enums";
-
 export type SweetGenres = {
     id: number;
     name: string;
@@ -13,7 +11,7 @@ export type SizeType = {
     price: number;
 }[];
 
-export type CupcakeType = {
+export type SnackType = {
     id: number;
     count: string;
     amountOfPeople: string;
