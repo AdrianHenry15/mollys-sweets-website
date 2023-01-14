@@ -1,5 +1,5 @@
 //styles
-import "../../styles/CupcakeBuild/CupcakeBuild.scss";
+import "../../styles/CupcakeBuild/Main.scss";
 //frameworks
 import React from "react";
 // components
@@ -10,11 +10,11 @@ import CCTotalCost from "./CCTotalCost";
 
 const ChooseYourCupcakes = () => {
     return (
-        <section className="main-build-cake-wrapper">
-            <div className="main-build-cake-container">
+        <section className="main-build-cupcake-wrapper">
+            <div className="main-build-cupcake-container">
                 {/* <OptionsOverview /> */}
-                <section className="main-customize-cake-container">
-                    <aside className="main-note">
+                <section className="main-customize-cupcake-container">
+                    <aside className="main-cc-note">
                         <p>
                             <strong>NOTE: </strong>
                             <i>
@@ -25,16 +25,16 @@ const ChooseYourCupcakes = () => {
                             </i>
                         </p>
                     </aside>
-                    <section className="main-create-cake-container">
+                    <section className="main-create-cupcake-container">
                         <CCCount />
                     </section>
-                    <section className="main-create-cake-container">
+                    <section className="main-create-cupcake-container">
                         <CCFlavors />
                     </section>
-                    <section className="main-create-cake-container">
+                    <section className="main-create-cupcake-container">
                         <CCDetails />
                     </section>
-                    <section className="main-create-cake-container">
+                    <section className="main-create-cupcake-container">
                         <CCTotalCost />
                     </section>
                 </section>

@@ -1,5 +1,5 @@
 //styles
-import "../../styles/CakeBuild/BuildYourCake.scss";
+import "../../styles/CakeBuild/Main.scss";
 //frameworks
 import React from "react";
 //components

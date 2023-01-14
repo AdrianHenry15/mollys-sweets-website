@@ -1,4 +1,4 @@
-import "../../styles/CookieBuild/CookieBuild.scss";
+import "../../styles/CookieBuild/Main.scss";
 import React from "react";
 
 // components
@@ -9,11 +9,11 @@ import CookieFlavors from "./CookieFlavors";
 
 const ChooseYourCookies = () => {
     return (
-        <section className="main-build-cake-wrapper">
-            <div className="main-build-cake-container">
+        <section className="main-build-cookie-wrapper">
+            <div className="main-build-cookie-container">
                 {/* <OptionsOverview /> */}
-                <section className="main-customize-cake-container">
-                    <aside className="main-note">
+                <section className="main-customize-cookie-container">
+                    <aside className="main-cookie-note">
                         <p>
                             <strong>NOTE: </strong>
                             <i>
@@ -24,16 +24,16 @@ const ChooseYourCookies = () => {
                             </i>
                         </p>
                     </aside>
-                    <section className="main-create-cake-container">
+                    <section className="main-create-cookie-container">
                         <CookieCount />
                     </section>
-                    <section className="main-create-cake-container">
+                    <section className="main-create-cookie-container">
                         <CookieFlavors />
                     </section>
-                    <section className="main-create-cake-container">
+                    <section className="main-create-cookie-container">
                         <CookieDetails />
                     </section>
-                    <section className="main-create-cake-container">
+                    <section className="main-create-cookie-container">
                         <CookieTotalCost />
                     </section>
                 </section>
