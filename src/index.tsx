@@ -12,11 +12,11 @@ import App from "./App";
 
 //store
 import { Provider } from "mobx-react";
-import { Store } from "./store/store";
+import { RootStore } from "./store/store";
 
 const fetcher = (url: any) =>
     window.fetch(url).then((response) => response.json());
-const store = Store.create(
+const store = RootStore.create(
     {},
     {
         fetch: fetcher,
@@ -30,11 +30,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <Provider store={store} history={history}>
-        <BrowserRouter>
-            <React.StrictMode>
+    <BrowserRouter>
+        <React.StrictMode>
+            <Provider store={store}>
                 <App />
-            </React.StrictMode>
-        </BrowserRouter>
-    </Provider>
+            </Provider>
+        </React.StrictMode>
+    </BrowserRouter>
 );
