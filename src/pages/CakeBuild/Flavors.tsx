@@ -1,5 +1,5 @@
 //frameworks
-import React from "react";
+import React, { useEffect } from "react";
 
 //styles
 import "../../styles/CakeBuild/Flavors.scss";
@@ -7,6 +7,8 @@ import "../../styles/CakeBuild/Flavors.scss";
 //data
 import { Fillings, Frostings, MainFlavors } from "../../data/CakesData";
 import { SweetGenres } from "../../store/Enums";
+
+//store
 
 const Flavors = () => {
     const renderSweetGenres = (genre: SweetGenres): JSX.Element => {

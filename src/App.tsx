@@ -1,5 +1,9 @@
+//styles
 import "./App.scss";
+//frameworks
 import React from "react";
+import { observer, inject } from "mobx-react";
+//components
 import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
