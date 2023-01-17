@@ -6,14 +6,19 @@ import "../../styles/CakeBuild/Flavors.scss";
 
 //data
 import { Fillings, Frostings, MainFlavors } from "../../data/CakesData";
-import { SweetGenres } from "../../store/Enums";
+import { ProductTypes } from "../../constants/Enums";
+import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+import { Observer } from "mobx-react";
 
 //store
 
-const Flavors = () => {
-    const renderSweetGenres = (genre: SweetGenres): JSX.Element => {
+interface IFlavorsProps {
+    store?: GlobalStateStore;
+}
+const Flavors = (props: IFlavorsProps) => {
+    const renderProductTypes = (genre: ProductTypes): JSX.Element => {
         switch (genre) {
-            case SweetGenres.FLAVORS: {
+            case ProductTypes.FLAVORS: {
                 return (
                     <form action="">
                         <select
@@ -40,7 +45,7 @@ const Flavors = () => {
                     </form>
                 );
             }
-            case SweetGenres.FROSTINGS: {
+            case ProductTypes.FROSTINGS: {
                 return (
                     <form action="">
                         <select
@@ -67,7 +72,7 @@ const Flavors = () => {
                     </form>
                 );
             }
-            case SweetGenres.FILLINGS: {
+            case ProductTypes.FILLINGS: {
                 return (
                     <form action="">
                         <select
@@ -100,63 +105,76 @@ const Flavors = () => {
         }
     };
     return (
-        <section className="flavors-custom-flavors-container">
-            <h3>Customize Flavors</h3>
-            <hr />
-            {(Object.keys(SweetGenres) as Array<keyof typeof SweetGenres>).map(
-                (key) => {
-                    // Flavor, Filling and Frosting
-                    return (
+        <Observer>
+            {() => {
+                return (
+                    <section className="flavors-custom-flavors-container">
+                        <h3>Customize Flavors</h3>
+                        <hr />
+                        {(
+                            Object.keys(ProductTypes) as Array<
+                                keyof typeof ProductTypes
+                            >
+                        ).map((key) => {
+                            // Flavor, Filling and Frosting
+                            return (
+                                <div
+                                    key={key}
+                                    id="flavors-custom-flavors"
+                                    className="flavors-cake-make-container"
+                                >
+                                    <h5 className="flavors-title">
+                                        Main{" "}
+                                        {ProductTypes[key]
+                                            .toString()
+                                            .slice(0, -1)}
+                                        {}
+                                    </h5>
+                                    <div className="flavors-choice-container">
+                                        <div className="flavors-option">
+                                            {renderProductTypes(
+                                                ProductTypes[key]
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+
+                        {/* Fresh Fruit */}
                         <div
-                            key={key}
-                            id="flavors-custom-flavors"
+                            id="flavors-fruits-section-container"
                             className="flavors-cake-make-container"
                         >
-                            <h5 className="flavors-title">
-                                Main {SweetGenres[key].slice(0, -1)}
-                                {}
-                            </h5>
-                            <div className="flavors-choice-container">
-                                <div className="flavors-option">
-                                    {renderSweetGenres(SweetGenres[key])}
-                                </div>
+                            <h5 className="flavors-title">Add Fresh Fruit?</h5>
+                            <div
+                                id="flavors-fruit-section"
+                                className="flavors-choice-container"
+                            >
+                                <input
+                                    value="yes"
+                                    type="radio"
+                                    name="fruit"
+                                    id="flavors-fruit-input"
+                                ></input>
+                                <label htmlFor="fruit">Yes (Extra Cost*)</label>
+                                <input
+                                    value="no"
+                                    type="radio"
+                                    name="fruit"
+                                    id="flavors-fruit-input"
+                                ></input>
+                                <label htmlFor="fruit">No</label>
                             </div>
                         </div>
-                    );
-                }
-            )}
-
-            {/* Fresh Fruit */}
-            <div
-                id="flavors-fruits-section-container"
-                className="flavors-cake-make-container"
-            >
-                <h5 className="flavors-title">Add Fresh Fruit?</h5>
-                <div
-                    id="flavors-fruit-section"
-                    className="flavors-choice-container"
-                >
-                    <input
-                        value="yes"
-                        type="radio"
-                        name="fruit"
-                        id="flavors-fruit-input"
-                    ></input>
-                    <label htmlFor="fruit">Yes (Extra Cost*)</label>
-                    <input
-                        value="no"
-                        type="radio"
-                        name="fruit"
-                        id="flavors-fruit-input"
-                    ></input>
-                    <label htmlFor="fruit">No</label>
-                </div>
-            </div>
-            <div className="flavors-cake-make-container">
-                <h5 className="flavors-title">Flavors Cost</h5>
-                <div>$0.00</div>
-            </div>
-        </section>
+                        <div className="flavors-cake-make-container">
+                            <h5 className="flavors-title">Flavors Cost</h5>
+                            <div>$0.00</div>
+                        </div>
+                    </section>
+                );
+            }}
+        </Observer>
     );
 };
 

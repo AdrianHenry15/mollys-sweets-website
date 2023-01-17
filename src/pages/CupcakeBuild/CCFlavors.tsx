@@ -6,12 +6,13 @@ import "../../styles/CupcakeBuild/CCFlavors.scss";
 
 //data
 import { Frostings, MainFlavors } from "../../data/CakesData";
-import { CupcakeGenres } from "../../store/Enums";
+import { ProductTypes } from "../../constants/Enums";
+import { Observer } from "mobx-react";
 
 const CCFlavors = () => {
-    const renderSweetGenres = (genre: CupcakeGenres): JSX.Element => {
+    const renderSweetGenres = (genre: ProductTypes): JSX.Element => {
         switch (genre) {
-            case CupcakeGenres.FLAVORS: {
+            case ProductTypes.FLAVORS: {
                 return (
                     <form action="">
                         <select name="cake-size" className="ccf-dropdown">
@@ -35,7 +36,7 @@ const CCFlavors = () => {
                     </form>
                 );
             }
-            case CupcakeGenres.FROSTINGS: {
+            case ProductTypes.FROSTINGS: {
                 return (
                     <form action="">
                         <select name="cake-size" className="ccf-dropdown">
@@ -65,33 +66,48 @@ const CCFlavors = () => {
         }
     };
     return (
-        <section className="ccf-container">
-            <h3>Customize Flavors</h3>
-            <hr />
-            {(
-                Object.keys(CupcakeGenres) as Array<keyof typeof CupcakeGenres>
-            ).map((key) => {
+        <Observer>
+            {() => {
                 return (
-                    <div
-                        key={key}
-                        id="ccf-custom-flavors"
-                        className="ccf-make-container"
-                    >
-                        <h5 className="flavors-title">
-                            Main {CupcakeGenres[key].slice(0, -1)}
-                            {}
-                        </h5>
-                        <div className="ccf-choice-container">
-                            <div>{renderSweetGenres(CupcakeGenres[key])}</div>
+                    <section className="ccf-container">
+                        <h3>Customize Flavors</h3>
+                        <hr />
+                        {(
+                            Object.keys(ProductTypes) as Array<
+                                keyof typeof ProductTypes
+                            >
+                        ).map((key) => {
+                            return (
+                                <div
+                                    key={key}
+                                    id="ccf-custom-flavors"
+                                    className="ccf-make-container"
+                                >
+                                    <h5 className="flavors-title">
+                                        Main{" "}
+                                        {ProductTypes[key]
+                                            .toString()
+                                            .slice(0, -1)}
+                                        {}
+                                    </h5>
+                                    <div className="ccf-choice-container">
+                                        <div>
+                                            {renderSweetGenres(
+                                                ProductTypes[key]
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                        <div className="ccf-make-container">
+                            <h5 className="ccf-title">Cost</h5>
+                            <div>$0.00</div>
                         </div>
-                    </div>
+                    </section>
                 );
-            })}
-            <div className="ccf-make-container">
-                <h5 className="ccf-title">Cost</h5>
-                <div>$0.00</div>
-            </div>
-        </section>
+            }}
+        </Observer>
     );
 };
 

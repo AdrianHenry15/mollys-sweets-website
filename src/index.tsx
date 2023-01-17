@@ -12,8 +12,8 @@ import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 //store
-import { Provider } from "react-redux";
-import store from "./redux/store";
+import { Provider } from "mobx-react";
+import { GlobalStateStore } from "./stateStore/GlobalStateStore";
 
 //rendering
 const root = ReactDOM.createRoot(
@@ -23,7 +23,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <BrowserRouter>
         <React.StrictMode>
-            <Provider store={store}>
+            <Provider store={GlobalStateStore}>
                 <App />
             </Provider>
         </React.StrictMode>

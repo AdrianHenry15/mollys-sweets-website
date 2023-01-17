@@ -8,7 +8,7 @@ import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Data
-import { SweetCategories } from "../store/Enums";
+import { ProductCategories } from "../constants/Enums";
 import { SweetsImages } from "../data/ImageData";
 
 const ScanOurSweets = () => {
@@ -17,8 +17,8 @@ const ScanOurSweets = () => {
             <h1>Our Sweets</h1>
             <div className="scroll-wrapper">
                 {(
-                    Object.keys(SweetCategories) as Array<
-                        keyof typeof SweetCategories
+                    Object.keys(ProductCategories) as Array<
+                        keyof typeof ProductCategories
                     >
                 ).map((key) => {
                     return (
@@ -27,14 +27,14 @@ const ScanOurSweets = () => {
                             className="dev-scroll-container"
                         >
                             <h3 className="scroll-items-title">
-                                {SweetCategories[key]}
+                                {ProductCategories[key]}
                             </h3>
                             <ScrollContainer
                                 horizontal
                                 className="scroll-container"
                             >
                                 <div className="scroll-items-container">
-                                    {SweetsImages[SweetCategories[key]].map(
+                                    {SweetsImages[ProductCategories[key]].map(
                                         ({ id, name, description, src }) => {
                                             return (
                                                 <div

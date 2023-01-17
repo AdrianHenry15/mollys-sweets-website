@@ -1,4 +1,4 @@
-import { SizeType, SweetGenres } from "../store/Types";
+import { SizeType, SweetGenres } from "../constants/Types";
 
 export const Fruits: SweetGenres = [
     {
@@ -12,17 +12,17 @@ export const Fruits: SweetGenres = [
         price: 2.75,
     },
     {
-        id: 1,
+        id: 2,
         name: "Apple",
         price: 2.75,
     },
     {
-        id: 1,
+        id: 3,
         name: "Blueberry",
         price: 2.75,
     },
     {
-        id: 1,
+        id: 4,
         name: "Strawberry",
         price: 2.75,
     },
@@ -42,13 +42,13 @@ export const SheetSizes: SizeType = [
         price: 2.75,
     },
     {
-        id: 1,
+        id: 2,
         size: "1/2",
         amountOfPeople: "48 People",
         price: 2.75,
     },
     {
-        id: 1,
+        id: 3,
         size: "FULL",
         amountOfPeople: "98 People",
         price: 2.75,

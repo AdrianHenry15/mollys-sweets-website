@@ -1,0 +1,420 @@
+import { observable } from "mobx";
+import { ProductStore } from "./schemas/ProductStore";
+
+export class GlobalStateStore {
+    constructor(base?: Partial<GlobalStateStore>) {
+        Object.assign(this, base);
+    }
+
+    @observable ProductStore: ProductStore = {
+        products: [
+            //no product
+            {
+                id: 0,
+                product: [""],
+                productName: "",
+                price: 0,
+            },
+            // fruits
+            {
+                id: 1,
+                product: ["Fruit"],
+                productName: "Banana",
+                price: 2.75,
+            },
+            {
+                id: 2,
+                product: ["Fruit"],
+                productName: "Apple",
+                price: 2.75,
+            },
+            {
+                id: 3,
+                product: ["Fruit"],
+                productName: "Blueberry",
+                price: 2.75,
+            },
+            {
+                id: 4,
+                product: ["Fruit"],
+                productName: "Strawberry",
+                price: 2.75,
+            },
+            // sheetsizes
+            {
+                id: 5,
+                product: ["SheetSizes"],
+                productName: "1/4",
+                price: 2.75,
+                productServes: "28 People",
+            },
+            {
+                id: 6,
+                product: ["SheetSizes"],
+                productName: "1/2",
+                price: 2.75,
+                productServes: "48 People",
+            },
+            {
+                id: 7,
+                product: ["SheetSizes"],
+                productName: "FULL",
+                price: 2.75,
+                productServes: "98 People",
+            },
+            //roundsizes
+            {
+                id: 8,
+                product: ["RoundSizes"],
+                productName: `6"`,
+                price: 2.75,
+                productServes: "6-8 People",
+            },
+            {
+                id: 9,
+                product: ["RoundSizes"],
+                productName: `7"`,
+                price: 2.75,
+                productServes: "10-12 People",
+            },
+            {
+                id: 10,
+                product: ["RoundSizes"],
+                productName: `8"`,
+                price: 2.75,
+                productServes: "10-18 People",
+            },
+            {
+                id: 11,
+                product: ["RoundSizes"],
+                productName: `9"`,
+                price: 2.75,
+                productServes: "20-24 People",
+            },
+            {
+                id: 12,
+                product: ["RoundSizes"],
+                productName: `10"`,
+                price: 2.75,
+                productServes: "26-35 People",
+            },
+            {
+                id: 13,
+                product: ["RoundSizes"],
+                productName: `12"`,
+                price: 2.75,
+                productServes: "35-48 People",
+            },
+            {
+                id: 14,
+                product: ["RoundSizes"],
+                productName: `14"`,
+                price: 2.75,
+                productServes: "50-65 People",
+            },
+            {
+                id: 15,
+                product: ["RoundSizes"],
+                productName: `16"`,
+                price: 2.75,
+                productServes: "70-85 People",
+            },
+            //cake flavors
+            {
+                id: 16,
+                product: ["Cake Flavors"],
+                productName: "Vanilla Bean",
+                price: 2.75,
+            },
+            {
+                id: 17,
+                product: ["Cake Flavors"],
+                productName: "Almond",
+                price: 2.75,
+            },
+            {
+                id: 18,
+                product: ["Cake Flavors"],
+                productName: "Carrot",
+                price: 2.75,
+            },
+            {
+                id: 19,
+                product: ["Cake Flavors"],
+                productName: "Coconut",
+                price: 2.75,
+            },
+            {
+                id: 20,
+                product: ["Cake Flavors"],
+                productName: "Chocolate Earthquake",
+                price: 2.75,
+            },
+            {
+                id: 21,
+                product: ["Cake Flavors"],
+                productName: "Strawberry Champagne",
+                price: 2.75,
+            },
+            {
+                id: 22,
+                product: ["Cake Flavors"],
+                productName: "Red Velvet",
+                price: 2.75,
+            },
+            {
+                id: 23,
+                product: ["Cake Flavors"],
+                productName: "Chocolate",
+                price: 2.75,
+            },
+            {
+                id: 24,
+                product: ["Cake Flavors"],
+                productName: "Birthday",
+                price: 2.75,
+            },
+            {
+                id: 25,
+                product: ["Cake Flavors"],
+                productName: "Oreo",
+                price: 2.75,
+            },
+            {
+                id: 26,
+                product: ["Cake Flavors"],
+                productName: "Brown Butter",
+                price: 2.75,
+            },
+            {
+                id: 27,
+                product: ["Cake Flavors"],
+                productName: "Lemon",
+                price: 2.75,
+            },
+            //fillings
+            {
+                id: 28,
+                product: ["Fillings"],
+                productName: "Blueberry Jam",
+                price: 2.75,
+            },
+            {
+                id: 29,
+                product: ["Fillings"],
+                productName: "Strawberry Jam",
+                price: 2.75,
+            },
+            {
+                id: 30,
+                product: ["Fillings"],
+                productName: "Ganache",
+                price: 2.75,
+            },
+            {
+                id: 31,
+                product: ["Fillings"],
+                productName: "Vanilla Mousse",
+                price: 2.75,
+            },
+            {
+                id: 32,
+                product: ["Fillings"],
+                productName: "Strawberry Mousse",
+                price: 2.75,
+            },
+            {
+                id: 33,
+                product: ["Fillings"],
+                productName: "Peanut Butter Mousse",
+                price: 2.75,
+            },
+            {
+                id: 34,
+                product: ["Fillings"],
+                productName: "Boston Cream",
+                price: 2.75,
+            },
+            {
+                id: 35,
+                product: ["Fillings"],
+                productName: "Fresh Fruit",
+                price: 2.75,
+            },
+            //frostings
+            {
+                id: 36,
+                product: ["Frostings"],
+                productName: "Swiss Buttercream",
+                price: 2.75,
+            },
+            {
+                id: 37,
+                product: ["Frostings"],
+                productName: "Cream Cheese Buttercream",
+                price: 2.75,
+            },
+            {
+                id: 38,
+                product: ["Frostings"],
+                productName: "Buttercream",
+                price: 2.75,
+            },
+            // Regular cupcake/cookie count
+            {
+                id: 39,
+                product: ["Cupcake", "Cookie"],
+                productName: "Regular",
+                price: 20.0,
+                productQuantity: "12",
+                productServes: "12 People",
+            },
+            {
+                id: 40,
+                product: ["Cupcake", "Cookie"],
+                productName: "Regular",
+                price: 40.0,
+                productQuantity: "24",
+                productServes: "24 People",
+            },
+            {
+                id: 41,
+                product: ["Cupcake", "Cookie"],
+                productName: "Regular",
+                price: 60.0,
+                productQuantity: "36",
+                productServes: "36 People",
+            },
+            {
+                id: 42,
+                product: ["Cupcake", "Cookie"],
+                productName: "Regular",
+                price: 80.0,
+                productQuantity: "48",
+                productServes: "48 People",
+            },
+            {
+                id: 43,
+                product: ["Cupcake", "Cookie"],
+                productName: "Regular",
+                price: 0.0,
+                productQuantity: "More",
+            },
+            // mini cupcake/cookie count
+            {
+                id: 44,
+                product: ["Cupcake", "Cookie"],
+                productName: "Mini",
+                price: 10.0,
+                productQuantity: "12",
+                productServes: "12 People",
+            },
+            {
+                id: 45,
+                product: ["Cupcake", "Cookie"],
+                productName: "Mini",
+                price: 20.0,
+                productQuantity: "24",
+                productServes: "24 People",
+            },
+            {
+                id: 46,
+                product: ["Cupcake", "Cookie"],
+                productName: "Mini",
+                price: 30.0,
+                productQuantity: "36",
+                productServes: "36 People",
+            },
+            {
+                id: 47,
+                product: ["Cupcake", "Cookie"],
+                productName: "Mini",
+                price: 40.0,
+                productQuantity: "48",
+                productServes: "48 People",
+            },
+            {
+                id: 48,
+                product: ["Cupcake", "Cookie"],
+                productName: "Mini",
+                price: 0.0,
+                productQuantity: "More",
+            },
+            //cookie flavor
+            {
+                id: 49,
+                product: ["Cookie"],
+                productName: "Chocolate Chip",
+                price: 2.75,
+            },
+            {
+                id: 50,
+                product: ["Cookie"],
+                productName: "Sugar Cookie",
+                price: 2.75,
+            },
+            {
+                id: 51,
+                product: ["Cookie"],
+                productName: "Peanut Butter",
+                price: 2.75,
+            },
+            {
+                id: 52,
+                product: ["Cookie"],
+                productName: "Oatmeal Raisin",
+                price: 2.75,
+            },
+            {
+                id: 53,
+                product: ["Cookie"],
+                productName: "Snickerdoodle",
+                price: 2.75,
+            },
+            {
+                id: 54,
+                product: ["Cookie"],
+                productName: "Dark Chocolate",
+                price: 2.75,
+            },
+            {
+                id: 55,
+                product: ["Cookie"],
+                productName: "Red Velvet",
+                price: 2.75,
+            },
+            {
+                id: 56,
+                product: ["Cookie"],
+                productName: "Birthday Cake",
+                price: 2.75,
+            },
+            {
+                id: 57,
+                product: ["Cookie"],
+                productName: "Brownie",
+                price: 2.75,
+            },
+            {
+                id: 58,
+                product: ["Cookie"],
+                productName: "Oreo",
+                price: 2.75,
+            },
+            {
+                id: 59,
+                product: ["Cookie"],
+                productName: "Coconut",
+                price: 2.75,
+            },
+            {
+                id: 60,
+                product: ["Cookie"],
+                productName: "Drop Cookies",
+                price: 2.75,
+            },
+        ],
+        carts: [],
+        currentCart: [],
+    };
+}

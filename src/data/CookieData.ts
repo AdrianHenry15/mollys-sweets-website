@@ -1,5 +1,5 @@
-import { SweetGenres } from "../store/Types";
-import { SnackType } from "../store/Types";
+import { SweetGenres } from "../constants/Types";
+import { SnackType } from "../constants/Types";
 
 export const CookieTypes: SweetGenres = [
     {
