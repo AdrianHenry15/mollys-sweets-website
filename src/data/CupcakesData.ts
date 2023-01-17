@@ -1,4 +1,4 @@
-import { SnackType } from "../constants/Types";
+import { SnackType } from "../stateStore/constants/Types";
 
 export const RegularCupcakeCount: SnackType = [
     {

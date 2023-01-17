@@ -6,7 +6,7 @@ import "../../styles/CakeBuild/Flavors.scss";
 
 //data
 import { Fillings, Frostings, MainFlavors } from "../../data/CakesData";
-import { ProductTypes } from "../../constants/Enums";
+import { ProductTypes } from "../../stateStore/constants/Enums";
 import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
 import { Observer } from "mobx-react";
 

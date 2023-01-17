@@ -5,7 +5,7 @@ import "../../styles/CupcakeBuild/CCCount.scss";
 import React, { useState } from "react";
 
 //data
-import { SnackSize } from "../../constants/Enums";
+import { SnackSize } from "../../stateStore/constants/Enums";
 import { MiniCupcakeCount, RegularCupcakeCount } from "../../data/CupcakesData";
 import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
 import { Observer } from "mobx-react";

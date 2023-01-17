@@ -5,7 +5,7 @@ import "../../styles/CookieBuild/CookieCount.scss";
 import React, { useState } from "react";
 
 //data
-import { SnackSize } from "../../constants/Enums";
+import { SnackSize } from "../../stateStore/constants/Enums";
 import { MiniCookieCount, RegularCookieCount } from "../../data/CookieData";
 import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
 import { Observer } from "mobx-react";

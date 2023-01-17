@@ -1,4 +1,4 @@
-import { SizeType, SweetGenres } from "../constants/Types";
+import { SizeType, SweetGenres } from "../stateStore/constants/Types";
 
 export const Fruits: SweetGenres = [
     {

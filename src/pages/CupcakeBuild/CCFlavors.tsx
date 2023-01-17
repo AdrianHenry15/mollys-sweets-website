@@ -6,13 +6,13 @@ import "../../styles/CupcakeBuild/CCFlavors.scss";
 
 //data
 import { Frostings, MainFlavors } from "../../data/CakesData";
-import { ProductTypes } from "../../constants/Enums";
+import { ProductTypes } from "../../stateStore/constants/Enums";
 import { Observer } from "mobx-react";
 
 const CCFlavors = () => {
     const renderSweetGenres = (genre: ProductTypes): JSX.Element => {
         switch (genre) {
-            case ProductTypes.FLAVORS: {
+            case ProductTypes.FLAVOR: {
                 return (
                     <form action="">
                         <select name="cake-size" className="ccf-dropdown">
@@ -36,7 +36,7 @@ const CCFlavors = () => {
                     </form>
                 );
             }
-            case ProductTypes.FROSTINGS: {
+            case ProductTypes.FROSTING: {
                 return (
                     <form action="">
                         <select name="cake-size" className="ccf-dropdown">

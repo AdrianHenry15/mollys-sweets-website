@@ -8,7 +8,7 @@ import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Data
-import { ProductCategories } from "../constants/Enums";
+import { ProductCategories } from "../stateStore/constants/Enums";
 import { SweetsImages } from "../data/ImageData";
 
 const ScanOurSweets = () => {

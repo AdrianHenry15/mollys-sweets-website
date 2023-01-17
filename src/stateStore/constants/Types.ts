@@ -1,6 +1,8 @@
+import { ProductTypes, SubProductTypes } from "./Enums";
+
 export type Products = {
     id: number;
-    product: string[];
+    product: ProductTypes[];
     productName: string;
     price: number;
     productQuantity?: string;
