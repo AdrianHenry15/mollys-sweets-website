@@ -1,4 +1,4 @@
-import { ProductTypes, SubProductTypes } from "./Enums";
+import { ProductTypes } from "./Enums";
 
 export type Products = {
     id: number;

@@ -2,16 +2,15 @@
 import "../styles/Cakes.scss";
 import "../styles/GlobalStyles.scss";
 
-// Data
-import { Fillings, Frostings, MainFlavors } from "../data/CakesData";
-
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { SweetsImages } from "../data/ImageData";
+
+//store
 import { inject, observer } from "mobx-react";
-import { GlobalStateStore } from "../stateStore/GlobalStateStore";
+import { GlobalStateStore } from "../store/GlobalStateStore";
 
 interface ICakesProps {
     store?: GlobalStateStore;
@@ -19,6 +18,11 @@ interface ICakesProps {
 
 const Cakes: React.FC<ICakesProps> = inject("store")(
     observer(({ store }: ICakesProps) => {
+        //variables
+        const flavors = store!.ProductStore.products.flavors;
+        const fillings = store!.ProductStore.products.fillings;
+        const frostings = store!.ProductStore.products.frostings;
+        //main
         return (
             <section className="row-container">
                 <h1>Cakes</h1>
@@ -62,13 +66,13 @@ const Cakes: React.FC<ICakesProps> = inject("store")(
                     <div className="flavors-container">
                         <h4>Flavors</h4>
                         <div className="flavors-items-container">
-                            {MainFlavors.map(({ id, name, price }) => {
+                            {flavors.map(({ id, productName }) => {
                                 return (
                                     <span
-                                        key={`${id}${name}`}
+                                        key={`${id}${productName}`}
                                         className="flavors-items"
                                     >
-                                        {name}
+                                        {productName}
                                     </span>
                                 );
                             })}
@@ -77,13 +81,13 @@ const Cakes: React.FC<ICakesProps> = inject("store")(
                     <div className="frostings-container">
                         <h4>Frostings</h4>
                         <div className="frostings-items-container">
-                            {Frostings.map(({ id, name }) => {
+                            {frostings.map(({ id, productName }) => {
                                 return (
                                     <span
-                                        key={`${id}${name}`}
+                                        key={`${id}${productName}`}
                                         className="frostings-items"
                                     >
-                                        {name}
+                                        {productName}
                                     </span>
                                 );
                             })}
@@ -92,13 +96,13 @@ const Cakes: React.FC<ICakesProps> = inject("store")(
                     <div className="fillings-container">
                         <h4>Fillings</h4>
                         <div className="fillings-items-container">
-                            {Fillings.map(({ id, name }) => {
+                            {fillings.map(({ id, productName }) => {
                                 return (
                                     <span
-                                        key={`${id}${name}`}
+                                        key={`${id}${productName}`}
                                         className="fillings-items"
                                     >
-                                        {name}
+                                        {productName}
                                     </span>
                                 );
                             })}

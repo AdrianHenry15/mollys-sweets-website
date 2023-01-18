@@ -2,13 +2,13 @@
 import "../../styles/CookieBuild/CookieCount.scss";
 
 //frameworks
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
-//data
-import { ProductSizes } from "../../stateStore/constants/Enums";
-import { MiniCookieCount, RegularCookieCount } from "../../data/CookieData";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+//store
+import { ProductSizes } from "../../store/constants/Enums";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
+
 interface ICookieCountProps {
     store?: GlobalStateStore;
 }

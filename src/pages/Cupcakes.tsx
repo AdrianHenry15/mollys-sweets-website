@@ -2,17 +2,15 @@
 import "../styles/Cupcakes.scss";
 import "../styles/GlobalStyles.scss";
 
-// Data
-// import { SweetGenres } from "./Cakes";
-import { Frostings, MainFlavors } from "../data/CakesData";
-
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import React from "react";
 import { SweetsImages } from "../data/ImageData";
-import { GlobalStateStore } from "../stateStore/GlobalStateStore";
-import { inject, observer, Observer } from "mobx-react";
+
+//store
+import { GlobalStateStore } from "../store/GlobalStateStore";
+import { inject, observer } from "mobx-react";
 
 interface ICupcakesProps {
     store?: GlobalStateStore;
@@ -20,6 +18,11 @@ interface ICupcakesProps {
 
 const Cupcakes: React.FC<ICupcakesProps> = inject("store")(
     observer(({ store }: ICupcakesProps) => {
+        //variables
+        const flavors = store!.ProductStore.products.flavors;
+        const frostings = store!.ProductStore.products.frostings;
+
+        //main
         return (
             <section className="row-container">
                 <h1>Cupcakes</h1>
@@ -61,13 +64,13 @@ const Cupcakes: React.FC<ICupcakesProps> = inject("store")(
                     <div className="flavors-container">
                         <h4>Flavors</h4>
                         <div className="flavors-items-container">
-                            {MainFlavors.map(({ id, name }) => {
+                            {flavors.map(({ id, productName }) => {
                                 return (
                                     <span
-                                        key={`${id}${name}`}
+                                        key={`${id}${productName}`}
                                         className="flavors-items"
                                     >
-                                        {name}
+                                        {productName}
                                     </span>
                                 );
                             })}
@@ -76,13 +79,13 @@ const Cupcakes: React.FC<ICupcakesProps> = inject("store")(
                     <div className="frostings-container">
                         <h4>Frostings</h4>
                         <div className="frostings-items-container">
-                            {Frostings.map(({ id, name }) => {
+                            {frostings.map(({ id, productName }) => {
                                 return (
                                     <span
-                                        key={`${id}${name}`}
+                                        key={`${id}${productName}`}
                                         className="frostings-items"
                                     >
-                                        {name}
+                                        {productName}
                                     </span>
                                 );
                             })}

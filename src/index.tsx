@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // components
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import { globalStore } from "./stateStore/GlobalStateStore";
+import { globalStore } from "./store/GlobalStateStore";
 import { Provider } from "mobx-react";
 
 //store

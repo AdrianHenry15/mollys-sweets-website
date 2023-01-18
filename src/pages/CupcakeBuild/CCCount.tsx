@@ -4,10 +4,9 @@ import "../../styles/CupcakeBuild/CCCount.scss";
 //frameworks
 import React, { useState } from "react";
 
-//data
-import { ProductSizes } from "../../stateStore/constants/Enums";
-import { MiniCupcakeCount, RegularCupcakeCount } from "../../data/CupcakesData";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+//store
+import { ProductSizes } from "../../store/constants/Enums";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 
 interface ICCCountProps {

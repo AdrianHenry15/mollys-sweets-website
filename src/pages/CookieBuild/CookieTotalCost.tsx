@@ -1,6 +1,11 @@
-import { inject, observer, Observer } from "mobx-react";
+//frameworks
 import React from "react";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+
+//store
+import { inject, observer } from "mobx-react";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
+
+//styles
 import "../../styles/CookieBuild/CookieTotalCost.scss";
 
 interface ICookieTotalCostProps {

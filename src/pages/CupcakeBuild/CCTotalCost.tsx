@@ -1,7 +1,12 @@
-import { inject, observer, Observer } from "mobx-react";
+//frameworks
 import React from "react";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+
+//styles
 import "../../styles/CupcakeBuild/CCTotalCost.scss";
+
+//store
+import { inject, observer } from "mobx-react";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 interface ICCTotalCostProps {
     store?: GlobalStateStore;

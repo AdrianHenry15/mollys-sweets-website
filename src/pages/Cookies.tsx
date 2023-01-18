@@ -3,15 +3,16 @@ import "../styles/Cookies.scss";
 import "../styles/GlobalStyles.scss";
 
 // Data
-import { CookieTypes } from "../data/CookieData";
 import { SweetsImages } from "../data/ImageData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { inject, observer, Observer } from "mobx-react";
-import { GlobalStateStore } from "../stateStore/GlobalStateStore";
+
+//store
+import { inject, observer } from "mobx-react";
+import { GlobalStateStore } from "../store/GlobalStateStore";
 
 interface ICookiesProps {
     store?: GlobalStateStore;
@@ -19,6 +20,9 @@ interface ICookiesProps {
 
 const Cookies: React.FC<ICookiesProps> = inject("store")(
     observer(({ store }: ICookiesProps) => {
+        //variables
+        const cookies = store!.ProductStore.products.cookies;
+        //main
         return (
             <section className="row-container">
                 <h1>Cookies</h1>
@@ -60,13 +64,13 @@ const Cookies: React.FC<ICookiesProps> = inject("store")(
                     <div className="flavors-container">
                         <h4>Flavors</h4>
                         <div className="flavors-items-container">
-                            {CookieTypes.map(({ id, name }) => {
+                            {cookies.map(({ id, productName }) => {
                                 return (
                                     <span
-                                        key={`${id}${name}`}
+                                        key={`${id}${productName}`}
                                         className="flavors-items"
                                     >
-                                        {name}
+                                        {productName}
                                     </span>
                                 );
                             })}

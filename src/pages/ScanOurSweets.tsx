@@ -8,10 +8,12 @@ import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Data
-import { ProductCategories } from "../stateStore/constants/Enums";
+import { ProductCategories } from "../store/constants/Enums";
 import { SweetsImages } from "../data/ImageData";
+
+//store
 import { inject, observer } from "mobx-react";
-import { GlobalStateStore } from "../stateStore/GlobalStateStore";
+import { GlobalStateStore } from "../store/GlobalStateStore";
 
 interface IScanOurSweetsProps {
     store?: GlobalStateStore;
@@ -19,6 +21,9 @@ interface IScanOurSweetsProps {
 
 const ScanOurSweets: React.FC<IScanOurSweetsProps> = inject("store")(
     observer(({ store }: IScanOurSweetsProps) => {
+        //variables
+
+        //main
         return (
             <section className="row-container">
                 <h1>Our Sweets</h1>

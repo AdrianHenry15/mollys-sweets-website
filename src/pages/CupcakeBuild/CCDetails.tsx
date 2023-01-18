@@ -1,8 +1,10 @@
 //frameworks
-import { inject, observer, Observer } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import React from "react";
-import { CakeOccasion, CakeRecipient } from "../../stateStore/constants/Enums";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+
+//store
+import { CakeOccasion, CakeRecipient } from "../../store/constants/Enums";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 //styles
 import "../../styles/CupcakeBuild/CCDetails.scss";

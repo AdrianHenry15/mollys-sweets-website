@@ -4,9 +4,8 @@ import React, { useState } from "react";
 //styles
 import "../../styles/CookieBuild/CookieFlavors.scss";
 
-//data
-import { Frostings, MainFlavors } from "../../data/CakesData";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+//stores
+import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 
 interface ICookieFlavorsProps {

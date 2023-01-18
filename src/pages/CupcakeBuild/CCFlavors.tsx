@@ -4,11 +4,10 @@ import React from "react";
 //styles
 import "../../styles/CupcakeBuild/CCFlavors.scss";
 
-//data
-import { Frostings, MainFlavors } from "../../data/CakesData";
-import { CakeTypes } from "../../stateStore/constants/Enums";
+//stores
+import { CakeTypes } from "../../store/constants/Enums";
 import { inject, observer } from "mobx-react";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 interface ICCFlavorsProps {
     store?: GlobalStateStore;
