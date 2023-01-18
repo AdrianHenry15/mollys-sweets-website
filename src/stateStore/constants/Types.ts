@@ -2,11 +2,20 @@ import { ProductTypes, SubProductTypes } from "./Enums";
 
 export type Products = {
     id: number;
-    product: ProductTypes[];
+    product: ProductTypes;
     productName: string;
     price: number;
+    productSize?: string;
     productQuantity?: string;
     productServes?: string;
+}[];
+
+export type ProductSize = {
+    product: string;
+    id: number;
+    size: string;
+    amountOfPeople: string;
+    price: number;
 }[];
 
 export type SnackType = {

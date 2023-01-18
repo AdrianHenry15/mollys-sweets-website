@@ -5,7 +5,7 @@ import "../../styles/CupcakeBuild/CCCount.scss";
 import React, { useState } from "react";
 
 //data
-import { SnackSize } from "../../stateStore/constants/Enums";
+import { ProductSizes } from "../../stateStore/constants/Enums";
 import { MiniCupcakeCount, RegularCupcakeCount } from "../../data/CupcakesData";
 import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
 import { Observer } from "mobx-react";
@@ -16,14 +16,16 @@ interface ICCCountProps {
 
 const CCCount = (props: ICCCountProps) => {
     const [cupcakeSize, setCupcakeSize] = useState("");
+    const regCount =
+        props.store!.ProductStore.products.sizes.cupcake_cookie_sizes;
 
     const renderCupcakeCount = () => {
-        if (cupcakeSize === SnackSize.REGULAR) {
-            return RegularCupcakeCount.map(
-                ({ id, count, amountOfPeople, price }) => {
-                    if (count === "") {
+        if (cupcakeSize === ProductSizes.REGULAR) {
+            return regCount.map(
+                ({ id, productQuantity, productServes, price }) => {
+                    if (productQuantity === "") {
                         return (
-                            <option key={`${count}${id}`} value="">
+                            <option key={`${productQuantity}${id}`} value="">
                                 Choose One
                             </option>
                         );
@@ -31,8 +33,8 @@ const CCCount = (props: ICCCountProps) => {
                         return (
                             <option
                                 key={`${id}`}
-                                value={count}
-                            >{`${count} (${amountOfPeople}) ($${price})`}</option>
+                                value={productQuantity}
+                            >{`${productQuantity} (${productServes}) ($${price})`}</option>
                         );
                     }
                 }
@@ -73,7 +75,7 @@ const CCCount = (props: ICCCountProps) => {
                             </h5>
                             <div className="ccc-choice-container">
                                 <input
-                                    value={SnackSize.REGULAR}
+                                    value={ProductSizes.REGULAR}
                                     type="radio"
                                     name="fruit"
                                     onChange={(e) =>
@@ -82,7 +84,7 @@ const CCCount = (props: ICCCountProps) => {
                                 ></input>
                                 <label htmlFor="fruit">Regular</label>
                                 <input
-                                    value={SnackSize.MINI}
+                                    value={ProductSizes.MINI}
                                     type="radio"
                                     name="fruit"
                                     onChange={(e) =>
@@ -97,7 +99,7 @@ const CCCount = (props: ICCCountProps) => {
                         <div className="ccc-make-container">
                             <h5 className="ccc-title">
                                 How Many
-                                {cupcakeSize === SnackSize.REGULAR
+                                {cupcakeSize === ProductSizes.REGULAR
                                     ? " Regular"
                                     : " Mini"}{" "}
                                 Cupcakes
@@ -108,6 +110,7 @@ const CCCount = (props: ICCCountProps) => {
                                         <select
                                             name="cake-size"
                                             className="ccc-dropdown"
+                                            defaultValue=""
                                         >
                                             {renderCupcakeCount()}
                                         </select>

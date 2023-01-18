@@ -5,33 +5,49 @@ import React from "react";
 import "../../styles/CupcakeBuild/CCFlavors.scss";
 
 //data
-import { Frostings, MainFlavors } from "../../data/CakesData";
+import { Frostings } from "../../data/CakesData";
 import { ProductTypes } from "../../stateStore/constants/Enums";
 import { Observer } from "mobx-react";
+import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
 
-const CCFlavors = () => {
+interface ICCFlavors {
+    store?: GlobalStateStore;
+}
+
+const CCFlavors = (props: ICCFlavors) => {
+    const flavors = props.store!.ProductStore.products.flavors;
     const renderSweetGenres = (genre: ProductTypes): JSX.Element => {
         switch (genre) {
             case ProductTypes.FLAVOR: {
                 return (
                     <form action="">
-                        <select name="cake-size" className="ccf-dropdown">
-                            {MainFlavors.map(({ id, name, price }) => {
-                                if (id === 0) {
-                                    return (
-                                        <option key={id} defaultValue="">
-                                            Choose One
-                                        </option>
-                                    );
-                                } else {
-                                    return (
-                                        <option
-                                            key={id}
-                                            value={name}
-                                        >{`${name} ($${price})`}</option>
-                                    );
+                        <select
+                            defaultValue=""
+                            name="cake-size"
+                            className="ccf-dropdown"
+                        >
+                            {flavors.map(
+                                ({ id, product, productName, price }) => {
+                                    if (id === 0) {
+                                        return (
+                                            <option key={id} defaultValue="">
+                                                Choose One
+                                            </option>
+                                        );
+                                    } else if (
+                                        product === ProductTypes.FLAVOR
+                                    ) {
+                                        return (
+                                            <option
+                                                key={id}
+                                                value={productName}
+                                            >{`${productName} ($${price})`}</option>
+                                        );
+                                    } else {
+                                        return <div></div>;
+                                    }
                                 }
-                            })}
+                            )}
                         </select>
                     </form>
                 );
@@ -39,7 +55,11 @@ const CCFlavors = () => {
             case ProductTypes.FROSTING: {
                 return (
                     <form action="">
-                        <select name="cake-size" className="ccf-dropdown">
+                        <select
+                            defaultValue=""
+                            name="cake-size"
+                            className="ccf-dropdown"
+                        >
                             {Frostings.map(({ id, name, price }) => {
                                 if (id === 0) {
                                     return (

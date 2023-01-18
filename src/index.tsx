@@ -10,10 +10,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // components
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import { globalStore } from "./stateStore/GlobalStateStore";
+import { Provider } from "mobx-react";
 
 //store
-import { Provider } from "mobx-react";
-import { GlobalStateStore } from "./stateStore/GlobalStateStore";
 
 //rendering
 const root = ReactDOM.createRoot(
@@ -23,8 +23,8 @@ const root = ReactDOM.createRoot(
 root.render(
     <BrowserRouter>
         <React.StrictMode>
-            <Provider store={GlobalStateStore}>
-                <App />
+            <Provider store={globalStore}>
+                <App store={globalStore} />
             </Provider>
         </React.StrictMode>
     </BrowserRouter>

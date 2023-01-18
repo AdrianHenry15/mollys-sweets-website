@@ -4,6 +4,12 @@ export enum ProductCategories {
     COOKIES = "Cookies",
 }
 
+export enum CakeTypes {
+    FLAVOR,
+    FILLING,
+    FROSTING,
+}
+
 export enum ProductTypes {
     FLAVOR = "Flavor",
     FILLING = "Filling",
@@ -23,12 +29,14 @@ export enum SubProductTypes {
     TIER,
 }
 
-export enum TierTypes {
-    SINGLE,
-    MULTIPLE,
-}
-
-export enum SnackSize {
+export enum ProductSizes {
     MINI = "Mini",
     REGULAR = "Regular",
 }
+
+export enum ProductTierTypes {
+    SINGLE = "Single",
+    MULTIPLE = "Multiple",
+}
+
+export enum SnackSize {}

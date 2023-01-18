@@ -3,13 +3,20 @@ import "../../styles/CakeBuild/Main.scss";
 //frameworks
 import React from "react";
 //components
-import CakeBase from "./Base";
-import Flavors from "./Flavors";
+import CakeBase from "./CakeBase";
+import Flavors from "./CakeFlavors";
 import OptionsOverview from "./OptionsOverview";
-import CakeDetails from "./Details";
-import TotalCost from "./TotalCost";
+import CakeDetails from "./CakeDetails";
+import TotalCost from "./CakeTotalCost";
+//store
+import { observer } from "mobx-react-lite";
+import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
 
-const BuildYourCake = () => {
+interface IBuildYourCakeProps {
+    store?: GlobalStateStore;
+}
+
+const BuildYourCake = observer((props: IBuildYourCakeProps) => {
     return (
         <section className="main-build-cake-wrapper">
             <div className="main-build-cake-container">
@@ -42,6 +49,6 @@ const BuildYourCake = () => {
             </div>
         </section>
     );
-};
+});
 
 export default BuildYourCake;

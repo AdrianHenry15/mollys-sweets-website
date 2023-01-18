@@ -1,24 +1,24 @@
 //frameworks
-import React, { useEffect } from "react";
+import React from "react";
 
 //styles
 import "../../styles/CakeBuild/Flavors.scss";
 
 //data
-import { Fillings, Frostings, MainFlavors } from "../../data/CakesData";
-import { ProductTypes } from "../../stateStore/constants/Enums";
+import { CakeTypes, ProductTypes } from "../../stateStore/constants/Enums";
 import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
-import { Observer } from "mobx-react";
+import { observer, Observer, useObserver } from "mobx-react";
+import { Fillings, Frostings, MainFlavors } from "../../data/CakesData";
 
 //store
 
-interface IFlavorsProps {
+interface ICakeFlavorsProps {
     store?: GlobalStateStore;
 }
-const Flavors = (props: IFlavorsProps) => {
-    const renderProductTypes = (genre: ProductTypes): JSX.Element => {
+const CakeFlavors = observer((props: ICakeFlavorsProps) => {
+    const renderCakeTypes = (genre: CakeTypes): JSX.Element => {
         switch (genre) {
-            case ProductTypes.FLAVORS: {
+            case CakeTypes.FLAVOR: {
                 return (
                     <form action="">
                         <select
@@ -45,7 +45,7 @@ const Flavors = (props: IFlavorsProps) => {
                     </form>
                 );
             }
-            case ProductTypes.FROSTINGS: {
+            case CakeTypes.FROSTING: {
                 return (
                     <form action="">
                         <select
@@ -72,7 +72,7 @@ const Flavors = (props: IFlavorsProps) => {
                     </form>
                 );
             }
-            case ProductTypes.FILLINGS: {
+            case CakeTypes.FILLING: {
                 return (
                     <form action="">
                         <select
@@ -105,77 +105,64 @@ const Flavors = (props: IFlavorsProps) => {
         }
     };
     return (
-        <Observer>
-            {() => {
-                return (
-                    <section className="flavors-custom-flavors-container">
-                        <h3>Customize Flavors</h3>
-                        <hr />
-                        {(
-                            Object.keys(ProductTypes) as Array<
-                                keyof typeof ProductTypes
-                            >
-                        ).map((key) => {
-                            // Flavor, Filling and Frosting
-                            return (
-                                <div
-                                    key={key}
-                                    id="flavors-custom-flavors"
-                                    className="flavors-cake-make-container"
-                                >
-                                    <h5 className="flavors-title">
-                                        Main{" "}
-                                        {ProductTypes[key]
-                                            .toString()
-                                            .slice(0, -1)}
-                                        {}
-                                    </h5>
-                                    <div className="flavors-choice-container">
-                                        <div className="flavors-option">
-                                            {renderProductTypes(
-                                                ProductTypes[key]
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
-
-                        {/* Fresh Fruit */}
+        <section className="flavors-custom-flavors-container">
+            <h3>Customize Flavors</h3>
+            <hr />
+            {(Object.keys(CakeTypes) as Array<keyof typeof CakeTypes>).map(
+                (key) => {
+                    // Flavor, Filling and Frosting
+                    return (
                         <div
-                            id="flavors-fruits-section-container"
+                            key={key}
+                            id="flavors-custom-flavors"
                             className="flavors-cake-make-container"
                         >
-                            <h5 className="flavors-title">Add Fresh Fruit?</h5>
-                            <div
-                                id="flavors-fruit-section"
-                                className="flavors-choice-container"
-                            >
-                                <input
-                                    value="yes"
-                                    type="radio"
-                                    name="fruit"
-                                    id="flavors-fruit-input"
-                                ></input>
-                                <label htmlFor="fruit">Yes (Extra Cost*)</label>
-                                <input
-                                    value="no"
-                                    type="radio"
-                                    name="fruit"
-                                    id="flavors-fruit-input"
-                                ></input>
-                                <label htmlFor="fruit">No</label>
+                            <h5 className="flavors-title">
+                                Main {CakeTypes[key].toString().slice(0, -1)}
+                                {}
+                            </h5>
+                            <div className="flavors-choice-container">
+                                <div className="flavors-option">
+                                    {renderCakeTypes(CakeTypes[key])}
+                                </div>
                             </div>
                         </div>
-                        <div className="flavors-cake-make-container">
-                            <h5 className="flavors-title">Flavors Cost</h5>
-                            <div>$0.00</div>
-                        </div>
-                    </section>
-                );
-            }}
-        </Observer>
-    );
-};
+                    );
+                }
+            )}
 
-export default Flavors;
+            {/* Fresh Fruit */}
+            <div
+                id="flavors-fruits-section-container"
+                className="flavors-cake-make-container"
+            >
+                <h5 className="flavors-title">Add Fresh Fruit?</h5>
+                <div
+                    id="flavors-fruit-section"
+                    className="flavors-choice-container"
+                >
+                    <input
+                        value="yes"
+                        type="radio"
+                        name="fruit"
+                        id="flavors-fruit-input"
+                    ></input>
+                    <label htmlFor="fruit">Yes (Extra Cost*)</label>
+                    <input
+                        value="no"
+                        type="radio"
+                        name="fruit"
+                        id="flavors-fruit-input"
+                    ></input>
+                    <label htmlFor="fruit">No</label>
+                </div>
+            </div>
+            <div className="flavors-cake-make-container">
+                <h5 className="flavors-title">Flavors Cost</h5>
+                <div>$0.00</div>
+            </div>
+        </section>
+    );
+});
+
+export default CakeFlavors;
