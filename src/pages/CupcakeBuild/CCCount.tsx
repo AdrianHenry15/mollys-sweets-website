@@ -16,15 +16,26 @@ interface ICCCountProps {
 
 const CCCount: React.FC<ICCCountProps> = inject("store")(
     observer(({ store }: ICCCountProps) => {
+        //variables
+        const regCupcakeSizes =
+            store!.ProductStore.products.sizes.cupcake_cookie_sizes.regular;
+        const miniCupcakeSizes =
+            store!.ProductStore.products.sizes.cupcake_cookie_sizes.mini;
+
+        //state
         const [cupcakeSize, setCupcakeSize] = useState("");
 
+        // functions
         const renderCupcakeCount = () => {
             if (cupcakeSize === ProductSizes.REGULAR) {
-                return RegularCupcakeCount.map(
-                    ({ id, count, amountOfPeople, price }) => {
-                        if (count === "") {
+                return regCupcakeSizes.map(
+                    ({ id, productQuantity, productServes, price }) => {
+                        if (productQuantity === "") {
                             return (
-                                <option key={`${count}${id}`} value="">
+                                <option
+                                    key={`${productQuantity}${id}`}
+                                    value=""
+                                >
                                     Choose One
                                 </option>
                             );
@@ -32,18 +43,21 @@ const CCCount: React.FC<ICCCountProps> = inject("store")(
                             return (
                                 <option
                                     key={`${id}`}
-                                    value={count}
-                                >{`${count} (${amountOfPeople}) ($${price})`}</option>
+                                    value={productQuantity}
+                                >{`${productQuantity} (${productServes}) ($${price})`}</option>
                             );
                         }
                     }
                 );
             } else {
-                return MiniCupcakeCount.map(
-                    ({ id, count, amountOfPeople, price }) => {
-                        if (count === "") {
+                return miniCupcakeSizes.map(
+                    ({ id, productQuantity, productServes, price }) => {
+                        if (productQuantity === "") {
                             return (
-                                <option key={`${count}${id}`} value="">
+                                <option
+                                    key={`${productQuantity}${id}`}
+                                    value=""
+                                >
                                     Choose One
                                 </option>
                             );
@@ -51,8 +65,8 @@ const CCCount: React.FC<ICCCountProps> = inject("store")(
                             return (
                                 <option
                                     key={`${id}`}
-                                    value={count}
-                                >{`${count} (${amountOfPeople}) ($${price})`}</option>
+                                    value={productQuantity}
+                                >{`${productQuantity} (${productServes}) ($${price})`}</option>
                             );
                         }
                     }
