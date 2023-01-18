@@ -1,14 +1,13 @@
 //frameworks
-import React from "react";
+import React, { useState } from "react";
 
 //styles
 import "../../styles/CakeBuild/Flavors.scss";
 
 //data
-import { CakeTypes, ProductTypes } from "../../stateStore/constants/Enums";
+import { CakeTypes } from "../../stateStore/constants/Enums";
 import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
-import { inject, observer, Observer, useObserver } from "mobx-react";
-import { Fillings, Frostings, MainFlavors } from "../../data/CakesData";
+import { inject, observer } from "mobx-react";
 
 //store
 
@@ -16,7 +15,17 @@ interface ICakeFlavorsProps {
     store?: GlobalStateStore;
 }
 const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
-    observer((props: ICakeFlavorsProps) => {
+    observer(({ store }: ICakeFlavorsProps) => {
+        //state
+        const [fruit, setFruit] = useState(false);
+
+        // variables
+        const flavors = store!.ProductStore.products.flavors;
+        const fillings = store!.ProductStore.products.fillings;
+        const frostings = store!.ProductStore.products.frostings;
+        const fruits = store!.ProductStore.products.fruit;
+
+        // functions
         const renderCakeTypes = (genre: CakeTypes): JSX.Element => {
             switch (genre) {
                 case CakeTypes.FLAVORS: {
@@ -26,7 +35,7 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                                 name="cake-size"
                                 className="flavors-cake-size-dropdown"
                             >
-                                {MainFlavors.map(({ id, name, price }) => {
+                                {flavors.map(({ id, productName, price }) => {
                                     if (id === 0) {
                                         return (
                                             <option key={id} defaultValue="">
@@ -37,8 +46,8 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                                         return (
                                             <option
                                                 key={id}
-                                                value={name}
-                                            >{`${name} ($${price})`}</option>
+                                                value={productName}
+                                            >{`${productName} ($${price})`}</option>
                                         );
                                     }
                                 })}
@@ -53,11 +62,11 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                                 name="cake-size"
                                 className="flavors-cake-size-dropdown"
                             >
-                                {Frostings.map(({ id, name, price }) => {
+                                {frostings.map(({ id, productName, price }) => {
                                     if (id === 0) {
                                         return (
                                             <option
-                                                key={name + id}
+                                                key={productName + id}
                                                 defaultValue=""
                                             >
                                                 Choose One
@@ -66,9 +75,9 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                                     } else {
                                         return (
                                             <option
-                                                key={name + id}
-                                                value={name}
-                                            >{`${name} ($${price})`}</option>
+                                                key={productName + id}
+                                                value={productName}
+                                            >{`${productName} ($${price})`}</option>
                                         );
                                     }
                                 })}
@@ -83,11 +92,11 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                                 name="cake-size"
                                 className="flavors-cake-size-dropdown"
                             >
-                                {Fillings.map(({ id, name, price }) => {
+                                {fillings.map(({ id, productName, price }) => {
                                     if (id === 0) {
                                         return (
                                             <option
-                                                key={name + id}
+                                                key={productName + id}
                                                 defaultValue=""
                                             >
                                                 Choose One
@@ -96,9 +105,9 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                                     } else {
                                         return (
                                             <option
-                                                key={name + id}
-                                                value={name}
-                                            >{`${name} ($${price})`}</option>
+                                                key={productName + id}
+                                                value={productName}
+                                            >{`${productName} ($${price})`}</option>
                                         );
                                     }
                                 })}
@@ -111,6 +120,7 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                 }
             }
         };
+        // main render
         return (
             <section className="flavors-custom-flavors-container">
                 <h3>Customize Flavors</h3>
@@ -154,6 +164,7 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                             type="radio"
                             name="fruit"
                             id="flavors-fruit-input"
+                            onClick={() => setFruit(true)}
                         ></input>
                         <label htmlFor="fruit">Yes (Extra Cost*)</label>
                         <input
@@ -161,10 +172,51 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                             type="radio"
                             name="fruit"
                             id="flavors-fruit-input"
+                            onClick={() => setFruit(false)}
                         ></input>
                         <label htmlFor="fruit">No</label>
                     </div>
                 </div>
+                {fruit && (
+                    <div
+                        id="flavors-custom-flavors"
+                        className="flavors-cake-make-container"
+                    >
+                        <h5 className="flavors-title">What Fruits?</h5>
+                        <div className="flavors-choice-container">
+                            <div className="flavors-option">
+                                <form action="">
+                                    <select
+                                        name="cake-size"
+                                        className="flavors-cake-size-dropdown"
+                                    >
+                                        {fruits.map(
+                                            ({ id, productName, price }) => {
+                                                if (id === 0) {
+                                                    return (
+                                                        <option
+                                                            key={id}
+                                                            defaultValue=""
+                                                        >
+                                                            Choose One
+                                                        </option>
+                                                    );
+                                                } else {
+                                                    return (
+                                                        <option
+                                                            key={id}
+                                                            value={productName}
+                                                        >{`${productName} ($${price})`}</option>
+                                                    );
+                                                }
+                                            }
+                                        )}
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 <div className="flavors-cake-make-container">
                     <h5 className="flavors-title">Flavors Cost</h5>
                     <div>$0.00</div>

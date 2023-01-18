@@ -1,6 +1,7 @@
 //frameworks
 import { inject, observer } from "mobx-react";
 import React from "react";
+import { CakeOccasion, CakeRecipient } from "../../stateStore/constants/Enums";
 import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
 
 //styles
@@ -11,7 +12,8 @@ interface ICakeDetailsProps {
 }
 
 const CakeDetails: React.FC<ICakeDetailsProps> = inject("store")(
-    observer((props: ICakeDetailsProps) => {
+    observer(({ store }: ICakeDetailsProps) => {
+        //main
         return (
             <section className="details-cake-details-container">
                 <h3>Cake Details</h3>
@@ -23,11 +25,21 @@ const CakeDetails: React.FC<ICakeDetailsProps> = inject("store")(
                             className="details-cake-size-dropdown"
                             name="cake-size-dropdown"
                         >
-                            <option value="">Birthday</option>
-                            <option value="">Baby Shower</option>
-                            <option value="">Graduation</option>
-                            <option value="">Anniversary</option>
-                            <option value="">Other</option>
+                            {(
+                                Object.keys(CakeOccasion) as Array<
+                                    keyof typeof CakeOccasion
+                                >
+                            ).map((key) => {
+                                if (CakeOccasion[key] === CakeOccasion.NONE) {
+                                    return <option value="">Choose One</option>;
+                                } else {
+                                    return (
+                                        <option value={CakeOccasion[key]}>
+                                            {CakeOccasion[key]}
+                                        </option>
+                                    );
+                                }
+                            })}
                         </select>
                     </form>
                 </div>
@@ -38,46 +50,24 @@ const CakeDetails: React.FC<ICakeDetailsProps> = inject("store")(
                 >
                     <h5 className="details-title">Who Is The Cake For?</h5>
                     <div className="details-checkbox-container">
-                        <div className="details-checkbox">
-                            <input
-                                type="checkbox"
-                                name="whos-cake"
-                                value="Male"
-                            />
-                            <label htmlFor="whos-cake">Male</label>
-                        </div>
-                        <div className="details-checkbox">
-                            <input
-                                type="checkbox"
-                                name="whos-cake"
-                                value="Female"
-                            />
-                            <label htmlFor="whos-cake">Female</label>
-                        </div>
-                        <div className="details-checkbox">
-                            <input
-                                type="checkbox"
-                                name="whos-cake"
-                                value="Child"
-                            />
-                            <label htmlFor="whos-cake">Child</label>
-                        </div>
-                        <div className="details-checkbox">
-                            <input
-                                type="checkbox"
-                                name="whos-cake"
-                                value="Teen"
-                            />
-                            <label htmlFor="whos-cake">Teen</label>
-                        </div>
-                        <div className="details-checkbox">
-                            <input
-                                type="checkbox"
-                                name="whos-cake"
-                                value="Adult"
-                            />
-                            <label htmlFor="whos-cake">Adult</label>
-                        </div>
+                        {(
+                            Object.keys(CakeRecipient) as Array<
+                                keyof typeof CakeRecipient
+                            >
+                        ).map((key) => {
+                            return (
+                                <div className="details-checkbox">
+                                    <input
+                                        type="checkbox"
+                                        name="cake-recipient"
+                                        value={CakeRecipient[key]}
+                                    />
+                                    <label htmlFor="whos-cake">
+                                        {CakeRecipient[key]}
+                                    </label>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
                 <div className="details-cake-make-container">

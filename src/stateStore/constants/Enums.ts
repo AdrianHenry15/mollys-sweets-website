@@ -44,10 +44,19 @@ export enum CakeShapes {
     SHEET = "Sheet",
 }
 
-export enum Occasion {
+export enum CakeOccasion {
+    NONE = "",
     BIRTHDAY = "Birthday",
     ANNIVERSARY = "Anniversary",
     BABY_SHOWER = "Baby Shower",
     GRADUATION = "Graduation",
     OTHER = "Other",
+}
+
+export enum CakeRecipient {
+    MALE = "Male",
+    FEMALE = "Female",
+    CHILD = "Child",
+    TEEN = "Teen",
+    ADULT = "Adult",
 }

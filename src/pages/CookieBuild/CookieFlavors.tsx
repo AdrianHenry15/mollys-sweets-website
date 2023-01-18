@@ -15,7 +15,13 @@ interface ICookieFlavorsProps {
 
 const CookieFlavors: React.FC<ICookieFlavorsProps> = inject("store")(
     observer(({ store }: ICookieFlavorsProps) => {
+        //variables
+        const cookies = store!.ProductStore.products.cookies;
+        const frostings = store!.ProductStore.products.frostings;
+        //state
         const [frosting, setFrosting] = useState(false);
+
+        //main
         return (
             <section className="cookie-f-container">
                 <h3>Customize Flavors</h3>
@@ -33,25 +39,27 @@ const CookieFlavors: React.FC<ICookieFlavorsProps> = inject("store")(
                                     name="cake-size"
                                     className="cookie-f-dropdown"
                                 >
-                                    {MainFlavors.map(({ id, name, price }) => {
-                                        if (id === 0) {
-                                            return (
-                                                <option
-                                                    key={id}
-                                                    defaultValue=""
-                                                >
-                                                    Choose One
-                                                </option>
-                                            );
-                                        } else {
-                                            return (
-                                                <option
-                                                    key={id}
-                                                    value={name}
-                                                >{`${name} ($${price})`}</option>
-                                            );
+                                    {cookies.map(
+                                        ({ id, productName, price }) => {
+                                            if (id === 0) {
+                                                return (
+                                                    <option
+                                                        key={id}
+                                                        defaultValue=""
+                                                    >
+                                                        Choose One
+                                                    </option>
+                                                );
+                                            } else {
+                                                return (
+                                                    <option
+                                                        key={id}
+                                                        value={productName}
+                                                    >{`${productName} ($${price})`}</option>
+                                                );
+                                            }
                                         }
-                                    })}
+                                    )}
                                 </select>
                             </form>
                         </div>
@@ -91,8 +99,8 @@ const CookieFlavors: React.FC<ICookieFlavorsProps> = inject("store")(
                                         name="cake-size"
                                         className="cookie-f-dropdown"
                                     >
-                                        {Frostings.map(
-                                            ({ id, name, price }) => {
+                                        {frostings.map(
+                                            ({ id, productName, price }) => {
                                                 if (id === 0) {
                                                     return (
                                                         <option
@@ -106,8 +114,8 @@ const CookieFlavors: React.FC<ICookieFlavorsProps> = inject("store")(
                                                     return (
                                                         <option
                                                             key={id}
-                                                            value={name}
-                                                        >{`${name} ($${price})`}</option>
+                                                            value={productName}
+                                                        >{`${productName} ($${price})`}</option>
                                                     );
                                                 }
                                             }

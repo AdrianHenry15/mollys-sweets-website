@@ -1,5 +1,4 @@
 import { observable } from "mobx";
-import React from "react";
 import {
     ProductSizes,
     CakeTiers,
@@ -255,12 +254,6 @@ export class GlobalStateStore {
                     productName: "Coconut",
                     price: 2.75,
                 },
-                {
-                    id: 60,
-                    product: ProductTypes.COOKIE,
-                    productName: "Drop COOKIE",
-                    price: 2.75,
-                },
             ],
             fruit: [
                 // fruits
@@ -424,98 +417,130 @@ export class GlobalStateStore {
                         cakeTier: CakeTiers.SINGLE,
                     },
                 ],
-                cupcake_cookie_sizes: [
-                    // Regular cupcake/cookie count
-                    {
-                        id: 39,
-                        product: ProductTypes.CUPCAKE || ProductTypes.COOKIE,
-                        productName: `Size`,
-                        productSize: ProductSizes.REGULAR,
-                        price: 20.0,
-                        productQuantity: "12",
-                        productServes: "12 People",
-                    },
-                    {
-                        id: 40,
-                        product: ProductTypes.CUPCAKE || ProductTypes.COOKIE,
-                        productName: `Size`,
-                        productSize: ProductSizes.REGULAR,
-                        price: 40.0,
-                        productQuantity: "24",
-                        productServes: "24 People",
-                    },
-                    {
-                        id: 41,
-                        product: ProductTypes.CUPCAKE || ProductTypes.COOKIE,
-                        productName: `Size`,
-                        productSize: ProductSizes.REGULAR,
-                        price: 60.0,
-                        productQuantity: "36",
-                        productServes: "36 People",
-                    },
-                    {
-                        id: 42,
-                        product: ProductTypes.CUPCAKE || ProductTypes.COOKIE,
-                        productName: `Size`,
-                        productSize: ProductSizes.REGULAR,
-                        price: 80.0,
-                        productQuantity: "48",
-                        productServes: "48 People",
-                    },
-                    {
-                        id: 43,
-                        product: ProductTypes.CUPCAKE || ProductTypes.COOKIE,
-                        productName: `Size`,
-                        productSize: ProductSizes.REGULAR,
-                        price: 0.0,
-                        productQuantity: "More",
-                    },
-                    // mini cupcake/cookie count
-                    {
-                        id: 44,
-                        product: ProductTypes.CUPCAKE || ProductTypes.COOKIE,
-                        productName: `Size`,
-                        productSize: ProductSizes.MINI,
-                        price: 10.0,
-                        productQuantity: "12",
-                        productServes: "12 People",
-                    },
-                    {
-                        id: 45,
-                        product: ProductTypes.CUPCAKE || ProductTypes.COOKIE,
-                        productName: `Size`,
-                        productSize: ProductSizes.MINI,
-                        price: 20.0,
-                        productQuantity: "24",
-                        productServes: "24 People",
-                    },
-                    {
-                        id: 46,
-                        product: ProductTypes.CUPCAKE || ProductTypes.COOKIE,
-                        productName: `Size`,
-                        productSize: ProductSizes.MINI,
-                        price: 30.0,
-                        productQuantity: "36",
-                        productServes: "36 People",
-                    },
-                    {
-                        id: 47,
-                        product: ProductTypes.CUPCAKE || ProductTypes.COOKIE,
-                        productName: `Size`,
-                        productSize: ProductSizes.MINI,
-                        price: 40.0,
-                        productQuantity: "48",
-                        productServes: "48 People",
-                    },
-                    {
-                        id: 48,
-                        product: ProductTypes.CUPCAKE || ProductTypes.COOKIE,
-                        productName: `Size`,
-                        productSize: ProductSizes.MINI,
-                        price: 0.0,
-                        productQuantity: "More",
-                    },
-                ],
+                cupcake_cookie_sizes: {
+                    regular: [
+                        // Regular cupcake/cookie count
+                        {
+                            id: 0,
+                            product: ProductTypes.NONE,
+                            productName: "",
+                            price: 0,
+                            productQuantity: "",
+                            productServes: "",
+                        },
+                        {
+                            id: 39,
+                            product:
+                                ProductTypes.CUPCAKE || ProductTypes.COOKIE,
+                            productName: `Size`,
+                            productSize: ProductSizes.REGULAR,
+                            price: 20.0,
+                            productQuantity: "12",
+                            productServes: "12 People",
+                        },
+                        {
+                            id: 40,
+                            product:
+                                ProductTypes.CUPCAKE || ProductTypes.COOKIE,
+                            productName: `Size`,
+                            productSize: ProductSizes.REGULAR,
+                            price: 40.0,
+                            productQuantity: "24",
+                            productServes: "24 People",
+                        },
+                        {
+                            id: 41,
+                            product:
+                                ProductTypes.CUPCAKE || ProductTypes.COOKIE,
+                            productName: `Size`,
+                            productSize: ProductSizes.REGULAR,
+                            price: 60.0,
+                            productQuantity: "36",
+                            productServes: "36 People",
+                        },
+                        {
+                            id: 42,
+                            product:
+                                ProductTypes.CUPCAKE || ProductTypes.COOKIE,
+                            productName: `Size`,
+                            productSize: ProductSizes.REGULAR,
+                            price: 80.0,
+                            productQuantity: "48",
+                            productServes: "48 People",
+                        },
+                        {
+                            id: 43,
+                            product:
+                                ProductTypes.CUPCAKE || ProductTypes.COOKIE,
+                            productName: `Size`,
+                            productSize: ProductSizes.REGULAR,
+                            price: 0.0,
+                            productQuantity: "More",
+                            productServes: "More Than 48 People",
+                        },
+                    ],
+                    mini: [
+                        // mini cupcake/cookie count
+                        {
+                            id: 0,
+                            product: ProductTypes.NONE,
+                            productName: "",
+                            price: 0,
+                            productQuantity: "",
+                            productServes: "",
+                        },
+                        {
+                            id: 44,
+                            product:
+                                ProductTypes.CUPCAKE || ProductTypes.COOKIE,
+                            productName: `Size`,
+                            productSize: ProductSizes.MINI,
+                            price: 10.0,
+                            productQuantity: "12",
+                            productServes: "12 People",
+                        },
+                        {
+                            id: 45,
+                            product:
+                                ProductTypes.CUPCAKE || ProductTypes.COOKIE,
+                            productName: `Size`,
+                            productSize: ProductSizes.MINI,
+                            price: 20.0,
+                            productQuantity: "24",
+                            productServes: "24 People",
+                        },
+                        {
+                            id: 46,
+                            product:
+                                ProductTypes.CUPCAKE || ProductTypes.COOKIE,
+                            productName: `Size`,
+                            productSize: ProductSizes.MINI,
+                            price: 30.0,
+                            productQuantity: "36",
+                            productServes: "36 People",
+                        },
+                        {
+                            id: 47,
+                            product:
+                                ProductTypes.CUPCAKE || ProductTypes.COOKIE,
+                            productName: `Size`,
+                            productSize: ProductSizes.MINI,
+                            price: 40.0,
+                            productQuantity: "48",
+                            productServes: "48 People",
+                        },
+                        {
+                            id: 48,
+                            product:
+                                ProductTypes.CUPCAKE || ProductTypes.COOKIE,
+                            productName: `Size`,
+                            productSize: ProductSizes.MINI,
+                            price: 0.0,
+                            productQuantity: "More",
+                            productServes: "More Than 48 People",
+                        },
+                    ],
+                },
             },
             tiers: [
                 //tier

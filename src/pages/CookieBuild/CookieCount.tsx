@@ -15,15 +15,26 @@ interface ICookieCountProps {
 
 const CookieCount: React.FC<ICookieCountProps> = inject("store")(
     observer(({ store }: ICookieCountProps) => {
+        //variables
+        const regCookieSizes =
+            store!.ProductStore.products.sizes.cupcake_cookie_sizes.regular;
+        const miniCookiesSizes =
+            store!.ProductStore.products.sizes.cupcake_cookie_sizes.mini;
+
+        //state
         const [cookieSize, setCookieSize] = useState("");
 
+        // functions
         const renderCookieCount = () => {
             if (cookieSize === ProductSizes.REGULAR) {
-                return RegularCookieCount.map(
-                    ({ id, count, amountOfPeople, price }) => {
-                        if (count === "") {
+                return regCookieSizes.map(
+                    ({ id, productQuantity, productServes, price }) => {
+                        if (productQuantity === "") {
                             return (
-                                <option key={`${count}${id}`} value="">
+                                <option
+                                    key={`${productQuantity}${id}`}
+                                    value=""
+                                >
                                     Choose One
                                 </option>
                             );
@@ -31,18 +42,21 @@ const CookieCount: React.FC<ICookieCountProps> = inject("store")(
                             return (
                                 <option
                                     key={`${id}`}
-                                    value={count}
-                                >{`${count} (${amountOfPeople}) ($${price})`}</option>
+                                    value={productQuantity}
+                                >{`${productQuantity} (${productServes}) ($${price})`}</option>
                             );
                         }
                     }
                 );
             } else {
-                return MiniCookieCount.map(
-                    ({ id, count, amountOfPeople, price }) => {
-                        if (count === "") {
+                return miniCookiesSizes.map(
+                    ({ id, productQuantity, productServes, price }) => {
+                        if (productQuantity === "") {
                             return (
-                                <option key={`${count}${id}`} value="">
+                                <option
+                                    key={`${productQuantity}${id}`}
+                                    value=""
+                                >
                                     Choose One
                                 </option>
                             );
@@ -50,8 +64,8 @@ const CookieCount: React.FC<ICookieCountProps> = inject("store")(
                             return (
                                 <option
                                     key={`${id}`}
-                                    value={count}
-                                >{`${count} (${amountOfPeople}) ($${price})`}</option>
+                                    value={productQuantity}
+                                >{`${productQuantity} (${productServes}) ($${price})`}</option>
                             );
                         }
                     }
@@ -75,7 +89,7 @@ const CookieCount: React.FC<ICookieCountProps> = inject("store")(
                         ></input>
                         <label htmlFor="fruit">Regular</label>
                         <input
-                            value={ProductSizes.MINI}
+                            defaultValue={ProductSizes.MINI}
                             type="radio"
                             name="fruit"
                             onChange={(e) => setCookieSize(e.target.value)}

@@ -19,5 +19,10 @@ export interface IProductTypes {
 export interface IProductSizes {
     roundSizes: Products;
     sheetSizes: Products;
-    cupcake_cookie_sizes: Products;
+    cupcake_cookie_sizes: ICupcakeCookieSizes;
+}
+
+export interface ICupcakeCookieSizes {
+    regular: Products;
+    mini: Products;
 }

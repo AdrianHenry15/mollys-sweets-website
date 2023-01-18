@@ -10,11 +10,9 @@ import MultipleRound from "../../assets/imgs/create_a_cake/multiple-tier-round-w
 import SingleSheet from "../../assets/imgs/create_a_cake/single-tier-sheet.png";
 import MultipleSheet from "../../assets/imgs/create_a_cake/multiple-tier-sheet.png";
 //data
-import { inject, observer, useObserver } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
-import { RoundSizes } from "../../data/CakesData";
 import { CakeTiers, CakeShapes } from "../../stateStore/constants/Enums";
-import { Products } from "../../stateStore/constants/Types";
 
 interface ICakeBaseProps {
     store?: GlobalStateStore;
@@ -23,8 +21,8 @@ interface ICakeBaseProps {
 const CakeBase: React.FC<ICakeBaseProps> = inject("store")(
     observer(({ store }: ICakeBaseProps) => {
         // variables
-        const roundSizes = store!.ProductStore.products.sizes.roundSizes;
-        const sheetSizes = store!.ProductStore.products.sizes.roundSizes;
+
+        //state
         const [cakeTier, setCakeTier] = useState("");
         const [cakeShape, setCakeShape] = useState("");
 
