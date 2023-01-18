@@ -16,15 +16,8 @@ import ChooseYourSweets from "./pages/ChooseYourSweets";
 import BuildYourCake from "./pages/CakeBuild/Main";
 import ChooseYourCupcakes from "./pages/CupcakeBuild/Main";
 import ChooseYourCookies from "./pages/CookieBuild/Main";
-//store
-import { observer } from "mobx-react";
-import { GlobalStateStore } from "./stateStore/GlobalStateStore";
 
-interface IAppProps {
-    store: GlobalStateStore;
-}
-
-const App = observer((props: IAppProps) => {
+const App = () => {
     return (
         <div className="app snow">
             <Navbar />
@@ -58,5 +51,5 @@ const App = observer((props: IAppProps) => {
             <Footer />
         </div>
     );
-});
+};
 export default App;

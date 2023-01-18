@@ -9,77 +9,55 @@ import { ProductSizes } from "../../stateStore/constants/Enums";
 import { MiniCookieCount, RegularCookieCount } from "../../data/CookieData";
 import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
 import { inject, observer } from "mobx-react";
-
 interface ICookieCountProps {
     store?: GlobalStateStore;
 }
 
-interface ICookieCountState {
-    cookieSize: string;
-}
+const CookieCount: React.FC<ICookieCountProps> = inject("store")(
+    observer(({ store }: ICookieCountProps) => {
+        const [cookieSize, setCookieSize] = useState("");
 
-@inject("store")
-@observer
-class CookieCount extends React.Component<
-    ICookieCountProps,
-    ICookieCountState
-> {
-    constructor(props: ICookieCountProps) {
-        super(props);
-
-        this.state = {
-            cookieSize: "",
+        const renderCookieCount = () => {
+            if (cookieSize === ProductSizes.REGULAR) {
+                return RegularCookieCount.map(
+                    ({ id, count, amountOfPeople, price }) => {
+                        if (count === "") {
+                            return (
+                                <option key={`${count}${id}`} value="">
+                                    Choose One
+                                </option>
+                            );
+                        } else {
+                            return (
+                                <option
+                                    key={`${id}`}
+                                    value={count}
+                                >{`${count} (${amountOfPeople}) ($${price})`}</option>
+                            );
+                        }
+                    }
+                );
+            } else {
+                return MiniCookieCount.map(
+                    ({ id, count, amountOfPeople, price }) => {
+                        if (count === "") {
+                            return (
+                                <option key={`${count}${id}`} value="">
+                                    Choose One
+                                </option>
+                            );
+                        } else {
+                            return (
+                                <option
+                                    key={`${id}`}
+                                    value={count}
+                                >{`${count} (${amountOfPeople}) ($${price})`}</option>
+                            );
+                        }
+                    }
+                );
+            }
         };
-    }
-
-    setCookieSize = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({
-            cookieSize: e.target.value,
-        });
-    };
-
-    renderCookieCount = () => {
-        if (this.state.cookieSize === ProductSizes.REGULAR) {
-            return RegularCookieCount.map(
-                ({ id, count, amountOfPeople, price }) => {
-                    if (count === "") {
-                        return (
-                            <option key={`${count}${id}`} value="">
-                                Choose One
-                            </option>
-                        );
-                    } else {
-                        return (
-                            <option
-                                key={`${id}`}
-                                value={count}
-                            >{`${count} (${amountOfPeople}) ($${price})`}</option>
-                        );
-                    }
-                }
-            );
-        } else {
-            return MiniCookieCount.map(
-                ({ id, count, amountOfPeople, price }) => {
-                    if (count === "") {
-                        return (
-                            <option key={`${count}${id}`} value="">
-                                Choose One
-                            </option>
-                        );
-                    } else {
-                        return (
-                            <option
-                                key={`${id}`}
-                                value={count}
-                            >{`${count} (${amountOfPeople}) ($${price})`}</option>
-                        );
-                    }
-                }
-            );
-        }
-    };
-    render() {
         return (
             <section className="cookie-count-container">
                 <h3>Choose Cookies</h3>
@@ -93,14 +71,14 @@ class CookieCount extends React.Component<
                             value={ProductSizes.REGULAR}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => this.setCookieSize(e)}
+                            onChange={(e) => setCookieSize(e.target.value)}
                         ></input>
                         <label htmlFor="fruit">Regular</label>
                         <input
                             value={ProductSizes.MINI}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => this.setCookieSize(e)}
+                            onChange={(e) => setCookieSize(e.target.value)}
                         ></input>
                         <label htmlFor="fruit">Mini</label>
                     </div>
@@ -110,7 +88,7 @@ class CookieCount extends React.Component<
                 <div className="cookie-make-container">
                     <h5 className="cookie-title">
                         How Many
-                        {this.state.cookieSize === ProductSizes.REGULAR
+                        {cookieSize === ProductSizes.REGULAR
                             ? " Regular"
                             : " Mini"}{" "}
                         Cookies
@@ -122,7 +100,7 @@ class CookieCount extends React.Component<
                                     name="cake-size"
                                     className="cookie-dropdown"
                                 >
-                                    {this.renderCookieCount()}
+                                    {renderCookieCount()}
                                 </select>
                             </form>
                         </div>
@@ -134,7 +112,7 @@ class CookieCount extends React.Component<
                 </div>
             </section>
         );
-    }
-}
+    })
+);
 
 export default CookieCount;

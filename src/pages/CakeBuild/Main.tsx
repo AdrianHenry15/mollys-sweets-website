@@ -16,7 +16,7 @@ interface IBuildYourCakeProps {
     store?: GlobalStateStore;
 }
 
-const BuildYourCake = observer((props: IBuildYourCakeProps) => {
+const BuildYourCake = () => {
     return (
         <section className="main-build-cake-wrapper">
             <div className="main-build-cake-container">
@@ -49,6 +49,6 @@ const BuildYourCake = observer((props: IBuildYourCakeProps) => {
             </div>
         </section>
     );
-});
+};
 
 export default BuildYourCake;

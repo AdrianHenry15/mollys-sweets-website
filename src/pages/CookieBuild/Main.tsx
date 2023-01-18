@@ -6,6 +6,12 @@ import CookieCount from "./CookieCount";
 import CookieTotalCost from "./CookieTotalCost";
 import CookieDetails from "./CookieDetails";
 import CookieFlavors from "./CookieFlavors";
+import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+import { observer } from "mobx-react-lite";
+
+interface IChooseYourCookies {
+    store?: GlobalStateStore;
+}
 
 const ChooseYourCookies = () => {
     return (

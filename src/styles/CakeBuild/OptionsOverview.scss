@@ -40,12 +40,12 @@ table {
 }
 
 @media (min-width: 481px) and (max-width: 1200px) {
-    // .cake-options-container {
-    //     width: 100%;
-    //     font-size: 12px;
-    //     height: 20px;
-    //     flex: 0.6;
-    // }
+    .cake-options-container {
+        width: 100%;
+        font-size: 12px;
+        height: 20px;
+        flex: 0.6;
+    }
 }
 
 @media (min-width: 320px) and (max-width: 480px) {

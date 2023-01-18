@@ -1,116 +1,188 @@
 // styles
 import "../../styles/CakeBuild/Base.scss";
 //frameworks
-import React from "react";
+import React, { useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 //images
 import SingleRound from "../../assets/imgs/create_a_cake/single-tier-round-white.png";
-import SingleSheet from "../../assets/imgs/create_a_cake/single-tier-sheet.png";
 import MultipleRound from "../../assets/imgs/create_a_cake/multiple-tier-round-white.png";
+import SingleSheet from "../../assets/imgs/create_a_cake/single-tier-sheet.png";
+import MultipleSheet from "../../assets/imgs/create_a_cake/multiple-tier-sheet.png";
 //data
-import { observer, useObserver } from "mobx-react";
+import { inject, observer, useObserver } from "mobx-react";
 import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
 import { RoundSizes } from "../../data/CakesData";
+import { CakeTiers, CakeShapes } from "../../stateStore/constants/Enums";
+import { Products } from "../../stateStore/constants/Types";
 
 interface ICakeBaseProps {
     store?: GlobalStateStore;
 }
 
-const CakeBase = observer((props: ICakeBaseProps) => {
-    return (
-        <section className="base-cake-base-container">
-            <h3>Choose Cake Base</h3>
-            <hr />
+const CakeBase: React.FC<ICakeBaseProps> = inject("store")(
+    observer(({ store }: ICakeBaseProps) => {
+        // variables
+        const roundSizes = store!.ProductStore.products.sizes.roundSizes;
+        const sheetSizes = store!.ProductStore.products.sizes.roundSizes;
+        const [cakeTier, setCakeTier] = useState("");
+        const [cakeShape, setCakeShape] = useState("");
 
-            {/* Cake Tier */}
-            <div className="base-cake-make-container">
-                <h5 className="base-title">Cake Tier</h5>
-                <div className="base-choice-container">
-                    <div className="base-option">
-                        <LazyLoadImage
-                            className="base-choice"
-                            src={SingleRound}
-                            alt="round-cake"
-                        />
-                        <h5 className="base-option">Single</h5>
-                    </div>
-                    <div className="base-option">
-                        <LazyLoadImage
-                            className="base-choice"
-                            src={MultipleRound}
-                            alt="round-cake"
-                        />
-                        <h5 className="base-option">Multiple</h5>
+        const renderCakeSizes = () => {
+            let shape;
+            cakeShape === CakeShapes.ROUND
+                ? (shape = store!.ProductStore.products.sizes.roundSizes)
+                : (shape = store!.ProductStore.products.sizes.sheetSizes);
+
+            // renders cake sizes
+            return shape.map(({ id, productSize, productServes, price }) => {
+                if (id === 0) {
+                    return (
+                        <option key={`${productSize}${id}`} value="">
+                            Choose One
+                        </option>
+                    );
+                } else {
+                    return (
+                        <option
+                            key={`${id}`}
+                            value={productSize}
+                        >{`${productSize} (${productServes}) ($${price})`}</option>
+                    );
+                }
+            });
+        };
+        return (
+            <section className="base-cake-base-container">
+                <h3>Choose Cake Base</h3>
+                <hr />
+
+                {/* Cake Tier */}
+                <div className="base-cake-make-container">
+                    <h5 className="base-title">Cake Tier</h5>
+                    <div className="base-choice-container">
+                        <div className="base-option">
+                            <LazyLoadImage
+                                onClick={() => setCakeTier(CakeTiers.SINGLE)}
+                                className={
+                                    cakeTier === CakeTiers.SINGLE
+                                        ? "base-choice base-choice-active"
+                                        : "base-choice"
+                                }
+                                src={SingleRound}
+                                alt="round-cake"
+                            />
+                            <h5 className="base-option">Single</h5>
+                        </div>
+                        <div className="base-option">
+                            <LazyLoadImage
+                                onClick={() => setCakeTier(CakeTiers.MULTIPLE)}
+                                className={
+                                    cakeTier === CakeTiers.MULTIPLE
+                                        ? "base-choice base-choice-active"
+                                        : "base-choice"
+                                }
+                                src={MultipleRound}
+                                alt="round-cake"
+                            />
+                            <h5 className="base-option">Multiple</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Cake Shape */}
-            <div className="base-cake-make-container">
-                <h5 className="base-title">Cake Shape</h5>
-                <div className="base-choice-container">
-                    <div className="base-option">
-                        <LazyLoadImage
-                            className="base-choice"
-                            src={SingleRound}
-                            alt="round-cake"
-                        />
-                        <h5 className="base-option">Single</h5>
-                    </div>
-                    <div className="base-option">
-                        <LazyLoadImage
-                            className="base-choice"
-                            src={SingleSheet}
-                            alt="round-cake"
-                        />
-                        <h5 className="base-option">Sheet</h5>
+                {/* Cake Shape */}
+                <div className="base-cake-make-container">
+                    <h5 className="base-title">Cake Shape</h5>
+                    <div className="base-choice-container">
+                        <div className="base-option">
+                            <LazyLoadImage
+                                onClick={() => setCakeShape(CakeShapes.ROUND)}
+                                className={
+                                    cakeShape === CakeShapes.ROUND
+                                        ? "base-choice base-choice-active"
+                                        : "base-choice"
+                                }
+                                src={
+                                    cakeTier === CakeTiers.SINGLE
+                                        ? SingleRound
+                                        : MultipleRound
+                                }
+                                alt="round-cake"
+                            />
+                            <h5 className="base-option">Round</h5>
+                        </div>
+                        <div className="base-option">
+                            <LazyLoadImage
+                                onClick={() => setCakeShape(CakeShapes.SHEET)}
+                                className={
+                                    cakeShape === CakeShapes.SHEET
+                                        ? "base-choice base-choice-active"
+                                        : "base-choice"
+                                }
+                                src={
+                                    cakeTier === CakeTiers.SINGLE
+                                        ? SingleSheet
+                                        : MultipleSheet
+                                }
+                                alt="round-cake"
+                            />
+                            <h5 className="base-option">Sheet</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Cake Size */}
-            <div className="base-cake-make-container">
-                <h5 className="base-title">Round Cake Size</h5>
-                <div className="base-choice-container">
-                    <div className="base-option">
-                        <form action="">
-                            <select
-                                name="cake-size"
-                                className="base-cake-size-dropdown"
-                            >
-                                {RoundSizes.map(
-                                    ({ id, size, amountOfPeople, price }) => {
-                                        if (size === "") {
-                                            return (
-                                                <option
-                                                    key={`${size}${id}`}
-                                                    value=""
-                                                >
-                                                    Choose One
-                                                </option>
-                                            );
-                                        } else {
-                                            return (
-                                                <option
-                                                    key={`${id}`}
-                                                    value={size}
-                                                >{`${size} (${amountOfPeople}) ($${price})`}</option>
-                                            );
+                {/* Cake Size */}
+                <div className="base-cake-make-container">
+                    <h5 className="base-title">
+                        {cakeShape === CakeShapes.ROUND ? "Round" : "Sheet"}{" "}
+                        Cake Size
+                    </h5>
+                    <div className="base-choice-container">
+                        <div className="base-option">
+                            <form action="">
+                                <select
+                                    name="cake-size"
+                                    className="base-cake-size-dropdown"
+                                >
+                                    {renderCakeSizes()}
+                                    {/* {cakeShape === CakeShapes.ROUND ? roundSizes.map(
+                                        ({
+                                            id,
+                                            productSize,
+                                            productServes,
+                                            price,
+                                        }) => {
+                                            if (id === 0) {
+                                                return (
+                                                    <option
+                                                        key={`${productSize}${id}`}
+                                                        value=""
+                                                    >
+                                                        Choose One
+                                                    </option>
+                                                );
+                                            } else {
+                                                return (
+                                                    <option
+                                                        key={`${id}`}
+                                                        value={productSize}
+                                                    >{`${productSize} (${productServes}) ($${price})`}</option>
+                                                );
+                                            }
                                         }
-                                    }
-                                )}
-                            </select>
-                        </form>
+                                    )} */}
+                                </select>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="base-cake-make-container">
-                <h5 className="base-title">Cake Base Cost</h5>
-                <div>$0.00</div>
-            </div>
-        </section>
-    );
-});
+                <div className="base-cake-make-container">
+                    <h5 className="base-title">Cake Base Cost</h5>
+                    <div>$0.00</div>
+                </div>
+            </section>
+        );
+    })
+);
 
 export default CakeBase;

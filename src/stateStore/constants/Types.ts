@@ -8,6 +8,8 @@ export type Products = {
     productSize?: string;
     productQuantity?: string;
     productServes?: string;
+    cakeShape?: string;
+    cakeTier?: string;
 }[];
 
 export type ProductSize = {

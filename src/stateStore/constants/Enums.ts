@@ -5,9 +5,9 @@ export enum ProductCategories {
 }
 
 export enum CakeTypes {
-    FLAVOR,
-    FILLING,
-    FROSTING,
+    FLAVORS = "Flavors",
+    FILLINGS = "Fillings",
+    FROSTINGS = "Frostings",
 }
 
 export enum ProductTypes {
@@ -34,9 +34,20 @@ export enum ProductSizes {
     REGULAR = "Regular",
 }
 
-export enum ProductTierTypes {
+export enum CakeTiers {
     SINGLE = "Single",
     MULTIPLE = "Multiple",
 }
 
-export enum SnackSize {}
+export enum CakeShapes {
+    ROUND = "Round",
+    SHEET = "Sheet",
+}
+
+export enum Occasion {
+    BIRTHDAY = "Birthday",
+    ANNIVERSARY = "Anniversary",
+    BABY_SHOWER = "Baby Shower",
+    GRADUATION = "Graduation",
+    OTHER = "Other",
+}

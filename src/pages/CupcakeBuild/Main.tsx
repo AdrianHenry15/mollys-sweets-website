@@ -7,6 +7,12 @@ import CCCount from "./CCCount";
 import CCFlavors from "./CCFlavors";
 import CCDetails from "./CCDetails";
 import CCTotalCost from "./CCTotalCost";
+import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+import { observer } from "mobx-react";
+
+interface IChooseYourCupcakes {
+    store?: GlobalStateStore;
+}
 
 const ChooseYourCupcakes = () => {
     return (

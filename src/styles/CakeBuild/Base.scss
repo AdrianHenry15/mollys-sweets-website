@@ -27,6 +27,18 @@
     margin: 10px;
 }
 
+.base-choice-active {
+    background-color: rgb(49, 65, 45);
+}
+
+.base-choice:hover {
+    background-color: rgb(63, 92, 55);
+    cursor: pointer;
+}
+.base-choice:active {
+    background-color: rgb(49, 65, 45);
+}
+
 .base-title {
     font-size: 20px;
 }

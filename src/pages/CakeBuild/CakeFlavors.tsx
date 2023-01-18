@@ -7,7 +7,7 @@ import "../../styles/CakeBuild/Flavors.scss";
 //data
 import { CakeTypes, ProductTypes } from "../../stateStore/constants/Enums";
 import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
-import { observer, Observer, useObserver } from "mobx-react";
+import { inject, observer, Observer, useObserver } from "mobx-react";
 import { Fillings, Frostings, MainFlavors } from "../../data/CakesData";
 
 //store
@@ -15,154 +15,163 @@ import { Fillings, Frostings, MainFlavors } from "../../data/CakesData";
 interface ICakeFlavorsProps {
     store?: GlobalStateStore;
 }
-const CakeFlavors = observer((props: ICakeFlavorsProps) => {
-    const renderCakeTypes = (genre: CakeTypes): JSX.Element => {
-        switch (genre) {
-            case CakeTypes.FLAVOR: {
-                return (
-                    <form action="">
-                        <select
-                            name="cake-size"
-                            className="flavors-cake-size-dropdown"
-                        >
-                            {MainFlavors.map(({ id, name, price }) => {
-                                if (id === 0) {
-                                    return (
-                                        <option key={id} defaultValue="">
-                                            Choose One
-                                        </option>
-                                    );
-                                } else {
-                                    return (
-                                        <option
-                                            key={id}
-                                            value={name}
-                                        >{`${name} ($${price})`}</option>
-                                    );
-                                }
-                            })}
-                        </select>
-                    </form>
-                );
-            }
-            case CakeTypes.FROSTING: {
-                return (
-                    <form action="">
-                        <select
-                            name="cake-size"
-                            className="flavors-cake-size-dropdown"
-                        >
-                            {Frostings.map(({ id, name, price }) => {
-                                if (id === 0) {
-                                    return (
-                                        <option key={name + id} defaultValue="">
-                                            Choose One
-                                        </option>
-                                    );
-                                } else {
-                                    return (
-                                        <option
-                                            key={name + id}
-                                            value={name}
-                                        >{`${name} ($${price})`}</option>
-                                    );
-                                }
-                            })}
-                        </select>
-                    </form>
-                );
-            }
-            case CakeTypes.FILLING: {
-                return (
-                    <form action="">
-                        <select
-                            name="cake-size"
-                            className="flavors-cake-size-dropdown"
-                        >
-                            {Fillings.map(({ id, name, price }) => {
-                                if (id === 0) {
-                                    return (
-                                        <option key={name + id} defaultValue="">
-                                            Choose One
-                                        </option>
-                                    );
-                                } else {
-                                    return (
-                                        <option
-                                            key={name + id}
-                                            value={name}
-                                        >{`${name} ($${price})`}</option>
-                                    );
-                                }
-                            })}
-                        </select>
-                    </form>
-                );
-            }
-            default: {
-                return <div></div>;
-            }
-        }
-    };
-    return (
-        <section className="flavors-custom-flavors-container">
-            <h3>Customize Flavors</h3>
-            <hr />
-            {(Object.keys(CakeTypes) as Array<keyof typeof CakeTypes>).map(
-                (key) => {
-                    // Flavor, Filling and Frosting
+const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
+    observer((props: ICakeFlavorsProps) => {
+        const renderCakeTypes = (genre: CakeTypes): JSX.Element => {
+            switch (genre) {
+                case CakeTypes.FLAVORS: {
                     return (
-                        <div
-                            key={key}
-                            id="flavors-custom-flavors"
-                            className="flavors-cake-make-container"
-                        >
-                            <h5 className="flavors-title">
-                                Main {CakeTypes[key].toString().slice(0, -1)}
-                                {}
-                            </h5>
-                            <div className="flavors-choice-container">
-                                <div className="flavors-option">
-                                    {renderCakeTypes(CakeTypes[key])}
-                                </div>
-                            </div>
-                        </div>
+                        <form action="">
+                            <select
+                                name="cake-size"
+                                className="flavors-cake-size-dropdown"
+                            >
+                                {MainFlavors.map(({ id, name, price }) => {
+                                    if (id === 0) {
+                                        return (
+                                            <option key={id} defaultValue="">
+                                                Choose One
+                                            </option>
+                                        );
+                                    } else {
+                                        return (
+                                            <option
+                                                key={id}
+                                                value={name}
+                                            >{`${name} ($${price})`}</option>
+                                        );
+                                    }
+                                })}
+                            </select>
+                        </form>
                     );
                 }
-            )}
+                case CakeTypes.FROSTINGS: {
+                    return (
+                        <form action="">
+                            <select
+                                name="cake-size"
+                                className="flavors-cake-size-dropdown"
+                            >
+                                {Frostings.map(({ id, name, price }) => {
+                                    if (id === 0) {
+                                        return (
+                                            <option
+                                                key={name + id}
+                                                defaultValue=""
+                                            >
+                                                Choose One
+                                            </option>
+                                        );
+                                    } else {
+                                        return (
+                                            <option
+                                                key={name + id}
+                                                value={name}
+                                            >{`${name} ($${price})`}</option>
+                                        );
+                                    }
+                                })}
+                            </select>
+                        </form>
+                    );
+                }
+                case CakeTypes.FILLINGS: {
+                    return (
+                        <form action="">
+                            <select
+                                name="cake-size"
+                                className="flavors-cake-size-dropdown"
+                            >
+                                {Fillings.map(({ id, name, price }) => {
+                                    if (id === 0) {
+                                        return (
+                                            <option
+                                                key={name + id}
+                                                defaultValue=""
+                                            >
+                                                Choose One
+                                            </option>
+                                        );
+                                    } else {
+                                        return (
+                                            <option
+                                                key={name + id}
+                                                value={name}
+                                            >{`${name} ($${price})`}</option>
+                                        );
+                                    }
+                                })}
+                            </select>
+                        </form>
+                    );
+                }
+                default: {
+                    return <div></div>;
+                }
+            }
+        };
+        return (
+            <section className="flavors-custom-flavors-container">
+                <h3>Customize Flavors</h3>
+                <hr />
+                {(Object.keys(CakeTypes) as Array<keyof typeof CakeTypes>).map(
+                    (key) => {
+                        // Flavor, Filling and Frosting
+                        return (
+                            <div
+                                key={key}
+                                id="flavors-custom-flavors"
+                                className="flavors-cake-make-container"
+                            >
+                                <h5 className="flavors-title">
+                                    Main{" "}
+                                    {CakeTypes[key].toString().slice(0, -1)}
+                                    {}
+                                </h5>
+                                <div className="flavors-choice-container">
+                                    <div className="flavors-option">
+                                        {renderCakeTypes(CakeTypes[key])}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    }
+                )}
 
-            {/* Fresh Fruit */}
-            <div
-                id="flavors-fruits-section-container"
-                className="flavors-cake-make-container"
-            >
-                <h5 className="flavors-title">Add Fresh Fruit?</h5>
+                {/* Fresh Fruit */}
                 <div
-                    id="flavors-fruit-section"
-                    className="flavors-choice-container"
+                    id="flavors-fruits-section-container"
+                    className="flavors-cake-make-container"
                 >
-                    <input
-                        value="yes"
-                        type="radio"
-                        name="fruit"
-                        id="flavors-fruit-input"
-                    ></input>
-                    <label htmlFor="fruit">Yes (Extra Cost*)</label>
-                    <input
-                        value="no"
-                        type="radio"
-                        name="fruit"
-                        id="flavors-fruit-input"
-                    ></input>
-                    <label htmlFor="fruit">No</label>
+                    <h5 className="flavors-title">Add Fresh Fruit?</h5>
+                    <div
+                        id="flavors-fruit-section"
+                        className="flavors-choice-container"
+                    >
+                        <input
+                            value="yes"
+                            type="radio"
+                            name="fruit"
+                            id="flavors-fruit-input"
+                        ></input>
+                        <label htmlFor="fruit">Yes (Extra Cost*)</label>
+                        <input
+                            value="no"
+                            type="radio"
+                            name="fruit"
+                            id="flavors-fruit-input"
+                        ></input>
+                        <label htmlFor="fruit">No</label>
+                    </div>
                 </div>
-            </div>
-            <div className="flavors-cake-make-container">
-                <h5 className="flavors-title">Flavors Cost</h5>
-                <div>$0.00</div>
-            </div>
-        </section>
-    );
-});
+                <div className="flavors-cake-make-container">
+                    <h5 className="flavors-title">Flavors Cost</h5>
+                    <div>$0.00</div>
+                </div>
+            </section>
+        );
+    })
+);
 
 export default CakeFlavors;
