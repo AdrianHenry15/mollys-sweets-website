@@ -12,8 +12,10 @@ interface ICookieTotalCostProps {
     store?: GlobalStateStore;
 }
 
-const CookieTotalCost: React.FC<ICookieTotalCostProps> = inject("store")(
-    observer(({ store }: ICookieTotalCostProps) => {
+@inject("store")
+@observer
+class CookieTotalCost extends React.Component<ICookieTotalCostProps, {}> {
+    render() {
         return (
             <section className="cookie-tc-container">
                 <h3>Total Cookie Cost</h3>
@@ -35,7 +37,7 @@ const CookieTotalCost: React.FC<ICookieTotalCostProps> = inject("store")(
                     </div>
                     <div className="cookie-tc">
                         <h4>Design</h4>
-                        <span>$0.00</span>
+                        <span>TBD</span>
                     </div>
                     <div className="cookie-tc">
                         <h4>Total</h4>
@@ -45,7 +47,7 @@ const CookieTotalCost: React.FC<ICookieTotalCostProps> = inject("store")(
                 <hr />
             </section>
         );
-    })
-);
+    }
+}
 
 export default CookieTotalCost;

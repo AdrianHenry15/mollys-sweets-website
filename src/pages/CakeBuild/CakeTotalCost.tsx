@@ -1,14 +1,19 @@
-import { inject, observer, Observer, useObserver } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import React from "react";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
 import "../../styles/CakeBuild/TotalCost.scss";
 
 interface ICakeTotalCostProps {
     store?: GlobalStateStore;
 }
 
-const CakeTotalCost: React.FC<ICakeTotalCostProps> = inject("store")(
-    observer((props: ICakeTotalCostProps) => {
+@inject("store")
+@observer
+class CakeTotalCost extends React.Component<ICakeTotalCostProps, {}> {
+    // store variables
+
+    render() {
+        const cakeBaseCost = this.props.store!.ProductStore.cake.cakeBaseCost;
         return (
             <section className="total-cake-cost-container">
                 <h3>Total Cake Cost</h3>
@@ -25,7 +30,7 @@ const CakeTotalCost: React.FC<ICakeTotalCostProps> = inject("store")(
                         className="total-costs"
                     >
                         <h4>Cake Base</h4>
-                        <span>$0.00</span>
+                        <span>{`$${cakeBaseCost}`}</span>
                     </div>
                     <div
                         id="total-flavors-costs-container"
@@ -39,7 +44,7 @@ const CakeTotalCost: React.FC<ICakeTotalCostProps> = inject("store")(
                         className="total-costs"
                     >
                         <h4>Design</h4>
-                        <span>$0.00</span>
+                        <span>TBD</span>
                     </div>
                     <div id="total-costs-container" className="total-costs">
                         <h4>Total</h4>
@@ -49,6 +54,6 @@ const CakeTotalCost: React.FC<ICakeTotalCostProps> = inject("store")(
                 <hr />
             </section>
         );
-    })
-);
+    }
+}
 export default CakeTotalCost;

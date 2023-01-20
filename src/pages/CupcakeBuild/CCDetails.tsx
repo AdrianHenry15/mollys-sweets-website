@@ -13,8 +13,10 @@ interface ICCDetailsProps {
     store?: GlobalStateStore;
 }
 
-const CCDetails: React.FC<ICCDetailsProps> = inject("store")(
-    observer(({ store }: ICCDetailsProps) => {
+@inject("store")
+@observer
+class CCDetails extends React.Component<ICCDetailsProps, {}> {
+    render() {
         return (
             <section className="ccd-container">
                 <h3>Cupcake Details</h3>
@@ -125,13 +127,9 @@ const CCDetails: React.FC<ICCDetailsProps> = inject("store")(
                         </form>
                     </div>
                 </div>
-                <div className="ccd-make-container">
-                    <h5 className="ccd-title">Details Cost</h5>
-                    <div>$0.00</div>
-                </div>
             </section>
         );
-    })
-);
+    }
+}
 
 export default CCDetails;

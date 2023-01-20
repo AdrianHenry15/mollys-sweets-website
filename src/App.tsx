@@ -1,7 +1,7 @@
 //styles
 import "./App.scss";
 //frameworks
-import React from "react";
+import React, { Component } from "react";
 //components
 import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
@@ -16,40 +16,50 @@ import ChooseYourSweets from "./pages/ChooseYourSweets";
 import BuildYourCake from "./pages/CakeBuild/Main";
 import ChooseYourCupcakes from "./pages/CupcakeBuild/Main";
 import ChooseYourCookies from "./pages/CookieBuild/Main";
+import { GlobalStateStore } from "./store/GlobalStateStore";
+import { inject, observer } from "mobx-react";
 
-const App = () => {
-    return (
-        <div className="app snow">
-            <Navbar />
-            <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route
-                    path="/sample-our-sweets"
-                    element={<SampleOurSweets />}
-                ></Route>
-                <Route
-                    path="/choose-your-sweets"
-                    element={<ChooseYourSweets />}
-                ></Route>
-                <Route
-                    path="/build-your-cake"
-                    element={<BuildYourCake />}
-                ></Route>
-                <Route
-                    path="/choose-your-cupcakes"
-                    element={<ChooseYourCupcakes />}
-                ></Route>
-                <Route
-                    path="/choose-your-cookies"
-                    element={<ChooseYourCookies />}
-                ></Route>
-                <Route path="/cakes" element={<Cakes />}></Route>
-                <Route path="/cookies" element={<Cookies />}></Route>
-                <Route path="/cupcakes" element={<Cupcakes />}></Route>
-                <Route path="/*" element={<PageNotFound />}></Route>
-            </Routes>
-            <Footer />
-        </div>
-    );
-};
+interface IAppProps {
+    store: GlobalStateStore;
+}
+
+@inject("store")
+@observer
+class App extends Component<IAppProps, {}> {
+    render() {
+        return (
+            <div className="app snow">
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<Home />}></Route>
+                    <Route
+                        path="/sample-our-sweets"
+                        element={<SampleOurSweets />}
+                    ></Route>
+                    <Route
+                        path="/choose-your-sweets"
+                        element={<ChooseYourSweets />}
+                    ></Route>
+                    <Route
+                        path="/build-your-cake"
+                        element={<BuildYourCake />}
+                    ></Route>
+                    <Route
+                        path="/choose-your-cupcakes"
+                        element={<ChooseYourCupcakes />}
+                    ></Route>
+                    <Route
+                        path="/choose-your-cookies"
+                        element={<ChooseYourCookies />}
+                    ></Route>
+                    <Route path="/cakes" element={<Cakes />}></Route>
+                    <Route path="/cookies" element={<Cookies />}></Route>
+                    <Route path="/cupcakes" element={<Cupcakes />}></Route>
+                    <Route path="/*" element={<PageNotFound />}></Route>
+                </Routes>
+                <Footer />
+            </div>
+        );
+    }
+}
 export default App;

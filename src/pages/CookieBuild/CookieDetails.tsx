@@ -13,8 +13,10 @@ interface ICookieDetailsProps {
     store?: GlobalStateStore;
 }
 
-const CookieDetails: React.FC<ICookieDetailsProps> = inject("store")(
-    observer(({ store }: ICookieDetailsProps) => {
+@inject("store")
+@observer
+class CookieDetails extends React.Component<ICookieDetailsProps, {}> {
+    render() {
         return (
             <section className="cookie-d-container">
                 <h3>Cookie Details</h3>
@@ -138,7 +140,7 @@ const CookieDetails: React.FC<ICookieDetailsProps> = inject("store")(
                 </div>
             </section>
         );
-    })
-);
+    }
+}
 
 export default CookieDetails;

@@ -1,11 +1,18 @@
-import { observer } from "mobx-react-lite";
+import { inject, observer } from "mobx-react";
 import React from "react";
-import { useState } from "react";
-import { Fillings, Frostings } from "../data/CakesData";
+import { GlobalStateStore } from "../store/GlobalStateStore";
 
-const Cart = () => {
-    const isDisabled = () => {};
-    return <div></div>;
-};
+interface ICartProps {
+    store?: GlobalStateStore;
+}
+
+@inject("store")
+@observer
+class Cart extends React.Component<ICartProps, {}> {
+    //main
+    render() {
+        return <div></div>;
+    }
+}
 
 export default Cart;

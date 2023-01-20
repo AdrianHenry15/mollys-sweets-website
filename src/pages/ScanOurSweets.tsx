@@ -19,8 +19,11 @@ interface IScanOurSweetsProps {
     store?: GlobalStateStore;
 }
 
-const ScanOurSweets: React.FC<IScanOurSweetsProps> = inject("store")(
-    observer(({ store }: IScanOurSweetsProps) => {
+@inject("store")
+@observer
+class ScanOurSweets extends React.Component<IScanOurSweetsProps, {}> {
+    //main
+    render() {
         //variables
 
         //main
@@ -83,7 +86,7 @@ const ScanOurSweets: React.FC<IScanOurSweetsProps> = inject("store")(
                 </div>
             </section>
         );
-    })
-);
+    }
+}
 
 export default ScanOurSweets;

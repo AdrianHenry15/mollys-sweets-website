@@ -1,20 +1,26 @@
-//data
-import { RoundSizes, SheetSizes } from "../../data/CakesData";
-
 //styles
 import "../../styles/CakeBuild/OptionsOverview.scss";
 
 //frameworks
 import React from "react";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
+
+//data
+import { ProductData } from "../../data/Products";
 
 interface IOptionsOverviewProps {
     store?: GlobalStateStore;
 }
 
-const OptionsOverview: React.FC<IOptionsOverviewProps> = inject("store")(
-    observer(({ store }: IOptionsOverviewProps) => {
+@inject("store")
+@observer
+class OptionsOverview extends React.Component<IOptionsOverviewProps, {}> {
+    render() {
+        // data variables
+        const sheetSizes = ProductData.products.sizes.sheetSizes;
+        const roundSizes = ProductData.products.sizes.roundSizes;
+        //main
         return (
             <aside className="cake-options-container">
                 <h4 className="cake-options-label">Cake Options Overview</h4>
@@ -26,12 +32,12 @@ const OptionsOverview: React.FC<IOptionsOverviewProps> = inject("store")(
                                 <th>Sheet Size:</th>
                                 <th>Serves:</th>
                             </tr>
-                            {SheetSizes.map(
-                                ({ size, amountOfPeople, price }) => {
+                            {sheetSizes.map(
+                                ({ productSize, productServes, price }) => {
                                     return (
-                                        <tr key={`${size}${price}`}>
-                                            <td>{size}</td>
-                                            <td>{amountOfPeople}</td>
+                                        <tr key={`${productSize}${price}`}>
+                                            <td>{productSize}</td>
+                                            <td>{productServes}</td>
                                         </tr>
                                     );
                                 }
@@ -44,12 +50,12 @@ const OptionsOverview: React.FC<IOptionsOverviewProps> = inject("store")(
                                 <th>Round Size:</th>
                                 <th>Serves:</th>
                             </tr>
-                            {RoundSizes.map(
-                                ({ size, amountOfPeople, price }) => {
+                            {roundSizes.map(
+                                ({ productSize, productServes, price }) => {
                                     return (
-                                        <tr key={`${size}${price}`}>
-                                            <td>{size}</td>
-                                            <td>{amountOfPeople}</td>
+                                        <tr key={`${productSize}${price}`}>
+                                            <td>{productSize}</td>
+                                            <td>{productServes}</td>
                                         </tr>
                                     );
                                 }
@@ -59,7 +65,7 @@ const OptionsOverview: React.FC<IOptionsOverviewProps> = inject("store")(
                 </div>
             </aside>
         );
-    })
-);
+    }
+}
 
 export default OptionsOverview;

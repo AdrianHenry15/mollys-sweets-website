@@ -12,8 +12,10 @@ interface ICCTotalCostProps {
     store?: GlobalStateStore;
 }
 
-const CCTotalCost: React.FC<ICCTotalCostProps> = inject("store")(
-    observer(({ store }: ICCTotalCostProps) => {
+@inject("store")
+@observer
+class CCTotalCost extends React.Component<ICCTotalCostProps, {}> {
+    render() {
         return (
             <section className="cctc-container">
                 <h3>Total Cupcake Cost</h3>
@@ -35,7 +37,7 @@ const CCTotalCost: React.FC<ICCTotalCostProps> = inject("store")(
                     </div>
                     <div className="cctc">
                         <h4>Design</h4>
-                        <span>$0.00</span>
+                        <span>TBD</span>
                     </div>
                     <div className="cctc">
                         <h4>Total</h4>
@@ -45,7 +47,7 @@ const CCTotalCost: React.FC<ICCTotalCostProps> = inject("store")(
                 <hr />
             </section>
         );
-    })
-);
+    }
+}
 
 export default CCTotalCost;

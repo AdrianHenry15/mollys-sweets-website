@@ -8,74 +8,77 @@ import "../../styles/CupcakeBuild/CCFlavors.scss";
 import { CakeTypes } from "../../store/constants/Enums";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
+import { ProductData } from "../../data/Products";
 
 interface ICCFlavorsProps {
     store?: GlobalStateStore;
 }
 
-const CCFlavors: React.FC<ICCFlavorsProps> = inject("store")(
-    observer(({ store }: ICCFlavorsProps) => {
+@inject("store")
+@observer
+class CCFlavors extends React.Component<ICCFlavorsProps, {}> {
+    //functions
+    renderCakeTypes = (genre: CakeTypes) => {
         //variables
-        const flavors = store!.ProductStore.products.flavors;
-        const frostings = store!.ProductStore.products.frostings;
-        //functions
-        const renderCakeTypes = (genre: CakeTypes) => {
-            if (genre === CakeTypes.FLAVORS) {
-                return (
-                    <form action="">
-                        <select
-                            defaultValue=""
-                            name="cake-size"
-                            className="ccf-dropdown"
-                        >
-                            {flavors.map(({ id, productName, price }) => {
-                                if (id === 0) {
-                                    return (
-                                        <option key={id} defaultValue="">
-                                            Choose One
-                                        </option>
-                                    );
-                                } else {
-                                    return (
-                                        <option
-                                            key={id}
-                                            value={productName}
-                                        >{`${productName} ($${price})`}</option>
-                                    );
-                                }
-                            })}
-                        </select>
-                    </form>
-                );
-            } else if (genre === CakeTypes.FROSTINGS) {
-                return (
-                    <form action="">
-                        <select
-                            defaultValue=""
-                            name="cake-size"
-                            className="ccf-dropdown"
-                        >
-                            {frostings.map(({ id, productName, price }) => {
-                                if (id === 0) {
-                                    return (
-                                        <option key={id} defaultValue="">
-                                            Choose One
-                                        </option>
-                                    );
-                                } else {
-                                    return (
-                                        <option
-                                            key={id}
-                                            value={productName}
-                                        >{`${productName} ($${price})`}</option>
-                                    );
-                                }
-                            })}
-                        </select>
-                    </form>
-                );
-            }
-        };
+        const flavors = ProductData.products.flavors;
+        const frostings = ProductData.products.frostings;
+        if (genre === CakeTypes.FLAVORS) {
+            return (
+                <form action="">
+                    <select
+                        defaultValue=""
+                        name="cake-size"
+                        className="ccf-dropdown"
+                    >
+                        {flavors.map(({ id, productName, price }) => {
+                            if (id === 0) {
+                                return (
+                                    <option key={id} defaultValue="">
+                                        Choose One
+                                    </option>
+                                );
+                            } else {
+                                return (
+                                    <option
+                                        key={id}
+                                        value={productName}
+                                    >{`${productName} ($${price})`}</option>
+                                );
+                            }
+                        })}
+                    </select>
+                </form>
+            );
+        } else if (genre === CakeTypes.FROSTINGS) {
+            return (
+                <form action="">
+                    <select
+                        defaultValue=""
+                        name="cake-size"
+                        className="ccf-dropdown"
+                    >
+                        {frostings.map(({ id, productName, price }) => {
+                            if (id === 0) {
+                                return (
+                                    <option key={id} defaultValue="">
+                                        Choose One
+                                    </option>
+                                );
+                            } else {
+                                return (
+                                    <option
+                                        key={id}
+                                        value={productName}
+                                    >{`${productName} ($${price})`}</option>
+                                );
+                            }
+                        })}
+                    </select>
+                </form>
+            );
+        }
+    };
+    render() {
         return (
             <section className="ccf-container">
                 <h3>Customize Flavors</h3>
@@ -98,7 +101,9 @@ const CCFlavors: React.FC<ICCFlavorsProps> = inject("store")(
                                     </h5>
                                     <div className="ccf-choice-container">
                                         <div>
-                                            {renderCakeTypes(CakeTypes[key])}
+                                            {this.renderCakeTypes(
+                                                CakeTypes[key]
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +117,7 @@ const CCFlavors: React.FC<ICCFlavorsProps> = inject("store")(
                 </div>
             </section>
         );
-    })
-);
+    }
+}
 
 export default CCFlavors;

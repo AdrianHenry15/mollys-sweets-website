@@ -11,18 +11,21 @@ import { SweetsImages } from "../data/ImageData";
 //store
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../store/GlobalStateStore";
+import { ProductData } from "../data/Products";
 
 interface ICakesProps {
     store?: GlobalStateStore;
 }
 
-const Cakes: React.FC<ICakesProps> = inject("store")(
-    observer(({ store }: ICakesProps) => {
+@inject("store")
+@observer
+class Cakes extends React.Component<ICakesProps, {}> {
+    //main
+    render() {
         //variables
-        const flavors = store!.ProductStore.products.flavors;
-        const fillings = store!.ProductStore.products.fillings;
-        const frostings = store!.ProductStore.products.frostings;
-        //main
+        const flavors = ProductData.products.flavors;
+        const fillings = ProductData.products.fillings;
+        const frostings = ProductData.products.frostings;
         return (
             <section className="row-container">
                 <h1>Cakes</h1>
@@ -111,7 +114,7 @@ const Cakes: React.FC<ICakesProps> = inject("store")(
                 </section>
             </section>
         );
-    })
-);
+    }
+}
 
 export default Cakes;

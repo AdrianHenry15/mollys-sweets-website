@@ -13,15 +13,19 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 //store
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../store/GlobalStateStore";
+import { ProductData } from "../data/Products";
 
 interface ICookiesProps {
     store?: GlobalStateStore;
 }
 
-const Cookies: React.FC<ICookiesProps> = inject("store")(
-    observer(({ store }: ICookiesProps) => {
+@inject("store")
+@observer
+class Cookies extends React.Component<ICookiesProps, {}> {
+    //main
+    render() {
         //variables
-        const cookies = store!.ProductStore.products.cookies;
+        const cookies = ProductData.products.cookies;
         //main
         return (
             <section className="row-container">
@@ -79,7 +83,7 @@ const Cookies: React.FC<ICookiesProps> = inject("store")(
                 </section>
             </section>
         );
-    })
-);
+    }
+}
 
 export default Cookies;

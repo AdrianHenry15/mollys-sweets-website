@@ -1,8 +1,8 @@
 //frameworks
 import { inject, observer } from "mobx-react";
 import React from "react";
-import { CakeOccasion, CakeRecipient } from "../../stateStore/constants/Enums";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+import { CakeOccasion, CakeRecipient } from "../../store/constants/Enums";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 //styles
 import "../../styles/CakeBuild/Details.scss";
@@ -10,9 +10,10 @@ import "../../styles/CakeBuild/Details.scss";
 interface ICakeDetailsProps {
     store?: GlobalStateStore;
 }
-
-const CakeDetails: React.FC<ICakeDetailsProps> = inject("store")(
-    observer(({ store }: ICakeDetailsProps) => {
+@inject("store")
+@observer
+class CakeDetails extends React.Component<ICakeDetailsProps, {}> {
+    render() {
         //main
         return (
             <section className="details-cake-details-container">
@@ -148,13 +149,9 @@ const CakeDetails: React.FC<ICakeDetailsProps> = inject("store")(
                         </form>
                     </div>
                 </div>
-                <div className="details-cake-make-container">
-                    <h5 className="details-title">Details Cost</h5>
-                    <div>$0.00</div>
-                </div>
             </section>
         );
-    })
-);
+    }
+}
 
 export default CakeDetails;

@@ -11,16 +11,20 @@ import { SweetsImages } from "../data/ImageData";
 //store
 import { GlobalStateStore } from "../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
+import { ProductData } from "../data/Products";
 
 interface ICupcakesProps {
     store?: GlobalStateStore;
 }
 
-const Cupcakes: React.FC<ICupcakesProps> = inject("store")(
-    observer(({ store }: ICupcakesProps) => {
+@inject("store")
+@observer
+class Cupcakes extends React.Component<ICupcakesProps, {}> {
+    //main
+    render() {
         //variables
-        const flavors = store!.ProductStore.products.flavors;
-        const frostings = store!.ProductStore.products.frostings;
+        const flavors = ProductData.products.flavors;
+        const frostings = ProductData.products.frostings;
 
         //main
         return (
@@ -94,7 +98,7 @@ const Cupcakes: React.FC<ICupcakesProps> = inject("store")(
                 </section>
             </section>
         );
-    })
-);
+    }
+}
 
 export default Cupcakes;

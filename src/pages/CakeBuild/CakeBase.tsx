@@ -1,55 +1,95 @@
 // styles
 import "../../styles/CakeBuild/Base.scss";
 //frameworks
-import React, { useState } from "react";
+import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 //images
-import SingleRound from "../../assets/imgs/create_a_cake/single-tier-round-white.png";
-import MultipleRound from "../../assets/imgs/create_a_cake/multiple-tier-round-white.png";
-import SingleSheet from "../../assets/imgs/create_a_cake/single-tier-sheet.png";
-import MultipleSheet from "../../assets/imgs/create_a_cake/multiple-tier-sheet.png";
+import SingleRoundImg from "../../assets/imgs/create_a_cake/single-tier-round-white.png";
+import MultipleRoundImg from "../../assets/imgs/create_a_cake/multiple-tier-round-white.png";
+import SingleSheetImg from "../../assets/imgs/create_a_cake/single-tier-sheet.png";
+import MultipleSheetImg from "../../assets/imgs/create_a_cake/multiple-tier-sheet.png";
 //data
 import { inject, observer } from "mobx-react";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
-import { CakeTiers, CakeShapes } from "../../stateStore/constants/Enums";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
+import { CakeTiers, CakeShapes } from "../../store/constants/Enums";
+import { ProductData } from "../../data/Products";
 
 interface ICakeBaseProps {
     store?: GlobalStateStore;
 }
 
-const CakeBase: React.FC<ICakeBaseProps> = inject("store")(
-    observer(({ store }: ICakeBaseProps) => {
-        // variables
+interface ICakeBaseState {
+    cakeTier: string;
+    cakeShape: string;
+}
 
-        //state
-        const [cakeTier, setCakeTier] = useState("");
-        const [cakeShape, setCakeShape] = useState("");
+@inject("store")
+@observer
+class CakeBase extends React.Component<ICakeBaseProps, ICakeBaseState> {
+    constructor(props: ICakeBaseProps) {
+        super(props);
 
-        const renderCakeSizes = () => {
-            let shape;
-            cakeShape === CakeShapes.ROUND
-                ? (shape = store!.ProductStore.products.sizes.roundSizes)
-                : (shape = store!.ProductStore.products.sizes.sheetSizes);
-
-            // renders cake sizes
-            return shape.map(({ id, productSize, productServes, price }) => {
-                if (id === 0) {
-                    return (
-                        <option key={`${productSize}${id}`} value="">
-                            Choose One
-                        </option>
-                    );
-                } else {
-                    return (
-                        <option
-                            key={`${id}`}
-                            value={productSize}
-                        >{`${productSize} (${productServes}) ($${price})`}</option>
-                    );
-                }
-            });
+        this.state = {
+            cakeTier: "",
+            cakeShape: "",
         };
+    }
+
+    //state functions
+    setCakeShape = (shape: CakeShapes) => {
+        this.setState({
+            cakeShape: shape,
+        });
+    };
+
+    //functions
+    updateTier = (tier: CakeTiers) => {
+        this.setState({
+            cakeTier: tier,
+        });
+        if (tier === CakeTiers.SINGLE) {
+            this.props.store!.ProductStore.cake.cakeBaseCost =
+                this.props.store!.ProductStore.cake.sizeCost +
+                ProductData.products.tiers.single[1].price;
+            return;
+        } else if (tier === CakeTiers.MULTIPLE) {
+            this.props.store!.ProductStore.cake.cakeBaseCost =
+                this.props.store!.ProductStore.cake.sizeCost +
+                ProductData.products.tiers.multiple[1].price;
+            return;
+        }
+    };
+
+    renderCakeSizes = () => {
+        let shape;
+        this.state.cakeShape === CakeShapes.ROUND
+            ? (shape = ProductData.products.sizes.roundSizes)
+            : (shape = ProductData.products.sizes.sheetSizes);
+
+        // renders cake sizes
+        return shape.map(({ id, productSize, productServes, price }) => {
+            if (id === 0) {
+                return (
+                    <option key={`${productSize}${id}`} value="">
+                        Choose One
+                    </option>
+                );
+            } else {
+                return (
+                    <option
+                        key={`${id}`}
+                        value={productSize}
+                    >{`${productSize} (${productServes}) ($${price})`}</option>
+                );
+            }
+        });
+    };
+    render() {
+        // store variables
+        const cakeBaseCost = this.props.store!.ProductStore.cake.cakeBaseCost;
+
+        // main
         return (
             <section className="base-cake-base-container">
                 <h3>Choose Cake Base</h3>
@@ -61,26 +101,38 @@ const CakeBase: React.FC<ICakeBaseProps> = inject("store")(
                     <div className="base-choice-container">
                         <div className="base-option">
                             <LazyLoadImage
-                                onClick={() => setCakeTier(CakeTiers.SINGLE)}
+                                onClick={() =>
+                                    this.updateTier(CakeTiers.SINGLE)
+                                }
                                 className={
-                                    cakeTier === CakeTiers.SINGLE
+                                    this.state.cakeTier === CakeTiers.SINGLE
                                         ? "base-choice base-choice-active"
                                         : "base-choice"
                                 }
-                                src={SingleRound}
+                                src={
+                                    this.state.cakeShape === CakeShapes.SHEET
+                                        ? SingleSheetImg
+                                        : SingleRoundImg
+                                }
                                 alt="round-cake"
                             />
                             <h5 className="base-option">Single</h5>
                         </div>
                         <div className="base-option">
                             <LazyLoadImage
-                                onClick={() => setCakeTier(CakeTiers.MULTIPLE)}
+                                onClick={() =>
+                                    this.updateTier(CakeTiers.MULTIPLE)
+                                }
                                 className={
-                                    cakeTier === CakeTiers.MULTIPLE
+                                    this.state.cakeTier === CakeTiers.MULTIPLE
                                         ? "base-choice base-choice-active"
                                         : "base-choice"
                                 }
-                                src={MultipleRound}
+                                src={
+                                    this.state.cakeShape === CakeShapes.ROUND
+                                        ? MultipleRoundImg
+                                        : MultipleSheetImg
+                                }
                                 alt="round-cake"
                             />
                             <h5 className="base-option">Multiple</h5>
@@ -94,16 +146,18 @@ const CakeBase: React.FC<ICakeBaseProps> = inject("store")(
                     <div className="base-choice-container">
                         <div className="base-option">
                             <LazyLoadImage
-                                onClick={() => setCakeShape(CakeShapes.ROUND)}
+                                onClick={() =>
+                                    this.setCakeShape(CakeShapes.ROUND)
+                                }
                                 className={
-                                    cakeShape === CakeShapes.ROUND
+                                    this.state.cakeShape === CakeShapes.ROUND
                                         ? "base-choice base-choice-active"
                                         : "base-choice"
                                 }
                                 src={
-                                    cakeTier === CakeTiers.SINGLE
-                                        ? SingleRound
-                                        : MultipleRound
+                                    this.state.cakeTier === CakeTiers.SINGLE
+                                        ? SingleRoundImg
+                                        : MultipleRoundImg
                                 }
                                 alt="round-cake"
                             />
@@ -111,16 +165,18 @@ const CakeBase: React.FC<ICakeBaseProps> = inject("store")(
                         </div>
                         <div className="base-option">
                             <LazyLoadImage
-                                onClick={() => setCakeShape(CakeShapes.SHEET)}
+                                onClick={() =>
+                                    this.setCakeShape(CakeShapes.SHEET)
+                                }
                                 className={
-                                    cakeShape === CakeShapes.SHEET
+                                    this.state.cakeShape === CakeShapes.SHEET
                                         ? "base-choice base-choice-active"
                                         : "base-choice"
                                 }
                                 src={
-                                    cakeTier === CakeTiers.SINGLE
-                                        ? SingleSheet
-                                        : MultipleSheet
+                                    this.state.cakeTier === CakeTiers.SINGLE
+                                        ? SingleSheetImg
+                                        : MultipleSheetImg
                                 }
                                 alt="round-cake"
                             />
@@ -132,7 +188,9 @@ const CakeBase: React.FC<ICakeBaseProps> = inject("store")(
                 {/* Cake Size */}
                 <div className="base-cake-make-container">
                     <h5 className="base-title">
-                        {cakeShape === CakeShapes.ROUND ? "Round" : "Sheet"}{" "}
+                        {this.state.cakeShape === CakeShapes.ROUND
+                            ? "Round"
+                            : "Sheet"}{" "}
                         Cake Size
                     </h5>
                     <div className="base-choice-container">
@@ -142,33 +200,7 @@ const CakeBase: React.FC<ICakeBaseProps> = inject("store")(
                                     name="cake-size"
                                     className="base-cake-size-dropdown"
                                 >
-                                    {renderCakeSizes()}
-                                    {/* {cakeShape === CakeShapes.ROUND ? roundSizes.map(
-                                        ({
-                                            id,
-                                            productSize,
-                                            productServes,
-                                            price,
-                                        }) => {
-                                            if (id === 0) {
-                                                return (
-                                                    <option
-                                                        key={`${productSize}${id}`}
-                                                        value=""
-                                                    >
-                                                        Choose One
-                                                    </option>
-                                                );
-                                            } else {
-                                                return (
-                                                    <option
-                                                        key={`${id}`}
-                                                        value={productSize}
-                                                    >{`${productSize} (${productServes}) ($${price})`}</option>
-                                                );
-                                            }
-                                        }
-                                    )} */}
+                                    {this.renderCakeSizes()}
                                 </select>
                             </form>
                         </div>
@@ -176,11 +208,11 @@ const CakeBase: React.FC<ICakeBaseProps> = inject("store")(
                 </div>
                 <div className="base-cake-make-container">
                     <h5 className="base-title">Cake Base Cost</h5>
-                    <div>$0.00</div>
+                    <div>{`$${cakeBaseCost}`}</div>
                 </div>
             </section>
         );
-    })
-);
+    }
+}
 
 export default CakeBase;

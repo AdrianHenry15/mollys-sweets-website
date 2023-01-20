@@ -1,126 +1,147 @@
 //frameworks
-import React, { useState } from "react";
+import React from "react";
 
 //styles
 import "../../styles/CakeBuild/Flavors.scss";
 
 //data
-import { CakeTypes } from "../../stateStore/constants/Enums";
-import { GlobalStateStore } from "../../stateStore/GlobalStateStore";
+import { CakeTypes } from "../../store/constants/Enums";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
+import { ProductData } from "../../data/Products";
 
 //store
 
 interface ICakeFlavorsProps {
     store?: GlobalStateStore;
 }
-const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
-    observer(({ store }: ICakeFlavorsProps) => {
-        //state
-        const [fruit, setFruit] = useState(false);
 
-        // variables
-        const flavors = store!.ProductStore.products.flavors;
-        const fillings = store!.ProductStore.products.fillings;
-        const frostings = store!.ProductStore.products.frostings;
-        const fruits = store!.ProductStore.products.fruit;
+interface ICakeFlavorsState {
+    fruit: boolean;
+}
 
-        // functions
-        const renderCakeTypes = (genre: CakeTypes): JSX.Element => {
-            switch (genre) {
-                case CakeTypes.FLAVORS: {
-                    return (
-                        <form action="">
-                            <select
-                                name="cake-size"
-                                className="flavors-cake-size-dropdown"
-                            >
-                                {flavors.map(({ id, productName, price }) => {
-                                    if (id === 0) {
-                                        return (
-                                            <option key={id} defaultValue="">
-                                                Choose One
-                                            </option>
-                                        );
-                                    } else {
-                                        return (
-                                            <option
-                                                key={id}
-                                                value={productName}
-                                            >{`${productName} ($${price})`}</option>
-                                        );
-                                    }
-                                })}
-                            </select>
-                        </form>
-                    );
-                }
-                case CakeTypes.FROSTINGS: {
-                    return (
-                        <form action="">
-                            <select
-                                name="cake-size"
-                                className="flavors-cake-size-dropdown"
-                            >
-                                {frostings.map(({ id, productName, price }) => {
-                                    if (id === 0) {
-                                        return (
-                                            <option
-                                                key={productName + id}
-                                                defaultValue=""
-                                            >
-                                                Choose One
-                                            </option>
-                                        );
-                                    } else {
-                                        return (
-                                            <option
-                                                key={productName + id}
-                                                value={productName}
-                                            >{`${productName} ($${price})`}</option>
-                                        );
-                                    }
-                                })}
-                            </select>
-                        </form>
-                    );
-                }
-                case CakeTypes.FILLINGS: {
-                    return (
-                        <form action="">
-                            <select
-                                name="cake-size"
-                                className="flavors-cake-size-dropdown"
-                            >
-                                {fillings.map(({ id, productName, price }) => {
-                                    if (id === 0) {
-                                        return (
-                                            <option
-                                                key={productName + id}
-                                                defaultValue=""
-                                            >
-                                                Choose One
-                                            </option>
-                                        );
-                                    } else {
-                                        return (
-                                            <option
-                                                key={productName + id}
-                                                value={productName}
-                                            >{`${productName} ($${price})`}</option>
-                                        );
-                                    }
-                                })}
-                            </select>
-                        </form>
-                    );
-                }
-                default: {
-                    return <div></div>;
-                }
-            }
+@inject("store")
+@observer
+class CakeFlavors extends React.Component<
+    ICakeFlavorsProps,
+    ICakeFlavorsState
+> {
+    constructor(props: ICakeFlavorsProps) {
+        super(props);
+
+        this.state = {
+            fruit: false,
         };
-        // main render
+    }
+
+    // functions
+    renderCakeTypes = (genre: CakeTypes): JSX.Element => {
+        const flavors = ProductData.products.flavors;
+        const fillings = ProductData.products.fillings;
+        const frostings = ProductData.products.frostings;
+        switch (genre) {
+            case CakeTypes.FLAVORS: {
+                return (
+                    <form action="">
+                        <select
+                            name="cake-size"
+                            className="flavors-cake-size-dropdown"
+                        >
+                            {flavors.map(({ id, productName, price }) => {
+                                if (id === 0) {
+                                    return (
+                                        <option key={id} defaultValue="">
+                                            Choose One
+                                        </option>
+                                    );
+                                } else {
+                                    return (
+                                        <option
+                                            key={id}
+                                            value={productName}
+                                        >{`${productName} ($${price})`}</option>
+                                    );
+                                }
+                            })}
+                        </select>
+                    </form>
+                );
+            }
+            case CakeTypes.FROSTINGS: {
+                return (
+                    <form action="">
+                        <select
+                            name="cake-size"
+                            className="flavors-cake-size-dropdown"
+                        >
+                            {frostings.map(({ id, productName, price }) => {
+                                if (id === 0) {
+                                    return (
+                                        <option
+                                            key={productName + id}
+                                            defaultValue=""
+                                        >
+                                            Choose One
+                                        </option>
+                                    );
+                                } else {
+                                    return (
+                                        <option
+                                            key={productName + id}
+                                            value={productName}
+                                        >{`${productName} ($${price})`}</option>
+                                    );
+                                }
+                            })}
+                        </select>
+                    </form>
+                );
+            }
+            case CakeTypes.FILLINGS: {
+                return (
+                    <form action="">
+                        <select
+                            name="cake-size"
+                            className="flavors-cake-size-dropdown"
+                        >
+                            {fillings.map(({ id, productName, price }) => {
+                                if (id === 0) {
+                                    return (
+                                        <option
+                                            key={productName + id}
+                                            defaultValue=""
+                                        >
+                                            Choose One
+                                        </option>
+                                    );
+                                } else {
+                                    return (
+                                        <option
+                                            key={productName + id}
+                                            value={productName}
+                                        >{`${productName} ($${price})`}</option>
+                                    );
+                                }
+                            })}
+                        </select>
+                    </form>
+                );
+            }
+            default: {
+                return <div></div>;
+            }
+        }
+    };
+
+    setFruit = () => {
+        this.setState((state) => {
+            return { fruit: !state.fruit };
+        });
+    };
+    // main render
+    render() {
+        // data variables
+        const fruits = ProductData.products.fruit;
         return (
             <section className="flavors-custom-flavors-container">
                 <h3>Customize Flavors</h3>
@@ -141,7 +162,7 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                                 </h5>
                                 <div className="flavors-choice-container">
                                     <div className="flavors-option">
-                                        {renderCakeTypes(CakeTypes[key])}
+                                        {this.renderCakeTypes(CakeTypes[key])}
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +185,7 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                             type="radio"
                             name="fruit"
                             id="flavors-fruit-input"
-                            onClick={() => setFruit(true)}
+                            onClick={() => this.setFruit()}
                         ></input>
                         <label htmlFor="fruit">Yes (Extra Cost*)</label>
                         <input
@@ -172,12 +193,12 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                             type="radio"
                             name="fruit"
                             id="flavors-fruit-input"
-                            onClick={() => setFruit(false)}
+                            onClick={() => this.setFruit()}
                         ></input>
                         <label htmlFor="fruit">No</label>
                     </div>
                 </div>
-                {fruit && (
+                {this.state.fruit && (
                     <div
                         id="flavors-custom-flavors"
                         className="flavors-cake-make-container"
@@ -223,7 +244,7 @@ const CakeFlavors: React.FC<ICakeFlavorsProps> = inject("store")(
                 </div>
             </section>
         );
-    })
-);
+    }
+}
 
 export default CakeFlavors;

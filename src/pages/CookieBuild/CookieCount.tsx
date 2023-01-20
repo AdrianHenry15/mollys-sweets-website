@@ -2,76 +2,92 @@
 import "../../styles/CookieBuild/CookieCount.scss";
 
 //frameworks
-import React, { useState } from "react";
+import React from "react";
 
 //store
 import { ProductSizes } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
+import { ProductData } from "../../data/Products";
 
 interface ICookieCountProps {
     store?: GlobalStateStore;
 }
 
-const CookieCount: React.FC<ICookieCountProps> = inject("store")(
-    observer(({ store }: ICookieCountProps) => {
-        //variables
-        const regCookieSizes =
-            store!.ProductStore.products.sizes.cupcake_cookie_sizes.regular;
-        const miniCookiesSizes =
-            store!.ProductStore.products.sizes.cupcake_cookie_sizes.mini;
+interface ICookieCountState {
+    cookieSize: string;
+}
 
-        //state
-        const [cookieSize, setCookieSize] = useState("");
+@inject("store")
+@observer
+class CookieCount extends React.Component<
+    ICookieCountProps,
+    ICookieCountState
+> {
+    constructor(props: ICookieCountProps) {
+        super(props);
 
-        // functions
-        const renderCookieCount = () => {
-            if (cookieSize === ProductSizes.REGULAR) {
-                return regCookieSizes.map(
-                    ({ id, productQuantity, productServes, price }) => {
-                        if (productQuantity === "") {
-                            return (
-                                <option
-                                    key={`${productQuantity}${id}`}
-                                    value=""
-                                >
-                                    Choose One
-                                </option>
-                            );
-                        } else {
-                            return (
-                                <option
-                                    key={`${id}`}
-                                    value={productQuantity}
-                                >{`${productQuantity} (${productServes}) ($${price})`}</option>
-                            );
-                        }
-                    }
-                );
-            } else {
-                return miniCookiesSizes.map(
-                    ({ id, productQuantity, productServes, price }) => {
-                        if (productQuantity === "") {
-                            return (
-                                <option
-                                    key={`${productQuantity}${id}`}
-                                    value=""
-                                >
-                                    Choose One
-                                </option>
-                            );
-                        } else {
-                            return (
-                                <option
-                                    key={`${id}`}
-                                    value={productQuantity}
-                                >{`${productQuantity} (${productServes}) ($${price})`}</option>
-                            );
-                        }
-                    }
-                );
-            }
+        this.state = {
+            cookieSize: "",
         };
+    }
+
+    // functions
+    renderCookieCount = () => {
+        //data variables
+        const regCookieSizes =
+            ProductData.products.sizes.cupcake_cookie_sizes.regular;
+        const miniCookiesSizes =
+            ProductData.products.sizes.cupcake_cookie_sizes.mini;
+        if (this.state.cookieSize === ProductSizes.REGULAR) {
+            return regCookieSizes.map(
+                ({ id, productQuantity, productServes, price }) => {
+                    if (productQuantity === "") {
+                        return (
+                            <option key={`${productQuantity}${id}`} value="">
+                                Choose One
+                            </option>
+                        );
+                    } else {
+                        return (
+                            <option
+                                key={`${id}`}
+                                value={productQuantity}
+                            >{`${productQuantity} (${productServes}) ($${price})`}</option>
+                        );
+                    }
+                }
+            );
+        } else {
+            return miniCookiesSizes.map(
+                ({ id, productQuantity, productServes, price }) => {
+                    if (productQuantity === "") {
+                        return (
+                            <option key={`${productQuantity}${id}`} value="">
+                                Choose One
+                            </option>
+                        );
+                    } else {
+                        return (
+                            <option
+                                key={`${id}`}
+                                value={productQuantity}
+                            >{`${productQuantity} (${productServes}) ($${price})`}</option>
+                        );
+                    }
+                }
+            );
+        }
+    };
+
+    setCookieSize = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let select: HTMLInputElement = e.target;
+        let value: string = select.value;
+        this.setState({
+            cookieSize: value,
+        });
+    };
+    render() {
         return (
             <section className="cookie-count-container">
                 <h3>Choose Cookies</h3>
@@ -85,14 +101,14 @@ const CookieCount: React.FC<ICookieCountProps> = inject("store")(
                             value={ProductSizes.REGULAR}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => setCookieSize(e.target.value)}
+                            onChange={(e) => this.setCookieSize(e)}
                         ></input>
                         <label htmlFor="fruit">Regular</label>
                         <input
                             defaultValue={ProductSizes.MINI}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => setCookieSize(e.target.value)}
+                            onChange={(e) => this.setCookieSize(e)}
                         ></input>
                         <label htmlFor="fruit">Mini</label>
                     </div>
@@ -102,7 +118,7 @@ const CookieCount: React.FC<ICookieCountProps> = inject("store")(
                 <div className="cookie-make-container">
                     <h5 className="cookie-title">
                         How Many
-                        {cookieSize === ProductSizes.REGULAR
+                        {this.state.cookieSize === ProductSizes.REGULAR
                             ? " Regular"
                             : " Mini"}{" "}
                         Cookies
@@ -114,7 +130,7 @@ const CookieCount: React.FC<ICookieCountProps> = inject("store")(
                                     name="cake-size"
                                     className="cookie-dropdown"
                                 >
-                                    {renderCookieCount()}
+                                    {this.renderCookieCount()}
                                 </select>
                             </form>
                         </div>
@@ -126,7 +142,7 @@ const CookieCount: React.FC<ICookieCountProps> = inject("store")(
                 </div>
             </section>
         );
-    })
-);
+    }
+}
 
 export default CookieCount;

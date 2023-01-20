@@ -1,5 +1,5 @@
 //frameworks
-import React, { useState } from "react";
+import React from "react";
 
 //styles
 import "../../styles/CookieBuild/CookieFlavors.scss";
@@ -7,20 +7,40 @@ import "../../styles/CookieBuild/CookieFlavors.scss";
 //stores
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
+import { ProductData } from "../../data/Products";
 
 interface ICookieFlavorsProps {
     store?: GlobalStateStore;
 }
 
-const CookieFlavors: React.FC<ICookieFlavorsProps> = inject("store")(
-    observer(({ store }: ICookieFlavorsProps) => {
-        //variables
-        const cookies = store!.ProductStore.products.cookies;
-        const frostings = store!.ProductStore.products.frostings;
-        //state
-        const [frosting, setFrosting] = useState(false);
+interface ICookieFlavorsState {
+    frosting: boolean;
+}
 
-        //main
+@inject("store")
+@observer
+class CookieFlavors extends React.Component<
+    ICookieFlavorsProps,
+    ICookieFlavorsState
+> {
+    constructor(props: ICookieFlavorsProps) {
+        super(props);
+
+        this.state = {
+            frosting: false,
+        };
+    }
+    setFrosting = () => {
+        this.setState((state) => {
+            return { frosting: !state.frosting };
+        });
+    };
+
+    //main
+    render() {
+        //data variables
+        const cookies = ProductData.products.cookies;
+        const frostings = ProductData.products.frostings;
         return (
             <section className="cookie-f-container">
                 <h3>Customize Flavors</h3>
@@ -72,20 +92,20 @@ const CookieFlavors: React.FC<ICookieFlavorsProps> = inject("store")(
                                 type="radio"
                                 value="yes"
                                 name="cookie-frosting"
-                                onChange={(e) => setFrosting(true)}
+                                onChange={() => this.setFrosting()}
                             />
                             <label htmlFor="cookie-frosting">Yes</label>
                             <input
                                 type="radio"
                                 value="no"
                                 name="cookie-frosting"
-                                onChange={(e) => setFrosting(false)}
+                                onChange={() => this.setFrosting()}
                             />
                             <label htmlFor="cookie-frosting">No</label>
                         </div>
                     </form>
                 </div>
-                {frosting && (
+                {this.state.frosting && (
                     <div
                         id="cookie-f-custom-flavors"
                         className="cookie-f-make-container"
@@ -131,7 +151,7 @@ const CookieFlavors: React.FC<ICookieFlavorsProps> = inject("store")(
                 </div>
             </section>
         );
-    })
-);
+    }
+}
 
 export default CookieFlavors;

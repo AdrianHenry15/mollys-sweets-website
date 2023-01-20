@@ -2,76 +2,91 @@
 import "../../styles/CupcakeBuild/CCCount.scss";
 
 //frameworks
-import React, { useState } from "react";
+import React from "react";
 
 //store
 import { ProductSizes } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
+import { ProductData } from "../../data/Products";
 
 interface ICCCountProps {
     store?: GlobalStateStore;
 }
 
-const CCCount: React.FC<ICCCountProps> = inject("store")(
-    observer(({ store }: ICCCountProps) => {
+interface ICCCountState {
+    cupcakeSize: string;
+}
+
+@inject("store")
+@observer
+class CCCount extends React.Component<ICCCountProps, ICCCountState> {
+    constructor(props: ICCCountProps) {
+        super(props);
+
+        this.state = {
+            cupcakeSize: "",
+        };
+    }
+
+    //state functions
+    setCupcakeSize = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let select: HTMLInputElement = e.target;
+        let value: string = select.value;
+
+        this.setState({
+            cupcakeSize: value,
+        });
+    };
+
+    // functions
+    renderCupcakeCount = () => {
         //variables
         const regCupcakeSizes =
-            store!.ProductStore.products.sizes.cupcake_cookie_sizes.regular;
+            ProductData.products.sizes.cupcake_cookie_sizes.regular;
         const miniCupcakeSizes =
-            store!.ProductStore.products.sizes.cupcake_cookie_sizes.mini;
-
-        //state
-        const [cupcakeSize, setCupcakeSize] = useState("");
-
-        // functions
-        const renderCupcakeCount = () => {
-            if (cupcakeSize === ProductSizes.REGULAR) {
-                return regCupcakeSizes.map(
-                    ({ id, productQuantity, productServes, price }) => {
-                        if (productQuantity === "") {
-                            return (
-                                <option
-                                    key={`${productQuantity}${id}`}
-                                    value=""
-                                >
-                                    Choose One
-                                </option>
-                            );
-                        } else {
-                            return (
-                                <option
-                                    key={`${id}`}
-                                    value={productQuantity}
-                                >{`${productQuantity} (${productServes}) ($${price})`}</option>
-                            );
-                        }
+            ProductData.products.sizes.cupcake_cookie_sizes.mini;
+        if (this.state.cupcakeSize === ProductSizes.REGULAR) {
+            return regCupcakeSizes.map(
+                ({ id, productQuantity, productServes, price }) => {
+                    if (productQuantity === "") {
+                        return (
+                            <option key={`${productQuantity}${id}`} value="">
+                                Choose One
+                            </option>
+                        );
+                    } else {
+                        return (
+                            <option
+                                key={`${id}`}
+                                value={productQuantity}
+                            >{`${productQuantity} (${productServes}) ($${price})`}</option>
+                        );
                     }
-                );
-            } else {
-                return miniCupcakeSizes.map(
-                    ({ id, productQuantity, productServes, price }) => {
-                        if (productQuantity === "") {
-                            return (
-                                <option
-                                    key={`${productQuantity}${id}`}
-                                    value=""
-                                >
-                                    Choose One
-                                </option>
-                            );
-                        } else {
-                            return (
-                                <option
-                                    key={`${id}`}
-                                    value={productQuantity}
-                                >{`${productQuantity} (${productServes}) ($${price})`}</option>
-                            );
-                        }
+                }
+            );
+        } else {
+            return miniCupcakeSizes.map(
+                ({ id, productQuantity, productServes, price }) => {
+                    if (productQuantity === "") {
+                        return (
+                            <option key={`${productQuantity}${id}`} value="">
+                                Choose One
+                            </option>
+                        );
+                    } else {
+                        return (
+                            <option
+                                key={`${id}`}
+                                value={productQuantity}
+                            >{`${productQuantity} (${productServes}) ($${price})`}</option>
+                        );
                     }
-                );
-            }
-        };
+                }
+            );
+        }
+    };
+    render() {
         return (
             <section className="ccc-count-container">
                 <h3>Choose Cupcakes</h3>
@@ -85,14 +100,14 @@ const CCCount: React.FC<ICCCountProps> = inject("store")(
                             value={ProductSizes.REGULAR}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => setCupcakeSize(e.target.value)}
+                            onChange={(e) => this.setCupcakeSize(e)}
                         ></input>
                         <label htmlFor="fruit">Regular</label>
                         <input
                             value={ProductSizes.MINI}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => setCupcakeSize(e.target.value)}
+                            onChange={(e) => this.setCupcakeSize(e)}
                         ></input>
                         <label htmlFor="fruit">Mini</label>
                     </div>
@@ -102,7 +117,7 @@ const CCCount: React.FC<ICCCountProps> = inject("store")(
                 <div className="ccc-make-container">
                     <h5 className="ccc-title">
                         How Many
-                        {cupcakeSize === ProductSizes.REGULAR
+                        {this.state.cupcakeSize === ProductSizes.REGULAR
                             ? " Regular"
                             : " Mini"}{" "}
                         Cupcakes
@@ -115,7 +130,7 @@ const CCCount: React.FC<ICCCountProps> = inject("store")(
                                     className="ccc-dropdown"
                                     defaultValue=""
                                 >
-                                    {renderCupcakeCount()}
+                                    {this.renderCupcakeCount()}
                                 </select>
                             </form>
                         </div>
@@ -127,7 +142,7 @@ const CCCount: React.FC<ICCCountProps> = inject("store")(
                 </div>
             </section>
         );
-    })
-);
+    }
+}
 
 export default CCCount;
