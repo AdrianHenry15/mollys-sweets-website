@@ -19,51 +19,15 @@ interface ICakeBaseProps {
     store?: GlobalStateStore;
 }
 
-interface ICakeBaseState {
-    cakeTier: string;
-    cakeShape: string;
-}
+// interface ICakeBaseState {}
 
 @inject("store")
 @observer
-class CakeBase extends React.Component<ICakeBaseProps, ICakeBaseState> {
-    constructor(props: ICakeBaseProps) {
-        super(props);
-
-        this.state = {
-            cakeTier: "",
-            cakeShape: "",
-        };
-    }
-
-    //state functions
-    setCakeShape = (shape: CakeShapes) => {
-        this.setState({
-            cakeShape: shape,
-        });
-    };
-
-    //functions
-    updateTier = (tier: CakeTiers) => {
-        this.setState({
-            cakeTier: tier,
-        });
-        if (tier === CakeTiers.SINGLE) {
-            this.props.store!.ProductStore.cake.cakeBaseCost =
-                this.props.store!.ProductStore.cake.sizeCost +
-                ProductData.products.tiers.single[1].price;
-            return;
-        } else if (tier === CakeTiers.MULTIPLE) {
-            this.props.store!.ProductStore.cake.cakeBaseCost =
-                this.props.store!.ProductStore.cake.sizeCost +
-                ProductData.products.tiers.multiple[1].price;
-            return;
-        }
-    };
-
+class CakeBase extends React.Component<ICakeBaseProps, {}> {
     renderCakeSizes = () => {
+        const cakeShape = this.props.store!.ProductStore.cake.shape;
         let shape;
-        this.state.cakeShape === CakeShapes.ROUND
+        cakeShape === CakeShapes.ROUND
             ? (shape = ProductData.products.sizes.roundSizes)
             : (shape = ProductData.products.sizes.sheetSizes);
 
@@ -71,7 +35,7 @@ class CakeBase extends React.Component<ICakeBaseProps, ICakeBaseState> {
         return shape.map(({ id, productSize, productServes, price }) => {
             if (id === 0) {
                 return (
-                    <option key={`${productSize}${id}`} value="">
+                    <option key={`${price}${id}`} value="">
                         Choose One
                     </option>
                 );
@@ -79,7 +43,7 @@ class CakeBase extends React.Component<ICakeBaseProps, ICakeBaseState> {
                 return (
                     <option
                         key={`${id}`}
-                        value={productSize}
+                        value={price}
                     >{`${productSize} (${productServes}) ($${price})`}</option>
                 );
             }
@@ -87,7 +51,10 @@ class CakeBase extends React.Component<ICakeBaseProps, ICakeBaseState> {
     };
     render() {
         // store variables
-        const cakeBaseCost = this.props.store!.ProductStore.cake.cakeBaseCost;
+        const cakeTier = this.props.store!.ProductStore.cake.tier;
+        const cakeShape = this.props.store!.ProductStore.cake.shape;
+        const tierCost = this.props.store!.ProductStore.cake.tierCost;
+        const sizeCost = this.props.store!.ProductStore.cake.sizeCost;
 
         // main
         return (
@@ -102,15 +69,17 @@ class CakeBase extends React.Component<ICakeBaseProps, ICakeBaseState> {
                         <div className="base-option">
                             <LazyLoadImage
                                 onClick={() =>
-                                    this.updateTier(CakeTiers.SINGLE)
+                                    this.props.store!.updateTier(
+                                        CakeTiers.SINGLE
+                                    )
                                 }
                                 className={
-                                    this.state.cakeTier === CakeTiers.SINGLE
+                                    cakeTier === CakeTiers.SINGLE
                                         ? "base-choice base-choice-active"
                                         : "base-choice"
                                 }
                                 src={
-                                    this.state.cakeShape === CakeShapes.SHEET
+                                    cakeShape === CakeShapes.SHEET
                                         ? SingleSheetImg
                                         : SingleRoundImg
                                 }
@@ -121,15 +90,17 @@ class CakeBase extends React.Component<ICakeBaseProps, ICakeBaseState> {
                         <div className="base-option">
                             <LazyLoadImage
                                 onClick={() =>
-                                    this.updateTier(CakeTiers.MULTIPLE)
+                                    this.props.store!.updateTier(
+                                        CakeTiers.MULTIPLE
+                                    )
                                 }
                                 className={
-                                    this.state.cakeTier === CakeTiers.MULTIPLE
+                                    cakeTier === CakeTiers.MULTIPLE
                                         ? "base-choice base-choice-active"
                                         : "base-choice"
                                 }
                                 src={
-                                    this.state.cakeShape === CakeShapes.ROUND
+                                    cakeShape === CakeShapes.ROUND
                                         ? MultipleRoundImg
                                         : MultipleSheetImg
                                 }
@@ -147,15 +118,17 @@ class CakeBase extends React.Component<ICakeBaseProps, ICakeBaseState> {
                         <div className="base-option">
                             <LazyLoadImage
                                 onClick={() =>
-                                    this.setCakeShape(CakeShapes.ROUND)
+                                    this.props.store!.setCakeShape(
+                                        CakeShapes.ROUND
+                                    )
                                 }
                                 className={
-                                    this.state.cakeShape === CakeShapes.ROUND
+                                    cakeShape === CakeShapes.ROUND
                                         ? "base-choice base-choice-active"
                                         : "base-choice"
                                 }
                                 src={
-                                    this.state.cakeTier === CakeTiers.SINGLE
+                                    cakeTier === CakeTiers.SINGLE
                                         ? SingleRoundImg
                                         : MultipleRoundImg
                                 }
@@ -166,15 +139,17 @@ class CakeBase extends React.Component<ICakeBaseProps, ICakeBaseState> {
                         <div className="base-option">
                             <LazyLoadImage
                                 onClick={() =>
-                                    this.setCakeShape(CakeShapes.SHEET)
+                                    this.props.store!.setCakeShape(
+                                        CakeShapes.SHEET
+                                    )
                                 }
                                 className={
-                                    this.state.cakeShape === CakeShapes.SHEET
+                                    cakeShape === CakeShapes.SHEET
                                         ? "base-choice base-choice-active"
                                         : "base-choice"
                                 }
                                 src={
-                                    this.state.cakeTier === CakeTiers.SINGLE
+                                    cakeTier === CakeTiers.SINGLE
                                         ? SingleSheetImg
                                         : MultipleSheetImg
                                 }
@@ -188,16 +163,23 @@ class CakeBase extends React.Component<ICakeBaseProps, ICakeBaseState> {
                 {/* Cake Size */}
                 <div className="base-cake-make-container">
                     <h5 className="base-title">
-                        {this.state.cakeShape === CakeShapes.ROUND
-                            ? "Round"
-                            : "Sheet"}{" "}
+                        {cakeShape === CakeShapes.ROUND ? "Round" : "Sheet"}{" "}
                         Cake Size
                     </h5>
                     <div className="base-choice-container">
                         <div className="base-option">
                             <form action="">
                                 <select
+                                    onChange={(e) =>
+                                        this.props.store!.handleCakeSizeChange(
+                                            e
+                                        )
+                                    }
                                     name="cake-size"
+                                    value={
+                                        this.props.store!.ProductStore.cake
+                                            .sizeCost
+                                    }
                                     className="base-cake-size-dropdown"
                                 >
                                     {this.renderCakeSizes()}
@@ -208,7 +190,7 @@ class CakeBase extends React.Component<ICakeBaseProps, ICakeBaseState> {
                 </div>
                 <div className="base-cake-make-container">
                     <h5 className="base-title">Cake Base Cost</h5>
-                    <div>{`$${cakeBaseCost}`}</div>
+                    <div>{`$${sizeCost + tierCost}`}</div>
                 </div>
             </section>
         );

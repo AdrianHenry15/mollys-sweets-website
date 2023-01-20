@@ -17,9 +17,11 @@ export interface ICakeProduct {
     serves: string;
     shape: string;
     tier: string;
+    tierCost: number;
     sizeCost: number;
     flavorsCost: number;
-    cakeBaseCost: number;
+    frostingsCost: number;
+    fillingsCost: number;
 }
 export interface ICupcakeProduct {
     flavor: string;
@@ -28,6 +30,7 @@ export interface ICupcakeProduct {
     serves: string;
     quantity: string;
     flavorsCost: number;
+    frostingsCost: number;
     quantityCost: number;
 }
 export interface ICookieProduct {
@@ -37,5 +40,6 @@ export interface ICookieProduct {
     serves: string;
     quantity: string;
     flavorsCost: number;
+    frostingsCost: number;
     quantityCost: number;
 }

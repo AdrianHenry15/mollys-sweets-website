@@ -22,11 +22,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <BrowserRouter>
-        <React.StrictMode>
-            <Provider store={globalStore}>
-                <App store={globalStore} />
-            </Provider>
-        </React.StrictMode>
+        <Provider store={globalStore}>
+            <App store={globalStore} />
+        </Provider>
     </BrowserRouter>
 );
 

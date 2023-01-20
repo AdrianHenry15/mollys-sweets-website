@@ -142,6 +142,7 @@ class CakeFlavors extends React.Component<
     render() {
         // data variables
         const fruits = ProductData.products.fruit;
+        const flavorsCost = this.props.store!.ProductStore.cake.flavorsCost;
         return (
             <section className="flavors-custom-flavors-container">
                 <h3>Customize Flavors</h3>
@@ -240,7 +241,7 @@ class CakeFlavors extends React.Component<
                 )}
                 <div className="flavors-cake-make-container">
                     <h5 className="flavors-title">Flavors Cost</h5>
-                    <div>$0.00</div>
+                    <div>{flavorsCost}</div>
                 </div>
             </section>
         );

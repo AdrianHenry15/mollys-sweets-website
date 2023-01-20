@@ -32,10 +32,17 @@ class CakeDetails extends React.Component<ICakeDetailsProps, {}> {
                                 >
                             ).map((key) => {
                                 if (CakeOccasion[key] === CakeOccasion.NONE) {
-                                    return <option value="">Choose One</option>;
+                                    return (
+                                        <option key={key} value="">
+                                            Choose One
+                                        </option>
+                                    );
                                 } else {
                                     return (
-                                        <option value={CakeOccasion[key]}>
+                                        <option
+                                            key={key}
+                                            value={CakeOccasion[key]}
+                                        >
                                             {CakeOccasion[key]}
                                         </option>
                                     );
@@ -57,7 +64,7 @@ class CakeDetails extends React.Component<ICakeDetailsProps, {}> {
                             >
                         ).map((key) => {
                             return (
-                                <div className="details-checkbox">
+                                <div key={key} className="details-checkbox">
                                     <input
                                         type="checkbox"
                                         name="cake-recipient"
