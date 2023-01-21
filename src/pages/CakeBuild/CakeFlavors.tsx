@@ -44,13 +44,19 @@ class CakeFlavors extends React.Component<
                 return (
                     <form action="">
                         <select
-                            name="cake-size"
+                            onChange={(e) =>
+                                this.props.store!.handleCakeFlavorCost(e)
+                            }
+                            defaultValue={
+                                this.props.store!.ProductStore.cake.flavorsCost
+                            }
+                            name="cake-flavor"
                             className="flavors-cake-size-dropdown"
                         >
                             {flavors.map(({ id, productName, price }) => {
                                 if (id === 0) {
                                     return (
-                                        <option key={id} defaultValue="">
+                                        <option key={id} value="">
                                             Choose One
                                         </option>
                                     );
@@ -58,7 +64,7 @@ class CakeFlavors extends React.Component<
                                     return (
                                         <option
                                             key={id}
-                                            value={productName}
+                                            value={price}
                                         >{`${productName} ($${price})`}</option>
                                     );
                                 }
@@ -71,16 +77,20 @@ class CakeFlavors extends React.Component<
                 return (
                     <form action="">
                         <select
-                            name="cake-size"
+                            onChange={(e) =>
+                                this.props.store!.handleCakeFrostingCost(e)
+                            }
+                            defaultValue={
+                                this.props.store!.ProductStore.cake
+                                    .frostingsCost
+                            }
+                            name="cake-frosting"
                             className="flavors-cake-size-dropdown"
                         >
                             {frostings.map(({ id, productName, price }) => {
                                 if (id === 0) {
                                     return (
-                                        <option
-                                            key={productName + id}
-                                            defaultValue=""
-                                        >
+                                        <option key={productName + id} value="">
                                             Choose One
                                         </option>
                                     );
@@ -88,7 +98,7 @@ class CakeFlavors extends React.Component<
                                     return (
                                         <option
                                             key={productName + id}
-                                            value={productName}
+                                            value={price}
                                         >{`${productName} ($${price})`}</option>
                                     );
                                 }
@@ -99,32 +109,36 @@ class CakeFlavors extends React.Component<
             }
             case CakeTypes.FILLINGS: {
                 return (
-                    <form action="">
-                        <select
-                            name="cake-size"
-                            className="flavors-cake-size-dropdown"
-                        >
-                            {fillings.map(({ id, productName, price }) => {
-                                if (id === 0) {
-                                    return (
-                                        <option
-                                            key={productName + id}
-                                            defaultValue=""
-                                        >
-                                            Choose One
-                                        </option>
-                                    );
-                                } else {
-                                    return (
-                                        <option
-                                            key={productName + id}
-                                            value={productName}
-                                        >{`${productName} ($${price})`}</option>
-                                    );
-                                }
-                            })}
-                        </select>
-                    </form>
+                    <select
+                        defaultValue={
+                            this.props.store!.ProductStore.cake.fillingsCost
+                        }
+                        onChange={(e) =>
+                            this.props.store!.handleCakeFillingCost(e)
+                        }
+                        name="cake-filling"
+                        className="flavors-cake-size-dropdown"
+                    >
+                        {fillings.map(({ id, productName, price }) => {
+                            if (id === 0) {
+                                return (
+                                    <option
+                                        key={productName + id}
+                                        value={price}
+                                    >
+                                        Choose One
+                                    </option>
+                                );
+                            } else {
+                                return (
+                                    <option
+                                        key={productName + id}
+                                        value={price}
+                                    >{`${productName} ($${price})`}</option>
+                                );
+                            }
+                        })}
+                    </select>
                 );
             }
             default: {
@@ -143,6 +157,9 @@ class CakeFlavors extends React.Component<
         // data variables
         const fruits = ProductData.products.fruit;
         const flavorsCost = this.props.store!.ProductStore.cake.flavorsCost;
+        const frostingsCost = this.props.store!.ProductStore.cake.frostingsCost;
+        const fillingsCost = this.props.store!.ProductStore.cake.fillingsCost;
+        const fruitCost = this.props.store!.ProductStore.cake.fruitCost;
         return (
             <section className="flavors-custom-flavors-container">
                 <h3>Customize Flavors</h3>
@@ -209,7 +226,8 @@ class CakeFlavors extends React.Component<
                             <div className="flavors-option">
                                 <form action="">
                                     <select
-                                        name="cake-size"
+                                        defaultValue={fruitCost}
+                                        name="fruit"
                                         className="flavors-cake-size-dropdown"
                                     >
                                         {fruits.map(
@@ -218,7 +236,7 @@ class CakeFlavors extends React.Component<
                                                     return (
                                                         <option
                                                             key={id}
-                                                            defaultValue=""
+                                                            value=""
                                                         >
                                                             Choose One
                                                         </option>
@@ -227,7 +245,7 @@ class CakeFlavors extends React.Component<
                                                     return (
                                                         <option
                                                             key={id}
-                                                            value={productName}
+                                                            value={price}
                                                         >{`${productName} ($${price})`}</option>
                                                     );
                                                 }
@@ -241,7 +259,14 @@ class CakeFlavors extends React.Component<
                 )}
                 <div className="flavors-cake-make-container">
                     <h5 className="flavors-title">Flavors Cost</h5>
-                    <div>{flavorsCost}</div>
+                    <div>
+                        {`$${
+                            flavorsCost +
+                            frostingsCost +
+                            fillingsCost +
+                            fruitCost
+                        }`}
+                    </div>
                 </div>
             </section>
         );

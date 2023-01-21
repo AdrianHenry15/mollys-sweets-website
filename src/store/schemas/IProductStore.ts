@@ -1,6 +1,3 @@
-import { CakeShapes, CakeTiers, ProductSizes } from "../constants/Enums";
-import { Products } from "../constants/Types";
-
 export interface IProductStore {
     cake: ICakeProduct;
     cupcake: ICupcakeProduct;
@@ -9,36 +6,61 @@ export interface IProductStore {
 }
 
 export interface ICakeProduct {
-    flavor: string;
-    filling: string;
-    frosting: string;
-    fruit: string;
+    // cake base
     size: string;
     serves: string;
     shape: string;
     tier: string;
+    // base cost
     tierCost: number;
     sizeCost: number;
+
+    // cake flavors
+    flavor: string;
+    filling: string;
+    frosting: string;
+    fruit: string;
+    //flavors cost
     flavorsCost: number;
     frostingsCost: number;
     fillingsCost: number;
+    fruitCost: number;
+
+    // cake details
+    cakeOccasion: string;
+    cakeRecipient: string;
+    preferredColors: string;
+    cakeInscription: string;
+    cakePhotoExample: string;
+    cakeLinkExample: string;
+    additionalDetails: string;
 }
 export interface ICupcakeProduct {
-    flavor: string;
-    frosting: string;
+    //cupcake count
     size: string;
     serves: string;
     quantity: string;
+
+    //cupcake flavor
+    flavor: string;
+    frosting: string;
+
+    //cupcake details
     flavorsCost: number;
     frostingsCost: number;
     quantityCost: number;
 }
 export interface ICookieProduct {
-    flavor: string;
-    frosting: string;
+    //cookie count
     size: string;
     serves: string;
     quantity: string;
+
+    //cookie flavor
+    flavor: string;
+    frosting: string;
+
+    //cookie details
     flavorsCost: number;
     frostingsCost: number;
     quantityCost: number;

@@ -43,7 +43,7 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                 return (
                     <option
                         key={`${id}`}
-                        value={price}
+                        value={`${price}`}
                     >{`${productSize} (${productServes}) ($${price})`}</option>
                 );
             }
@@ -171,12 +171,10 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                             <form action="">
                                 <select
                                     onChange={(e) =>
-                                        this.props.store!.handleCakeSizeChange(
-                                            e
-                                        )
+                                        this.props.store!.handleCakeSizeCost(e)
                                     }
                                     name="cake-size"
-                                    value={
+                                    defaultValue={
                                         this.props.store!.ProductStore.cake
                                             .sizeCost
                                     }
