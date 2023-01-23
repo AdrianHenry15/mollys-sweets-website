@@ -39,16 +39,24 @@ class CakeFlavors extends React.Component<
         const flavors = ProductData.products.flavors;
         const fillings = ProductData.products.fillings;
         const frostings = ProductData.products.frostings;
+
+        // actions
+        const handleCakeFlavorCost =
+            this.props.store!.CakeActions.cakeCostActions.handleCakeFlavorCost;
+        const handleCakeFrostingCost =
+            this.props.store!.CakeActions.cakeCostActions
+                .handleCakeFrostingCost;
+        const handleCakeFillingCost =
+            this.props.store!.CakeActions.cakeCostActions.handleCakeFillingCost;
         switch (genre) {
             case CakeTypes.FLAVORS: {
                 return (
                     <form action="">
                         <select
-                            onChange={(e) =>
-                                this.props.store!.handleCakeFlavorCost(e)
-                            }
+                            onChange={(e) => handleCakeFlavorCost(e)}
                             defaultValue={
-                                this.props.store!.ProductStore.cake.flavorsCost
+                                this.props.store!.CakeStore.cakeCosts
+                                    .flavorsCost
                             }
                             name="cake-flavor"
                             className="flavors-cake-size-dropdown"
@@ -77,11 +85,9 @@ class CakeFlavors extends React.Component<
                 return (
                     <form action="">
                         <select
-                            onChange={(e) =>
-                                this.props.store!.handleCakeFrostingCost(e)
-                            }
+                            onChange={(e) => handleCakeFrostingCost(e)}
                             defaultValue={
-                                this.props.store!.ProductStore.cake
+                                this.props.store!.CakeStore.cakeCosts
                                     .frostingsCost
                             }
                             name="cake-frosting"
@@ -111,11 +117,9 @@ class CakeFlavors extends React.Component<
                 return (
                     <select
                         defaultValue={
-                            this.props.store!.ProductStore.cake.fillingsCost
+                            this.props.store!.CakeStore.cakeCosts.fillingsCost
                         }
-                        onChange={(e) =>
-                            this.props.store!.handleCakeFillingCost(e)
-                        }
+                        onChange={(e) => handleCakeFillingCost(e)}
                         name="cake-filling"
                         className="flavors-cake-size-dropdown"
                     >
@@ -156,10 +160,11 @@ class CakeFlavors extends React.Component<
     render() {
         // data variables
         const fruits = ProductData.products.fruit;
-        const flavorsCost = this.props.store!.ProductStore.cake.flavorsCost;
-        const frostingsCost = this.props.store!.ProductStore.cake.frostingsCost;
-        const fillingsCost = this.props.store!.ProductStore.cake.fillingsCost;
-        const fruitCost = this.props.store!.ProductStore.cake.fruitCost;
+        const flavorsCost = this.props.store!.CakeStore.cakeCosts.flavorsCost;
+        const frostingsCost =
+            this.props.store!.CakeStore.cakeCosts.frostingsCost;
+        const fillingsCost = this.props.store!.CakeStore.cakeCosts.fillingsCost;
+        const fruitCost = this.props.store!.CakeStore.cakeCosts.fruitCost;
         return (
             <section className="flavors-custom-flavors-container">
                 <h3>Customize Flavors</h3>

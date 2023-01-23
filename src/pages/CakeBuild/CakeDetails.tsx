@@ -14,6 +14,27 @@ interface ICakeDetailsProps {
 @observer
 class CakeDetails extends React.Component<ICakeDetailsProps, {}> {
     render() {
+        //actions
+        const handleCakeOccasion =
+            this.props.store!.CakeActions.cakeDetailsActions.handleCakeOccasion;
+        const handleCakeRecipient =
+            this.props.store!.CakeActions.cakeDetailsActions
+                .handleCakeRecipient;
+        const handlePreferredCakeColor =
+            this.props.store!.CakeActions.cakeDetailsActions
+                .handlePreferredCakeColors;
+        const handleCakeInscription =
+            this.props.store!.CakeActions.cakeDetailsActions
+                .handleCakeInscription;
+        const handleCakePhotoExample =
+            this.props.store!.CakeActions.cakeDetailsActions
+                .handleCakePhotoExample;
+        const handleCakeLinkExample =
+            this.props.store!.CakeActions.cakeDetailsActions
+                .handleCakeLinkExample;
+        const handleCakeAdditionalDetails =
+            this.props.store!.CakeActions.cakeDetailsActions
+                .handleCakeAdditionalDetails;
         //main
         return (
             <section className="details-cake-details-container">
@@ -23,6 +44,7 @@ class CakeDetails extends React.Component<ICakeDetailsProps, {}> {
                     <h5 className="details-title">What Is The Cake For?</h5>
                     <form action="">
                         <select
+                            onChange={(e) => handleCakeOccasion(e)}
                             className="details-cake-size-dropdown"
                             name="cake-size-dropdown"
                         >
@@ -66,6 +88,7 @@ class CakeDetails extends React.Component<ICakeDetailsProps, {}> {
                             return (
                                 <div key={key} className="details-checkbox">
                                     <input
+                                        onChange={(e) => handleCakeRecipient(e)}
                                         type="checkbox"
                                         name="cake-recipient"
                                         value={CakeRecipient[key]}
@@ -85,6 +108,7 @@ class CakeDetails extends React.Component<ICakeDetailsProps, {}> {
                     <div className="details-textbox-container">
                         <form action="">
                             <textarea
+                                onChange={(e) => handlePreferredCakeColor(e)}
                                 className="details-cake-size-dropdown"
                                 name="cake-colors"
                                 placeholder="Enter Colors Here..."
@@ -102,6 +126,7 @@ class CakeDetails extends React.Component<ICakeDetailsProps, {}> {
                     <div className="details-textbox-container">
                         <form action="">
                             <textarea
+                                onChange={(e) => handleCakeInscription(e)}
                                 className="details-cake-size-dropdown"
                                 name="cake-colors"
                                 placeholder="Enter Inscription Here..."
@@ -123,6 +148,7 @@ class CakeDetails extends React.Component<ICakeDetailsProps, {}> {
                                 name="cake-colors"
                                 placeholder="Enter Inscription Here..."
                                 maxLength={80}
+                                onChange={(e) => handleCakePhotoExample(e)}
                             />
                             <aside>
                                 Upload any photo example <br />
@@ -131,6 +157,7 @@ class CakeDetails extends React.Component<ICakeDetailsProps, {}> {
                                 You may also send a link in the field below.
                             </aside>
                             <textarea
+                                onChange={(e) => handleCakeLinkExample(e)}
                                 name="photo-link"
                                 id="details-photo-link"
                                 placeholder="Enter Link Of Cake Design Example Here..."
@@ -149,6 +176,7 @@ class CakeDetails extends React.Component<ICakeDetailsProps, {}> {
                     <div className="details-textbox-container">
                         <form action="">
                             <textarea
+                                onChange={(e) => handleCakeAdditionalDetails(e)}
                                 name="extra-details"
                                 id="details-extra-details"
                                 placeholder="Enter Details Here..."

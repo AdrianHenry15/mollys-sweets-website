@@ -14,31 +14,11 @@ interface ICCCountProps {
     store?: GlobalStateStore;
 }
 
-interface ICCCountState {
-    cupcakeSize: string;
-}
+// interface ICCCountState {}
 
 @inject("store")
 @observer
-class CCCount extends React.Component<ICCCountProps, ICCCountState> {
-    constructor(props: ICCCountProps) {
-        super(props);
-
-        this.state = {
-            cupcakeSize: "",
-        };
-    }
-
-    //state functions
-    setCupcakeSize = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let select: HTMLInputElement = e.target;
-        let value: string = select.value;
-
-        this.setState({
-            cupcakeSize: value,
-        });
-    };
-
+class CCCount extends React.Component<ICCCountProps, {}> {
     // functions
     renderCupcakeCount = () => {
         //variables
@@ -46,7 +26,8 @@ class CCCount extends React.Component<ICCCountProps, ICCCountState> {
             ProductData.products.sizes.cupcake_cookie_sizes.regular;
         const miniCupcakeSizes =
             ProductData.products.sizes.cupcake_cookie_sizes.mini;
-        if (this.state.cupcakeSize === ProductSizes.REGULAR) {
+        const cupcakeSize = this.props.store!.CupcakeStore.cupcakeCount.size;
+        if (cupcakeSize === ProductSizes.REGULAR) {
             return regCupcakeSizes.map(
                 ({ id, productQuantity, productServes, price }) => {
                     if (productQuantity === "") {
@@ -59,7 +40,7 @@ class CCCount extends React.Component<ICCCountProps, ICCCountState> {
                         return (
                             <option
                                 key={`${id}`}
-                                value={productQuantity}
+                                value={price}
                             >{`${productQuantity} (${productServes}) ($${price})`}</option>
                         );
                     }
@@ -78,7 +59,7 @@ class CCCount extends React.Component<ICCCountProps, ICCCountState> {
                         return (
                             <option
                                 key={`${id}`}
-                                value={productQuantity}
+                                value={price}
                             >{`${productQuantity} (${productServes}) ($${price})`}</option>
                         );
                     }
@@ -87,6 +68,17 @@ class CCCount extends React.Component<ICCCountProps, ICCCountState> {
         }
     };
     render() {
+        const quantityCost =
+            this.props.store!.CupcakeStore.cupcakeCosts.quantityCost;
+        const cupcakeSize = this.props.store!.CupcakeStore.cupcakeCount.size;
+        const setCupcakeSize =
+            this.props.store!.CupcakeActions.cupcakeCountActions.setCupcakeSize;
+        function handleCupcakeQuantity(
+            e: React.ChangeEvent<HTMLSelectElement>
+        ): void {
+            throw new Error("Function not implemented.");
+        }
+
         return (
             <section className="ccc-count-container">
                 <h3>Choose Cupcakes</h3>
@@ -100,14 +92,14 @@ class CCCount extends React.Component<ICCCountProps, ICCCountState> {
                             value={ProductSizes.REGULAR}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => this.setCupcakeSize(e)}
+                            onChange={(e) => setCupcakeSize(e)}
                         ></input>
                         <label htmlFor="fruit">Regular</label>
                         <input
                             value={ProductSizes.MINI}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => this.setCupcakeSize(e)}
+                            onChange={(e) => setCupcakeSize(e)}
                         ></input>
                         <label htmlFor="fruit">Mini</label>
                     </div>
@@ -117,7 +109,7 @@ class CCCount extends React.Component<ICCCountProps, ICCCountState> {
                 <div className="ccc-make-container">
                     <h5 className="ccc-title">
                         How Many
-                        {this.state.cupcakeSize === ProductSizes.REGULAR
+                        {cupcakeSize === ProductSizes.REGULAR
                             ? " Regular"
                             : " Mini"}{" "}
                         Cupcakes
@@ -126,9 +118,10 @@ class CCCount extends React.Component<ICCCountProps, ICCCountState> {
                         <div className="ccc-option">
                             <form action="">
                                 <select
+                                    onChange={(e) => handleCupcakeQuantity(e)}
                                     name="cake-size"
                                     className="ccc-dropdown"
-                                    defaultValue=""
+                                    defaultValue={quantityCost}
                                 >
                                     {this.renderCupcakeCount()}
                                 </select>
@@ -138,7 +131,7 @@ class CCCount extends React.Component<ICCCountProps, ICCCountState> {
                 </div>
                 <div className="ccc-make-container">
                     <h5 className="ccc-title">Cost</h5>
-                    <div>$0.00</div>
+                    <div>{`$${quantityCost}`}</div>
                 </div>
             </section>
         );

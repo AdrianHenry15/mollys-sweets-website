@@ -14,13 +14,14 @@ class CakeTotalCost extends React.Component<ICakeTotalCostProps, {}> {
 
     render() {
         //cakebase cost
-        const tierCost = this.props.store!.ProductStore.cake.tierCost;
-        const sizeCost = this.props.store!.ProductStore.cake.sizeCost;
+        const tierCost = this.props.store!.CakeStore.cakeCosts.tierCost;
+        const sizeCost = this.props.store!.CakeStore.cakeCosts.sizeCost;
         const cakeBaseTotal = sizeCost + tierCost;
         //flavors cost
-        const flavorsCost = this.props.store!.ProductStore.cake.flavorsCost;
-        const fillingsCost = this.props.store!.ProductStore.cake.fillingsCost;
-        const frostingsCost = this.props.store!.ProductStore.cake.frostingsCost;
+        const flavorsCost = this.props.store!.CakeStore.cakeCosts.flavorsCost;
+        const fillingsCost = this.props.store!.CakeStore.cakeCosts.fillingsCost;
+        const frostingsCost =
+            this.props.store!.CakeStore.cakeCosts.frostingsCost;
         const flavorsTotal = flavorsCost + frostingsCost + fillingsCost;
 
         return (

@@ -25,7 +25,7 @@ interface ICakeBaseProps {
 @observer
 class CakeBase extends React.Component<ICakeBaseProps, {}> {
     renderCakeSizes = () => {
-        const cakeShape = this.props.store!.ProductStore.cake.shape;
+        const cakeShape = this.props.store!.CakeStore.cakeBase.shape;
         let shape;
         cakeShape === CakeShapes.ROUND
             ? (shape = ProductData.products.sizes.roundSizes)
@@ -51,10 +51,17 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
     };
     render() {
         // store variables
-        const cakeTier = this.props.store!.ProductStore.cake.tier;
-        const cakeShape = this.props.store!.ProductStore.cake.shape;
-        const tierCost = this.props.store!.ProductStore.cake.tierCost;
-        const sizeCost = this.props.store!.ProductStore.cake.sizeCost;
+        const cakeTier = this.props.store!.CakeStore.cakeBase.tier;
+        const cakeShape = this.props.store!.CakeStore.cakeBase.shape;
+        const sizeCost = this.props.store!.CakeStore.cakeCosts.sizeCost;
+
+        // actions
+        const updateTier =
+            this.props.store!.CakeActions.cakeBaseActions.updateTier;
+        const updateShape =
+            this.props.store!.CakeActions.cakeBaseActions.updateShape;
+        const handleCakeSizeCost =
+            this.props.store!.CakeActions.cakeCostActions.handleCakeSizeCost;
 
         // main
         return (
@@ -68,11 +75,7 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                     <div className="base-choice-container">
                         <div className="base-option">
                             <LazyLoadImage
-                                onClick={() =>
-                                    this.props.store!.updateTier(
-                                        CakeTiers.SINGLE
-                                    )
-                                }
+                                onClick={() => updateTier(CakeTiers.SINGLE)}
                                 className={
                                     cakeTier === CakeTiers.SINGLE
                                         ? "base-choice base-choice-active"
@@ -89,11 +92,7 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                         </div>
                         <div className="base-option">
                             <LazyLoadImage
-                                onClick={() =>
-                                    this.props.store!.updateTier(
-                                        CakeTiers.MULTIPLE
-                                    )
-                                }
+                                onClick={() => updateTier(CakeTiers.MULTIPLE)}
                                 className={
                                     cakeTier === CakeTiers.MULTIPLE
                                         ? "base-choice base-choice-active"
@@ -117,11 +116,7 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                     <div className="base-choice-container">
                         <div className="base-option">
                             <LazyLoadImage
-                                onClick={() =>
-                                    this.props.store!.setCakeShape(
-                                        CakeShapes.ROUND
-                                    )
-                                }
+                                onClick={() => updateShape(CakeShapes.ROUND)}
                                 className={
                                     cakeShape === CakeShapes.ROUND
                                         ? "base-choice base-choice-active"
@@ -138,11 +133,7 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                         </div>
                         <div className="base-option">
                             <LazyLoadImage
-                                onClick={() =>
-                                    this.props.store!.setCakeShape(
-                                        CakeShapes.SHEET
-                                    )
-                                }
+                                onClick={() => updateShape(CakeShapes.SHEET)}
                                 className={
                                     cakeShape === CakeShapes.SHEET
                                         ? "base-choice base-choice-active"
@@ -170,14 +161,9 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                         <div className="base-option">
                             <form action="">
                                 <select
-                                    onChange={(e) =>
-                                        this.props.store!.handleCakeSizeCost(e)
-                                    }
-                                    name="cake-size"
-                                    defaultValue={
-                                        this.props.store!.ProductStore.cake
-                                            .sizeCost
-                                    }
+                                    onChange={(e) => handleCakeSizeCost(e)}
+                                    name={sizeCost.toString()}
+                                    defaultValue={sizeCost}
                                     className="base-cake-size-dropdown"
                                 >
                                     {this.renderCakeSizes()}
@@ -188,7 +174,7 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                 </div>
                 <div className="base-cake-make-container">
                     <h5 className="base-title">Cake Base Cost</h5>
-                    <div>{`$${sizeCost + tierCost}`}</div>
+                    <div>{`$${this.props.store!.updateCakeBaseCost()}`}</div>
                 </div>
             </section>
         );

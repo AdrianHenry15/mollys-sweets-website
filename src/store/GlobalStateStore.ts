@@ -1,39 +1,44 @@
-import { observable, makeAutoObservable, action } from "mobx";
+import { observable, makeAutoObservable, action, computed } from "mobx";
 import { ProductData } from "../data/Products";
 import { CakeTiers } from "./constants/Enums";
+
+// stores
+import { IProductStore } from "./schemas/ProductStore/IProductStore";
+import { ICakeProduct } from "./schemas/ProductStore/ICakeProduct";
+import { ICupcakeProduct } from "./schemas/ProductStore/ICupcakeProduct";
+import { ICookieProduct } from "./schemas/ProductStore/ICookieProduct";
+import { IUserStore } from "./schemas/IUserStore";
 import { ICartStore } from "./schemas/ICartStore";
 import { IOrderStore } from "./schemas/IOrderStore";
-import { IProductStore } from "./schemas/IProductStore";
-import { IUserStore } from "./schemas/IUserStore";
+import { ICakeActions } from "./schemas/ActionStore/ICakeActions";
+import { ICupcakeActions } from "./schemas/ActionStore/ICupcakeActions";
 
 export class GlobalStateStore {
     constructor() {
         makeAutoObservable(this);
     }
-
-    @observable ProductStore: IProductStore = {
-        cake: {
-            // cake base
+    @observable CakeStore: ICakeProduct = {
+        cakeBase: {
             size: "",
             serves: "",
             shape: "",
             tier: "",
-            // base cost
-            tierCost: 0,
-            sizeCost: 0,
-
-            //cake flavors
+        },
+        cakeFlavors: {
             flavor: "",
             filling: "",
             frosting: "",
             fruit: "",
-            // flavors cost
+        },
+        cakeCosts: {
+            tierCost: 0,
+            sizeCost: 0,
             flavorsCost: 0,
             frostingsCost: 0,
             fillingsCost: 0,
             fruitCost: 0,
-
-            // cake details
+        },
+        cakeDetails: {
             cakeOccasion: "",
             cakeRecipient: "",
             preferredColors: "",
@@ -42,40 +47,158 @@ export class GlobalStateStore {
             cakeLinkExample: "",
             additionalDetails: "",
         },
-        cupcake: {
-            // cupcake count
+    };
+
+    @action CakeActions: ICakeActions = {
+        cakeBaseActions: {
+            updateTier: (tier: string) => {
+                this.CakeStore.cakeBase.tier = tier;
+                if (tier === CakeTiers.SINGLE) {
+                    this.CakeStore.cakeCosts.tierCost =
+                        ProductData.products.tiers.single[1].price;
+                    return;
+                } else if (tier === CakeTiers.MULTIPLE) {
+                    this.CakeStore.cakeCosts.tierCost =
+                        ProductData.products.tiers.multiple[1].price;
+                    return;
+                }
+            },
+            updateShape: (shape: string) => {
+                this.CakeStore.cakeBase.shape = shape;
+            },
+        },
+        cakeCostActions: {
+            handleCakeSizeCost: (e: React.ChangeEvent<HTMLSelectElement>) => {
+                let select: HTMLSelectElement = e.target;
+                let value: number = parseInt(select.value);
+                this.CakeStore.cakeCosts.sizeCost = value;
+            },
+            handleCakeFlavorCost: (e: React.ChangeEvent<HTMLSelectElement>) => {
+                let select: HTMLSelectElement = e.target;
+                let value: number = parseInt(select.value);
+                this.CakeStore.cakeCosts.flavorsCost = value;
+            },
+            handleCakeFrostingCost: (
+                e: React.ChangeEvent<HTMLSelectElement>
+            ) => {
+                let select: HTMLSelectElement = e.target;
+                let value: number = parseInt(select.value);
+                this.CakeStore.cakeCosts.frostingsCost = value;
+            },
+            handleCakeFillingCost: (
+                e: React.ChangeEvent<HTMLSelectElement>
+            ) => {
+                let select: HTMLSelectElement = e.target;
+                let value: number = parseInt(select.value);
+                this.CakeStore.cakeCosts.fillingsCost = value;
+            },
+            handleCakeFruitCost: (e: React.ChangeEvent<HTMLSelectElement>) => {
+                let select: HTMLSelectElement = e.target;
+                let value: number = parseInt(select.value);
+                this.CakeStore.cakeCosts.fruitCost = value;
+            },
+        },
+        cakeDetailsActions: {
+            handleCakeOccasion: (e: React.ChangeEvent<HTMLSelectElement>) => {
+                let select: HTMLSelectElement = e.target;
+                let value: string = select.value;
+                this.CakeStore.cakeDetails.cakeOccasion = value;
+            },
+            handleCakeRecipient: (e: React.ChangeEvent<HTMLInputElement>) => {
+                let select: HTMLInputElement = e.target;
+                let value: string = select.value;
+                this.CakeStore.cakeDetails.cakeRecipient = value;
+            },
+            handleCakeInscription: (
+                e: React.ChangeEvent<HTMLTextAreaElement>
+            ) => {
+                let select: HTMLTextAreaElement = e.target;
+                let value: string = select.value;
+                this.CakeStore.cakeDetails.cakeInscription = value;
+            },
+            handlePreferredCakeColors: (
+                e: React.ChangeEvent<HTMLTextAreaElement>
+            ) => {
+                let select: HTMLTextAreaElement = e.target;
+                let value: string = select.value;
+                this.CakeStore.cakeDetails.cakeInscription = value;
+            },
+            // TODO: handle photo for order and cart
+            handleCakePhotoExample: (
+                e: React.ChangeEvent<HTMLInputElement>
+            ) => {
+                let select: HTMLInputElement = e.target;
+                let value: string = select.value;
+                this.CakeStore.cakeDetails.cakePhotoExample = value;
+            },
+            // TODO: handle link for order and cart
+            handleCakeLinkExample: (
+                e: React.ChangeEvent<HTMLTextAreaElement>
+            ) => {
+                let select: HTMLTextAreaElement = e.target;
+                let value: string = select.value;
+                this.CakeStore.cakeDetails.cakeLinkExample = value;
+            },
+            handleCakeAdditionalDetails: (
+                e: React.ChangeEvent<HTMLTextAreaElement>
+            ) => {
+                let select: HTMLTextAreaElement = e.target;
+                let value: string = select.value;
+                this.CakeStore.cakeDetails.additionalDetails = value;
+                console.log(value);
+            },
+        },
+    };
+    @observable CupcakeStore: ICupcakeProduct = {
+        cupcakeCount: {
             size: "",
             serves: "",
             quantity: "",
-            // cupcake count cost
-            quantityCost: 0,
-
-            //cupcake flavor
+        },
+        cupcakeFlavors: {
             flavor: "",
             frosting: "",
-            // cupcake flaovrs cost
+        },
+        cupcakeCosts: {
+            quantityCost: 0,
             flavorsCost: 0,
             frostingsCost: 0,
-
-            //cupcake details
         },
-        cookie: {
-            // cookie count
+    };
+
+    @action CupcakeActions: ICupcakeActions = {
+        cupcakeCountActions: {
+            handleCupcakeQuantity: (
+                e: React.ChangeEvent<HTMLSelectElement>
+            ) => {
+                let select: HTMLSelectElement = e.target;
+                let value: number = parseInt(select.value);
+                this.CupcakeStore.cupcakeCosts.quantityCost = value;
+            },
+            setCupcakeSize: (e: React.ChangeEvent<HTMLInputElement>) => {
+                let select: HTMLInputElement = e.target;
+                let value: string = select.value;
+                this.CupcakeStore.cupcakeCount.size = value;
+            },
+        },
+    };
+    @observable CookieStore: ICookieProduct = {
+        cookieCount: {
             size: "",
             serves: "",
             quantity: "",
-            // cookie count cost
-            quantityCost: 0,
-
-            //cupcake flavor
+        },
+        cookieFlavors: {
             flavor: "",
             frosting: "",
-            // cookie flaovrs cost
+        },
+        cookieCosts: {
+            quantityCost: 0,
             flavorsCost: 0,
             frostingsCost: 0,
-
-            //cupcake details
         },
+    };
+    @observable ProductStore: IProductStore = {
         totalCost: 0,
     };
     @observable CartStore: ICartStore = {
@@ -85,86 +208,14 @@ export class GlobalStateStore {
     @observable OrderStore: IOrderStore = {};
     @observable UserStore: IUserStore = {};
 
-    //actions
-    @action
-    //cake actions
-    // cake base
-    updateTier = (tier: string) => {
-        this.ProductStore.cake.tier = tier;
-        if (tier === CakeTiers.SINGLE) {
-            this.ProductStore.cake.tierCost =
-                ProductData.products.tiers.single[1].price;
-            return;
-        } else if (tier === CakeTiers.MULTIPLE) {
-            this.ProductStore.cake.tierCost =
-                ProductData.products.tiers.multiple[1].price;
-            return;
-        }
-    };
-    setCakeShape = (shape: string) => {
-        this.ProductStore.cake.shape = shape;
-    };
-    handleCakeSizeCost = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-        this.ProductStore.cake.sizeCost = value;
-    };
+    // cupcake flavors
 
-    // cake flavors
-    //TODO: write string value of target event to order and cart
-    handleCakeFlavorCost = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-        this.ProductStore.cake.flavorsCost = value;
-    };
-    handleCakeFrostingCost = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-        this.ProductStore.cake.frostingsCost = value;
-    };
-    handleCakeFillingCost = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-        this.ProductStore.cake.fillingsCost = value;
-    };
-    handleFruitCost = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-        this.ProductStore.cake.fruitCost = value;
-    };
-
-    // cake details
-    handleCakeOccasion = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: string = select.value;
-        this.ProductStore.cake.cakeOccasion = value;
-    };
-    handleCakeRecipient = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: string = select.value;
-        this.ProductStore.cake.cakeRecipient = value;
-    };
-    handleCakeInscription = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: string = select.value;
-        this.ProductStore.cake.cakeInscription = value;
-    };
-    // TODO: handle photo for order and cart
-    handleCakePhotoExample = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: string = select.value;
-        this.ProductStore.cake.cakePhotoExample = value;
-    };
-    // TODO: handle link for order and cart
-    handleCakeLinkExample = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: string = select.value;
-        this.ProductStore.cake.cakeLinkExample = value;
-    };
-    handleAdditionalDetails = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: string = select.value;
-        this.ProductStore.cake.additionalDetails = value;
+    //value derived from existing state
+    @computed updateCakeBaseCost = () => {
+        let cakeBaseCost =
+            this.CakeStore.cakeCosts.sizeCost +
+            this.CakeStore.cakeCosts.tierCost;
+        return cakeBaseCost;
     };
 }
 

@@ -34,10 +34,17 @@ class CCDetails extends React.Component<ICCDetailsProps, {}> {
                                 >
                             ).map((key) => {
                                 if (CakeOccasion[key] === CakeOccasion.NONE) {
-                                    return <option value="">Choose One</option>;
+                                    return (
+                                        <option key={key} value="">
+                                            Choose One
+                                        </option>
+                                    );
                                 } else {
                                     return (
-                                        <option value={CakeOccasion[key]}>
+                                        <option
+                                            key={key}
+                                            value={CakeOccasion[key]}
+                                        >
                                             {CakeOccasion[key]}
                                         </option>
                                     );
@@ -56,7 +63,7 @@ class CCDetails extends React.Component<ICCDetailsProps, {}> {
                             >
                         ).map((key) => {
                             return (
-                                <div className="ccd-checkbox">
+                                <div key={key} className="ccd-checkbox">
                                     <input
                                         type="checkbox"
                                         name="cake-recipient"

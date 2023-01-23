@@ -86,7 +86,7 @@ class CCFlavors extends React.Component<ICCFlavorsProps, {}> {
                 {(Object.keys(CakeTypes) as Array<keyof typeof CakeTypes>).map(
                     (key) => {
                         if (CakeTypes[key] === CakeTypes.FILLINGS) {
-                            return <div></div>;
+                            return <div key={key}></div>;
                         } else {
                             return (
                                 <div

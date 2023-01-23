@@ -17,6 +17,7 @@
         "noEmit": true,
         "jsx": "react",
         "outDir": "../../builds/dev/public",
+        "useDefineForClassFields": true,
         "rootDir": ".",
         "composite": true
     },
