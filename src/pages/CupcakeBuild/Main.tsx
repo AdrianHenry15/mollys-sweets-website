@@ -2,13 +2,20 @@
 import "../../styles/CupcakeBuild/Main.scss";
 //frameworks
 import React from "react";
+import { Link } from "react-router-dom";
 // components
 import CCCount from "./CCCount";
 import CCFlavors from "./CCFlavors";
 import CCDetails from "./CCDetails";
 import CCTotalCost from "./CCTotalCost";
+
+//store
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
+
+//icons
+import { GiStairsCake as CakeIcon } from "react-icons/gi";
+import { RxCookie as CookieIcon } from "react-icons/rx";
 
 interface IChooseYourCupcakesProps {
     store?: GlobalStateStore;
@@ -49,6 +56,28 @@ class ChooseYourCupcakes extends React.Component<IChooseYourCupcakesProps, {}> {
                         </section>
                     </section>
                 </div>
+                <nav className="cc-create-links-container">
+                    <Link
+                        className="cc-create-links c-cake-link"
+                        to="/build-your-cake"
+                    >
+                        <CakeIcon className="cc-create-icons" />
+                        <span className="cc-create-icons-label">
+                            Create Cakes
+                        </span>
+                        <CakeIcon className="cc-create-icons" />
+                    </Link>
+                    <Link
+                        className="cc-create-links c-cupcake-link"
+                        to="/choose-your-cookies"
+                    >
+                        <CookieIcon className="cc-create-icons" />
+                        <span className="cc-create-icons-label">
+                            Create Cookies
+                        </span>
+                        <CookieIcon className="cc-create-icons" />
+                    </Link>
+                </nav>
             </section>
         );
     }

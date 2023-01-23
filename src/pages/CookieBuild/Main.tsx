@@ -3,6 +3,7 @@ import "../../styles/CookieBuild/Main.scss";
 
 //frameworks
 import React from "react";
+import { Link } from "react-router-dom";
 
 // components
 import CookieCount from "./CookieCount";
@@ -11,6 +12,10 @@ import CookieDetails from "./CookieDetails";
 import CookieFlavors from "./CookieFlavors";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
+
+//icons
+import { GiStairsCake as CakeIcon } from "react-icons/gi";
+import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 
 interface IChooseYourChooseYourCookiesProps {
     store?: GlobalStateStore;
@@ -54,6 +59,28 @@ class ChooseYourCookies extends React.Component<
                         </section>
                     </section>
                 </div>
+                <nav className="c-create-links-container">
+                    <Link
+                        className="c-create-links c-cake-link"
+                        to="/build-your-cake"
+                    >
+                        <CakeIcon className="c-create-icons" />
+                        <span className="c-create-icons-label">
+                            Create Cakes
+                        </span>
+                        <CakeIcon className="c-create-icons" />
+                    </Link>
+                    <Link
+                        className="c-create-links c-cupcake-link"
+                        to="/choose-your-cupcakes"
+                    >
+                        <CupcakeIcon className="c-create-icons" />
+                        <span className="c-create-icons-label">
+                            Create Cupcakes
+                        </span>
+                        <CupcakeIcon className="c-create-icons" />
+                    </Link>
+                </nav>
             </section>
         );
     }

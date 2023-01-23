@@ -10,6 +10,7 @@ export interface ICakeBaseActions {
 }
 
 export interface ICakeCostActions {
+    // change events
     handleCakeSizeCost: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     handleCakeFlavorCost: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     handleCakeFrostingCost: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -18,6 +19,7 @@ export interface ICakeCostActions {
 }
 
 export interface ICakeDetailsActions {
+    // change events
     handleCakeOccasion: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     handleCakeRecipient: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handlePreferredCakeColors: (

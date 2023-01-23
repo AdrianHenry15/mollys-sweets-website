@@ -2,6 +2,7 @@
 import "../styles/Cart.scss";
 // frame
 import React from "react";
+import { Link } from "react-router-dom";
 //store
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../store/GlobalStateStore";
@@ -11,25 +12,6 @@ import { GiShoppingCart as EmptyCartIcon } from "react-icons/gi";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
-import { Link } from "react-router-dom";
-
-export const createPages = [
-    {
-        id: 1,
-        name: "CreateCakes",
-        path: "/build-your-cake",
-    },
-    {
-        id: 2,
-        name: "CreateCupcake",
-        path: "/choose-your-cupcakes",
-    },
-    {
-        id: 3,
-        name: "CreateCookies",
-        path: "/choose-your-cookies",
-    },
-];
 
 interface ICartProps {
     store?: GlobalStateStore;

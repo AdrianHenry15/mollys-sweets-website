@@ -10,6 +10,11 @@ import CakeDetails from "./CakeDetails";
 import TotalCost from "./CakeTotalCost";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
+import { Link } from "react-router-dom";
+
+//icons
+import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
+import { RxCookie as CookieIcon } from "react-icons/rx";
 
 interface IBuildYourCakeProps {
     store?: GlobalStateStore;
@@ -50,6 +55,28 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                         </section>
                     </section>
                 </div>
+                <nav className="byc-create-links-container">
+                    <Link
+                        className="byc-create-links byc-cupcakes-link"
+                        to="/choose-your-cupcakes"
+                    >
+                        <CupcakeIcon className="byc-create-icons" />
+                        <span className="byc-create-icons-label">
+                            Create Cupcakes
+                        </span>
+                        <CupcakeIcon className="byc-create-icons" />
+                    </Link>
+                    <Link
+                        className="byc-create-links byc-cookies-link"
+                        to="/choose-your-cookies"
+                    >
+                        <CookieIcon className="byc-create-icons" />
+                        <span className="byc-create-icons-label">
+                            Create Cookies
+                        </span>
+                        <CookieIcon className="byc-create-icons" />
+                    </Link>
+                </nav>
             </section>
         );
     }
