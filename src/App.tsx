@@ -18,6 +18,7 @@ import ChooseYourCupcakes from "./pages/CupcakeBuild/Main";
 import ChooseYourCookies from "./pages/CookieBuild/Main";
 import { GlobalStateStore } from "./store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
+import Cart from "./components/Cart";
 
 interface IAppProps {
     store: GlobalStateStore;
@@ -55,6 +56,7 @@ class App extends Component<IAppProps, {}> {
                     <Route path="/cakes" element={<Cakes />}></Route>
                     <Route path="/cookies" element={<Cookies />}></Route>
                     <Route path="/cupcakes" element={<Cupcakes />}></Route>
+                    <Route path="/cart" element={<Cart />}></Route>
                     <Route path="/*" element={<PageNotFound />}></Route>
                 </Routes>
                 <Footer />

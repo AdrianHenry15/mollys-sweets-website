@@ -1,10 +1,18 @@
+//styles
 import "../styles/Navbar.scss";
 import React from "react";
 import { Link } from "react-router-dom";
+//icons
 import { GiFallingLeaf } from "react-icons/gi";
 import { GiLeafSkeleton } from "react-icons/gi";
+import { AiOutlineShoppingCart as CartIcon } from "react-icons/ai";
+
+//stores
 import { GlobalStateStore } from "../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
+
+//components
+import Cart from "./Cart";
 
 export const pages = [
     {
@@ -31,6 +39,11 @@ export const pages = [
         id: 5,
         name: "Create",
         path: "/choose-your-sweets",
+    },
+    {
+        id: 6,
+        name: "Cart",
+        path: "/cart",
     },
 ];
 
@@ -65,6 +78,8 @@ class Navbar extends React.Component<INavbarProps, {}> {
                                         {name}
                                     </Link>
                                 );
+                            } else if (name === "Cart") {
+                                return <div key={id}></div>;
                             } else {
                                 return (
                                     <Link
@@ -77,6 +92,13 @@ class Navbar extends React.Component<INavbarProps, {}> {
                                 );
                             }
                         })}
+                    </nav>
+                    <nav className="cart-link">
+                        <Link key="cart" to="/cart" className="cart-btn">
+                            <CartIcon className="cart-icon">
+                                <Cart />
+                            </CartIcon>
+                        </Link>
                     </nav>
                 </header>
             </>

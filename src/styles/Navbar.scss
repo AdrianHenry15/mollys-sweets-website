@@ -57,36 +57,47 @@
     display: none;
 }
 
+.cart-link {
+    display: flex;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.cart-icon {
+    color: black;
+}
+
 .navigation-links {
     display: flex;
     font-weight: 600;
     font-size: 16px;
+}
 
-    .nav-btns {
-        display: flex;
-        text-decoration: none;
-        color: black;
-        margin-right: 20px;
+.nav-btns {
+    display: flex;
+    text-decoration: none;
+    color: black;
+    margin-right: 20px;
 
-        /* cool effect */
-        --b: 0.1em; /* the thickness of the line */
-        --c: var(--address-color); /* the color */
-        color: #0000;
-        padding-block: var(--b);
-        background: linear-gradient(var(--c) 50%, #000 0) 0%
-                calc(100% - var(--_p, 0%)) / 100% 200%,
-            linear-gradient(var(--c) 0 0) 0% var(--_p, 0%) / var(--_p, 0%)
-                var(--b) no-repeat;
-        -webkit-background-clip: text, padding-box;
-        background-clip: text, padding-box;
-        transition: 0.3s var(--_s, 0s) linear,
-            background-size 0.3s calc(0.3s - var(--_s, 0s));
-    }
+    /* cool effect */
+    --b: 0.1em; /* the thickness of the line */
+    --c: var(--address-color); /* the color */
+    color: #0000;
+    padding-block: var(--b);
+    background: linear-gradient(var(--c) 50%, #000 0) 0%
+            calc(100% - var(--_p, 0%)) / 100% 200%,
+        linear-gradient(var(--c) 0 0) 0% var(--_p, 0%) / var(--_p, 0%) var(--b)
+            no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.3s var(--_s, 0s) linear,
+        background-size 0.3s calc(0.3s - var(--_s, 0s));
+}
 
-    .nav-btns:hover {
-        --_p: 100%;
-        --_s: 0.3s;
-    }
+.nav-btns:hover {
+    --_p: 100%;
+    --_s: 0.3s;
 }
 
 .create-a-cake {
