@@ -44,7 +44,7 @@ class CookieCount extends React.Component<
                 ({ id, productQuantity, productServes, price }) => {
                     if (productQuantity === "") {
                         return (
-                            <option key={`${productQuantity}${id}`} value="">
+                            <option key={`${productQuantity}${id}`} value="0">
                                 Choose One
                             </option>
                         );
@@ -52,7 +52,7 @@ class CookieCount extends React.Component<
                         return (
                             <option
                                 key={`${id}`}
-                                value={productQuantity}
+                                value={price}
                             >{`${productQuantity} (${productServes}) ($${price})`}</option>
                         );
                     }
@@ -63,7 +63,7 @@ class CookieCount extends React.Component<
                 ({ id, productQuantity, productServes, price }) => {
                     if (productQuantity === "") {
                         return (
-                            <option key={`${productQuantity}${id}`} value="">
+                            <option key={`${productQuantity}${id}`} value="0">
                                 Choose One
                             </option>
                         );
@@ -71,7 +71,7 @@ class CookieCount extends React.Component<
                         return (
                             <option
                                 key={`${id}`}
-                                value={productQuantity}
+                                value={price}
                             >{`${productQuantity} (${productServes}) ($${price})`}</option>
                         );
                     }
@@ -79,15 +79,17 @@ class CookieCount extends React.Component<
             );
         }
     };
-
-    setCookieSize = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let select: HTMLInputElement = e.target;
-        let value: string = select.value;
-        this.setState({
-            cookieSize: value,
-        });
-    };
     render() {
+        // store variables
+        const quantityCost =
+            this.props.store!.CookieStore.cookieCosts.quantityCost;
+        const cookieSize = this.props.store!.CookieStore.cookieCount.size;
+        //store methods
+        const setCookieSize =
+            this.props.store!.CookieActions.cookieCountActions.setCookieSize;
+        const handleQuantityCost =
+            this.props.store!.CookieActions.cookieCountActions
+                .handleCookieQuantityCost;
         return (
             <section className="cookie-count-container">
                 <h3>Choose Cookies</h3>
@@ -101,14 +103,14 @@ class CookieCount extends React.Component<
                             value={ProductSizes.REGULAR}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => this.setCookieSize(e)}
+                            onChange={(e) => setCookieSize(e)}
                         ></input>
                         <label htmlFor="fruit">Regular</label>
                         <input
                             defaultValue={ProductSizes.MINI}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => this.setCookieSize(e)}
+                            onChange={(e) => setCookieSize(e)}
                         ></input>
                         <label htmlFor="fruit">Mini</label>
                     </div>
@@ -118,7 +120,7 @@ class CookieCount extends React.Component<
                 <div className="cookie-make-container">
                     <h5 className="cookie-title">
                         How Many
-                        {this.state.cookieSize === ProductSizes.REGULAR
+                        {cookieSize === ProductSizes.REGULAR
                             ? " Regular"
                             : " Mini"}{" "}
                         Cookies
@@ -127,6 +129,8 @@ class CookieCount extends React.Component<
                         <div className="cookie-option">
                             <form action="">
                                 <select
+                                    defaultValue={quantityCost}
+                                    onChange={(e) => handleQuantityCost(e)}
                                     name="cake-size"
                                     className="cookie-dropdown"
                                 >
@@ -138,7 +142,7 @@ class CookieCount extends React.Component<
                 </div>
                 <div className="cookie-make-container">
                     <h5 className="cookie-title">Cost</h5>
-                    <div>$0.00</div>
+                    <div>{`$${quantityCost}`}</div>
                 </div>
             </section>
         );

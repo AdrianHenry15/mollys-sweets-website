@@ -17,6 +17,25 @@ interface ICookieDetailsProps {
 @observer
 class CookieDetails extends React.Component<ICookieDetailsProps, {}> {
     render() {
+        //store methods
+        const handleCookieOccasion =
+            this.props.store!.CookieActions.cookieDetailsActions
+                .handleCookieOccasion;
+        const handleCookieRecipient =
+            this.props.store!.CookieActions.cookieDetailsActions
+                .handleCookieRecipient;
+        const handlePreferredCookieColors =
+            this.props.store!.CookieActions.cookieDetailsActions
+                .handlePreferredCookieColors;
+        const handleCookiePhotoExample =
+            this.props.store!.CookieActions.cookieDetailsActions
+                .handleCookiePhotoExample;
+        const handleCookieLinkExample =
+            this.props.store!.CookieActions.cookieDetailsActions
+                .handleCookieLinkExample;
+        const handleCookieAdditionalDetails =
+            this.props.store!.CookieActions.cookieDetailsActions
+                .handleCookieAdditionalDetails;
         return (
             <section className="cookie-d-container">
                 <h3>Cookie Details</h3>
@@ -27,6 +46,7 @@ class CookieDetails extends React.Component<ICookieDetailsProps, {}> {
                     </h5>
                     <form action="">
                         <select
+                            onChange={(e) => handleCookieOccasion(e)}
                             className="cookie-d-dropdown"
                             name="cake-size-dropdown"
                         >
@@ -36,10 +56,17 @@ class CookieDetails extends React.Component<ICookieDetailsProps, {}> {
                                 >
                             ).map((key) => {
                                 if (CakeOccasion[key] === CakeOccasion.NONE) {
-                                    return <option value="">Choose One</option>;
+                                    return (
+                                        <option key={key} value="">
+                                            Choose One
+                                        </option>
+                                    );
                                 } else {
                                     return (
-                                        <option value={CakeOccasion[key]}>
+                                        <option
+                                            key={key}
+                                            value={CakeOccasion[key]}
+                                        >
                                             {CakeOccasion[key]}
                                         </option>
                                     );
@@ -63,8 +90,11 @@ class CookieDetails extends React.Component<ICookieDetailsProps, {}> {
                             >
                         ).map((key) => {
                             return (
-                                <div className="cookie-d-checkbox">
+                                <div key={key} className="cookie-d-checkbox">
                                     <input
+                                        onChange={(e) =>
+                                            handleCookieRecipient(e)
+                                        }
                                         type="checkbox"
                                         name="cake-recipient"
                                         value={CakeRecipient[key]}
@@ -84,6 +114,7 @@ class CookieDetails extends React.Component<ICookieDetailsProps, {}> {
                     <div className="cookie-d-textbox-container">
                         <form action="">
                             <textarea
+                                onChange={(e) => handlePreferredCookieColors(e)}
                                 className="cookie-d-dropdown"
                                 name="cake-colors"
                                 placeholder="Enter Colors Here..."
@@ -99,6 +130,7 @@ class CookieDetails extends React.Component<ICookieDetailsProps, {}> {
                     <div className="cookie-d-textbox-container">
                         <form action="">
                             <input
+                                onChange={(e) => handleCookiePhotoExample(e)}
                                 className="cookie-d-file-option"
                                 type="file"
                                 name="cake-colors"
@@ -112,6 +144,7 @@ class CookieDetails extends React.Component<ICookieDetailsProps, {}> {
                                 You may also send a link in the field below.
                             </aside>
                             <textarea
+                                onChange={(e) => handleCookieLinkExample(e)}
                                 name="photo-link"
                                 id="cookie-d-photo-link"
                                 placeholder="Enter Link Of Cookie Design Example Here..."
@@ -127,6 +160,9 @@ class CookieDetails extends React.Component<ICookieDetailsProps, {}> {
                     <div className="cookie-d-textbox-container">
                         <form action="">
                             <textarea
+                                onChange={(e) =>
+                                    handleCookieAdditionalDetails(e)
+                                }
                                 name="extra-details"
                                 id="cookie-d-extra-details"
                                 placeholder="Enter Details Here..."

@@ -17,6 +17,25 @@ interface ICCDetailsProps {
 @observer
 class CCDetails extends React.Component<ICCDetailsProps, {}> {
     render() {
+        //store methods
+        const handleCupcakeOccasion =
+            this.props.store!.CupcakeActions.cupcakeDetailsActions
+                .handleCupcakeOccasion;
+        const handleCupcakeRecipient =
+            this.props.store!.CupcakeActions.cupcakeDetailsActions
+                .handleCupcakeRecipient;
+        const handlePreferredCupcakeColors =
+            this.props.store!.CupcakeActions.cupcakeDetailsActions
+                .handlePreferredCupcakeColors;
+        const handleCupcakePhotoExample =
+            this.props.store!.CupcakeActions.cupcakeDetailsActions
+                .handleCupcakePhotoExample;
+        const handleCupcakeLinkExample =
+            this.props.store!.CupcakeActions.cupcakeDetailsActions
+                .handleCupcakeLinkExample;
+        const handleCupcakeAdditionalDetails =
+            this.props.store!.CupcakeActions.cupcakeDetailsActions
+                .handleCupcakeAdditionalDetails;
         return (
             <section className="ccd-container">
                 <h3>Cupcake Details</h3>
@@ -25,6 +44,7 @@ class CCDetails extends React.Component<ICCDetailsProps, {}> {
                     <h5 className="ccd-title">What Are These Cupcakes For?</h5>
                     <form action="">
                         <select
+                            onChange={(e) => handleCupcakeOccasion(e)}
                             className="ccd-dropdown"
                             name="cake-size-dropdown"
                         >
@@ -65,6 +85,9 @@ class CCDetails extends React.Component<ICCDetailsProps, {}> {
                             return (
                                 <div key={key} className="ccd-checkbox">
                                     <input
+                                        onChange={(e) =>
+                                            handleCupcakeRecipient(e)
+                                        }
                                         type="checkbox"
                                         name="cake-recipient"
                                         value={CakeRecipient[key]}
@@ -84,6 +107,9 @@ class CCDetails extends React.Component<ICCDetailsProps, {}> {
                     <div className="ccd-textbox-container">
                         <form action="">
                             <textarea
+                                onChange={(e) =>
+                                    handlePreferredCupcakeColors(e)
+                                }
                                 className="ccd-dropdown"
                                 name="cake-colors"
                                 placeholder="Enter Colors Here..."
@@ -99,6 +125,7 @@ class CCDetails extends React.Component<ICCDetailsProps, {}> {
                     <div className="ccd-textbox-container">
                         <form action="">
                             <input
+                                onChange={(e) => handleCupcakePhotoExample(e)}
                                 className="ccd-file-option"
                                 type="file"
                                 name="cake-colors"
@@ -112,6 +139,7 @@ class CCDetails extends React.Component<ICCDetailsProps, {}> {
                                 You may also send a link in the field below.
                             </aside>
                             <textarea
+                                onChange={(e) => handleCupcakeLinkExample(e)}
                                 name="photo-link"
                                 id="ccd-photo-link"
                                 placeholder="Enter Link Of Cupcake Design Example Here..."
@@ -127,6 +155,9 @@ class CCDetails extends React.Component<ICCDetailsProps, {}> {
                     <div className="ccd-textbox-container">
                         <form action="">
                             <textarea
+                                onChange={(e) =>
+                                    handleCupcakeAdditionalDetails(e)
+                                }
                                 name="extra-details"
                                 id="ccd-extra-details"
                                 placeholder="Enter Details Here..."

@@ -13,16 +13,16 @@ class CakeTotalCost extends React.Component<ICakeTotalCostProps, {}> {
     // store variables
 
     render() {
-        //cakebase cost
-        const tierCost = this.props.store!.CakeStore.cakeCosts.tierCost;
-        const sizeCost = this.props.store!.CakeStore.cakeCosts.sizeCost;
-        const cakeBaseTotal = sizeCost + tierCost;
-        //flavors cost
-        const flavorsCost = this.props.store!.CakeStore.cakeCosts.flavorsCost;
-        const fillingsCost = this.props.store!.CakeStore.cakeCosts.fillingsCost;
-        const frostingsCost =
-            this.props.store!.CakeStore.cakeCosts.frostingsCost;
-        const flavorsTotal = flavorsCost + frostingsCost + fillingsCost;
+        //store methods
+        const updateCakeBaseCost =
+            this.props.store!.ComputedCakeCosts.computedCosts
+                .updateCakeBaseCost;
+        const updateFlavorsTotalCost =
+            this.props.store!.ComputedCakeCosts.computedCosts
+                .updateCakeFlavorsTotalCost;
+        const updateTotalCost =
+            this.props.store!.ComputedCakeCosts.computedCosts
+                .updateTotalCakeCost;
 
         return (
             <section className="total-cake-cost-container">
@@ -40,14 +40,14 @@ class CakeTotalCost extends React.Component<ICakeTotalCostProps, {}> {
                         className="total-costs"
                     >
                         <h4>Cake Base</h4>
-                        <span>{`$${cakeBaseTotal}`}</span>
+                        <span>{`$${updateCakeBaseCost()}`}</span>
                     </div>
                     <div
                         id="total-flavors-costs-container"
                         className="total-costs"
                     >
                         <h4>Flavors, Fillings, etc.</h4>
-                        <span>{`$${flavorsTotal}`}</span>
+                        <span>{`$${updateFlavorsTotalCost()}`}</span>
                     </div>
                     <div
                         id="total-design-costs-container"
@@ -58,7 +58,7 @@ class CakeTotalCost extends React.Component<ICakeTotalCostProps, {}> {
                     </div>
                     <div id="total-costs-container" className="total-costs">
                         <h4>Total</h4>
-                        <span>{`$${cakeBaseTotal + flavorsTotal}`}</span>
+                        <span>{`$${updateTotalCost()}`}</span>
                     </div>
                 </section>
                 <hr />

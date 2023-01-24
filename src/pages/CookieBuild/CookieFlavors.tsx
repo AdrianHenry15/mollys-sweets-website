@@ -41,6 +41,26 @@ class CookieFlavors extends React.Component<
         //data variables
         const cookies = ProductData.products.cookies;
         const frostings = ProductData.products.frostings;
+
+        //store variables
+        const flavorCost =
+            this.props.store!.CookieStore.cookieCosts.flavorsCost;
+        const frostingCost =
+            this.props.store!.CookieStore.cookieCosts.frostingsCost;
+
+        //store methods
+        const handleFlavorCost =
+            this.props.store!.CookieActions.cookieCountActions
+                .handleCookieFlavorCost;
+        const handleFrostingCost =
+            this.props.store!.CookieActions.cookieCountActions
+                .handleCookieFrostingCost;
+
+        // computeds
+        const updateFlavorTotalCost =
+            this.props.store!.ComputedCookieCosts.computedCosts
+                .updateCookieFlavorTotalCost;
+
         return (
             <section className="cookie-f-container">
                 <h3>Customize Flavors</h3>
@@ -55,6 +75,8 @@ class CookieFlavors extends React.Component<
                         <div>
                             <form action="">
                                 <select
+                                    defaultValue={flavorCost}
+                                    onChange={(e) => handleFlavorCost(e)}
                                     name="cake-size"
                                     className="cookie-f-dropdown"
                                 >
@@ -62,10 +84,7 @@ class CookieFlavors extends React.Component<
                                         ({ id, productName, price }) => {
                                             if (id === 0) {
                                                 return (
-                                                    <option
-                                                        key={id}
-                                                        defaultValue=""
-                                                    >
+                                                    <option key={id} value="0">
                                                         Choose One
                                                     </option>
                                                 );
@@ -73,7 +92,7 @@ class CookieFlavors extends React.Component<
                                                 return (
                                                     <option
                                                         key={id}
-                                                        value={productName}
+                                                        value={price}
                                                     >{`${productName} ($${price})`}</option>
                                                 );
                                             }
@@ -115,6 +134,8 @@ class CookieFlavors extends React.Component<
                             <div>
                                 <form action="">
                                     <select
+                                        defaultValue={frostingCost}
+                                        onChange={(e) => handleFrostingCost(e)}
                                         name="cake-size"
                                         className="cookie-f-dropdown"
                                     >
@@ -124,7 +145,7 @@ class CookieFlavors extends React.Component<
                                                     return (
                                                         <option
                                                             key={id}
-                                                            defaultValue=""
+                                                            value="0"
                                                         >
                                                             Choose One
                                                         </option>
@@ -133,7 +154,7 @@ class CookieFlavors extends React.Component<
                                                     return (
                                                         <option
                                                             key={id}
-                                                            value={productName}
+                                                            value={price}
                                                         >{`${productName} ($${price})`}</option>
                                                     );
                                                 }
@@ -147,7 +168,7 @@ class CookieFlavors extends React.Component<
                 )}
                 <div className="cookie-f-make-container">
                     <h5 className="cookie-f-title">Cost</h5>
-                    <div>$0.00</div>
+                    <div>{`$${updateFlavorTotalCost()}`}</div>
                 </div>
             </section>
         );

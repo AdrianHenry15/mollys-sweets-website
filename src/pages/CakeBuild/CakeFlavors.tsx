@@ -160,11 +160,14 @@ class CakeFlavors extends React.Component<
     render() {
         // data variables
         const fruits = ProductData.products.fruit;
-        const flavorsCost = this.props.store!.CakeStore.cakeCosts.flavorsCost;
-        const frostingsCost =
-            this.props.store!.CakeStore.cakeCosts.frostingsCost;
-        const fillingsCost = this.props.store!.CakeStore.cakeCosts.fillingsCost;
+
+        //store varaibles
         const fruitCost = this.props.store!.CakeStore.cakeCosts.fruitCost;
+
+        // store methods
+        const updateFlavorsTotalCost =
+            this.props.store!.ComputedCakeCosts.computedCosts
+                .updateCakeFlavorsTotalCost;
         return (
             <section className="flavors-custom-flavors-container">
                 <h3>Customize Flavors</h3>
@@ -264,14 +267,7 @@ class CakeFlavors extends React.Component<
                 )}
                 <div className="flavors-cake-make-container">
                     <h5 className="flavors-title">Flavors Cost</h5>
-                    <div>
-                        {`$${
-                            flavorsCost +
-                            frostingsCost +
-                            fillingsCost +
-                            fruitCost
-                        }`}
-                    </div>
+                    <div>{`$${updateFlavorsTotalCost()}`}</div>
                 </div>
             </section>
         );

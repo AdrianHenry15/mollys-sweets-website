@@ -5,10 +5,7 @@ import { GlobalStateStore } from "../store/GlobalStateStore";
 
 interface IOrderProps {
     store?: GlobalStateStore;
-    cartState: boolean;
 }
-
-interface IOrderState {}
 
 @inject("store")
 @observer
@@ -18,6 +15,8 @@ class Order extends React.Component<IOrderProps, {}> {
     }
     //main
     render() {
-        return <div></div>;
+        return <div>Order</div>;
     }
 }
+
+export default Order;

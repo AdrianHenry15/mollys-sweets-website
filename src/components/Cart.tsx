@@ -13,29 +13,26 @@ import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
 
+//components
+import Order from "./Order";
+
 interface ICartProps {
     store?: GlobalStateStore;
 }
 
-interface ICartState {
-    cartEmpty: boolean;
-}
-
 @inject("store")
 @observer
-class Cart extends React.Component<ICartProps, ICartState> {
+class Cart extends React.Component<ICartProps, {}> {
     constructor(props: ICartProps) {
         super(props);
-
-        this.state = {
-            cartEmpty: true,
-        };
     }
     //main
     render() {
+        //store variables
+        const emptyCartState = this.props.store!.CartStore.cartEmpty;
         return (
             <section className="cart-main">
-                {this.state.cartEmpty && (
+                {emptyCartState && (
                     <div className="empty-cart-container">
                         <h1 className="empty-cart-label">Your Cart Is Empty</h1>
                         <div className="cart-empty-icon">
@@ -75,7 +72,7 @@ class Cart extends React.Component<ICartProps, ICartState> {
                         </nav>
                     </div>
                 )}
-                {!this.state.cartEmpty && <div></div>}
+                {!emptyCartState && <Order />}
             </section>
         );
     }

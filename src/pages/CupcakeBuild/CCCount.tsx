@@ -30,9 +30,9 @@ class CCCount extends React.Component<ICCCountProps, {}> {
         if (cupcakeSize === ProductSizes.REGULAR) {
             return regCupcakeSizes.map(
                 ({ id, productQuantity, productServes, price }) => {
-                    if (productQuantity === "") {
+                    if (id === 0) {
                         return (
-                            <option key={`${productQuantity}${id}`} value="">
+                            <option key={`${id}`} value="0">
                                 Choose One
                             </option>
                         );
@@ -49,9 +49,9 @@ class CCCount extends React.Component<ICCCountProps, {}> {
         } else {
             return miniCupcakeSizes.map(
                 ({ id, productQuantity, productServes, price }) => {
-                    if (productQuantity === "") {
+                    if (id === 0) {
                         return (
-                            <option key={`${productQuantity}${id}`} value="">
+                            <option key={`${id}`} value="0">
                                 Choose One
                             </option>
                         );
@@ -68,16 +68,16 @@ class CCCount extends React.Component<ICCCountProps, {}> {
         }
     };
     render() {
+        // store variables
         const quantityCost =
             this.props.store!.CupcakeStore.cupcakeCosts.quantityCost;
         const cupcakeSize = this.props.store!.CupcakeStore.cupcakeCount.size;
+        //store methods
         const setCupcakeSize =
             this.props.store!.CupcakeActions.cupcakeCountActions.setCupcakeSize;
-        function handleCupcakeQuantity(
-            e: React.ChangeEvent<HTMLSelectElement>
-        ): void {
-            throw new Error("Function not implemented.");
-        }
+        const handleCupcakeQuantity =
+            this.props.store!.CupcakeActions.cupcakeCountActions
+                .handleCupcakeQuantityCost;
 
         return (
             <section className="ccc-count-container">

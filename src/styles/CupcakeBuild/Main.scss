@@ -76,7 +76,7 @@
         align-items: center;
         flex-direction: column;
         margin-left: 0;
-        padding-top: 65px !important;
+        padding-top: 90px !important;
     }
 
     .main-customize-cupcake-container {
@@ -86,10 +86,11 @@
     .cc-create-links-container {
         margin-right: 0;
         margin-top: 0;
-        justify-content: space-between;
+        justify-content: space-around;
         right: auto;
         display: flex;
         width: 100%;
+        padding-top: 20px;
     }
 
     .cc-create-links {
@@ -117,6 +118,7 @@
     .main-build-cupcake-container {
         width: 100% !important;
         flex-direction: column;
+        padding-top: 75px !important;
     }
 
     .main-customize-cupcake-container {
@@ -139,6 +141,7 @@
         right: auto;
         display: flex;
         width: 100%;
+        padding-top: 20px;
     }
 
     .cc-create-links {

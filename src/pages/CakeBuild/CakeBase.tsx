@@ -44,6 +44,7 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                     <option
                         key={`${id}`}
                         value={`${price}`}
+                        datatype={`${productSize}`}
                     >{`${productSize} (${productServes}) ($${price})`}</option>
                 );
             }
@@ -54,6 +55,7 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
         const cakeTier = this.props.store!.CakeStore.cakeBase.tier;
         const cakeShape = this.props.store!.CakeStore.cakeBase.shape;
         const sizeCost = this.props.store!.CakeStore.cakeCosts.sizeCost;
+        const cakeSize = this.props.store!.CakeStore.cakeBase.size;
 
         // actions
         const updateTier =
@@ -62,6 +64,11 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
             this.props.store!.CakeActions.cakeBaseActions.updateShape;
         const handleCakeSizeCost =
             this.props.store!.CakeActions.cakeCostActions.handleCakeSizeCost;
+
+        // computeds
+        const updateCakeBaseCost =
+            this.props.store!.ComputedCakeCosts.computedCosts
+                .updateCakeBaseCost;
 
         // main
         return (
@@ -161,6 +168,7 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                         <div className="base-option">
                             <form action="">
                                 <select
+                                    datatype={cakeSize}
                                     onChange={(e) => handleCakeSizeCost(e)}
                                     name={sizeCost.toString()}
                                     defaultValue={sizeCost}
@@ -174,7 +182,7 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                 </div>
                 <div className="base-cake-make-container">
                     <h5 className="base-title">Cake Base Cost</h5>
-                    <div>{`$${this.props.store!.updateCakeBaseCost()}`}</div>
+                    <div>{`$${updateCakeBaseCost()}`}</div>
                 </div>
             </section>
         );

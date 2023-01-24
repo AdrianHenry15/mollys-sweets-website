@@ -10,8 +10,16 @@ import { ICookieProduct } from "./schemas/ProductStore/ICookieProduct";
 import { IUserStore } from "./schemas/IUserStore";
 import { ICartStore } from "./schemas/ICartStore";
 import { IOrderStore } from "./schemas/IOrderStore";
+
+// action store
 import { ICakeActions } from "./schemas/ActionStore/ICakeActions";
 import { ICupcakeActions } from "./schemas/ActionStore/ICupcakeActions";
+
+// computeds
+import { ICakeComputeds } from "./schemas/ComputedStore/ICakeComputeds";
+import { ICookieActions } from "./schemas/ActionStore/ICookieActions";
+import { ICupcakeComputeds } from "./schemas/ComputedStore/ICupcakeComputeds";
+import { ICookieComputeds } from "./schemas/ComputedStore/ICookieComputeds";
 
 export class GlobalStateStore {
     constructor() {
@@ -56,15 +64,20 @@ export class GlobalStateStore {
                 if (tier === CakeTiers.SINGLE) {
                     this.CakeStore.cakeCosts.tierCost =
                         ProductData.products.tiers.single[1].price;
+                    this.CakeStore.cakeBase.tier = CakeTiers.SINGLE;
+                    this.CartStore.cartEmpty = false;
                     return;
                 } else if (tier === CakeTiers.MULTIPLE) {
                     this.CakeStore.cakeCosts.tierCost =
                         ProductData.products.tiers.multiple[1].price;
+                    this.CakeStore.cakeBase.tier = CakeTiers.MULTIPLE;
+                    this.CartStore.cartEmpty = false;
                     return;
                 }
             },
             updateShape: (shape: string) => {
                 this.CakeStore.cakeBase.shape = shape;
+                this.CartStore.cartEmpty = false;
             },
         },
         cakeCostActions: {
@@ -121,7 +134,7 @@ export class GlobalStateStore {
             ) => {
                 let select: HTMLTextAreaElement = e.target;
                 let value: string = select.value;
-                this.CakeStore.cakeDetails.cakeInscription = value;
+                this.CakeStore.cakeDetails.preferredColors = value;
             },
             // TODO: handle photo for order and cart
             handleCakePhotoExample: (
@@ -145,7 +158,36 @@ export class GlobalStateStore {
                 let select: HTMLTextAreaElement = e.target;
                 let value: string = select.value;
                 this.CakeStore.cakeDetails.additionalDetails = value;
-                console.log(value);
+            },
+        },
+    };
+
+    //values derived from existing state
+    @computed ComputedCakeCosts: ICakeComputeds = {
+        computedCosts: {
+            updateCakeBaseCost: () => {
+                return (
+                    this.CakeStore.cakeCosts.sizeCost +
+                    this.CakeStore.cakeCosts.tierCost
+                );
+            },
+            updateCakeFlavorsTotalCost: () => {
+                return (
+                    this.CakeStore.cakeCosts.flavorsCost +
+                    this.CakeStore.cakeCosts.frostingsCost +
+                    this.CakeStore.cakeCosts.fillingsCost +
+                    this.CakeStore.cakeCosts.fruitCost
+                );
+            },
+            updateTotalCakeCost: () => {
+                return (
+                    this.CakeStore.cakeCosts.flavorsCost +
+                    this.CakeStore.cakeCosts.frostingsCost +
+                    this.CakeStore.cakeCosts.fillingsCost +
+                    this.CakeStore.cakeCosts.fruitCost +
+                    this.CakeStore.cakeCosts.sizeCost +
+                    this.CakeStore.cakeCosts.tierCost
+                );
             },
         },
     };
@@ -164,21 +206,109 @@ export class GlobalStateStore {
             flavorsCost: 0,
             frostingsCost: 0,
         },
+        cupcakeDetails: {
+            cupcakeOccasion: "",
+            cupcakeRecipient: "",
+            preferredCupcakeColors: "",
+            cupcakeInscription: "",
+            cupcakePhotoExample: "",
+            cupcakeLinkExample: "",
+            additionalCupcakeDetails: "",
+        },
     };
 
     @action CupcakeActions: ICupcakeActions = {
         cupcakeCountActions: {
-            handleCupcakeQuantity: (
+            handleCupcakeQuantityCost: (
                 e: React.ChangeEvent<HTMLSelectElement>
             ) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
                 this.CupcakeStore.cupcakeCosts.quantityCost = value;
             },
+            handleCupcakeFlavorCost: (
+                e: React.ChangeEvent<HTMLSelectElement>
+            ) => {
+                let select: HTMLSelectElement = e.target;
+                let value: number = parseInt(select.value);
+                this.CupcakeStore.cupcakeCosts.flavorsCost = value;
+            },
+            handleCupcakeFrostingCost: (
+                e: React.ChangeEvent<HTMLSelectElement>
+            ) => {
+                let select: HTMLSelectElement = e.target;
+                let value: number = parseInt(select.value);
+                this.CupcakeStore.cupcakeCosts.frostingsCost = value;
+            },
             setCupcakeSize: (e: React.ChangeEvent<HTMLInputElement>) => {
                 let select: HTMLInputElement = e.target;
                 let value: string = select.value;
                 this.CupcakeStore.cupcakeCount.size = value;
+            },
+        },
+        cupcakeDetailsActions: {
+            handleCupcakeOccasion: (
+                e: React.ChangeEvent<HTMLSelectElement>
+            ) => {
+                let select: HTMLSelectElement = e.target;
+                let value: string = select.value;
+                this.CupcakeStore.cupcakeDetails.cupcakeOccasion = value;
+            },
+            handleCupcakeRecipient: (
+                e: React.ChangeEvent<HTMLInputElement>
+            ) => {
+                let select: HTMLInputElement = e.target;
+                let value: string = select.value;
+                this.CupcakeStore.cupcakeDetails.cupcakeRecipient = value;
+            },
+            handlePreferredCupcakeColors: (
+                e: React.ChangeEvent<HTMLTextAreaElement>
+            ) => {
+                let select: HTMLTextAreaElement = e.target;
+                let value: string = select.value;
+                this.CupcakeStore.cupcakeDetails.preferredCupcakeColors = value;
+            },
+            // TODO: handle photo for order and cart
+            handleCupcakePhotoExample: (
+                e: React.ChangeEvent<HTMLInputElement>
+            ) => {
+                let select: HTMLInputElement = e.target;
+                let value: string = select.value;
+                this.CupcakeStore.cupcakeDetails.cupcakePhotoExample = value;
+            },
+            // TODO: handle link for order and cart
+            handleCupcakeLinkExample: (
+                e: React.ChangeEvent<HTMLTextAreaElement>
+            ) => {
+                let select: HTMLTextAreaElement = e.target;
+                let value: string = select.value;
+                this.CupcakeStore.cupcakeDetails.cupcakeLinkExample = value;
+            },
+            handleCupcakeAdditionalDetails: (
+                e: React.ChangeEvent<HTMLTextAreaElement>
+            ) => {
+                let select: HTMLTextAreaElement = e.target;
+                let value: string = select.value;
+                this.CupcakeStore.cupcakeDetails.additionalCupcakeDetails =
+                    value;
+            },
+        },
+    };
+
+    @computed ComputedCupcakeCosts: ICupcakeComputeds = {
+        computedCosts: {
+            updateCupcakeFlavorTotalCost: () => {
+                return (
+                    this.CupcakeStore.cupcakeCosts.flavorsCost +
+                    this.CupcakeStore.cupcakeCosts.frostingsCost
+                );
+            },
+            updateTotalCupcakeCost: () => {
+                return (
+                    this.CupcakeStore.cupcakeCosts.flavorsCost +
+                    this.CupcakeStore.cupcakeCosts.frostingsCost +
+                    this.CupcakeStore.cupcakeCosts.quantityCost
+                );
             },
         },
     };
@@ -197,6 +327,107 @@ export class GlobalStateStore {
             flavorsCost: 0,
             frostingsCost: 0,
         },
+        cookieDetails: {
+            cookieOccasion: "",
+            cookieRecipient: "",
+            preferredCookieColors: "",
+            cookieInscription: "",
+            cookiePhotoExample: "",
+            cookieLinkExample: "",
+            additionalCookieDetails: "",
+        },
+    };
+
+    @action CookieActions: ICookieActions = {
+        cookieCountActions: {
+            handleCookieQuantityCost: (
+                e: React.ChangeEvent<HTMLSelectElement>
+            ) => {
+                let select: HTMLSelectElement = e.target;
+                let value: number = parseInt(select.value);
+                this.CookieStore.cookieCosts.quantityCost = value;
+                console.log(value);
+            },
+            handleCookieFlavorCost: (
+                e: React.ChangeEvent<HTMLSelectElement>
+            ) => {
+                let select: HTMLSelectElement = e.target;
+                let value: number = parseInt(select.value);
+                this.CookieStore.cookieCosts.flavorsCost = value;
+            },
+            handleCookieFrostingCost: (
+                e: React.ChangeEvent<HTMLSelectElement>
+            ) => {
+                let select: HTMLSelectElement = e.target;
+                let value: number = parseInt(select.value);
+                this.CookieStore.cookieCosts.frostingsCost = value;
+            },
+            setCookieSize: (e: React.ChangeEvent<HTMLInputElement>) => {
+                let select: HTMLInputElement = e.target;
+                let value: string = select.value;
+                this.CookieStore.cookieCount.size = value;
+            },
+        },
+        cookieDetailsActions: {
+            handleCookieOccasion: (e: React.ChangeEvent<HTMLSelectElement>) => {
+                let select: HTMLSelectElement = e.target;
+                let value: string = select.value;
+                this.CookieStore.cookieDetails.cookieOccasion = value;
+            },
+            handleCookieRecipient: (e: React.ChangeEvent<HTMLInputElement>) => {
+                let select: HTMLInputElement = e.target;
+                let value: string = select.value;
+                this.CookieStore.cookieDetails.cookieRecipient = value;
+            },
+            handlePreferredCookieColors: (
+                e: React.ChangeEvent<HTMLTextAreaElement>
+            ) => {
+                let select: HTMLTextAreaElement = e.target;
+                let value: string = select.value;
+                this.CookieStore.cookieDetails.preferredCookieColors = value;
+            },
+            // TODO: handle photo for order and cart
+            handleCookiePhotoExample: (
+                e: React.ChangeEvent<HTMLInputElement>
+            ) => {
+                let select: HTMLInputElement = e.target;
+                let value: string = select.value;
+                this.CookieStore.cookieDetails.cookiePhotoExample = value;
+            },
+            // TODO: handle link for order and cart
+            handleCookieLinkExample: (
+                e: React.ChangeEvent<HTMLTextAreaElement>
+            ) => {
+                let select: HTMLTextAreaElement = e.target;
+                let value: string = select.value;
+                this.CookieStore.cookieDetails.cookieLinkExample = value;
+            },
+            handleCookieAdditionalDetails: (
+                e: React.ChangeEvent<HTMLTextAreaElement>
+            ) => {
+                let select: HTMLTextAreaElement = e.target;
+                let value: string = select.value;
+                this.CookieStore.cookieDetails.additionalCookieDetails = value;
+            },
+        },
+    };
+
+    @computed ComputedCookieCosts: ICookieComputeds = {
+        computedCosts: {
+            updateCookieFlavorTotalCost: () => {
+                return (
+                    this.CookieStore.cookieCosts.flavorsCost +
+                    this.CookieStore.cookieCosts.frostingsCost
+                );
+            },
+            updateTotalCookieCost: () => {
+                return (
+                    this.CookieStore.cookieCosts.flavorsCost +
+                    this.CookieStore.cookieCosts.frostingsCost +
+                    this.CookieStore.cookieCosts.quantityCost
+                );
+            },
+        },
     };
     @observable ProductStore: IProductStore = {
         totalCost: 0,
@@ -204,19 +435,10 @@ export class GlobalStateStore {
     @observable CartStore: ICartStore = {
         carts: [],
         currentCart: [],
+        cartEmpty: true,
     };
     @observable OrderStore: IOrderStore = {};
     @observable UserStore: IUserStore = {};
-
-    // cupcake flavors
-
-    //value derived from existing state
-    @computed updateCakeBaseCost = () => {
-        let cakeBaseCost =
-            this.CakeStore.cakeCosts.sizeCost +
-            this.CakeStore.cakeCosts.tierCost;
-        return cakeBaseCost;
-    };
 }
 
 export const globalStore = new GlobalStateStore();
