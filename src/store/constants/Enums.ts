@@ -60,3 +60,18 @@ export enum CakeRecipient {
     TEEN = "Teen",
     ADULT = "Adult",
 }
+
+// export enum CakeCosts {
+//     TIER,
+//     SIZE,
+//     FLAVOR,
+//     FROSTING,
+//     FILLING,
+//     FRUIT,
+// }
+
+// export enum CupcakeCosts {
+//     QUANTITY,
+//     FLAVORS,
+//     FROSTINGS,
+// }

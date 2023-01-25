@@ -3,6 +3,9 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import { GlobalStateStore } from "../store/GlobalStateStore";
 
+// styles
+import "../styles/Order.scss";
+
 interface IOrderProps {
     store?: GlobalStateStore;
 }
@@ -15,7 +18,20 @@ class Order extends React.Component<IOrderProps, {}> {
     }
     //main
     render() {
-        return <div>Order</div>;
+        return (
+            <section className="main-order-container">
+                <div className="product-item-container">
+                    <div className="product-icon"></div>
+                    <div className="product-info">
+                        <span className="product-title"></span>
+                        <div className="info-btn remove-btn"></div>
+                        <div className="info-btn edit-btn"></div>
+                        <div className="info-btn view-details-btn"></div>
+                    </div>
+                    <div className="product-price"></div>
+                </div>
+            </section>
+        );
     }
 }
 

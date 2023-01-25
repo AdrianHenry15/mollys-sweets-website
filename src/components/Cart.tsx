@@ -72,7 +72,85 @@ class Cart extends React.Component<ICartProps, {}> {
                         </nav>
                     </div>
                 )}
-                {!emptyCartState && <Order />}
+                {!emptyCartState && (
+                    <div className="cart-filled-container">
+                        <div className="cart-container">
+                            <h1 className="filled-cart-label">Your Cart</h1>
+                            <Order />
+                        </div>
+                        <section className="checkout-total-container">
+                            <button className="checkout-btn">
+                                <span>Check Out</span>
+                            </button>
+                            <section className="cakes-total-container total-container">
+                                {/* tier */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                                {/* size */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                                {/* flavor */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                                {/* frosting */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                                {/* filling */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                                {/* fruit */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                            </section>
+                            <section className="cupcakes-total-container total-container">
+                                {/* quantity */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                                {/* flavor */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                                {/* frosting */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                            </section>
+                            <section className="cookies-total-container total-container">
+                                {/* quantity */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                                {/* flavor */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                                {/* frosting */}
+                                <div className="total-item-container">
+                                    <div className="item"></div>
+                                    <div className="price"></div>
+                                </div>
+                            </section>
+                        </section>
+                    </div>
+                )}
             </section>
         );
     }
