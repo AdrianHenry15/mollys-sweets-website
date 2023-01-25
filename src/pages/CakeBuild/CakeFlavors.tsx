@@ -64,15 +64,15 @@ class CakeFlavors extends React.Component<
                             {flavors.map(({ id, productName, price }) => {
                                 if (id === 0) {
                                     return (
-                                        <option key={id} value="">
+                                        <option key={productName} value="0">
                                             Choose One
                                         </option>
                                     );
                                 } else {
                                     return (
                                         <option
-                                            key={id}
-                                            value={price}
+                                            key={productName}
+                                            value={id}
                                         >{`${productName} ($${price})`}</option>
                                     );
                                 }
@@ -96,15 +96,15 @@ class CakeFlavors extends React.Component<
                             {frostings.map(({ id, productName, price }) => {
                                 if (id === 0) {
                                     return (
-                                        <option key={productName + id} value="">
+                                        <option key={productName} value="0">
                                             Choose One
                                         </option>
                                     );
                                 } else {
                                     return (
                                         <option
-                                            key={productName + id}
-                                            value={price}
+                                            key={productName}
+                                            value={id}
                                         >{`${productName} ($${price})`}</option>
                                     );
                                 }
@@ -126,18 +126,15 @@ class CakeFlavors extends React.Component<
                         {fillings.map(({ id, productName, price }) => {
                             if (id === 0) {
                                 return (
-                                    <option
-                                        key={productName + id}
-                                        value={price}
-                                    >
+                                    <option key={productName} value={id}>
                                         Choose One
                                     </option>
                                 );
                             } else {
                                 return (
                                     <option
-                                        key={productName + id}
-                                        value={price}
+                                        key={productName}
+                                        value={id}
                                     >{`${productName} ($${price})`}</option>
                                 );
                             }
@@ -243,8 +240,8 @@ class CakeFlavors extends React.Component<
                                                 if (id === 0) {
                                                     return (
                                                         <option
-                                                            key={id}
-                                                            value=""
+                                                            key={productName}
+                                                            value="0"
                                                         >
                                                             Choose One
                                                         </option>
@@ -252,8 +249,8 @@ class CakeFlavors extends React.Component<
                                                 } else {
                                                     return (
                                                         <option
-                                                            key={id}
-                                                            value={price}
+                                                            key={productName}
+                                                            value={id}
                                                         >{`${productName} ($${price})`}</option>
                                                     );
                                                 }

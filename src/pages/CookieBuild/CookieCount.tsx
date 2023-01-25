@@ -39,20 +39,21 @@ class CookieCount extends React.Component<
             ProductData.products.sizes.cupcake_cookie_sizes.regular;
         const miniCookiesSizes =
             ProductData.products.sizes.cupcake_cookie_sizes.mini;
-        if (this.state.cookieSize === ProductSizes.REGULAR) {
+        const cookieSize = this.props.store!.CookieStore.cookieCount.size;
+        if (cookieSize === ProductSizes.REGULAR) {
             return regCookieSizes.map(
                 ({ id, productQuantity, productServes, price }) => {
                     if (productQuantity === "") {
                         return (
-                            <option key={`${productQuantity}${id}`} value="0">
+                            <option key={productQuantity} value="0">
                                 Choose One
                             </option>
                         );
                     } else {
                         return (
                             <option
-                                key={`${id}`}
-                                value={price}
+                                key={productQuantity}
+                                value={id}
                             >{`${productQuantity} (${productServes}) ($${price})`}</option>
                         );
                     }
@@ -63,15 +64,15 @@ class CookieCount extends React.Component<
                 ({ id, productQuantity, productServes, price }) => {
                     if (productQuantity === "") {
                         return (
-                            <option key={`${productQuantity}${id}`} value="0">
+                            <option key={productQuantity} value="0">
                                 Choose One
                             </option>
                         );
                     } else {
                         return (
                             <option
-                                key={`${id}`}
-                                value={price}
+                                key={productQuantity}
+                                value={id}
                             >{`${productQuantity} (${productServes}) ($${price})`}</option>
                         );
                     }

@@ -84,15 +84,18 @@ class CookieFlavors extends React.Component<
                                         ({ id, productName, price }) => {
                                             if (id === 0) {
                                                 return (
-                                                    <option key={id} value="0">
+                                                    <option
+                                                        key={productName}
+                                                        value="0"
+                                                    >
                                                         Choose One
                                                     </option>
                                                 );
                                             } else {
                                                 return (
                                                     <option
-                                                        key={id}
-                                                        value={price}
+                                                        key={productName}
+                                                        value={id}
                                                     >{`${productName} ($${price})`}</option>
                                                 );
                                             }
@@ -144,7 +147,7 @@ class CookieFlavors extends React.Component<
                                                 if (id === 0) {
                                                     return (
                                                         <option
-                                                            key={id}
+                                                            key={productName}
                                                             value="0"
                                                         >
                                                             Choose One
@@ -153,8 +156,8 @@ class CookieFlavors extends React.Component<
                                                 } else {
                                                     return (
                                                         <option
-                                                            key={id}
-                                                            value={price}
+                                                            key={productName}
+                                                            value={id}
                                                         >{`${productName} ($${price})`}</option>
                                                     );
                                                 }

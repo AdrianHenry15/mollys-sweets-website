@@ -1,6 +1,6 @@
 import { observable, makeAutoObservable, action, computed } from "mobx";
 import { ProductData } from "../data/Products";
-import { CakeTiers } from "./constants/Enums";
+import { CakeShapes, CakeTiers, ProductSizes } from "./constants/Enums";
 
 // stores
 import { IProductStore } from "./schemas/ProductStore/IProductStore";
@@ -84,31 +84,90 @@ export class GlobalStateStore {
             handleCakeSizeCost: (e: React.ChangeEvent<HTMLSelectElement>) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
-                this.CakeStore.cakeCosts.sizeCost = value;
+                if (this.CakeStore.cakeBase.shape === CakeShapes.ROUND) {
+                    //size
+                    this.CakeStore.cakeBase.size =
+                        ProductData.products.sizes.roundSizes[
+                            value
+                        ].productSize!;
+
+                    //serves
+                    this.CakeStore.cakeBase.serves =
+                        ProductData.products.sizes.roundSizes[
+                            value
+                        ].productServes!;
+
+                    //price
+                    this.CakeStore.cakeCosts.sizeCost =
+                        ProductData.products.sizes.roundSizes[value].price;
+
+                    // cart state
+                    this.CartStore.cartEmpty = false;
+                } else if (this.CakeStore.cakeBase.shape === CakeShapes.SHEET) {
+                    //tier
+                    //size
+                    this.CakeStore.cakeBase.size =
+                        ProductData.products.sizes.sheetSizes[
+                            value
+                        ].productSize!;
+
+                    //serves
+                    this.CakeStore.cakeBase.serves =
+                        ProductData.products.sizes.sheetSizes[
+                            value
+                        ].productServes!;
+
+                    //price
+                    this.CakeStore.cakeCosts.sizeCost =
+                        ProductData.products.sizes.sheetSizes[value].price;
+
+                    // cart state
+                    this.CartStore.cartEmpty = false;
+                }
             },
             handleCakeFlavorCost: (e: React.ChangeEvent<HTMLSelectElement>) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
-                this.CakeStore.cakeCosts.flavorsCost = value;
+                // flavor name
+                this.CakeStore.cakeFlavors.flavor =
+                    ProductData.products.flavors[value].productName;
+                // price
+                this.CakeStore.cakeCosts.flavorsCost =
+                    ProductData.products.flavors[value].price;
             },
             handleCakeFrostingCost: (
                 e: React.ChangeEvent<HTMLSelectElement>
             ) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
-                this.CakeStore.cakeCosts.frostingsCost = value;
+                // flavor name
+                this.CakeStore.cakeFlavors.frosting =
+                    ProductData.products.frostings[value].productName;
+                // price
+                this.CakeStore.cakeCosts.frostingsCost =
+                    ProductData.products.frostings[value].price;
             },
             handleCakeFillingCost: (
                 e: React.ChangeEvent<HTMLSelectElement>
             ) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
-                this.CakeStore.cakeCosts.fillingsCost = value;
+                // flavor name
+                this.CakeStore.cakeFlavors.filling =
+                    ProductData.products.fillings[value].productName;
+                // price
+                this.CakeStore.cakeCosts.fillingsCost =
+                    ProductData.products.fillings[value].price;
             },
             handleCakeFruitCost: (e: React.ChangeEvent<HTMLSelectElement>) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
-                this.CakeStore.cakeCosts.fruitCost = value;
+                // flavor name
+                this.CakeStore.cakeFlavors.fruit =
+                    ProductData.products.fruit[value].productName;
+                // price
+                this.CakeStore.cakeCosts.fruitCost =
+                    ProductData.products.fruit[value].price;
             },
         },
         cakeDetailsActions: {
@@ -224,21 +283,75 @@ export class GlobalStateStore {
             ) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
-                this.CupcakeStore.cupcakeCosts.quantityCost = value;
+                if (this.CupcakeStore.cupcakeCount.size === ProductSizes.MINI) {
+                    //size
+                    this.CupcakeStore.cupcakeCount.size =
+                        ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                            value
+                        ].productSize!;
+
+                    //serves
+                    this.CupcakeStore.cupcakeCount.serves =
+                        ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                            value
+                        ].productServes;
+
+                    //price
+                    this.CupcakeStore.cupcakeCosts.quantityCost =
+                        ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                            value
+                        ].price;
+
+                    // cart state
+                    this.CartStore.cartEmpty = false;
+                } else if (
+                    this.CupcakeStore.cupcakeCount.size === ProductSizes.REGULAR
+                ) {
+                    //size
+                    this.CupcakeStore.cupcakeCount.size =
+                        ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                            value
+                        ].productSize!;
+
+                    //serves
+                    this.CupcakeStore.cupcakeCount.serves =
+                        ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                            value
+                        ].productServes;
+
+                    //price
+                    this.CupcakeStore.cupcakeCosts.quantityCost =
+                        ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                            value
+                        ].price;
+
+                    // cart state
+                    this.CartStore.cartEmpty = false;
+                }
             },
             handleCupcakeFlavorCost: (
                 e: React.ChangeEvent<HTMLSelectElement>
             ) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
-                this.CupcakeStore.cupcakeCosts.flavorsCost = value;
+                // flavor
+                this.CupcakeStore.cupcakeFlavors.flavor =
+                    ProductData.products.flavors[value].productName;
+                // price
+                this.CupcakeStore.cupcakeCosts.flavorsCost =
+                    ProductData.products.flavors[value].price;
             },
             handleCupcakeFrostingCost: (
                 e: React.ChangeEvent<HTMLSelectElement>
             ) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
-                this.CupcakeStore.cupcakeCosts.frostingsCost = value;
+                // frosting
+                this.CupcakeStore.cupcakeFlavors.frosting =
+                    ProductData.products.frostings[value].productName;
+                // price
+                this.CupcakeStore.cupcakeCosts.frostingsCost =
+                    ProductData.products.frostings[value].price;
             },
             setCupcakeSize: (e: React.ChangeEvent<HTMLInputElement>) => {
                 let select: HTMLInputElement = e.target;
@@ -345,27 +458,81 @@ export class GlobalStateStore {
             ) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
-                this.CookieStore.cookieCosts.quantityCost = value;
-                console.log(value);
+                if (this.CookieStore.cookieCount.size === ProductSizes.MINI) {
+                    //size
+                    this.CookieStore.cookieCount.size =
+                        ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                            value
+                        ].productSize!;
+
+                    //serves
+                    this.CookieStore.cookieCount.serves =
+                        ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                            value
+                        ].productServes;
+
+                    //price
+                    this.CookieStore.cookieCosts.quantityCost =
+                        ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                            value
+                        ].price;
+
+                    // cart state
+                    this.CartStore.cartEmpty = false;
+                } else if (
+                    this.CookieStore.cookieCount.size === ProductSizes.REGULAR
+                ) {
+                    //size
+                    this.CookieStore.cookieCount.size =
+                        ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                            value
+                        ].productSize!;
+
+                    //serves
+                    this.CookieStore.cookieCount.serves =
+                        ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                            value
+                        ].productServes;
+
+                    //price
+                    this.CookieStore.cookieCosts.quantityCost =
+                        ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                            value
+                        ].price;
+
+                    // cart state
+                    this.CartStore.cartEmpty = false;
+                }
             },
             handleCookieFlavorCost: (
                 e: React.ChangeEvent<HTMLSelectElement>
             ) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
-                this.CookieStore.cookieCosts.flavorsCost = value;
+                // flavor
+                this.CookieStore.cookieFlavors.flavor =
+                    ProductData.products.cookies[value].productName;
+                // price
+                this.CookieStore.cookieCosts.flavorsCost =
+                    ProductData.products.flavors[value].price;
             },
             handleCookieFrostingCost: (
                 e: React.ChangeEvent<HTMLSelectElement>
             ) => {
                 let select: HTMLSelectElement = e.target;
                 let value: number = parseInt(select.value);
-                this.CookieStore.cookieCosts.frostingsCost = value;
+                // frosting
+                this.CookieStore.cookieFlavors.frosting =
+                    ProductData.products.frostings[value].productName;
+                // price
+                this.CookieStore.cookieCosts.frostingsCost =
+                    ProductData.products.frostings[value].price;
             },
             setCookieSize: (e: React.ChangeEvent<HTMLInputElement>) => {
                 let select: HTMLInputElement = e.target;
                 let value: string = select.value;
                 this.CookieStore.cookieCount.size = value;
+                console.log(value);
             },
         },
         cookieDetailsActions: {

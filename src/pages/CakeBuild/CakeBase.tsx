@@ -33,17 +33,17 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
 
         // renders cake sizes
         return shape.map(({ id, productSize, productServes, price }) => {
-            if (id === 0) {
+            if (price === 0) {
                 return (
-                    <option key={`${price}${id}`} value="">
+                    <option key={`${productServes}`} value="0">
                         Choose One
                     </option>
                 );
             } else {
                 return (
                     <option
-                        key={`${id}`}
-                        value={`${price}`}
+                        key={`${productServes}`}
+                        value={`${id}`}
                     >{`${productSize} (${productServes}) ($${price})`}</option>
                 );
             }

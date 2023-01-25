@@ -32,15 +32,15 @@ class CCCount extends React.Component<ICCCountProps, {}> {
                 ({ id, productQuantity, productServes, price }) => {
                     if (id === 0) {
                         return (
-                            <option key={`${id}`} value="0">
+                            <option key={productQuantity} value="0">
                                 Choose One
                             </option>
                         );
                     } else {
                         return (
                             <option
-                                key={`${id}`}
-                                value={price}
+                                key={productQuantity}
+                                value={id}
                             >{`${productQuantity} (${productServes}) ($${price})`}</option>
                         );
                     }
@@ -51,15 +51,15 @@ class CCCount extends React.Component<ICCCountProps, {}> {
                 ({ id, productQuantity, productServes, price }) => {
                     if (id === 0) {
                         return (
-                            <option key={`${id}`} value="0">
+                            <option key={productQuantity} value="0">
                                 Choose One
                             </option>
                         );
                     } else {
                         return (
                             <option
-                                key={`${id}`}
-                                value={price}
+                                key={productQuantity}
+                                value={id}
                             >{`${productQuantity} (${productServes}) ($${price})`}</option>
                         );
                     }
