@@ -44,7 +44,6 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                     <option
                         key={`${id}`}
                         value={`${price}`}
-                        datatype={`${productSize}`}
                     >{`${productSize} (${productServes}) ($${price})`}</option>
                 );
             }
@@ -55,7 +54,6 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
         const cakeTier = this.props.store!.CakeStore.cakeBase.tier;
         const cakeShape = this.props.store!.CakeStore.cakeBase.shape;
         const sizeCost = this.props.store!.CakeStore.cakeCosts.sizeCost;
-        const cakeSize = this.props.store!.CakeStore.cakeBase.size;
 
         // actions
         const updateTier =
@@ -168,7 +166,6 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                         <div className="base-option">
                             <form action="">
                                 <select
-                                    datatype={cakeSize}
                                     onChange={(e) => handleCakeSizeCost(e)}
                                     name={sizeCost.toString()}
                                     defaultValue={sizeCost}
