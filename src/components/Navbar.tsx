@@ -1,5 +1,5 @@
 //styles
-import "../styles/Navbar.scss";
+import "../styles/ComponentStyles/Navbar.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 //icons
@@ -12,7 +12,7 @@ import { GlobalStateStore } from "../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 
 //components
-import Cart from "./Cart";
+import Cart from "./Cart/Cart";
 
 export const pages = [
     {

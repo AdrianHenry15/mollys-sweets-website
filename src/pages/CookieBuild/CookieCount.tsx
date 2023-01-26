@@ -1,5 +1,5 @@
 // styles
-import "../../styles/CookieBuild/CookieCount.scss";
+import "../../styles/CookieBuildStyles/CookieCount.scss";
 
 //frameworks
 import React from "react";

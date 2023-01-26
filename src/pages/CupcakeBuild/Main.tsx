@@ -1,5 +1,5 @@
 //styles
-import "../../styles/CupcakeBuild/Main.scss";
+import "../../styles/CupcakeBuildStyles/Main.scss";
 //frameworks
 import React from "react";
 import { Link } from "react-router-dom";

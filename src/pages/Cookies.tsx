@@ -1,5 +1,5 @@
 // Styles
-import "../styles/Cookies.scss";
+import "../styles/PageStyles/Cookies.scss";
 import "../styles/GlobalStyles.scss";
 
 // Data

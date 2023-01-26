@@ -1,5 +1,5 @@
 //styles
-import "../../styles/CakeBuild/OptionsOverview.scss";
+import "../../styles/CakeBuildStyles/OptionsOverview.scss";
 
 //frameworks
 import React from "react";

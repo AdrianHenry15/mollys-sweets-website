@@ -7,7 +7,7 @@ import { CakeOccasion, CakeRecipient } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 //styles
-import "../../styles/CookieBuild/CookieDetails.scss";
+import "../../styles/CookieBuildStyles/CookieDetails.scss";
 
 interface ICookieDetailsProps {
     store?: GlobalStateStore;

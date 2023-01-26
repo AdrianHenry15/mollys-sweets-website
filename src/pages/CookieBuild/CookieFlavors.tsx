@@ -2,7 +2,7 @@
 import React from "react";
 
 //styles
-import "../../styles/CookieBuild/CookieFlavors.scss";
+import "../../styles/CookieBuildStyles/CookieFlavors.scss";
 
 //stores
 import { GlobalStateStore } from "../../store/GlobalStateStore";

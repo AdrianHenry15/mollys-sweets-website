@@ -2,7 +2,7 @@
 import React from "react";
 
 //styles
-import "../../styles/CupcakeBuild/CCTotalCost.scss";
+import "../../styles/CupcakeBuildStyles/CCTotalCost.scss";
 
 //store
 import { inject, observer } from "mobx-react";

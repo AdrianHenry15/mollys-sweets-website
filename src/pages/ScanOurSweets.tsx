@@ -1,5 +1,5 @@
 // Styles
-import "../styles/SampleOurSweets.scss";
+import "../styles/PageStyles/ScanOurSweets.scss";
 import "../styles/GlobalStyles.scss";
 
 // Frameworks

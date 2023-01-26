@@ -1,5 +1,5 @@
 //styles
-import "../styles/Home.scss";
+import "../styles/PageStyles/Home.scss";
 
 //frameworks
 import { Link } from "react-router-dom";

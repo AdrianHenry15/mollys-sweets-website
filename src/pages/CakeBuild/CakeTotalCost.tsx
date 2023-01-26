@@ -1,7 +1,7 @@
 import { inject, observer } from "mobx-react";
 import React from "react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
-import "../../styles/CakeBuild/TotalCost.scss";
+import "../../styles/CakeBuildStyles/TotalCost.scss";
 
 interface ICakeTotalCostProps {
     store?: GlobalStateStore;

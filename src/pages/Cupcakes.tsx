@@ -1,5 +1,5 @@
 // Styles
-import "../styles/Cupcakes.scss";
+import "../styles/PageStyles/Cupcakes.scss";
 import "../styles/GlobalStyles.scss";
 
 // Frameworks

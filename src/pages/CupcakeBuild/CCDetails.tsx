@@ -7,7 +7,7 @@ import { CakeOccasion, CakeRecipient } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 //styles
-import "../../styles/CupcakeBuild/CCDetails.scss";
+import "../../styles/CupcakeBuildStyles/CCDetails.scss";
 
 interface ICCDetailsProps {
     store?: GlobalStateStore;

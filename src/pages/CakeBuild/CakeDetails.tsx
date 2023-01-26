@@ -5,7 +5,7 @@ import { CakeOccasion, CakeRecipient } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 //styles
-import "../../styles/CakeBuild/Details.scss";
+import "../../styles/CakeBuildStyles/Details.scss";
 
 interface ICakeDetailsProps {
     store?: GlobalStateStore;

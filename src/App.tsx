@@ -18,7 +18,7 @@ import ChooseYourCupcakes from "./pages/CupcakeBuild/Main";
 import ChooseYourCookies from "./pages/CookieBuild/Main";
 import { GlobalStateStore } from "./store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart";
 
 interface IAppProps {
     store: GlobalStateStore;

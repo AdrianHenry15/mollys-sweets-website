@@ -1,5 +1,5 @@
 // Styles
-import "../styles/Cakes.scss";
+import "../styles/PageStyles/Cakes.scss";
 import "../styles/GlobalStyles.scss";
 
 // Frameworks
