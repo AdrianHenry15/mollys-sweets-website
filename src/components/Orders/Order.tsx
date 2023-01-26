@@ -34,7 +34,7 @@ class CakeOrder extends React.Component<IOrderProps, {}> {
                 <div className="product-item-container">
                     <CakeIcon className="product-icon-display" />
                     <div className="product-info">
-                        <h4 className="product-title">{`${cakeFlavor} With ${cakeFrosting} and ${cakeFilling}`}</h4>
+                        <h4 className="product-title">{`${cakeFlavor} ${cakeFrosting} ${cakeFilling}`}</h4>
                         <div className="info-btn-container">
                             <div className="info-btn remove-btn">
                                 Remove Item

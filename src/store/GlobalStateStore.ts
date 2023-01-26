@@ -624,7 +624,10 @@ export class GlobalStateStore {
         currentCart: [],
         cartEmpty: true,
     };
-    @observable OrderStore: IOrderStore = {};
+    @observable OrderStore: IOrderStore = {
+        orderFilled: false,
+        orderInProgress: false,
+    };
     @observable UserStore: IUserStore = {};
 }
 

@@ -12,7 +12,7 @@ import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
 
 //components
-import Order from "../Orders/CakeOrder";
+import Order from "../Orders/Order";
 import EmptyCart from "./EmptyCart";
 
 interface ICartProps {
