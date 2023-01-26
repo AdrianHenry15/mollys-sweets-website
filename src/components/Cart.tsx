@@ -60,6 +60,42 @@ class Cart extends React.Component<ICartProps, ICartState> {
     render() {
         //store variables
         const emptyCartState = this.props.store!.CartStore.cartEmpty;
+        // product variables from store
+        // cakes
+        const tierCost = this.props.store!.CakeStore.cakeCosts.tierCost;
+        const sizeCost = this.props.store!.CakeStore.cakeCosts.sizeCost;
+        const flavorCost = this.props.store!.CakeStore.cakeCosts.flavorsCost;
+        const frostingCost =
+            this.props.store!.CakeStore.cakeCosts.frostingsCost;
+        const fillingCost = this.props.store!.CakeStore.cakeCosts.fillingsCost;
+        const fruitCost = this.props.store!.CakeStore.cakeCosts.fruitCost;
+        const updateTotalCakeCost =
+            this.props.store!.ComputedCakeCosts.computedCosts
+                .updateTotalCakeCost;
+        //cupcakes
+        const cupcakeQuantityCost =
+            this.props.store!.CupcakeStore.cupcakeCosts.quantityCost;
+        const cupcakeFlavorCost =
+            this.props.store!.CupcakeStore.cupcakeCosts.flavorsCost;
+        const cupcakeFrostingCost =
+            this.props.store!.CupcakeStore.cupcakeCosts.frostingsCost;
+        const updateTotalCupcakeCost =
+            this.props.store!.ComputedCupcakeCosts.computedCosts
+                .updateTotalCupcakeCost;
+        //cupcakes
+        const cookieQuantityCost =
+            this.props.store!.CookieStore.cookieCosts.quantityCost;
+        const cookieFlavorCost =
+            this.props.store!.CookieStore.cookieCosts.flavorsCost;
+        const cookieFrostingCost =
+            this.props.store!.CookieStore.cookieCosts.frostingsCost;
+        const updateTotalCookieCost =
+            this.props.store!.ComputedCookieCosts.computedCosts
+                .updateTotalCookieCost;
+
+        // total
+        const updateTotalCost =
+            this.props.store!.ProductComputeds.updateProductTotal;
         return (
             <section className="cart-main">
                 {emptyCartState && (
@@ -115,27 +151,19 @@ class Cart extends React.Component<ICartProps, ICartState> {
                             <section className="total-container">
                                 {/* cakes total */}
                                 <div className="total-item-container ">
-                                    <div className="label-container">
+                                    <div
+                                        onClick={() =>
+                                            this.onCakeDropdownClick()
+                                        }
+                                        className="label-container"
+                                    >
+                                        <CakeIcon className="product-icon" />
+
                                         <span className="total-label">
                                             Cakes
                                         </span>
-                                        {this.state.cakeDropdown ? (
-                                            <DownArrow
-                                                onClick={() =>
-                                                    this.onCakeDropdownClick()
-                                                }
-                                                className="arrow-icon"
-                                            />
-                                        ) : (
-                                            <RightArrow
-                                                onClick={() =>
-                                                    this.onCakeDropdownClick()
-                                                }
-                                                className="arrow-icon"
-                                            />
-                                        )}
                                     </div>
-                                    <div className="price"></div>
+                                    <div className="price">{`$${updateTotalCakeCost()}`}</div>
                                 </div>
                                 {/* tier */}
                                 {this.state.cakeDropdown && (
@@ -144,7 +172,9 @@ class Cart extends React.Component<ICartProps, ICartState> {
                                             <label className="item">
                                                 Tier:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">
+                                                {`$${tierCost}`}
+                                            </div>
                                         </div>
 
                                         {/* size */}
@@ -152,63 +182,64 @@ class Cart extends React.Component<ICartProps, ICartState> {
                                             <label className="item">
                                                 Size:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">
+                                                {`$${sizeCost}`}
+                                            </div>
                                         </div>
                                         {/* flavor */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Flavor:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">
+                                                {`$${flavorCost}`}
+                                            </div>
                                         </div>
                                         {/* frosting */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Frosting:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">
+                                                {`$${frostingCost}`}
+                                            </div>
                                         </div>
                                         {/* filling */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Filling:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">
+                                                {`$${fillingCost}`}
+                                            </div>
                                         </div>
                                         {/* fruit */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Fruit:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">
+                                                {`$${fruitCost}`}
+                                            </div>
                                         </div>
                                     </div>
                                 )}
                             </section>
-                            <section className="cupcakes-total-container total-container">
+                            <section className="total-container">
                                 {/* cupcakes */}
                                 <div className="total-item-container ">
-                                    <div className="label-container">
+                                    <div
+                                        onClick={() =>
+                                            this.onCupcakeDropdownClick()
+                                        }
+                                        className="label-container"
+                                    >
+                                        <CupcakeIcon className="product-icon" />
                                         <span className="total-label">
-                                            Cupcakes
+                                            Cupcakes:
                                         </span>
-                                        {this.state.cupcakeDropdown ? (
-                                            <DownArrow
-                                                onClick={() =>
-                                                    this.onCupcakeDropdownClick()
-                                                }
-                                                className="arrow-icon"
-                                            />
-                                        ) : (
-                                            <RightArrow
-                                                onClick={() =>
-                                                    this.onCupcakeDropdownClick()
-                                                }
-                                                className="arrow-icon"
-                                            />
-                                        )}
                                     </div>
-                                    <div className="price"></div>
+                                    <div className="price">{`$${updateTotalCupcakeCost()}`}</div>
                                 </div>
                                 {/* quantity */}
                                 {this.state.cupcakeDropdown && (
@@ -217,49 +248,40 @@ class Cart extends React.Component<ICartProps, ICartState> {
                                             <label className="item">
                                                 Quantity:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">{`$${cupcakeQuantityCost}`}</div>
                                         </div>
                                         {/* flavor */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Flavor:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">{`$${cupcakeFlavorCost}`}</div>
                                         </div>
                                         {/* frosting */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Frosting:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">{`$${cupcakeFrostingCost}`}</div>
                                         </div>
                                     </div>
                                 )}
                             </section>
-                            <section className="cookies-total-container total-container">
+                            <section className="total-container">
                                 {/* cookies */}
                                 <div className="total-item-container ">
-                                    <div className="label-container">
+                                    <div
+                                        onClick={() =>
+                                            this.onCookieDropdownClick()
+                                        }
+                                        className="label-container"
+                                    >
+                                        <CookieIcon className="product-icon" />
                                         <span className="total-label">
-                                            Cookies
+                                            Cookies:
                                         </span>
-                                        {this.state.cookieDropdown ? (
-                                            <DownArrow
-                                                onClick={() =>
-                                                    this.onCookieDropdownClick()
-                                                }
-                                                className="arrow-icon"
-                                            />
-                                        ) : (
-                                            <RightArrow
-                                                onClick={() =>
-                                                    this.onCookieDropdownClick()
-                                                }
-                                                className="arrow-icon"
-                                            />
-                                        )}
                                     </div>
-                                    <div className="price"></div>
+                                    <div className="price">{`$${updateTotalCookieCost()}`}</div>
                                 </div>
                                 {/* quantity */}
                                 {this.state.cookieDropdown && (
@@ -268,24 +290,30 @@ class Cart extends React.Component<ICartProps, ICartState> {
                                             <label className="item">
                                                 Quantity:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">{`$${cookieQuantityCost}`}</div>
                                         </div>
                                         {/* flavor */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Flavor:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">{`$${cookieFlavorCost}`}</div>
                                         </div>
                                         {/* frosting */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Frosting:
                                             </label>
-                                            <div className="price"></div>
+                                            <div className="price">{`$${cookieFrostingCost}`}</div>
                                         </div>
                                     </div>
                                 )}
+                            </section>
+                            <section className="total-container">
+                                <div className="total-item-container full-item-container">
+                                    <h5 className="full-total-label">Total:</h5>
+                                    <div className="full-price">{`$${updateTotalCost()}`}</div>
+                                </div>
                             </section>
                         </section>
                     </div>

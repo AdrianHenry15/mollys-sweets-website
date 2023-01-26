@@ -99,15 +99,15 @@
 .label-container {
     display: flex;
     align-items: center;
-    width: 100%;
     height: min-content;
 }
 
-.arrow-icon {
+.product-icon {
     display: flex;
-    font-size: 10px;
-    margin-left: 3px;
+    font-size: 15px;
+    margin-right: 5px;
     margin-top: 2px;
+    cursor: pointer;
 }
 
 .total-label {
@@ -115,6 +115,15 @@
     align-items: center;
     text-decoration: underline;
     font-size: 15px;
+    cursor: pointer;
+}
+
+.full-total-label {
+    font-size: 25px;
+}
+
+.full-price {
+    font-size: 20px;
 }
 
 .total-item-container {
@@ -123,8 +132,25 @@
     justify-content: space-between;
 }
 
+.full-item-container {
+    border-top: solid 1px white;
+    text-align: center;
+    padding-top: 15px;
+}
+
 .item {
     font-size: 11px;
+}
+
+.price {
+    font-size: 11px;
+}
+
+.product-price-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    line-height: 20px;
 }
 
 @media (min-width: 481px) and (max-width: 1200px) {

@@ -20,6 +20,7 @@ import { ICakeComputeds } from "./schemas/ComputedStore/ICakeComputeds";
 import { ICookieActions } from "./schemas/ActionStore/ICookieActions";
 import { ICupcakeComputeds } from "./schemas/ComputedStore/ICupcakeComputeds";
 import { ICookieComputeds } from "./schemas/ComputedStore/ICookieComputeds";
+import { IProductComputeds } from "./schemas/ComputedStore/IProductComputeds";
 
 export class GlobalStateStore {
     constructor() {
@@ -598,6 +599,25 @@ export class GlobalStateStore {
     };
     @observable ProductStore: IProductStore = {
         totalCost: 0,
+    };
+
+    @computed ProductComputeds: IProductComputeds = {
+        updateProductTotal: () => {
+            return (
+                this.CupcakeStore.cupcakeCosts.flavorsCost +
+                this.CupcakeStore.cupcakeCosts.frostingsCost +
+                this.CupcakeStore.cupcakeCosts.quantityCost +
+                this.CookieStore.cookieCosts.flavorsCost +
+                this.CookieStore.cookieCosts.frostingsCost +
+                this.CookieStore.cookieCosts.quantityCost +
+                this.CakeStore.cakeCosts.flavorsCost +
+                this.CakeStore.cakeCosts.frostingsCost +
+                this.CakeStore.cakeCosts.fillingsCost +
+                this.CakeStore.cakeCosts.fruitCost +
+                this.CakeStore.cakeCosts.sizeCost +
+                this.CakeStore.cakeCosts.tierCost
+            );
+        },
     };
     @observable CartStore: ICartStore = {
         carts: [],
