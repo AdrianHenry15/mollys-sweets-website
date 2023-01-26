@@ -12,6 +12,8 @@ import { GiShoppingCart as EmptyCartIcon } from "react-icons/gi";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
+import { BiDownArrow as DownArrow } from "react-icons/bi";
+import { BiRightArrow as RightArrow } from "react-icons/bi";
 
 //components
 import Order from "./Order";
@@ -20,12 +22,40 @@ interface ICartProps {
     store?: GlobalStateStore;
 }
 
+interface ICartState {
+    cakeDropdown: boolean;
+    cupcakeDropdown: boolean;
+    cookieDropdown: boolean;
+}
+
 @inject("store")
 @observer
-class Cart extends React.Component<ICartProps, {}> {
+class Cart extends React.Component<ICartProps, ICartState> {
     constructor(props: ICartProps) {
         super(props);
+
+        this.state = {
+            cakeDropdown: false,
+            cupcakeDropdown: false,
+            cookieDropdown: false,
+        };
     }
+
+    onCakeDropdownClick = () => {
+        this.setState({
+            cakeDropdown: !this.state.cakeDropdown,
+        });
+    };
+    onCupcakeDropdownClick = () => {
+        this.setState({
+            cupcakeDropdown: !this.state.cupcakeDropdown,
+        });
+    };
+    onCookieDropdownClick = () => {
+        this.setState({
+            cookieDropdown: !this.state.cookieDropdown,
+        });
+    };
     //main
     render() {
         //store variables
@@ -82,71 +112,180 @@ class Cart extends React.Component<ICartProps, {}> {
                             <button className="checkout-btn">
                                 <span>Check Out</span>
                             </button>
-                            <section className="cakes-total-container total-container">
+                            <section className="total-container">
+                                {/* cakes total */}
+                                <div className="total-item-container ">
+                                    <div className="label-container">
+                                        <span className="total-label">
+                                            Cakes
+                                        </span>
+                                        {this.state.cakeDropdown ? (
+                                            <DownArrow
+                                                onClick={() =>
+                                                    this.onCakeDropdownClick()
+                                                }
+                                                className="arrow-icon"
+                                            />
+                                        ) : (
+                                            <RightArrow
+                                                onClick={() =>
+                                                    this.onCakeDropdownClick()
+                                                }
+                                                className="arrow-icon"
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="price"></div>
+                                </div>
                                 {/* tier */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
-                                {/* size */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
-                                {/* flavor */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
-                                {/* frosting */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
-                                {/* filling */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
-                                {/* fruit */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
+                                {this.state.cakeDropdown && (
+                                    <div className="product-price-container">
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Tier:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+
+                                        {/* size */}
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Size:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+                                        {/* flavor */}
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Flavor:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+                                        {/* frosting */}
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Frosting:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+                                        {/* filling */}
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Filling:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+                                        {/* fruit */}
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Fruit:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+                                    </div>
+                                )}
                             </section>
                             <section className="cupcakes-total-container total-container">
+                                {/* cupcakes */}
+                                <div className="total-item-container ">
+                                    <div className="label-container">
+                                        <span className="total-label">
+                                            Cupcakes
+                                        </span>
+                                        {this.state.cupcakeDropdown ? (
+                                            <DownArrow
+                                                onClick={() =>
+                                                    this.onCupcakeDropdownClick()
+                                                }
+                                                className="arrow-icon"
+                                            />
+                                        ) : (
+                                            <RightArrow
+                                                onClick={() =>
+                                                    this.onCupcakeDropdownClick()
+                                                }
+                                                className="arrow-icon"
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="price"></div>
+                                </div>
                                 {/* quantity */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
-                                {/* flavor */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
-                                {/* frosting */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
+                                {this.state.cupcakeDropdown && (
+                                    <div className="product-price-container">
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Quantity:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+                                        {/* flavor */}
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Flavor:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+                                        {/* frosting */}
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Frosting:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+                                    </div>
+                                )}
                             </section>
                             <section className="cookies-total-container total-container">
+                                {/* cookies */}
+                                <div className="total-item-container ">
+                                    <div className="label-container">
+                                        <span className="total-label">
+                                            Cookies
+                                        </span>
+                                        {this.state.cookieDropdown ? (
+                                            <DownArrow
+                                                onClick={() =>
+                                                    this.onCookieDropdownClick()
+                                                }
+                                                className="arrow-icon"
+                                            />
+                                        ) : (
+                                            <RightArrow
+                                                onClick={() =>
+                                                    this.onCookieDropdownClick()
+                                                }
+                                                className="arrow-icon"
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="price"></div>
+                                </div>
                                 {/* quantity */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
-                                {/* flavor */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
-                                {/* frosting */}
-                                <div className="total-item-container">
-                                    <div className="item"></div>
-                                    <div className="price"></div>
-                                </div>
+                                {this.state.cookieDropdown && (
+                                    <div className="product-price-container">
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Quantity:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+                                        {/* flavor */}
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Flavor:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+                                        {/* frosting */}
+                                        <div className="total-item-container">
+                                            <label className="item">
+                                                Frosting:
+                                            </label>
+                                            <div className="price"></div>
+                                        </div>
+                                    </div>
+                                )}
                             </section>
                         </section>
                     </div>
