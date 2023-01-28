@@ -1,10 +1,8 @@
-const { Schema, model } = require("mongoose")
-const bcrypt = require("bcrypt")
-const Order = require("./Order")
-const Cart = require("./Cart")
-const Product = require("./Product")
+import { model, Schema } from "mongoose"
+import { IUser } from "./../types/user"
+import Order from "./Order"
 
-const userSchema = new Schema({
+const userSchema: Schema = new Schema({
   first_name: {
     type: String,
     required: true,
@@ -44,6 +42,4 @@ const userSchema = new Schema({
   ],
 })
 
-const User = model("User", userSchema)
-
-module.exports = User
+export default model<IUser>("User", userSchema)
