@@ -1,4 +1,4 @@
-import { IOrder } from "./../types/order";
+import { IOrder } from "../types/orderType";
 import { model, Schema } from "mongoose";
 
 const orderSchema: Schema = new Schema(
@@ -9,9 +9,14 @@ const orderSchema: Schema = new Schema(
         },
 
         // TODO: update for order
-        product: {
+        products: {
             type: Schema.Types.ObjectId,
             ref: "Product",
+        },
+
+        status: {
+            type: String,
+            trim: true,
         },
     },
     { timestamps: true }

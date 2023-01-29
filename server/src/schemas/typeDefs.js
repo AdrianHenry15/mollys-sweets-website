@@ -1,25 +1,66 @@
-const { gql } = require("apollo-server-express");
+import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
   scalar Upload
-  type Category {
-    _id: ID
-    name: String
-  }
   type Product {
     _id: ID
-    name: String
-    description: String
-    image_url: String
-    price: Float
-    quantity: Int
-    category: Category
+    product!: String
+    cakeBase: {
+      singleTier: Boolean!;
+      multipleTier: Boolean!;
+      roundCake: Boolean!;
+      sheetCake: Boolean!;
+      cakeSize: Boolean!;
+      totalPrice: Float!;
+    }
+    cupcakeBase: {
+      regular: Boolean!;
+      mini: Boolean!;
+      quantity: String!;
+      totalPrice: Float!;
+    }
+    cookieBase: {
+      regular: Boolean!;
+      mini: Boolean!;
+      quantity: String!;
+      totalPrice: Float!;
+    }
+    cakeFlavor: {
+      flavor: String!;
+      filling: String!;
+      frosting: String!;
+      fruit: Boolean!;
+      fruitType: String!;
+      totalPrice: Float!;
+    }
+    cupcakeFlavor: {
+      flavor: String!;
+      frosting: String!;
+      totalPrice: Float!;
+    }
+    cookieFlavor: {
+      flavor: String!;
+      frosting: Boolean!;
+      frostingType: String!;
+      totalPrice: Float!;
+    }
+    dateOfEvent: Date!;
+    pickUpOrDelivery: Boolean!;
+    arrivalTime: Date!;
+    occasion: String!;
+    recipient: String!;
+    preferredColors: String!;
+    additionalDetails: String!;
+    totalPrice: Number!;
+    linkExample: String;
+    imageURL: String;
+    description: String;
   }
   type Order {
     _id: ID
     purchaseDate: String
     products: [Product]
-    order_status: String
+    status: String
   }
   type Cart {
     _id: ID
@@ -112,4 +153,4 @@ const typeDefs = gql`
   }
 `;
 
-module.exports = typeDefs;
+export default typeDefs;

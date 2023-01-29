@@ -1,16 +1,16 @@
 import { model, Schema } from "mongoose";
-import { IProduct } from "./../types/product";
+import { IProduct } from "../types/productType";
 
-const productSchema = new Schema({
+const productSchema: Schema = new Schema({
     id: {
         type: Number,
         required: true,
         trim: true,
     },
-    product: {
-        type: String,
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: "Category",
         required: true,
-        trim: true,
     },
     cakeBase: {
         required: false,

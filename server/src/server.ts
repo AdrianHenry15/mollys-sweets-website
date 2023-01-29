@@ -1,50 +1,28 @@
-import express, { Express } from "express"
-import cors from "cors"
-import todoRoutes from "./routes"
-const { authMiddleware } = require("./utils/auth")
-const { graphqlUploadExpress } = require("graphql-upload")
-const { ApolloServer } = require("apollo-server-express")
-const db = require("./config/connection")
-const path = require("path")
+// External Dependencies
+import { connectToDatabase } from "./services/database.service";
+import { cartRouter } from "./routes/cart.router";
+import express from "express";
 
-const app: Express = express()
+// Global Variables
+const app = express();
 
-//graphql image and data collection
-app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 1 }))
+connectToDatabase()
+    .then(() => {
+        app.use("/cart", cartRouter);
 
-app.use(cors())
-app.use(todoRoutes)
+        // make sure env is never undefined
+        let port: string;
+        if (process.env.PORT) {
+            port = process.env.PORT;
+        } else {
+            throw new Error("Enviroment Variables Invalid");
+        }
 
-const PORT = process.env.PORT || 3001
-
-//apollo server for graphql
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: authMiddleware,
-})
-
-// service worker
-app.get("/service-worker.js", (req, res) => {
-  res.sendFile(
-    path.resolve(__dirname, "public", "../client/src/service-worker.js")
-  )
-})
-
-// Create a new instance of an Apollo server with the GraphQL schema
-const startApolloServer = async (typeDefs: any, resolvers: any) => {
-  await server.start()
-  server.applyMiddleware({ app })
-
-  db.once("open", () => {
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`)
-      console.log(
-        `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
-      )
+        app.listen(port, () => {
+            console.log(`Server started at http://localhost:${port}`);
+        });
     })
-  })
-}
-
-// Call the async function to start the server
-startApolloServer(typeDefs, resolvers)
+    .catch((error: Error) => {
+        console.error("Database connection failed", error);
+        process.exit();
+    });
