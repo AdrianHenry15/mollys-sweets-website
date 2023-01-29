@@ -6,12 +6,20 @@ const categorySchema: Schema = new Schema({
         type: String,
         required: true,
     },
-
-    category: {
-        id: Number,
-        type: String,
-        required: true,
-        trim: true,
+    cake: {
+        type: Schema.Types.ObjectId,
+        ref: "Cake",
+        required: false,
+    },
+    cupcake: {
+        type: Schema.Types.ObjectId,
+        ref: "Cupcake",
+        required: false,
+    },
+    cookie: {
+        type: Schema.Types.ObjectId,
+        ref: "Cookie",
+        required: false,
     },
 });
 

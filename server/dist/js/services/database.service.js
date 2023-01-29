@@ -51,19 +51,87 @@ function connectToDatabase() {
             throw new Error("Enviroment Variables Invalid");
         }
         // make sure env is never undefined
+        // START COLLECTIONS
         let cartCollection;
-        if (process.env.COLLECTION_NAME) {
-            cartCollection = process.env.COLLECTION_NAME;
+        if (process.env.CART_COLLECTION_NAME) {
+            cartCollection = process.env.CART_COLLECTION_NAME;
         }
         else {
             throw new Error("Enviroment Variables Invalid");
         }
-        const client = new mongoDB.MongoClient(process.env.DB_CONN_STRING);
+        let cakeCollection;
+        if (process.env.CAKE_COLLECTION_NAME) {
+            cakeCollection = process.env.CAKE_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        let cupcakeCollection;
+        if (process.env.CUPCAKE_COLLECTION_NAME) {
+            cupcakeCollection = process.env.CUPCAKE_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        let cookieCollection;
+        if (process.env.COOKIE_COLLECTION_NAME) {
+            cookieCollection = process.env.COOKIE_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        let orderCollection;
+        if (process.env.ORDER_COLLECTION_NAME) {
+            orderCollection = process.env.ORDER_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        let productCollection;
+        if (process.env.PRODUCT_COLLECTION_NAME) {
+            productCollection = process.env.PRODUCT_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        let userCollection;
+        if (process.env.USER_COLLECTION_NAME) {
+            userCollection = process.env.USER_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        let categoryCollection;
+        if (process.env.CATEGORY_COLLECTION_NAME) {
+            categoryCollection = process.env.CATEGORY_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        // END OF COLLECTIONS
+        // MongoDB Client Constructor
+        const options = { useNewUrlParser: true, useUnifiedTopology: true };
+        const client = new mongoDB.MongoClient(process.env.DB_CONN_STRING, options);
         yield client.connect();
         const db = client.db(process.env.DB_NAME);
-        const cartsCollection = db.collection(process.env.COLLECTION_NAME);
+        // COLLECTIONS
+        const cartsCollection = db.collection(process.env.CART_COLLECTION_NAME);
+        const cakesCollection = db.collection(process.env.CAKE_COLLECTION_NAME);
+        const cupcakesCollection = db.collection(process.env.CUPCAKE_COLLECTION_NAME);
+        const cookiesCollection = db.collection(process.env.COOKIE_COLLECTION_NAME);
+        const ordersCollection = db.collection(process.env.ORDER_COLLECTION_NAME);
+        const productsCollection = db.collection(process.env.PRODUCT_COLLECTION_NAME);
+        const categoriesCollection = db.collection(process.env.CATEGORY_COLLECTION_NAME);
+        const usersCollection = db.collection(process.env.USER_COLLECTION_NAME);
         exports.collections.carts = cartsCollection;
-        console.log(`Successfully connected to database: ${db.databaseName} and collection: ${cartsCollection.collectionName}`);
+        exports.collections.cakes = cakesCollection;
+        exports.collections.categories = categoriesCollection;
+        exports.collections.cookies = cookiesCollection;
+        exports.collections.cupcakes = cupcakesCollection;
+        exports.collections.orders = ordersCollection;
+        exports.collections.products = productsCollection;
+        exports.collections.users = usersCollection;
+        console.log(`Successfully connected to database: ${db.databaseName}`);
     });
 }
 exports.connectToDatabase = connectToDatabase;

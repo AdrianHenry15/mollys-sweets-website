@@ -6,11 +6,20 @@ const categorySchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    category: {
-        id: Number,
-        type: String,
-        required: true,
-        trim: true,
+    cake: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: "Cake",
+        required: false,
+    },
+    cupcake: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: "Cupcake",
+        required: false,
+    },
+    cookie: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: "Cookie",
+        required: false,
     },
 });
 exports.default = (0, mongoose_1.model)("Category", categorySchema);

@@ -1,0 +1,10 @@
+"use strict";
+const cartRouter = require("./cart.router");
+const cakeRouter = require("./cake.router");
+// import { categoryRouter } from "./category.router";
+// import { cookieRouter } from "./cookie.router";
+// import { cupcakeRouter } from "./cupcake.router";
+// import { orderRouter } from "./order.router";
+// import { productRouter } from "./product.router";
+// import { userRouter } from "./user.router";
+module.exports = { cartRouter, cakeRouter };

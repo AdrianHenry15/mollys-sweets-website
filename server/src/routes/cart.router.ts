@@ -12,11 +12,11 @@ cartRouter.use(express.json());
 // GET
 cartRouter.get("/", async (_req: Request, res: Response) => {
     try {
-        const games = (await collections
+        const carts = (await collections
             .carts!.find({})
             .toArray()) as typeof Cart[];
 
-        res.status(200).send(games);
+        res.status(200).send(carts);
     } catch (error) {
         res.status(500).send(Error.name);
     }
@@ -28,10 +28,10 @@ cartRouter.get("/:id", async (req: Request, res: Response) => {
 
     try {
         const query = { _id: new ObjectId(id) };
-        const game = (await collections.carts!.findOne(query)) as typeof Cart;
+        const cart = (await collections.carts!.findOne(query)) as typeof Cart;
 
-        if (game) {
-            res.status(200).send(game);
+        if (cart) {
+            res.status(200).send(cart);
         }
     } catch (error) {
         res.status(404).send(
@@ -43,8 +43,8 @@ cartRouter.get("/:id", async (req: Request, res: Response) => {
 // POST
 cartRouter.post("/", async (req: Request, res: Response) => {
     try {
-        const newGame = req.body as typeof Cart;
-        const result = await collections.carts!.insertOne(newGame);
+        const newcart = req.body as typeof Cart;
+        const result = await collections.carts!.insertOne(newcart);
 
         result
             ? res
@@ -73,7 +73,7 @@ cartRouter.put("/:id", async (req: Request, res: Response) => {
 
         result
             ? res.status(200).send(`Successfully updated cart with id ${id}`)
-            : res.status(304).send(`Game with id: ${id} not updated`);
+            : res.status(304).send(`cart with id: ${id} not updated`);
     } catch (error) {
         console.error(Error);
         res.status(400).send(Error);

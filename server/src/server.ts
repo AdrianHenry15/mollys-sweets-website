@@ -1,6 +1,7 @@
 // External Dependencies
 import { connectToDatabase } from "./services/database.service";
 import { cartRouter } from "./routes/cart.router";
+import { cakeRouter } from "./routes/cake.router";
 import express from "express";
 
 // Global Variables
@@ -9,6 +10,7 @@ const app = express();
 connectToDatabase()
     .then(() => {
         app.use("/cart", cartRouter);
+        app.use("/cake", cakeRouter);
 
         // make sure env is never undefined
         let port: string;
