@@ -91,6 +91,34 @@ export async function connectToDatabase() {
 
     const db: mongoDB.Db = client.db(process.env.DB_NAME);
 
+    //JSON schema validation to ensure all future documents match the model we expect.
+
+    // await db.command({
+    //     "collMod": [process.env.CART_COLLECTION_NAME, process.env.CAKE_COLLECTION_NAME],
+    //     "validator": {
+    //         $jsonSchema: {
+    //             bsonType: "object",
+    //             required: ["name", "price", "category"],
+    //             additionalProperties: false,
+    //             properties: {
+    //             _id: {},
+    //             name: {
+    //                 bsonType: "string",
+    //                 description: "'name' is required and is a string"
+    //             },
+    //             price: {
+    //                 bsonType: "number",
+    //                 description: "'price' is required and is a number"
+    //             },
+    //             category: {
+    //                 bsonType: "string",
+    //                 description: "'category' is required and is a string"
+    //             }
+    //             }
+    //         }
+    //      }
+    // });
+
     // COLLECTIONS
     const cartsCollection: mongoDB.Collection = db.collection(
         process.env.CART_COLLECTION_NAME

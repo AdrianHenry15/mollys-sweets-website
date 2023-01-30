@@ -50,8 +50,8 @@ exports.cartRouter.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, f
 // POST
 exports.cartRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const newcart = req.body;
-        const result = yield database_service_1.collections.carts.insertOne(newcart);
+        const newCart = req.body;
+        const result = yield database_service_1.collections.carts.insertOne(newCart);
         result
             ? res
                 .status(201)

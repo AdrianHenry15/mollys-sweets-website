@@ -50,8 +50,8 @@ exports.cupcakeRouter.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0
 // POST
 exports.cupcakeRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const newcupcake = req.body;
-        const result = yield database_service_1.collections.cupcakes.insertOne(newcupcake);
+        const newCupcake = req.body;
+        const result = yield database_service_1.collections.cupcakes.insertOne(newCupcake);
         result
             ? res
                 .status(201)
@@ -68,10 +68,10 @@ exports.cupcakeRouter.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0
     var _b;
     const id = (_b = req === null || req === void 0 ? void 0 : req.params) === null || _b === void 0 ? void 0 : _b.id;
     try {
-        const updatedcupcake = req.body;
+        const updatedCupcake = req.body;
         const query = { _id: new mongodb_1.ObjectId(id) };
         const result = yield database_service_1.collections.cupcakes.updateOne(query, {
-            $set: updatedcupcake,
+            $set: updatedCupcake,
         });
         result
             ? res.status(200).send(`Successfully updated cupcake with id ${id}`)

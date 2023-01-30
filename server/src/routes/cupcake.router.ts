@@ -45,8 +45,8 @@ cupcakeRouter.get("/:id", async (req: Request, res: Response) => {
 // POST
 cupcakeRouter.post("/", async (req: Request, res: Response) => {
     try {
-        const newcupcake = req.body as typeof Cupcake;
-        const result = await collections.cupcakes!.insertOne(newcupcake);
+        const newCupcake = req.body as typeof Cupcake;
+        const result = await collections.cupcakes!.insertOne(newCupcake);
 
         result
             ? res
@@ -66,11 +66,11 @@ cupcakeRouter.put("/:id", async (req: Request, res: Response) => {
     const id = req?.params?.id;
 
     try {
-        const updatedcupcake: typeof Cupcake = req.body as typeof Cupcake;
+        const updatedCupcake: typeof Cupcake = req.body as typeof Cupcake;
         const query = { _id: new ObjectId(id) };
 
         const result = await collections.cupcakes!.updateOne(query, {
-            $set: updatedcupcake,
+            $set: updatedCupcake,
         });
 
         result

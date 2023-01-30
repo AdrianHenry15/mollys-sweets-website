@@ -43,7 +43,7 @@ export interface IProduct extends Document {
         totalPrice: number;
     };
     dateOfEvent: Date;
-    pickUpOrDelivery: boolean;
+    pickUpOrDelivery: string;
     arrivalTime: Date;
     occasion: string;
     recipient: string;

@@ -43,8 +43,8 @@ cartRouter.get("/:id", async (req: Request, res: Response) => {
 // POST
 cartRouter.post("/", async (req: Request, res: Response) => {
     try {
-        const newcart = req.body as typeof Cart;
-        const result = await collections.carts!.insertOne(newcart);
+        const newCart = req.body as typeof Cart;
+        const result = await collections.carts!.insertOne(newCart);
 
         result
             ? res

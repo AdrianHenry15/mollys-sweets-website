@@ -18,7 +18,7 @@ const productSchema = new mongoose_1.Schema({
         trim: true,
     },
     pickupOrDelivery: {
-        type: Boolean,
+        type: String,
         required: true,
         trim: true,
     },
@@ -33,22 +33,17 @@ const productSchema = new mongoose_1.Schema({
         trim: true,
     },
     recipient: {
-        type: String,
+        type: [String],
         required: true,
         trim: true,
     },
     preferredColors: {
-        type: String,
+        type: [String],
         required: true,
         trim: true,
     },
     additionalDetails: {
         type: String,
-        required: true,
-        trim: true,
-    },
-    totalPrice: {
-        type: Number,
         required: true,
         trim: true,
     },
@@ -65,6 +60,11 @@ const productSchema = new mongoose_1.Schema({
     description: {
         type: String,
         required: false,
+        trim: true,
+    },
+    totalPrice: {
+        type: Number,
+        required: true,
         trim: true,
     },
 });
