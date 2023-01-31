@@ -14,7 +14,7 @@ productRouter.get("/", async (_req: Request, res: Response) => {
     try {
         const products = (await collections
             .products!.find({})
-            .toArray()) as typeof Product[];
+            .toArray()) as unknown as typeof Product[];
 
         res.status(200).send(products);
     } catch (error) {
@@ -30,7 +30,7 @@ productRouter.get("/:id", async (req: Request, res: Response) => {
         const query = { _id: new ObjectId(id) };
         const product = (await collections.products!.findOne(
             query
-        )) as typeof Product;
+        )) as unknown as typeof Product;
 
         if (product) {
             res.status(200).send(product);

@@ -1,0 +1,27 @@
+{
+  "name": "mollys-sweets-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd server && concurrently \"tsc -w\" \"nodemon dist/js/server.js\"",
+    "dev": "cd client && nodemon",
+    "develop": "cd server && concurrently \"tsc -w\" \"nodemon dist/js/server.js\" \"cd client && nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdrianHenry15/mollys-sweets-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdrianHenry15/mollys-sweets-website/issues"
+  },
+  "homepage": "https://github.com/AdrianHenry15/mollys-sweets-website#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20"
+  }
+}

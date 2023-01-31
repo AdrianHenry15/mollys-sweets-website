@@ -1,4 +1,7 @@
 import { Document } from "mongoose";
+import { ICart } from "./cartType";
+import { IOrder } from "./orderType";
+import { IProduct } from "./productType";
 
 export interface IUser extends Document {
     id: number;
@@ -8,7 +11,7 @@ export interface IUser extends Document {
     email: string;
     password: string;
     isAdmin: boolean;
-    orders: string;
-    cart: string;
-    wishlist: string;
+    orders: IOrder;
+    cart: ICart;
+    wishlist: IProduct;
 }

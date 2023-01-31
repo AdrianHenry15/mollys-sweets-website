@@ -1,47 +1,9 @@
-import { Document } from "mongoose";
+import { Date, Document } from "mongoose";
+import { ICategory } from "./categoryType";
 
 export interface IProduct extends Document {
     id: number;
-    category: string;
-    cakeBase?: {
-        singleTier: boolean;
-        multipleTier: boolean;
-        roundCake: boolean;
-        sheetCake: boolean;
-        cakeSize: string;
-        totalPrice: number;
-    };
-    cupcakeBase?: {
-        regular: boolean;
-        mini: boolean;
-        quantity: string;
-        totalPrice: number;
-    };
-    cookieBase?: {
-        regular: boolean;
-        mini: boolean;
-        quantity: string;
-        totalPrice: number;
-    };
-    cakeFlavor?: {
-        flavor: string;
-        filling: string;
-        frosting: string;
-        fruit: boolean;
-        fruitType?: string;
-        totalPrice: number;
-    };
-    cupcakeFlavor?: {
-        flavor: string;
-        frosting: string;
-        totalPrice: number;
-    };
-    cookieFlavor?: {
-        flavor: string;
-        frosting: boolean;
-        frostingType?: string;
-        totalPrice: number;
-    };
+    category: ICategory;
     dateOfEvent: Date;
     pickUpOrDelivery: string;
     arrivalTime: Date;

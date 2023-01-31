@@ -14,7 +14,7 @@ cartRouter.get("/", async (_req: Request, res: Response) => {
     try {
         const carts = (await collections
             .carts!.find({})
-            .toArray()) as typeof Cart[];
+            .toArray()) as unknown as typeof Cart[];
 
         res.status(200).send(carts);
     } catch (error) {
@@ -28,7 +28,9 @@ cartRouter.get("/:id", async (req: Request, res: Response) => {
 
     try {
         const query = { _id: new ObjectId(id) };
-        const cart = (await collections.carts!.findOne(query)) as typeof Cart;
+        const cart = (await collections.carts!.findOne(
+            query
+        )) as unknown as typeof Cart;
 
         if (cart) {
             res.status(200).send(cart);

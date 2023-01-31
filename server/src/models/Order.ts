@@ -1,18 +1,19 @@
 import { IOrder } from "../types/orderType";
-import { Document, model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 
 const orderSchema: Schema = new Schema(
     {
         id: {
-            type: String,
-            required: true,
+            type: Number,
+            trim: true,
+            require: true,
         },
-
-        // TODO: update for order
-        products: {
-            type: Schema.Types.ObjectId,
-            ref: "Product",
-        },
+        products: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Product",
+            },
+        ],
 
         status: {
             type: String,

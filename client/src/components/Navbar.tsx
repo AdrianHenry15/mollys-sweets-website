@@ -13,6 +13,7 @@ import { inject, observer } from "mobx-react";
 
 //components
 import Cart from "./Cart/Cart";
+import { getCakes } from "../store/routes/cakes.routes";
 
 export const pages = [
     {
@@ -56,6 +57,7 @@ interface INavbarProps {
 class Navbar extends React.Component<INavbarProps, {}> {
     //main
     render() {
+        console.log(getCakes());
         return (
             <>
                 <header className="navbar-container shadow-sm">

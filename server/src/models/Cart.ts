@@ -4,14 +4,16 @@ import { model, Schema } from "mongoose";
 const cartSchema: Schema = new Schema(
     {
         id: {
-            type: String,
-            required: true,
+            type: Number,
+            trim: true,
+            require: true,
         },
-
-        order: {
-            type: Schema.Types.ObjectId,
-            ref: "Order",
-        },
+        order: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Order",
+            },
+        ],
 
         quantity: {
             type: Number,

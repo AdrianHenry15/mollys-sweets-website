@@ -14,7 +14,7 @@ categoryRouter.get("/", async (_req: Request, res: Response) => {
     try {
         const categories = (await collections
             .categories!.find({})
-            .toArray()) as typeof Category[];
+            .toArray()) as unknown as typeof Category[];
 
         res.status(200).send(categories);
     } catch (error) {
@@ -30,7 +30,7 @@ categoryRouter.get("/:id", async (req: Request, res: Response) => {
         const query = { _id: new ObjectId(id) };
         const category = (await collections.categories!.findOne(
             query
-        )) as typeof Category;
+        )) as unknown as typeof Category;
 
         if (category) {
             res.status(200).send(category);

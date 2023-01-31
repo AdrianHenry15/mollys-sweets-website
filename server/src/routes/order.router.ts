@@ -14,7 +14,7 @@ orderRouter.get("/", async (_req: Request, res: Response) => {
     try {
         const orders = (await collections
             .orders!.find({})
-            .toArray()) as typeof Order[];
+            .toArray()) as unknown as typeof Order[];
 
         res.status(200).send(orders);
     } catch (error) {
@@ -30,7 +30,7 @@ orderRouter.get("/:id", async (req: Request, res: Response) => {
         const query = { _id: new ObjectId(id) };
         const order = (await collections.orders!.findOne(
             query
-        )) as typeof Order;
+        )) as unknown as typeof Order;
 
         if (order) {
             res.status(200).send(order);

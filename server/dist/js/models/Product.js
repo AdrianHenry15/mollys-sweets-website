@@ -4,8 +4,8 @@ const mongoose_1 = require("mongoose");
 const productSchema = new mongoose_1.Schema({
     id: {
         type: Number,
-        required: true,
         trim: true,
+        require: true,
     },
     category: {
         type: mongoose_1.Schema.Types.ObjectId,

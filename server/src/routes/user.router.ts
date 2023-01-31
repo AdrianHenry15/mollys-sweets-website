@@ -14,7 +14,7 @@ userRouter.get("/", async (_req: Request, res: Response) => {
     try {
         const users = (await collections
             .users!.find({})
-            .toArray()) as typeof User[];
+            .toArray()) as unknown as typeof User[];
 
         res.status(200).send(users);
     } catch (error) {
@@ -28,7 +28,9 @@ userRouter.get("/:id", async (req: Request, res: Response) => {
 
     try {
         const query = { _id: new ObjectId(id) };
-        const user = (await collections.users!.findOne(query)) as typeof User;
+        const user = (await collections.users!.findOne(
+            query
+        )) as unknown as typeof User;
 
         if (user) {
             res.status(200).send(user);

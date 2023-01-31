@@ -4,8 +4,8 @@ import { IProduct } from "../types/productType";
 const productSchema: Schema = new Schema({
     id: {
         type: Number,
-        required: true,
         trim: true,
+        require: true,
     },
     category: {
         type: Schema.Types.ObjectId,
