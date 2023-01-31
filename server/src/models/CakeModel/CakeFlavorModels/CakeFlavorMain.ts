@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
-import { ICakeFlavorMain } from "../../../types/CakeTypes/CakeFlavorTypes/cakeFlavorMainType";
+import { ICakeFlavorsMain } from "../../../types/CakeTypes/CakeFlavorTypes/cakeFlavorsMainType";
 
-const cakeFlavorMainSchema: Schema = new Schema({
+const cakeFlavorsMainSchema: Schema = new Schema({
     id: {
         type: Number,
         trim: true,
@@ -34,4 +34,7 @@ const cakeFlavorMainSchema: Schema = new Schema({
     },
 });
 
-export default model<ICakeFlavorMain>("CakeFlavorMain", cakeFlavorMainSchema);
+export default model<ICakeFlavorsMain>(
+    "CakeFlavorsMain",
+    cakeFlavorsMainSchema
+);
