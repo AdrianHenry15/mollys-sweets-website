@@ -1,5 +1,5 @@
 export interface ICupcakeFrosting {
     id: number;
-    frosting: string;
+    name: string;
     totalPrice: number;
 }

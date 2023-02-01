@@ -1,5 +1,5 @@
 export interface ICupcakeFlavor {
     id: number;
-    flavor: string;
+    name: string;
     totalPrice: number;
 }

@@ -2,11 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const cakeSchema = new mongoose_1.Schema({
-    id: {
-        type: Number,
-        trim: true,
-        require: true,
-    },
     cakeBase: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: "CakeBase",
@@ -14,7 +9,7 @@ const cakeSchema = new mongoose_1.Schema({
     },
     cakeFlavor: {
         type: mongoose_1.Schema.Types.ObjectId,
-        ref: "CakeFlavor",
+        ref: "CakeFlavorMain",
         require: true,
     },
 });

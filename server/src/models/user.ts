@@ -3,11 +3,6 @@ import { IUser } from "../types/userType";
 import bcrypt from "bcrypt";
 
 const userSchema: Schema = new Schema({
-    id: {
-        type: Number,
-        trim: true,
-        require: true,
-    },
     first_name: {
         type: String,
         required: true,

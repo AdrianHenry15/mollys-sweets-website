@@ -1,6 +1,6 @@
 export interface ICookieFrosting {
     id: number;
-    frosting: boolean;
-    frostingType: string;
+    frosting?: boolean;
+    name: string;
     totalPrice: number;
 }

@@ -2,11 +2,6 @@ import { model, Schema } from "mongoose";
 import { IProduct } from "../types/productType";
 
 const productSchema: Schema = new Schema({
-    id: {
-        type: Number,
-        trim: true,
-        require: true,
-    },
     category: {
         type: Schema.Types.ObjectId,
         ref: "Category",

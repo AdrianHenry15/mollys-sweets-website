@@ -1,8 +1,8 @@
-import { ICookieBase } from "./CookieBaseTypes/cookieBase";
-import { ICookieFlavor } from "./CookieFlavorTypes/cookieFlavorMain";
+import { ICookieBase } from "./CookieBaseInterfaces/cookieBase";
+import { ICookieFlavorMain } from "./CookieFlavorTypes/cookieFlavorMain";
 
 export interface ICookie {
     cookieBase: ICookieBase;
-    cookieFlavor: ICookieFlavor;
+    cookieFlavor: ICookieFlavorMain;
     totalPrice: number;
 }

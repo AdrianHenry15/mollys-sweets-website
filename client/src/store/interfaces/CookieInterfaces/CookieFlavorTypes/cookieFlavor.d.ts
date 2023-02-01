@@ -1,5 +1,5 @@
 export interface ICookieFlavor {
     id: number;
-    flavor: string;
+    name: string;
     totalPrice: number;
 }

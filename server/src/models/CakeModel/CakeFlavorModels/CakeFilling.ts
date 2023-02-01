@@ -2,19 +2,13 @@ import { model, Schema } from "mongoose";
 import { ICakeFilling } from "../../../types/CakeTypes/CakeFlavorTypes/cakeFillingType";
 
 const cakeFillingSchema: Schema = new Schema({
-    id: {
-        type: Number,
-        trim: true,
-        require: true,
-    },
-
     name: {
         type: String,
         required: true,
         trim: true,
     },
 
-    totalPrice: {
+    price: {
         type: Number,
         required: true,
         trim: true,

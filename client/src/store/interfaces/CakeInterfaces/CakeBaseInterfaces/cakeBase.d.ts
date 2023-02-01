@@ -1,6 +1,6 @@
-import { ICakeShape } from "./cakeShape";
-import { ICakeSize } from "./cakeSize";
-import { ICakeTier } from "./cakeTier";
+import { ICakeShape } from "./CakeShapeInterfaces/cakeShape";
+import { ICakeSize } from "./CakeSizeInterfaces/cakeSize";
+import { ICakeTier } from "./CakeTierInterfaces/cakeTier";
 
 export interface ICakeBase {
     tier: ICakeTier;

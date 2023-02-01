@@ -1,7 +1,10 @@
+import { ICupcakeQuantity } from "./CupcakeQuantityInterfaces/cupcakeQuantity";
+import { IMiniCupcake } from "./CupcakeSizeInterfaces/miniCupcake";
+import { IRegularCupcake } from "./CupcakeSizeInterfaces/regularCupcake";
+
 export interface ICupcakeBase {
-    id: number;
-    regular: boolean;
-    mini: boolean;
-    quantity: string;
+    regular: IRegularCupcake;
+    mini: IMiniCupcake;
+    quantity: ICupcakeQuantity;
     totalPrice: number;
 }

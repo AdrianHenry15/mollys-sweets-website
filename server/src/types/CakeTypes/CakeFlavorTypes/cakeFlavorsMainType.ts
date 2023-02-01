@@ -5,10 +5,8 @@ import { ICakeFrosting } from "./cakeFrostingType";
 import { ICakeFruit } from "./cakeFruitType";
 
 export interface ICakeFlavorsMain extends Document {
-    id: number;
     flavor: ICakeFlavor;
     filling: ICakeFilling;
     frosting: ICakeFrosting;
     fruit: ICakeFruit;
-    totalPrice: number;
 }

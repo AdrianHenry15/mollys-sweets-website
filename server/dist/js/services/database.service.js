@@ -54,16 +54,34 @@ function connectToDatabase() {
         // COLLECTION VARIABLES
         //cakes
         let cakeCollection;
+        //cake bases
         let cakeBaseCollection;
+        let cakeTierCollection;
+        let cakeShapeCollection;
+        let cakeSizeCollection;
+        // cake flavors
         let cakeFlavorCollection;
+        let cakeFrostingCollection;
+        let cakeFillingCollection;
+        let cakeFruitCollection;
         //cupcakes
         let cupcakeCollection;
+        //cupcake base
         let cupcakeBaseCollection;
+        let cupcakeQuantityCollection;
+        let cupcakeSizeCollection;
+        //cupcake flavor
         let cupcakeFlavorCollection;
+        let cupcakeFrostingCollection;
         //cookies
         let cookieCollection;
+        // cookie base
         let cookieBaseCollection;
+        let cookieQuantityCollection;
+        let cookieSizeCollection;
+        //cookie flavor
         let cookieFlavorCollection;
+        let cookieFrostingCollection;
         //other
         let cartCollection;
         let orderCollection;
@@ -78,14 +96,52 @@ function connectToDatabase() {
         else {
             throw new Error("Enviroment Variables Invalid");
         }
+        // cake base
         if (process.env.CAKE_BASE_COLLECTION_NAME) {
             cakeBaseCollection = process.env.CAKE_BASE_COLLECTION_NAME;
         }
         else {
             throw new Error("Enviroment Variables Invalid");
         }
+        if (process.env.CAKE_SIZE_COLLECTION_NAME) {
+            cakeSizeCollection = process.env.CAKE_SIZE_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        if (process.env.CAKE_TIER_COLLECTION_NAME) {
+            cakeTierCollection = process.env.CAKE_TIER_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        if (process.env.CAKE_SHAPE_COLLECTION_NAME) {
+            cakeShapeCollection = process.env.CAKE_SHAPE_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        // cake flavor
         if (process.env.CAKE_FLAVOR_COLLECTION_NAME) {
             cakeFlavorCollection = process.env.CAKE_FLAVOR_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        if (process.env.CAKE_FROSTING_COLLECTION_NAME) {
+            cakeFlavorCollection = process.env.CAKE_FROSTING_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        if (process.env.CAKE_FILLING_COLLECTION_NAME) {
+            cakeFillingCollection = process.env.CAKE_FILLING_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        if (process.env.CAKE_FRUIT_COLLECTION_NAME) {
+            cakeFruitCollection = process.env.CAKE_FRUIT_COLLECTION_NAME;
         }
         else {
             throw new Error("Enviroment Variables Invalid");
@@ -97,14 +153,36 @@ function connectToDatabase() {
         else {
             throw new Error("Enviroment Variables Invalid");
         }
+        //cupcake bases
         if (process.env.CUPCAKE_BASE_COLLECTION_NAME) {
             cupcakeBaseCollection = process.env.CUPCAKE_BASE_COLLECTION_NAME;
         }
         else {
             throw new Error("Enviroment Variables Invalid");
         }
+        if (process.env.CUPCAKE_SIZE_COLLECTION_NAME) {
+            cupcakeSizeCollection = process.env.CUPCAKE_SIZE_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        if (process.env.CUPCAKE_QUANTITY_COLLECTION_NAME) {
+            cupcakeQuantityCollection =
+                process.env.CUPCAKE_QUANTITY_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        //cupcake flavors
         if (process.env.CUPCAKE_FLAVOR_COLLECTION_NAME) {
             cupcakeFlavorCollection = process.env.CUPCAKE_FLAVOR_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        if (process.env.CUPCAKE_FROSTING_COLLECTION_NAME) {
+            cupcakeFrostingCollection =
+                process.env.CUPCAKE_FROSTING_COLLECTION_NAME;
         }
         else {
             throw new Error("Enviroment Variables Invalid");
@@ -116,14 +194,34 @@ function connectToDatabase() {
         else {
             throw new Error("Enviroment Variables Invalid");
         }
+        //cookie base
         if (process.env.COOKIE_BASE_COLLECTION_NAME) {
             cookieBaseCollection = process.env.COOKIE_BASE_COLLECTION_NAME;
         }
         else {
             throw new Error("Enviroment Variables Invalid");
         }
+        if (process.env.COOKIE_SIZE_COLLECTION_NAME) {
+            cookieSizeCollection = process.env.COOKIE_SIZE_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        if (process.env.COOKIE_QUANTITY_COLLECTION_NAME) {
+            cookieQuantityCollection = process.env.COOKIE_QUANTITY_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        // cookie flavors
         if (process.env.COOKIE_FLAVOR_COLLECTION_NAME) {
             cookieFlavorCollection = process.env.COOKIE_FLAVOR_COLLECTION_NAME;
+        }
+        else {
+            throw new Error("Enviroment Variables Invalid");
+        }
+        if (process.env.COOKIE_FROSTING_COLLECTION_NAME) {
+            cookieFlavorCollection = process.env.COOKIE_FROSTING_COLLECTION_NAME;
         }
         else {
             throw new Error("Enviroment Variables Invalid");
@@ -194,16 +292,34 @@ function connectToDatabase() {
         // COLLECTIONS
         //cakes
         const cakesCollection = db.collection(process.env.CAKE_COLLECTION_NAME);
+        // CAKE BASES
         const cakeBasesCollection = db.collection(process.env.CAKE_BASE_COLLECTION_NAME);
+        const cakeShapesCollection = db.collection(process.env.CAKE_SHAPE_COLLECTION_NAME);
+        const cakeTiersCollection = db.collection(process.env.CAKE_TIER_COLLECTION_NAME);
+        const cakeSizesCollection = db.collection(process.env.CAKE_SIZE_COLLECTION_NAME);
+        // CAKE FLAVORS
         const cakeFlavorsCollection = db.collection(process.env.CAKE_FLAVOR_COLLECTION_NAME);
+        const cakeFrostingsCollection = db.collection(process.env.CAKE_FROSTING_COLLECTION_NAME);
+        const cakeFillingsCollection = db.collection(process.env.CAKE_FILLING_COLLECTION_NAME);
+        const cakeFruitsCollection = db.collection(process.env.CAKE_FRUIT_COLLECTION_NAME);
         //cupcakes
         const cupcakesCollection = db.collection(process.env.CUPCAKE_COLLECTION_NAME);
+        // CUPCAKE BASES
         const cupcakeBasesCollection = db.collection(process.env.CUPCAKE_BASE_COLLECTION_NAME);
+        const cupcakeSizesCollection = db.collection(process.env.CUPCAKE_SIZE_COLLECTION_NAME);
+        const cupcakeQuantitiesCollection = db.collection(process.env.CUPCAKE_QUANTITY_COLLECTION_NAME);
+        // CUPCAKE FLAVORS
         const cupcakeFlavorsCollection = db.collection(process.env.CUPCAKE_FLAVOR_COLLECTION_NAME);
+        const cupcakeFrostingsCollection = db.collection(process.env.CUPCAKE_FROSTING_COLLECTION_NAME);
         //cookies
         const cookiesCollection = db.collection(process.env.COOKIE_COLLECTION_NAME);
-        const cookieFlavorsCollection = db.collection(process.env.COOKIE_BASE_COLLECTION_NAME);
+        // COOKIE BASES
         const cookieBasesCollection = db.collection(process.env.COOKIE_FLAVOR_COLLECTION_NAME);
+        const cookieSizesCollection = db.collection(process.env.COOKIE_SIZE_COLLECTION_NAME);
+        const cookieQuantitiesCollection = db.collection(process.env.COOKIE_QUANTITY_COLLECTION_NAME);
+        // COOKIE FLAVORS
+        const cookieFlavorsCollection = db.collection(process.env.COOKIE_BASE_COLLECTION_NAME);
+        const cookieFrostingsCollection = db.collection(process.env.COOKIE_FROSTING_COLLECTION_NAME);
         //other
         const cartsCollection = db.collection(process.env.CART_COLLECTION_NAME);
         const ordersCollection = db.collection(process.env.ORDER_COLLECTION_NAME);
@@ -212,16 +328,34 @@ function connectToDatabase() {
         const usersCollection = db.collection(process.env.USER_COLLECTION_NAME);
         //cakes
         exports.collections.cakes = cakesCollection;
+        //CAKE BASES
         exports.collections.cakeBases = cakeBasesCollection;
+        exports.collections.cakeShapes = cakeBasesCollection;
+        exports.collections.cakeSizes = cakeBasesCollection;
+        exports.collections.cakeTiers = cakeBasesCollection;
+        // CAKE FLAOVRS
         exports.collections.cakeFlavors = cakeFlavorsCollection;
+        exports.collections.cakeFrostings = cakeFlavorsCollection;
+        exports.collections.cakeFillings = cakeFlavorsCollection;
+        exports.collections.cakeFruits = cakeFlavorsCollection;
         //cookies
         exports.collections.cookies = cookiesCollection;
+        //COOKIE BASES
         exports.collections.cookieBases = cookieBasesCollection;
+        exports.collections.cookieQuantities = cookieBasesCollection;
+        exports.collections.cookieSizes = cookieBasesCollection;
+        // COOKE FLAVORS
         exports.collections.cookieFlavors = cookieFlavorsCollection;
+        exports.collections.cookieFrostings = cookieFlavorsCollection;
         //cupcakes
         exports.collections.cupcakes = cupcakesCollection;
+        // CUPCAKE BASES
         exports.collections.cupcakeBases = cupcakeBasesCollection;
+        exports.collections.cupcakeQuantities = cupcakeBasesCollection;
+        exports.collections.cupcakeSizes = cupcakeBasesCollection;
+        // CUPCAKE FLAVORS
         exports.collections.cupcakeFlavors = cupcakeFlavorsCollection;
+        exports.collections.cupcakeFrostings = cupcakeFlavorsCollection;
         //other
         exports.collections.categories = categoriesCollection;
         exports.collections.carts = cartsCollection;

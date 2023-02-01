@@ -2,22 +2,22 @@ import { model, Schema } from "mongoose";
 import { ICookieBase } from "../../../types/CookieTypes/CookieBaseTypes/cookieBaseType";
 
 const cookieBaseSchema: Schema = new Schema({
-    id: {
-        type: Number,
-        trim: true,
-        require: true,
-    },
     size: {
-        type: Schema.Types.ObjectId,
-        ref: "CookieSize",
+        type: String,
         require: true,
+        trim: true,
     },
     quantity: {
-        type: Schema.Types.ObjectId,
-        ref: "CookieQuantity",
+        type: String,
         require: true,
+        trim: true,
     },
-    totalPrice: {
+    feeds: {
+        type: String,
+        require: true,
+        trim: true,
+    },
+    price: {
         type: Number,
         required: true,
         trim: true,

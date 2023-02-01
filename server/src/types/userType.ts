@@ -4,7 +4,6 @@ import { IOrder } from "./orderType";
 import { IProduct } from "./productType";
 
 export interface IUser extends Document {
-    id: number;
     firstName: string;
     lastName: string;
     image_url: string;

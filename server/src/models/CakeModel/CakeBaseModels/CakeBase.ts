@@ -2,27 +2,27 @@ import { model, Schema } from "mongoose";
 import { ICakeBase } from "../../../types/CakeTypes/CakeBaseTypes/cakeBaseType";
 
 const cakeBaseSchema: Schema = new Schema({
-    id: {
-        type: Number,
-        trim: true,
-        require: true,
-    },
-    tier: {
-        type: Schema.Types.ObjectId,
-        ref: "CakeTier",
-        require: true,
-    },
     shape: {
-        type: Schema.Types.ObjectId,
-        ref: "CakeShape",
+        type: String,
         require: true,
+        trim: true,
     },
     size: {
-        type: Schema.Types.ObjectId,
-        ref: "CakeSize",
+        type: String,
         require: true,
+        trim: true,
     },
-    totalPrice: {
+    feeds: {
+        type: String,
+        require: true,
+        trim: true,
+    },
+    tier: {
+        type: String,
+        require: true,
+        trim: true,
+    },
+    price: {
         type: Number,
         required: true,
         trim: true,

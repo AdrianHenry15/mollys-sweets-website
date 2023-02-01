@@ -1,8 +1,8 @@
 import { ICookie } from "../cookies";
+import { ICookieFlavor } from "./cookieFlavor";
 import { ICookieFrosting } from "./cookieFrosting";
 
-export interface ICookieFlavor {
-    id: number;
+export interface ICookieFlavorMain {
     flavor: ICookieFlavor;
     frosting: ICookieFrosting;
     totalPrice: number;

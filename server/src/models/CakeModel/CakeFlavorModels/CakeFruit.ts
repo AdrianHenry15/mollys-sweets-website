@@ -2,12 +2,6 @@ import { model, Schema } from "mongoose";
 import { ICakeFruit } from "../../../types/CakeTypes/CakeFlavorTypes/cakeFruitType";
 
 const cakeFruitSchema: Schema = new Schema({
-    id: {
-        type: Number,
-        trim: true,
-        require: true,
-    },
-
     fruit: {
         type: Boolean,
         required: true,
@@ -16,10 +10,9 @@ const cakeFruitSchema: Schema = new Schema({
     fruitType: {
         type: String,
         required: false,
-        price: Number,
         trim: true,
     },
-    totalPrice: {
+    price: {
         type: Number,
         required: true,
         trim: true,

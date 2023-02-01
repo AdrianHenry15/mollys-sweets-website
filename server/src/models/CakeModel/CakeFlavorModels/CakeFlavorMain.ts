@@ -2,11 +2,6 @@ import { model, Schema } from "mongoose";
 import { ICakeFlavorsMain } from "../../../types/CakeTypes/CakeFlavorTypes/cakeFlavorsMainType";
 
 const cakeFlavorsMainSchema: Schema = new Schema({
-    id: {
-        type: Number,
-        trim: true,
-        require: true,
-    },
     flavor: {
         type: Schema.Types.ObjectId,
         ref: "CakeFlavor",
@@ -26,11 +21,6 @@ const cakeFlavorsMainSchema: Schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "CakeFruit",
         required: true,
-    },
-    totalPrice: {
-        type: Number,
-        required: true,
-        trim: true,
     },
 });
 

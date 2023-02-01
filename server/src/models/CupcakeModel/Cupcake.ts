@@ -2,11 +2,6 @@ import { model, Schema } from "mongoose";
 import { ICupcake } from "../../types/CupcakeTypes/cupcakeType";
 
 const cupcakeSchema: Schema = new Schema({
-    id: {
-        type: Number,
-        trim: true,
-        require: true,
-    },
     cupcakeBase: {
         type: Schema.Types.ObjectId,
         ref: "CupcakeBase",
@@ -16,11 +11,6 @@ const cupcakeSchema: Schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "CupcakeFlavorMain",
         require: true,
-    },
-    totalPrice: {
-        type: Number,
-        required: true,
-        trim: true,
     },
 });
 

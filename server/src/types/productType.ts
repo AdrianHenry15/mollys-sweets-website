@@ -2,7 +2,6 @@ import { Date, Document } from "mongoose";
 import { ICategory } from "./categoryType";
 
 export interface IProduct extends Document {
-    id: number;
     category: ICategory;
     dateOfEvent: Date;
     pickUpOrDelivery: string;

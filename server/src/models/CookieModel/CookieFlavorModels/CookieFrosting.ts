@@ -2,11 +2,6 @@ import { model, Schema } from "mongoose";
 import { ICookieFrosting } from "../../../types/CookieTypes/CookieFlavorTypes/cookieFrostingType";
 
 const cookieFrostingSchema: Schema = new Schema({
-    id: {
-        type: Number,
-        trim: true,
-        require: true,
-    },
     frosting: {
         type: Boolean,
         required: true,
@@ -18,7 +13,7 @@ const cookieFrostingSchema: Schema = new Schema({
         price: Number,
         trim: true,
     },
-    totalPrice: {
+    price: {
         type: Number,
         required: true,
         trim: true,

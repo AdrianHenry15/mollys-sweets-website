@@ -3,11 +3,6 @@ import { model, Schema } from "mongoose";
 
 const orderSchema: Schema = new Schema(
     {
-        id: {
-            type: Number,
-            trim: true,
-            require: true,
-        },
         products: [
             {
                 type: Schema.Types.ObjectId,
