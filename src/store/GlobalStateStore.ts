@@ -33,11 +33,13 @@ import { ICategory } from "./schemas/ICategoryStore";
 import { ICategoryActions } from "./schemas/ActionStore/ICategoryActions";
 import { persist, create } from "mobx-persist";
 import { IUserActions } from "./schemas/ActionStore/IUserActions";
+import { ICartActions } from "./schemas/ActionStore/ICartActions";
 
 export class GlobalStateStore {
     constructor() {
         makeAutoObservable(this);
     }
+    // ========================================================= OBSERVABLES =========================================================
     @persist("object") @observable CakeStore: ICakeProduct = {
         cakeBase: {
             size: "",
@@ -139,6 +141,7 @@ export class GlobalStateStore {
         category: "",
     };
 
+    // ========================================================= ACTIONS =========================================================
     @action UserActions: IUserActions = {
         handleFirstNameInput: (e: React.ChangeEvent<HTMLInputElement>) => {
             let select: HTMLInputElement = e.target;
@@ -520,7 +523,7 @@ export class GlobalStateStore {
             console.log(this.CategoryStore.category);
         },
     };
-
+    // ========================================================= COMPUTEDS =========================================================
     //values derived from existing state
     @computed ComputedCakeCosts: ICakeComputeds = {
         computedCosts: {
@@ -607,9 +610,13 @@ export class GlobalStateStore {
     };
 }
 
+// HYDRATION CREATE FUNCTION
 const hydrate = create({});
 
+// GLOBAL STORE INSTANCE
 export const globalStore = new GlobalStateStore();
+
+// HYDRATION TO GLOBALSTORE
 hydrate("GlobalStore", globalStore).then(() =>
     console.log("Application Hydrated")
 );
