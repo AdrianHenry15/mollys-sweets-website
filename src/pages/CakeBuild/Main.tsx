@@ -63,11 +63,14 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                     </section>
                     <nav className="cake-order-complete-container">
                         <Link
+<<<<<<< HEAD
                             onClick={() => this.fillOrder()}
+=======
+>>>>>>> 3947191ea26da29bdeaffb860d63810faac58aaa
                             className="cake-order-complete"
-                            to="/cart"
+                            to="/customer-info"
                         >
-                            <span>Complete Order?</span>
+                            <span>Next</span>
                         </Link>
                     </nav>
                 </div>

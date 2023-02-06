@@ -20,7 +20,13 @@ import { GlobalStateStore } from "./store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 import Cart from "./components/Cart/Cart";
 import { ProductCategories } from "./store/constants/Enums";
+<<<<<<< HEAD
 import Login from "./components/Login";
+=======
+import CustomerInfo from "./components/CustomerInfo";
+import OrderComplete from "./components/Orders/OrderComplete";
+import ComingSoon from "./components/ComingSoon";
+>>>>>>> 3947191ea26da29bdeaffb860d63810faac58aaa
 
 interface IAppProps {
     store: GlobalStateStore;
@@ -67,7 +73,21 @@ class App extends Component<IAppProps, {}> {
                     <Route path="/cookies" element={<Cookies />}></Route>
                     <Route path="/cupcakes" element={<Cupcakes />}></Route>
                     <Route path="/cart" element={<Cart />}></Route>
+<<<<<<< HEAD
                     <Route path="/login" element={<Login />}></Route>
+=======
+
+                    <Route
+                        path="/customer-info"
+                        element={<CustomerInfo />}
+                    ></Route>
+
+                    <Route
+                        path="/order-complete"
+                        element={<OrderComplete />}
+                    ></Route>
+
+>>>>>>> 3947191ea26da29bdeaffb860d63810faac58aaa
                     <Route path="/*" element={<PageNotFound />}></Route>
                 </Routes>
                 <Footer />

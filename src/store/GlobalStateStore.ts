@@ -33,11 +33,13 @@ import { ICategory } from "./schemas/ICategoryStore";
 import { ICategoryActions } from "./schemas/ActionStore/ICategoryActions";
 import { persist, create } from "mobx-persist";
 import { IUserActions } from "./schemas/ActionStore/IUserActions";
+import { ICartActions } from "./schemas/ActionStore/ICartActions";
 
 export class GlobalStateStore {
     constructor() {
         makeAutoObservable(this);
     }
+    // ========================================================= OBSERVABLES =========================================================
     @persist("object") @observable CakeStore: ICakeProduct = {
         cakeBase: {
             size: "",
@@ -139,6 +141,7 @@ export class GlobalStateStore {
         category: "",
     };
 
+<<<<<<< HEAD
     // @action UserActions: IUserActions = {
     //     handleFirstNameInput: (e: React.ChangeEvent<HTMLInputElement>) => {
     //         let select: HTMLInputElement = e.target;
@@ -156,6 +159,26 @@ export class GlobalStateStore {
     //         this.UserStore.email = value;
     //     },
     // };
+=======
+    // ========================================================= ACTIONS =========================================================
+    @action UserActions: IUserActions = {
+        handleFirstNameInput: (e: React.ChangeEvent<HTMLInputElement>) => {
+            let select: HTMLInputElement = e.target;
+            let value: string = select.value;
+            this.UserStore.firstName = value;
+        },
+        handleLastNameInput: (e: React.ChangeEvent<HTMLInputElement>) => {
+            let select: HTMLInputElement = e.target;
+            let value: string = select.value;
+            this.UserStore.lastName = value;
+        },
+        handleEmailInput: (e: React.ChangeEvent<HTMLInputElement>) => {
+            let select: HTMLInputElement = e.target;
+            let value: string = select.value;
+            this.UserStore.email = value;
+        },
+    };
+>>>>>>> 3947191ea26da29bdeaffb860d63810faac58aaa
 
     @action CakeActions: ICakeActions = {
         cakeBaseActions: {
@@ -520,6 +543,7 @@ export class GlobalStateStore {
             console.log(this.CategoryStore.category);
         },
     };
+<<<<<<< HEAD
 
     @computed getCakeBaseCost = () => {
         return (
@@ -528,6 +552,9 @@ export class GlobalStateStore {
         );
     };
 
+=======
+    // ========================================================= COMPUTEDS =========================================================
+>>>>>>> 3947191ea26da29bdeaffb860d63810faac58aaa
     //values derived from existing state
     @computed ComputedCakeCosts: ICakeComputeds = {
         computedCosts: {
@@ -614,9 +641,13 @@ export class GlobalStateStore {
     };
 }
 
+// HYDRATION CREATE FUNCTION
 const hydrate = create({});
 
+// GLOBAL STORE INSTANCE
 export const globalStore = new GlobalStateStore();
+
+// HYDRATION TO GLOBALSTORE
 hydrate("GlobalStore", globalStore).then(() =>
     console.log("Application Hydrated")
 );
