@@ -12,8 +12,9 @@ import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
 
 //components
-import Order from "../Orders/Order";
+import CakeOrder from "../Orders/CakeOrder";
 import EmptyCart from "./EmptyCart";
+import { Link } from "react-router-dom";
 
 interface ICartProps {
     store?: GlobalStateStore;
@@ -100,12 +101,14 @@ class Cart extends React.Component<ICartProps, ICartState> {
                     <div className="cart-filled-container">
                         <div className="cart-container">
                             <h1 className="filled-cart-label">Your Cart</h1>
-                            <Order />
+                            <CakeOrder />
                         </div>
                         <section className="checkout-total-container">
-                            <button className="checkout-btn">
-                                <span>Check Out</span>
-                            </button>
+                            <Link to={"../../login"}>
+                                <button className="checkout-btn">
+                                    <span>Check Out</span>
+                                </button>
+                            </Link>
                             <section className="total-container">
                                 {/* cakes total */}
                                 <div className="total-item-container ">

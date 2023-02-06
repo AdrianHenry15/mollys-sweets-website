@@ -68,6 +68,22 @@
     margin-right: 10px;
 }
 
+.cake-order-complete-container {
+    display: flex;
+    align-items: flex-end;
+
+    .cake-order-complete {
+        display: flex;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        font-family: "Rubik Vinyl", cursive;
+        border: black solid 1px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+}
+
 @media (min-width: 481px) and (max-width: 1200px) {
     .main-build-cake-wrapper {
         justify-content: center;
@@ -129,9 +145,9 @@
         text-decoration: none;
         color: black;
         font-family: "Rubik Vinyl", cursive;
-        border: black solid 2px;
+        border: black solid 1px;
         border-radius: 10px;
-        padding: 5px;
+        padding: 10px;
     }
 }
 

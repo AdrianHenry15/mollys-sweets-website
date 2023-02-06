@@ -8,6 +8,7 @@ import "../../styles/OrderStyles/Order.scss";
 
 //icons
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
+import { Link } from "react-router-dom";
 // import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 // import { RxCookie as CookieIcon } from "react-icons/rx";
 
@@ -39,7 +40,11 @@ class CakeOrder extends React.Component<IOrderProps, {}> {
                             <div className="info-btn remove-btn">
                                 Remove Item
                             </div>
-                            <div className="info-btn edit-btn">Edit Item</div>
+                            <Link to={"../../build-your-cake"}>
+                                <span className="info-btn edit-btn">
+                                    Edit Item
+                                </span>
+                            </Link>
                             <div className="info-btn view-details-btn">
                                 View Details
                             </div>

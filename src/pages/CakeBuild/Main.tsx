@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
 import { ProductCategories } from "../../store/constants/Enums";
+import { action } from "mobx";
 
 interface IBuildYourCakeProps {
     store?: GlobalStateStore;
@@ -24,6 +25,9 @@ interface IBuildYourCakeProps {
 @inject("store")
 @observer
 class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
+    fillOrder = action(() => {
+        this.props.store!.OrderStore.orderFilled = true;
+    });
     render() {
         //store actions
         const onLinkClick = this.props.store!.CategoryActions.getCategory;
@@ -59,10 +63,7 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                     </section>
                     <nav className="cake-order-complete-container">
                         <Link
-                            onClick={() =>
-                                (this.props.store!.OrderStore.orderFilled =
-                                    true)
-                            }
+                            onClick={() => this.fillOrder()}
                             className="cake-order-complete"
                             to="/cart"
                         >

@@ -20,6 +20,7 @@ import { GlobalStateStore } from "./store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 import Cart from "./components/Cart/Cart";
 import { ProductCategories } from "./store/constants/Enums";
+import Login from "./components/Login";
 
 interface IAppProps {
     store: GlobalStateStore;
@@ -66,6 +67,7 @@ class App extends Component<IAppProps, {}> {
                     <Route path="/cookies" element={<Cookies />}></Route>
                     <Route path="/cupcakes" element={<Cupcakes />}></Route>
                     <Route path="/cart" element={<Cart />}></Route>
+                    <Route path="/login" element={<Login />}></Route>
                     <Route path="/*" element={<PageNotFound />}></Route>
                 </Routes>
                 <Footer />

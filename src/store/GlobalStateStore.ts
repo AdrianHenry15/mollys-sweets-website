@@ -139,23 +139,23 @@ export class GlobalStateStore {
         category: "",
     };
 
-    @action UserActions: IUserActions = {
-        handleFirstNameInput: (e: React.ChangeEvent<HTMLInputElement>) => {
-            let select: HTMLInputElement = e.target;
-            let value: string = select.value;
-            this.UserStore.firstName = value;
-        },
-        handleLastNameInput: (e: React.ChangeEvent<HTMLInputElement>) => {
-            let select: HTMLInputElement = e.target;
-            let value: string = select.value;
-            this.UserStore.lastName = value;
-        },
-        handleEmailInput: (e: React.ChangeEvent<HTMLInputElement>) => {
-            let select: HTMLInputElement = e.target;
-            let value: string = select.value;
-            this.UserStore.email = value;
-        },
-    };
+    // @action UserActions: IUserActions = {
+    //     handleFirstNameInput: (e: React.ChangeEvent<HTMLInputElement>) => {
+    //         let select: HTMLInputElement = e.target;
+    //         let value: string = select.value;
+    //         this.UserStore.firstName = value;
+    //     },
+    //     handleLastNameInput: (e: React.ChangeEvent<HTMLInputElement>) => {
+    //         let select: HTMLInputElement = e.target;
+    //         let value: string = select.value;
+    //         this.UserStore.lastName = value;
+    //     },
+    //     handleEmailInput: (e: React.ChangeEvent<HTMLInputElement>) => {
+    //         let select: HTMLInputElement = e.target;
+    //         let value: string = select.value;
+    //         this.UserStore.email = value;
+    //     },
+    // };
 
     @action CakeActions: ICakeActions = {
         cakeBaseActions: {
@@ -519,6 +519,13 @@ export class GlobalStateStore {
             this.CategoryStore.category = category;
             console.log(this.CategoryStore.category);
         },
+    };
+
+    @computed getCakeBaseCost = () => {
+        return (
+            this.CakeStore.cakeCosts.sizeCost +
+            this.CakeStore.cakeCosts.tierCost
+        );
     };
 
     //values derived from existing state
