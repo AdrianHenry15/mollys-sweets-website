@@ -9,6 +9,7 @@ import { ProductSizes } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 import { ProductData } from "../../data/Products";
+import { action } from "mobx";
 
 interface ICookieCountProps {
     store?: GlobalStateStore;
@@ -33,6 +34,70 @@ class CookieCount extends React.Component<
     }
 
     // functions
+    getCookieQuantity = action((e: React.ChangeEvent<HTMLSelectElement>) => {
+        let select: HTMLSelectElement = e.target;
+        let value: number = parseInt(select.value);
+        if (
+            this.props.store!.CookieStore.cookieCount.size === ProductSizes.MINI
+        ) {
+            //size
+            this.props.store!.CookieStore.cookieCount.size =
+                ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                    value
+                ].productSize!;
+
+            //quantity
+            this.props.store!.CookieStore.cookieCount.quantity =
+                ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                    value
+                ].productQuantity;
+
+            //serves
+            this.props.store!.CookieStore.cookieCount.serves =
+                ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                    value
+                ].productServes;
+
+            //price
+            this.props.store!.CookieStore.cookieCosts.quantityCost =
+                ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                    value
+                ].price;
+
+            // cart state
+            this.props.store!.CartStore.cartEmpty = false;
+        } else if (
+            this.props.store!.CookieStore.cookieCount.size ===
+            ProductSizes.REGULAR
+        ) {
+            //size
+            this.props.store!.CookieStore.cookieCount.size =
+                ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                    value
+                ].productSize!;
+
+            //serves
+            this.props.store!.CookieStore.cookieCount.serves =
+                ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                    value
+                ].productServes;
+
+            //price
+            this.props.store!.CookieStore.cookieCosts.quantityCost =
+                ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                    value
+                ].price;
+
+            // cart state
+            this.props.store!.CartStore.cartEmpty = false;
+        }
+    });
+    getCookieSize = action((e: React.ChangeEvent<HTMLInputElement>) => {
+        let select: HTMLInputElement = e.target;
+        let value: string = select.value;
+        this.props.store!.CookieStore.cookieCount.size = value as ProductSizes;
+        console.log(value);
+    });
     renderCookieCount = () => {
         //data variables
         const regCookieSizes =
@@ -85,12 +150,6 @@ class CookieCount extends React.Component<
         const quantityCost =
             this.props.store!.CookieStore.cookieCosts.quantityCost;
         const cookieSize = this.props.store!.CookieStore.cookieCount.size;
-        //store methods
-        const setCookieSize =
-            this.props.store!.CookieActions.cookieCountActions.setCookieSize;
-        const setCookieQuantity =
-            this.props.store!.CookieActions.cookieCountActions
-                .setCookieQuantity;
         return (
             <section className="cookie-count-container">
                 <h3>Choose Cookies</h3>
@@ -104,14 +163,14 @@ class CookieCount extends React.Component<
                             value={ProductSizes.REGULAR}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => setCookieSize(e)}
+                            onChange={(e) => this.getCookieSize(e)}
                         ></input>
                         <label htmlFor="fruit">Regular</label>
                         <input
                             defaultValue={ProductSizes.MINI}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => setCookieSize(e)}
+                            onChange={(e) => this.getCookieSize(e)}
                         ></input>
                         <label htmlFor="fruit">Mini</label>
                     </div>
@@ -131,7 +190,7 @@ class CookieCount extends React.Component<
                             <form action="">
                                 <select
                                     defaultValue={quantityCost}
-                                    onChange={(e) => setCookieQuantity(e)}
+                                    onChange={(e) => this.getCookieQuantity(e)}
                                     name="cake-size"
                                     className="cookie-dropdown"
                                 >

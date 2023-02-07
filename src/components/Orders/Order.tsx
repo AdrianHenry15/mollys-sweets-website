@@ -4,7 +4,7 @@ import React from "react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 // styles
-import "../../styles/OrderStyles/Order.scss";
+import "../../styles/ComponentStyles/OrderStyles/Order.scss";
 
 //icons
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
@@ -18,7 +18,7 @@ interface IOrderProps {
 
 @inject("store")
 @observer
-class CakeOrder extends React.Component<IOrderProps, {}> {
+class Order extends React.Component<IOrderProps, {}> {
     //main
     render() {
         //store variables
@@ -57,4 +57,4 @@ class CakeOrder extends React.Component<IOrderProps, {}> {
     }
 }
 
-export default CakeOrder;
+export default Order;

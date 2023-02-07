@@ -31,7 +31,34 @@ class CookieFlavors extends React.Component<
         };
     }
 
-    setFrosting = () => {
+    getCookieFlavorInfo = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        let select: HTMLSelectElement = e.target;
+        let value: number = parseInt(select.value);
+        // flavor
+        this.props.store!.CookieStore.cookieFlavors.flavor =
+            ProductData.products.cookies[value].productName;
+        // price
+        this.props.store!.CookieStore.cookieCosts.flavorsCost =
+            ProductData.products.flavors[value].price;
+
+        // //local storage
+        // localStorage.getItem(
+        //     this.CookieStore.cookieFlavors.flavor,
+        //     this.CookieStore.cookieCosts.flavorsCost.toString()
+        // );
+    };
+    getCookieFrostingInfo = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        let select: HTMLSelectElement = e.target;
+        let value: number = parseInt(select.value);
+        // frosting
+        this.props.store!.CookieStore.cookieFlavors.frosting =
+            ProductData.products.frostings[value].productName;
+        // price
+        this.props.store!.CookieStore.cookieCosts.frostingsCost =
+            ProductData.products.frostings[value].price;
+    };
+
+    getFrosting = () => {
         this.setState((state) => {
             return { frosting: !state.frosting };
         });
@@ -48,14 +75,6 @@ class CookieFlavors extends React.Component<
             this.props.store!.CookieStore.cookieCosts.flavorsCost;
         const frostingCost =
             this.props.store!.CookieStore.cookieCosts.frostingsCost;
-
-        //store methods
-        const handleFlavorCost =
-            this.props.store!.CookieActions.cookieCountActions
-                .handleCookieFlavorCost;
-        const handleFrostingCost =
-            this.props.store!.CookieActions.cookieCountActions
-                .handleCookieFrostingCost;
 
         // computeds
         const updateFlavorTotalCost =
@@ -77,7 +96,9 @@ class CookieFlavors extends React.Component<
                             <form action="">
                                 <select
                                     defaultValue={flavorCost}
-                                    onChange={(e) => handleFlavorCost(e)}
+                                    onChange={(e) =>
+                                        this.getCookieFlavorInfo(e)
+                                    }
                                     name="cake-size"
                                     className="cookie-f-dropdown"
                                 >
@@ -115,14 +136,14 @@ class CookieFlavors extends React.Component<
                                 type="radio"
                                 value="yes"
                                 name="cookie-frosting"
-                                onChange={() => this.setFrosting()}
+                                onChange={() => this.getFrosting()}
                             />
                             <label htmlFor="cookie-frosting">Yes</label>
                             <input
                                 type="radio"
                                 value="no"
                                 name="cookie-frosting"
-                                onChange={() => this.setFrosting()}
+                                onChange={() => this.getFrosting()}
                             />
                             <label htmlFor="cookie-frosting">No</label>
                         </div>
@@ -139,7 +160,9 @@ class CookieFlavors extends React.Component<
                                 <form action="">
                                     <select
                                         defaultValue={frostingCost}
-                                        onChange={(e) => handleFrostingCost(e)}
+                                        onChange={(e) =>
+                                            this.getCookieFrostingInfo(e)
+                                        }
                                         name="cake-size"
                                         className="cookie-f-dropdown"
                                     >

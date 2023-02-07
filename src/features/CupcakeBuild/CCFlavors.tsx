@@ -5,7 +5,7 @@ import React from "react";
 import "../../styles/CupcakeBuildStyles/CCFlavors.scss";
 
 //stores
-import { CakeTypes } from "../../store/constants/Enums";
+import { CakeTypes, ProductSizes } from "../../store/constants/Enums";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { ProductData } from "../../data/Products";
@@ -18,6 +18,34 @@ interface ICCFlavorsProps {
 @observer
 class CCFlavors extends React.Component<ICCFlavorsProps, {}> {
     //functions
+
+    getCupcakeFlavorInfo = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        let select: HTMLSelectElement = e.target;
+        let value: number = parseInt(select.value);
+        // flavor
+        this.props.store!.CupcakeStore.cupcakeFlavors.flavor =
+            ProductData.products.flavors[value].productName;
+        // price
+        this.props.store!.CupcakeStore.cupcakeCosts.flavorsCost =
+            ProductData.products.flavors[value].price;
+    };
+    getCupcakeFrostingInfo = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        let select: HTMLSelectElement = e.target;
+        let value: number = parseInt(select.value);
+        // frosting
+        this.props.store!.CupcakeStore.cupcakeFlavors.frosting =
+            ProductData.products.frostings[value].productName;
+        // price
+        this.props.store!.CupcakeStore.cupcakeCosts.frostingsCost =
+            ProductData.products.frostings[value].price;
+    };
+    getCupcakeSize = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let select: HTMLInputElement = e.target;
+        let value: string = select.value;
+        this.props.store!.CupcakeStore.cupcakeCount.size =
+            value as ProductSizes;
+    };
+
     renderCakeTypes = (genre: CakeTypes) => {
         //variables
         const flavors = ProductData.products.flavors;
@@ -29,19 +57,11 @@ class CCFlavors extends React.Component<ICCFlavorsProps, {}> {
         const frostingCost =
             this.props.store!.CupcakeStore.cupcakeCosts.frostingsCost;
 
-        // store methods
-        const handleFlavorCost =
-            this.props.store!.CupcakeActions.cupcakeCountActions
-                .handleCupcakeFlavorCost;
-        const handleFrostingCost =
-            this.props.store!.CupcakeActions.cupcakeCountActions
-                .handleCupcakeFrostingCost;
-
         if (genre === CakeTypes.FLAVORS) {
             return (
                 <form action="">
                     <select
-                        onChange={(e) => handleFlavorCost(e)}
+                        onChange={(e) => this.getCupcakeFlavorInfo(e)}
                         defaultValue={flavorCost}
                         name="cake-size"
                         className="ccf-dropdown"
@@ -69,7 +89,7 @@ class CCFlavors extends React.Component<ICCFlavorsProps, {}> {
             return (
                 <form action="">
                     <select
-                        onChange={(e) => handleFrostingCost(e)}
+                        onChange={(e) => this.getCupcakeFrostingInfo(e)}
                         value={frostingCost}
                         name="cake-size"
                         className="ccf-dropdown"

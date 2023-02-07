@@ -1,5 +1,5 @@
 // styles
-import "../../styles/CartStyles/Cart.scss";
+import "../../styles/ComponentStyles/CartStyles/Cart.scss";
 // frame
 import React from "react";
 //store
@@ -7,28 +7,92 @@ import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 //components
-import CakeOrder from "../Orders/CakeOrder";
+import Order from "../Orders/Order";
 import EmptyCart from "./EmptyCart";
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
-=======
-import TotalContainer from "./TotalContainer";
->>>>>>> 3947191ea26da29bdeaffb860d63810faac58aaa
+
+//icons
+import { GiStairsCake as CakeIcon } from "react-icons/gi";
+import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
+import { RxCookie as CookieIcon } from "react-icons/rx";
 
 interface ICartProps {
     store?: GlobalStateStore;
 }
 
+interface ICartState {
+    cakeDropdown: boolean;
+    cupcakeDropdown: boolean;
+    cookieDropdown: boolean;
+}
+
 @inject("store")
 @observer
-class Cart extends React.Component<ICartProps> {
+class Cart extends React.Component<ICartProps, ICartState> {
     constructor(props: ICartProps) {
         super(props);
+
+        this.state = {
+            cakeDropdown: false,
+            cupcakeDropdown: false,
+            cookieDropdown: false,
+        };
     }
+
+    onCakeDropdownClick = () => {
+        this.setState({
+            cakeDropdown: !this.state.cakeDropdown,
+        });
+    };
+    onCupcakeDropdownClick = () => {
+        this.setState({
+            cupcakeDropdown: !this.state.cupcakeDropdown,
+        });
+    };
+    onCookieDropdownClick = () => {
+        this.setState({
+            cookieDropdown: !this.state.cookieDropdown,
+        });
+    };
     //main
     render() {
         //store variables
         const emptyCartState = this.props.store!.CartStore.cartEmpty;
+
+        const tierCost = this.props.store!.CakeStore.cakeCosts.tierCost;
+        const sizeCost = this.props.store!.CakeStore.cakeCosts.sizeCost;
+        const flavorCost = this.props.store!.CakeStore.cakeCosts.flavorsCost;
+        const frostingCost =
+            this.props.store!.CakeStore.cakeCosts.frostingsCost;
+        const fillingCost = this.props.store!.CakeStore.cakeCosts.fillingsCost;
+        const fruitCost = this.props.store!.CakeStore.cakeCosts.fruitCost;
+        const updateTotalCakeCost =
+            this.props.store!.ComputedCakeCosts.computedCosts
+                .updateTotalCakeCost;
+        //cupcakes
+        const cupcakeQuantityCost =
+            this.props.store!.CupcakeStore.cupcakeCosts.quantityCost;
+        const cupcakeFlavorCost =
+            this.props.store!.CupcakeStore.cupcakeCosts.flavorsCost;
+        const cupcakeFrostingCost =
+            this.props.store!.CupcakeStore.cupcakeCosts.frostingsCost;
+        const updateTotalCupcakeCost =
+            this.props.store!.ComputedCupcakeCosts.computedCosts
+                .updateTotalCupcakeCost;
+        //cupcakes
+        const cookieQuantityCost =
+            this.props.store!.CookieStore.cookieCosts.quantityCost;
+        const cookieFlavorCost =
+            this.props.store!.CookieStore.cookieCosts.flavorsCost;
+        const cookieFrostingCost =
+            this.props.store!.CookieStore.cookieCosts.frostingsCost;
+        const updateTotalCookieCost =
+            this.props.store!.ComputedCookieCosts.computedCosts
+                .updateTotalCookieCost;
+
+        // total
+        const updateTotalCost =
+            this.props.store!.ProductComputeds.updateProductTotal;
         return (
             <section className="cart-main">
                 <EmptyCart />
@@ -36,9 +100,8 @@ class Cart extends React.Component<ICartProps> {
                     <div className="cart-filled-container">
                         <div className="cart-container">
                             <h1 className="filled-cart-label">Your Cart</h1>
-                            <CakeOrder />
+                            <Order />
                         </div>
-<<<<<<< HEAD
                         <section className="checkout-total-container">
                             <Link to={"../../login"}>
                                 <button className="checkout-btn">
@@ -213,9 +276,6 @@ class Cart extends React.Component<ICartProps> {
                                 </div>
                             </section>
                         </section>
-=======
-                        <TotalContainer />
->>>>>>> 3947191ea26da29bdeaffb860d63810faac58aaa
                     </div>
                 )}
             </section>

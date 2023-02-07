@@ -1,6 +1,6 @@
-import { ProductSizes } from "../constants/Enums";
+import { DeliveryOption, Occasion, ProductSizes } from "../../constants/Enums";
 
-export interface ICookieProduct {
+export interface ICookieStore {
     cookieCount: ICookieCount;
     cookieFlavors: ICookieFlavors;
     cookieCosts: ICookieCosts;

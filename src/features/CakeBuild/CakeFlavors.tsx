@@ -9,6 +9,7 @@ import { CakeTypes } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 import { ProductData } from "../../data/Products";
+import { action } from "mobx";
 
 //store
 
@@ -34,26 +35,59 @@ class CakeFlavors extends React.Component<
         };
     }
 
+    getCakeFlavorInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
+        let select: HTMLSelectElement = e.target;
+        let value: number = parseInt(select.value);
+        // flavor name
+        this.props.store!.CakeStore.cakeFlavors.flavor =
+            ProductData.products.flavors[value].productName;
+        // price
+        this.props.store!.CakeStore.cakeCosts.flavorsCost =
+            ProductData.products.flavors[value].price;
+    });
+    getCakeFrostingInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
+        let select: HTMLSelectElement = e.target;
+        let value: number = parseInt(select.value);
+        // flavor name
+        this.props.store!.CakeStore.cakeFlavors.frosting =
+            ProductData.products.frostings[value].productName;
+        // price
+        this.props.store!.CakeStore.cakeCosts.frostingsCost =
+            ProductData.products.frostings[value].price;
+    });
+    getCakeFillingInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
+        let select: HTMLSelectElement = e.target;
+        let value: number = parseInt(select.value);
+        // flavor name
+        this.props.store!.CakeStore.cakeFlavors.filling =
+            ProductData.products.fillings[value].productName;
+        // price
+        this.props.store!.CakeStore.cakeCosts.fillingsCost =
+            ProductData.products.fillings[value].price;
+    });
+    getFruitInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
+        let select: HTMLSelectElement = e.target;
+        let value: number = parseInt(select.value);
+        // flavor name
+        this.props.store!.CakeStore.cakeFlavors.fruit =
+            ProductData.products.fruit[value].productName;
+        // price
+        this.props.store!.CakeStore.cakeCosts.fruitCost =
+            ProductData.products.fruit[value].price;
+    });
+
     // functions
     renderCakeTypes = (genre: CakeTypes): JSX.Element => {
         const flavors = ProductData.products.flavors;
         const fillings = ProductData.products.fillings;
         const frostings = ProductData.products.frostings;
 
-        // actions
-        const handleCakeFlavorCost =
-            this.props.store!.CakeActions.cakeCostActions.handleCakeFlavorCost;
-        const handleCakeFrostingCost =
-            this.props.store!.CakeActions.cakeCostActions
-                .handleCakeFrostingCost;
-        const handleCakeFillingCost =
-            this.props.store!.CakeActions.cakeCostActions.handleCakeFillingCost;
         switch (genre) {
             case CakeTypes.FLAVORS: {
                 return (
                     <form action="">
                         <select
-                            onChange={(e) => handleCakeFlavorCost(e)}
+                            onChange={(e) => this.getCakeFlavorInfo(e)}
                             defaultValue={
                                 this.props.store!.CakeStore.cakeCosts
                                     .flavorsCost
@@ -85,7 +119,7 @@ class CakeFlavors extends React.Component<
                 return (
                     <form action="">
                         <select
-                            onChange={(e) => handleCakeFrostingCost(e)}
+                            onChange={(e) => this.getCakeFrostingInfo(e)}
                             defaultValue={
                                 this.props.store!.CakeStore.cakeCosts
                                     .frostingsCost
@@ -119,7 +153,7 @@ class CakeFlavors extends React.Component<
                         defaultValue={
                             this.props.store!.CakeStore.cakeCosts.fillingsCost
                         }
-                        onChange={(e) => handleCakeFillingCost(e)}
+                        onChange={(e) => this.getCakeFillingInfo(e)}
                         name="cake-filling"
                         className="flavors-cake-size-dropdown"
                     >
@@ -165,8 +199,6 @@ class CakeFlavors extends React.Component<
         const updateFlavorsTotalCost =
             this.props.store!.ComputedCakeCosts.computedCosts
                 .updateCakeFlavorsTotalCost;
-        const getFruitCost =
-            this.props.store!.CakeActions.cakeCostActions.handleCakeFruitCost;
         return (
             <section className="flavors-custom-flavors-container">
                 <h3>Customize Flavors</h3>
@@ -233,7 +265,7 @@ class CakeFlavors extends React.Component<
                             <div className="flavors-option">
                                 <form action="">
                                     <select
-                                        onChange={(e) => getFruitCost(e)}
+                                        onChange={(e) => this.getFruitInfo(e)}
                                         defaultValue={fruitCost}
                                         name="fruit"
                                         className="flavors-cake-size-dropdown"

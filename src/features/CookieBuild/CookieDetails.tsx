@@ -39,43 +39,7 @@ class CookieDetails extends React.Component<
         };
     }
 
-    // get state from local state event handler because of problems with mobx and date constructor
-    getArrivalDate = (date: Date) => {
-        this.setState({
-            arrivalDate: date,
-        });
-        this.props.store!.ProductActions.detailsActions.handleArrivalDate(date);
-    };
-
-    // get state from local state event handler because of problems with mobx and date constructor
-    getOccasionDate = (date: Date) => {
-        this.setState({
-            occasionDate: date,
-        });
-
-        this.props.store!.ProductActions.detailsActions.handleOccasionDate(
-            date
-        );
-    };
     render() {
-        //store methods
-        const handleOccasion =
-            this.props.store!.ProductActions.detailsActions.handleOccasion;
-        const handleDeliveryOption =
-            this.props.store!.ProductActions.detailsActions
-                .handleDeliveryOption;
-        const handleRecipient =
-            this.props.store!.ProductActions.detailsActions.handleRecipient;
-        const handlePreferredColor =
-            this.props.store!.ProductActions.detailsActions
-                .handlePreferredColors;
-        const handlePhotoExample =
-            this.props.store!.ProductActions.detailsActions.handlePhotoExample;
-        const handleLinkExample =
-            this.props.store!.ProductActions.detailsActions.handleLinkExample;
-        const handleAdditionalDetails =
-            this.props.store!.ProductActions.detailsActions
-                .handleAdditionalDetails;
         return (
             <section className="cookie-d-container">
                 <h3>Cookie Details</h3>
@@ -85,21 +49,21 @@ class CookieDetails extends React.Component<
                         When Do Your Need Your Cake?
                     </h5>
                     <section className="cookie-d-calendar-container">
-                        <DatePicker
+                        {/* <DatePicker
                             closeOnScroll={true}
                             selected={this.state.arrivalDate}
                             onChange={(d) => this.getArrivalDate(d!)}
-                        />
+                        /> */}
                     </section>
                 </div>
                 <div className="cookie-d-make-container">
                     <h5 className="cookie-d-title">When Is The Occasion?</h5>
                     <section className="cookie-d-calendar-container">
-                        <DatePicker
+                        {/* <DatePicker
                             closeOnScroll={true}
                             selected={this.state.occasionDate}
                             onChange={(d) => this.getOccasionDate(d!)}
-                        />
+                        /> */}
                     </section>
                 </div>
                 <div className="cookie-d-make-container">
@@ -117,7 +81,7 @@ class CookieDetails extends React.Component<
                                 Pickup
                             </label>
                             <input
-                                onChange={(e) => handleDeliveryOption(e)}
+                                // onChange={(e) => handleDeliveryOption(e)}
                                 name="delivery-option"
                                 type="radio"
                                 value={DeliveryOption.PICKUP}
@@ -130,7 +94,7 @@ class CookieDetails extends React.Component<
                                 Delivery
                             </label>
                             <input
-                                onChange={(e) => handleDeliveryOption(e)}
+                                // onChange={(e) => handleDeliveryOption(e)}
                                 name="delivery-option"
                                 type="radio"
                                 value={DeliveryOption.DELIVERY}
@@ -144,7 +108,7 @@ class CookieDetails extends React.Component<
                     </h5>
                     <form action="">
                         <select
-                            onChange={(e) => handleOccasion(e)}
+                            // onChange={(e) => handleOccasion(e)}
                             className="cookie-d-dropdown"
                             name="cake-size-dropdown"
                         >
@@ -181,7 +145,7 @@ class CookieDetails extends React.Component<
                     <div className="cookie-d-textbox-container">
                         <form action="">
                             <textarea
-                                onChange={(e) => handleRecipient(e)}
+                                // onChange={(e) => handleRecipient(e)}
                                 className="cookie-d-dropdown"
                                 name="cookie-recipient"
                                 placeholder="Enter Here..."
@@ -196,7 +160,7 @@ class CookieDetails extends React.Component<
                     <div className="cookie-d-textbox-container">
                         <form action="">
                             <textarea
-                                onChange={(e) => handlePreferredColor(e)}
+                                // onChange={(e) => handlePreferredColor(e)}
                                 className="cookie-d-dropdown"
                                 name="cake-colors"
                                 placeholder="Enter Colors Here..."
@@ -212,7 +176,7 @@ class CookieDetails extends React.Component<
                     <div className="cookie-d-textbox-container">
                         <form action="">
                             <input
-                                onChange={(e) => handlePhotoExample(e)}
+                                // onChange={(e) => handlePhotoExample(e)}
                                 className="cookie-d-file-option"
                                 type="file"
                                 name="cake-colors"
@@ -226,7 +190,7 @@ class CookieDetails extends React.Component<
                                 You may also send a link in the field below.
                             </aside>
                             <textarea
-                                onChange={(e) => handleLinkExample(e)}
+                                // onChange={(e) => handleLinkExample(e)}
                                 name="photo-link"
                                 id="cookie-d-photo-link"
                                 placeholder="Enter Link Of Cookie Design Example Here..."
@@ -242,7 +206,7 @@ class CookieDetails extends React.Component<
                     <div className="cookie-d-textbox-container">
                         <form action="">
                             <textarea
-                                onChange={(e) => handleAdditionalDetails(e)}
+                                // onChange={(e) => handleAdditionalDetails(e)}
                                 name="extra-details"
                                 id="cookie-d-extra-details"
                                 placeholder="Enter Details Here..."

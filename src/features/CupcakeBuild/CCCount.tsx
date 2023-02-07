@@ -9,6 +9,7 @@ import { ProductSizes } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 import { ProductData } from "../../data/Products";
+import { action } from "mobx";
 
 interface ICCCountProps {
     store?: GlobalStateStore;
@@ -20,6 +21,67 @@ interface ICCCountProps {
 @observer
 class CCCount extends React.Component<ICCCountProps, {}> {
     // functions
+    getCupcakeQuantityInfo = action(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            let select: HTMLSelectElement = e.target;
+            let value: number = parseInt(select.value);
+            if (
+                this.props.store!.CupcakeStore.cupcakeCount.size ===
+                ProductSizes.MINI
+            ) {
+                //size
+                this.props.store!.CupcakeStore.cupcakeCount.size =
+                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                        value
+                    ].productSize!;
+
+                //serves
+                this.props.store!.CupcakeStore.cupcakeCount.serves =
+                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                        value
+                    ].productServes;
+
+                //price
+                this.props.store!.CupcakeStore.cupcakeCosts.quantityCost =
+                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                        value
+                    ].price;
+
+                // cart state
+                this.props.store!.CartStore.cartEmpty = false;
+            } else if (
+                this.props.store!.CupcakeStore.cupcakeCount.size ===
+                ProductSizes.REGULAR
+            ) {
+                //size
+                this.props.store!.CupcakeStore.cupcakeCount.size =
+                    ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                        value
+                    ].productSize!;
+
+                //serves
+                this.props.store!.CupcakeStore.cupcakeCount.serves =
+                    ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                        value
+                    ].productServes;
+
+                //price
+                this.props.store!.CupcakeStore.cupcakeCosts.quantityCost =
+                    ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                        value
+                    ].price;
+
+                // cart state
+                this.props.store!.CartStore.cartEmpty = false;
+            }
+        }
+    );
+    getCupcakeSize = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let select: HTMLInputElement = e.target;
+        let value: string = select.value;
+        this.props.store!.CupcakeStore.cupcakeCount.size =
+            value as ProductSizes;
+    };
     renderCupcakeCount = () => {
         //variables
         const regCupcakeSizes =
@@ -72,12 +134,6 @@ class CCCount extends React.Component<ICCCountProps, {}> {
         const quantityCost =
             this.props.store!.CupcakeStore.cupcakeCosts.quantityCost;
         const cupcakeSize = this.props.store!.CupcakeStore.cupcakeCount.size;
-        //store methods
-        const setCupcakeSize =
-            this.props.store!.CupcakeActions.cupcakeCountActions.setCupcakeSize;
-        const handleCupcakeQuantity =
-            this.props.store!.CupcakeActions.cupcakeCountActions
-                .handleCupcakeQuantityCost;
 
         return (
             <section className="ccc-count-container">
@@ -92,14 +148,14 @@ class CCCount extends React.Component<ICCCountProps, {}> {
                             value={ProductSizes.REGULAR}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => setCupcakeSize(e)}
+                            onChange={(e) => this.getCupcakeSize(e)}
                         ></input>
                         <label htmlFor="fruit">Regular</label>
                         <input
                             value={ProductSizes.MINI}
                             type="radio"
                             name="fruit"
-                            onChange={(e) => setCupcakeSize(e)}
+                            onChange={(e) => this.getCupcakeSize(e)}
                         ></input>
                         <label htmlFor="fruit">Mini</label>
                     </div>
@@ -118,7 +174,9 @@ class CCCount extends React.Component<ICCCountProps, {}> {
                         <div className="ccc-option">
                             <form action="">
                                 <select
-                                    onChange={(e) => handleCupcakeQuantity(e)}
+                                    onChange={(e) =>
+                                        this.getCupcakeQuantityInfo(e)
+                                    }
                                     name="cake-size"
                                     className="ccc-dropdown"
                                     defaultValue={quantityCost}

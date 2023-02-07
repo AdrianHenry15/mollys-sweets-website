@@ -1,12 +1,17 @@
-import { CakeShapes, CakeTiers } from "../constants/Enums";
+import {
+    CakeShapes,
+    CakeTiers,
+    DeliveryOption,
+    Occasion,
+} from "../../constants/Enums";
 
-export interface ICakeProduct {
+export interface ICakeStore {
     cakeCosts: ICakeCosts;
     cakeBase: ICakeBase;
     cakeFlavors: ICakeFlavors;
 }
 
-export interface ICakeCosts {
+interface ICakeCosts {
     tierCost: number;
     sizeCost: number;
     flavorsCost: number;
@@ -15,14 +20,14 @@ export interface ICakeCosts {
     fruitCost: number;
 }
 
-export interface ICakeBase {
+interface ICakeBase {
     size: string;
     serves: string;
     shape: CakeShapes;
     tier: CakeTiers;
 }
 
-export interface ICakeFlavors {
+interface ICakeFlavors {
     flavor: string;
     filling: string;
     frosting: string;

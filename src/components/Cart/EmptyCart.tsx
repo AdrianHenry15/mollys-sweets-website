@@ -1,5 +1,5 @@
 // styles
-import "../../styles/CartStyles/EmptyCart.scss";
+import "../../styles/ComponentStyles/CartStyles/EmptyCart.scss";
 // frame
 import React from "react";
 import { Link } from "react-router-dom";

@@ -35,43 +35,7 @@ class CCDetails extends React.Component<ICCDetailsProps, ICCDetailsState> {
             occasionDate: new Date(),
         };
     }
-
-    getArrivalDate = (date: Date) => {
-        this.setState({
-            arrivalDate: date,
-        });
-
-        this.props.store!.ProductActions.detailsActions.handleArrivalDate(date);
-    };
-
-    getOccasionDate = (date: Date) => {
-        this.setState({
-            occasionDate: date,
-        });
-
-        this.props.store!.ProductActions.detailsActions.handleOccasionDate(
-            date
-        );
-    };
     render() {
-        //store methods
-        const handleDeliveryOption =
-            this.props.store!.ProductActions.detailsActions
-                .handleDeliveryOption;
-        const handleOccasion =
-            this.props.store!.ProductActions.detailsActions.handleOccasion;
-        const handleRecipient =
-            this.props.store!.ProductActions.detailsActions.handleRecipient;
-        const handlePreferredColor =
-            this.props.store!.ProductActions.detailsActions
-                .handlePreferredColors;
-        const handlePhotoExample =
-            this.props.store!.ProductActions.detailsActions.handlePhotoExample;
-        const handleLinkExample =
-            this.props.store!.ProductActions.detailsActions.handleLinkExample;
-        const handleAdditionalDetails =
-            this.props.store!.ProductActions.detailsActions
-                .handleAdditionalDetails;
         return (
             <section className="ccd-container">
                 <h3>Cupcake Details</h3>
@@ -81,21 +45,21 @@ class CCDetails extends React.Component<ICCDetailsProps, ICCDetailsState> {
                         When Do Your Need Your Cake?
                     </h5>
                     <section className="calendar-container">
-                        <DatePicker
+                        {/* <DatePicker
                             closeOnScroll={true}
                             selected={this.state.arrivalDate}
                             onChange={(d) => this.getArrivalDate(d!)}
-                        />
+                        /> */}
                     </section>
                 </div>
                 <div className="details-cake-make-container">
                     <h5 className="details-title">When Is The Occasion?</h5>
                     <section className="calendar-container">
-                        <DatePicker
+                        {/* <DatePicker
                             closeOnScroll={true}
                             selected={this.state.occasionDate}
                             onChange={(d) => this.getOccasionDate(d!)}
-                        />
+                        /> */}
                     </section>
                 </div>
                 <div className="ccd-make-container">
@@ -113,7 +77,7 @@ class CCDetails extends React.Component<ICCDetailsProps, ICCDetailsState> {
                                 Pickup
                             </label>
                             <input
-                                onChange={(e) => handleDeliveryOption(e)}
+                                // onChange={(e) => handleDeliveryOption(e)}
                                 name="delivery-option"
                                 type="radio"
                                 value={DeliveryOption.PICKUP}
@@ -126,7 +90,7 @@ class CCDetails extends React.Component<ICCDetailsProps, ICCDetailsState> {
                                 Delivery
                             </label>
                             <input
-                                onChange={(e) => handleDeliveryOption(e)}
+                                // onChange={(e) => handleDeliveryOption(e)}
                                 name="delivery-option"
                                 type="radio"
                                 value={DeliveryOption.DELIVERY}
@@ -138,7 +102,7 @@ class CCDetails extends React.Component<ICCDetailsProps, ICCDetailsState> {
                     <h5 className="ccd-title">What Are These Cupcakes For?</h5>
                     <form action="">
                         <select
-                            onChange={(e) => handleOccasion(e)}
+                            // onChange={(e) => handleOccasion(e)}
                             className="ccd-dropdown"
                             name="cake-size-dropdown"
                         >
@@ -170,7 +134,7 @@ class CCDetails extends React.Component<ICCDetailsProps, ICCDetailsState> {
                     <div className="ccd-textbox-container">
                         <form action="">
                             <textarea
-                                onChange={(e) => handleRecipient(e)}
+                                // onChange={(e) => handleRecipient(e)}
                                 className="ccd-dropdown"
                                 name="cc-recipient"
                                 placeholder="Enter Here..."
@@ -185,7 +149,7 @@ class CCDetails extends React.Component<ICCDetailsProps, ICCDetailsState> {
                     <div className="ccd-textbox-container">
                         <form action="">
                             <textarea
-                                onChange={(e) => handlePreferredColor(e)}
+                                // onChange={(e) => handlePreferredColor(e)}
                                 className="ccd-dropdown"
                                 name="cake-colors"
                                 placeholder="Enter Colors Here..."
@@ -201,7 +165,7 @@ class CCDetails extends React.Component<ICCDetailsProps, ICCDetailsState> {
                     <div className="ccd-textbox-container">
                         <form action="">
                             <input
-                                onChange={(e) => handlePhotoExample(e)}
+                                // onChange={(e) => handlePhotoExample(e)}
                                 className="ccd-file-option"
                                 type="file"
                                 name="cake-colors"
@@ -215,7 +179,7 @@ class CCDetails extends React.Component<ICCDetailsProps, ICCDetailsState> {
                                 You may also send a link in the field below.
                             </aside>
                             <textarea
-                                onChange={(e) => handleLinkExample(e)}
+                                // onChange={(e) => handleLinkExample(e)}
                                 name="photo-link"
                                 id="ccd-photo-link"
                                 placeholder="Enter Link Of Cupcake Design Example Here..."
@@ -231,7 +195,7 @@ class CCDetails extends React.Component<ICCDetailsProps, ICCDetailsState> {
                     <div className="ccd-textbox-container">
                         <form action="">
                             <textarea
-                                onChange={(e) => handleAdditionalDetails(e)}
+                                // onChange={(e) => handleAdditionalDetails(e)}
                                 name="extra-details"
                                 id="ccd-extra-details"
                                 placeholder="Enter Details Here..."
