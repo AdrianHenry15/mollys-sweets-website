@@ -1,32 +1,29 @@
-// External Dependencies
+//frameworks
+import { inject, observer } from "mobx-react";
 import React from "react";
 
 //store
-import { inject, observer } from "mobx-react";
 import { ProductCategories } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 //styles
-import "../../styles/CookieBuildStyles/CookieDetails.scss";
+import "../../styles/CupcakeBuildStyles/CCDetails.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import Details from "../../components/Details";
 
-interface ICookieDetailsProps {
+interface ICCDetailsProps {
     store?: GlobalStateStore;
 }
 
-interface ICookieDetailsState {
+interface ICCDetailsState {
     arrivalDate: Date;
     occasionDate: Date;
 }
 
 @inject("store")
 @observer
-class CookieDetails extends React.Component<
-    ICookieDetailsProps,
-    ICookieDetailsState
-> {
-    constructor(props: ICookieDetailsProps) {
+class CCDetails extends React.Component<ICCDetailsProps, ICCDetailsState> {
+    constructor(props: ICCDetailsProps) {
         super(props);
 
         this.state = {
@@ -34,10 +31,9 @@ class CookieDetails extends React.Component<
             occasionDate: new Date(),
         };
     }
-
     render() {
-        return <Details category={ProductCategories.COOKIES} />;
+        return <Details category={ProductCategories.CUPCAKES} />;
     }
 }
 
-export default CookieDetails;
+export default CCDetails;

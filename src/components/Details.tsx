@@ -183,9 +183,12 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
 
     charToUpper = (name: string) => {
         let strLower = name.toLowerCase();
-        return (
-            strLower.charAt(0).toUpperCase() + name.slice(1).replace("s", "")
-        );
+        const category = this.props.category;
+
+        // if the category is Cakes make sure to include the 's' at the end of the property value
+        return category === ProductCategories.CAKES
+            ? strLower.charAt(0).toUpperCase() + name.slice(1).replace("s", "")
+            : strLower.charAt(0).toUpperCase() + name.slice(1);
     };
 
     render() {
@@ -197,7 +200,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                 <hr />
                 <div className="details-cake-make-container">
                     <h5 className="details-title">
-                        When Do Your Need Your {this.charToUpper(category)}?
+                        When Do You Need Your {this.charToUpper(category)}?
                     </h5>
                     <section className="cake-calendar-container">
                         {/* TODO: Create local state to get Date String and cast it to GlobalStateStore */}
