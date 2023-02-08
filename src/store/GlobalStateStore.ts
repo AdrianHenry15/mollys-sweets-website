@@ -68,6 +68,7 @@ export class GlobalStateStore {
     @persist("object") @observable cookieLinkExample = "";
     @persist("object") @observable cookieAdditionalDetails = "";
 
+    //CAKE
     @persist("object") @observable CakeStore: ICakeStore = {
         cakeBase: {
             size: "",
@@ -90,7 +91,7 @@ export class GlobalStateStore {
             fruitCost: 0,
         },
     };
-
+    //CUPCAKE
     @persist("object")
     @observable
     CupcakeStore: ICupcakeStore = {
@@ -109,7 +110,7 @@ export class GlobalStateStore {
             frostingsCost: 0,
         },
     };
-
+    // COOKIE
     @persist("object")
     @observable
     CookieStore: ICookieStore = {
@@ -129,6 +130,7 @@ export class GlobalStateStore {
         },
     };
 
+    // PRODUCT
     @persist("object")
     @observable
     ProductStore: IProductStore = {
@@ -148,7 +150,7 @@ export class GlobalStateStore {
     @persist("object") @observable UserStore: IUserStore = {
         firstName: "",
         lastName: "",
-        email: "/.+@.+..+/",
+        email: "",
         loggedIn: false,
     };
 

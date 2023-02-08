@@ -8,6 +8,7 @@ import {
     ProductCategories,
 } from "../store/constants/Enums";
 import { GlobalStateStore } from "../store/GlobalStateStore";
+import { Form } from "./Form";
 
 /*
 everytime you click on a category
@@ -193,6 +194,9 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
 
     render() {
         const category = this.props.category!;
+        const cakeDeliveryOptionValue = this.props.store!.cakeDeliveryOption;
+        const cupcakeDeliveryOptionValue =
+            this.props.store!.cupcakeDeliveryOption;
         //main
         return (
             <section className="details-cake-details-container">

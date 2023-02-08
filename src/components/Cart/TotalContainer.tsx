@@ -10,7 +10,7 @@ import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
-import CustomerInfo from "../CustomerInfo";
+
 import OrderComplete from "../Orders/OrderComplete";
 import { Link } from "react-router-dom";
 

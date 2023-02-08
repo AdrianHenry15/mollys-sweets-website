@@ -1,4 +1,87 @@
+import { inject, observer } from "mobx-react";
 import * as React from "react";
+import "../styles/ComponentStyles/Form.scss";
+
+// same types as state
+interface IFormContext {
+    errors: IErrors;
+    values: IValues;
+    // reference to form context method so that the Field component can access it
+    setValue?: (fieldName: string, value: any) => void;
+    validate?: (fieldName: string, value: any) => void;
+}
+
+/* Context component for Field component
+    We keep the TypeScript compiler happy by setting the initial context value to an empty literal value.
+*/
+const FormContext = React.createContext<IFormContext>({
+    errors: {},
+    values: {},
+});
+
+export interface ISubmitResult {
+    success: boolean;
+    errors?: IErrors;
+}
+
+// The errors state is an indexable key/value type where the key is the field name and the value is an array of validation error messages.
+interface IErrors {
+    [key: string]: string[];
+}
+
+// takes in field name, values for the whole form, and an optional argument specific to the function
+// A string containing the validation error message will be returned.
+// If the field is valid, a blank string will be returned.
+export type Validator = (
+    fieldName: string,
+    values: IValues,
+    args?: any
+) => string;
+
+/*
+    We export the function so that it can be implemented in any other components later on. 
+    The function checks whether the field value is undefined, null, or an empty string 
+    and if so, it returns a 'This must be populated' validation error message.
+    If the field value isn't undefined, null, or an empty string, 
+    then an empty string is returned to indicate the value is valid.
+*/
+export const required: Validator = (
+    fieldName: string,
+    values: IValues,
+    args?: any
+): string =>
+    values[fieldName] === undefined ||
+    values[fieldName] === null ||
+    values[fieldName] === ""
+        ? "This must be populated"
+        : "";
+
+/*
+    The function checks whether the length of the field value is less than the length argument, 
+    and if so it returns a validation error message. 
+    Otherwise, an empty string is returned to indicate the value is valid.
+*/
+export const minLength: Validator = (
+    fieldName: string,
+    values: IValues,
+    length: number
+): string =>
+    values[fieldName] && values[fieldName].length < length
+        ? `This must be at least ${length} characters`
+        : "";
+
+/*
+    A validation rule contains the validation function of type Validator, 
+    and an argument to pass into the validation function.
+*/
+interface IValidation {
+    validator: Validator;
+    arg?: any;
+}
+
+interface IValidationProp {
+    [key: string]: IValidation | IValidation[];
+}
 
 export interface IValues {
     [key: string]: any;
@@ -6,15 +89,13 @@ export interface IValues {
 
 // ALL FORM FIELD PROPERTIES
 interface IFieldProps {
-    // name of the field
+    // name of the form field
     name: string;
 
-    // text to display in field
+    // text to display in form field
     label: string;
 
-    /* union type for type of editor to display
-        - needs default value
-    */
+    //union type for type of editor to display for form field that needs a default value
     type?: "Text" | "Email" | "Select" | "TextArea" | "Radio";
 
     /* defines list of options to display in the drop-down
@@ -24,62 +105,24 @@ interface IFieldProps {
     options?: string[];
 }
 
-// same types as state
-interface IFormContext {
-    values: IValues;
-    // reference to form context method so that the Field component can access it
-    setValue?: (fieldName: string, value: any) => void;
-}
-
-/* Context component for Field component
-    We keep the TypeScript compiler happy by setting the initial context value to an empty literal value.
-*/
-const FormContext = React.createContext<IFormContext>({
-    values: {},
-});
-
 interface IFormProps {
     children: React.ReactNode;
     defaultValues: IValues;
+    /*
+        The validationRules prop is an indexable key/value type, 
+        where the key is the field name and the value is one or more validation rules of type IValidation.
+    */
+    validationRules: IValidationProp;
 }
 
 interface IFormState {
     values: IValues;
+    errors: IErrors;
 }
 
+@inject("store")
+@observer
 export class Form extends React.Component<IFormProps, IFormState> {
-    constructor(props: IFormProps) {
-        super(props);
-
-        this.state = {
-            values: props.defaultValues,
-        };
-    }
-
-    private setValue = (fieldName: string, value: any) => {
-        // new state created for values object
-        const newValues = { ...this.state.values, [fieldName]: value };
-
-        // new values set in state
-        this.setState({ values: newValues });
-    };
-
-    // RENDER
-    public render() {
-        const context: IFormContext = {
-            values: this.state.values,
-            setValue: this.setValue,
-        };
-        return (
-            // PROVIDES context for CONSUMER to take in
-            <FormContext.Provider value={context}>
-                <form className="form" noValidate={true}>
-                    {this.props.children}
-                </form>
-            </FormContext.Provider>
-        );
-    }
-
     // FIELD COMPONENT FOR FORM
     public static Field: React.FC<IFieldProps> = (props) => {
         // destructure from props object
@@ -95,8 +138,20 @@ export class Form extends React.Component<IFormProps, IFormState> {
         ) => {
             // checks that the setValue method is not undefined
             if (context.setValue) {
-                console.log(props.name);
                 context.setValue(props.name, e.currentTarget.value);
+            }
+        };
+
+        // trigger validation rules when field loses focus
+        const handleBlur = (
+            e:
+                | React.FocusEvent<HTMLInputElement>
+                | React.FocusEvent<HTMLTextAreaElement>
+                | React.FocusEvent<HTMLSelectElement>,
+            context: IFormContext
+        ) => {
+            if (context.validate) {
+                context.validate(props.name, e.currentTarget.value);
             }
         };
         return (
@@ -112,10 +167,11 @@ export class Form extends React.Component<IFormProps, IFormState> {
                             type === "Email" ||
                             type === "Radio") && (
                             <input
-                                type={type?.toLowerCase()}
+                                type={type.toLowerCase()}
                                 id={name}
                                 value={context.values[name]}
                                 onChange={(e) => handleChange(e, context)}
+                                onBlur={(e) => handleBlur(e, context)}
                             />
                         )}
                         {type === "TextArea" && (
@@ -123,6 +179,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
                                 id={name}
                                 value={context.values[name]}
                                 onChange={(e) => handleChange(e, context)}
+                                onBlur={(e) => handleBlur(e, context)}
                             />
                         )}
                         {/* We render a select tag, 
@@ -133,6 +190,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
                             <select
                                 value={context.values[name]}
                                 onChange={(e) => handleChange(e, context)}
+                                onBlur={(e) => handleBlur(e, context)}
                             >
                                 {options &&
                                     options.map((option) => (
@@ -144,6 +202,82 @@ export class Form extends React.Component<IFormProps, IFormState> {
                 )}
             </FormContext.Consumer>
         );
+    };
+    constructor(props: IFormProps) {
+        super(props);
+        /*
+            The defaultValues prop contains all the field names in its keys. 
+            We iterate through the defaultValues keys, 
+            setting the appropriate errors key to an empty array. 
+            As a result, when the Form component initializes, 
+            none of the fields contain any validation error messages
+        */
+        const errors: IErrors = {};
+        Object.keys(props.defaultValues).forEach((fieldName) => {
+            errors[fieldName] = [];
+        });
+        this.state = {
+            errors,
+            values: props.defaultValues,
+        };
+    }
+
+    // RENDER
+    public render() {
+        // the validation errors are in the form state, and also in the form context for the Field component to access.
+        const context: IFormContext = {
+            errors: this.state.errors,
+            values: this.state.values,
+            setValue: this.setValue,
+            validate: this.validate,
+        };
+        return (
+            // PROVIDES context for CONSUMER to take in
+            <FormContext.Provider value={context}>
+                <form className="login-forms" noValidate={true}>
+                    {this.props.children}
+                </form>
+            </FormContext.Provider>
+        );
+    }
+
+    private setValue = (fieldName: string, value: any) => {
+        // new state created for values object
+        const newValues = { ...this.state.values, [fieldName]: value };
+
+        // new values set in state
+        this.setState({ values: newValues });
+    };
+
+    private validate = (fieldName: string, value: any): string[] => {
+        const rules = this.props.validationRules[fieldName];
+        const errors: string[] = [];
+        if (Array.isArray(rules)) {
+            rules.forEach((rule) => {
+                const error = rule.validator(
+                    fieldName,
+                    this.state.values,
+                    rule.arg
+                );
+                if (error) {
+                    errors.push(error);
+                }
+            });
+        } else {
+            if (rules) {
+                const error = rules.validator(
+                    fieldName,
+                    this.state.values,
+                    rules.arg
+                );
+                if (error) {
+                    errors.push(error);
+                }
+            }
+        }
+        const newErrors = { ...this.state.errors, [fieldName]: errors };
+        this.setState({ errors: newErrors });
+        return errors;
     };
 }
 
