@@ -7,7 +7,7 @@ import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 //components
-import Order from "../Orders/Order";
+// import Order from "../Orders/Order";
 import EmptyCart from "./EmptyCart";
 import { Link } from "react-router-dom";
 
@@ -15,6 +15,9 @@ import { Link } from "react-router-dom";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
+import CakeOrder from "../Orders/features/CakeOrder";
+import CupcakeOrder from "../Orders/features/CupcakeOrder";
+import CookieOrder from "../Orders/features/CookieOrder";
 
 interface ICartProps {
     store?: GlobalStateStore;
@@ -93,6 +96,12 @@ class Cart extends React.Component<ICartProps, ICartState> {
         // total
         const updateTotalCost =
             this.props.store!.ProductComputeds.updateProductTotal;
+
+        // categories
+        const cakeCategory = this.props.store!.CategoryStore.cakeCategory;
+        const cupcakeCategory = this.props.store!.CategoryStore.cupcakeCategory;
+        const cookieCategory = this.props.store!.CategoryStore.cookieCategory;
+
         return (
             <section className="cart-main">
                 <EmptyCart />
@@ -100,7 +109,9 @@ class Cart extends React.Component<ICartProps, ICartState> {
                     <div className="cart-filled-container">
                         <div className="cart-container">
                             <h1 className="filled-cart-label">Your Cart</h1>
-                            <Order />
+                            {!cakeCategory && <CakeOrder />}
+                            {!cupcakeCategory && <CupcakeOrder />}
+                            {!cookieCategory && <CookieOrder />}
                         </div>
                         <section className="checkout-total-container">
                             <Link to={"../../login"}>

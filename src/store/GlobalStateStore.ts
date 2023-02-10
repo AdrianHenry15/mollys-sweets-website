@@ -155,6 +155,9 @@ export class GlobalStateStore {
     };
 
     @persist("object") @observable CategoryStore: ICategory = {
+        cakeCategory: false,
+        cookieCategory: false,
+        cupcakeCategory: false,
         category: "",
     };
 
@@ -166,6 +169,7 @@ export class GlobalStateStore {
         },
     };
 
+    //computeds
     @computed getTierCost = () => {
         const tier = this.CakeStore.cakeBase.tier;
         if (tier === CakeTiers.SINGLE) {
@@ -277,6 +281,6 @@ const hydrate = create({});
 export const globalStore = new GlobalStateStore();
 
 // HYDRATION TO GLOBALSTORE
-hydrate("GlobalStore", globalStore).then(() =>
+hydrate("GlobalStore", globalStore, GlobalStateStore).then(() =>
     console.log("Application Hydrated")
 );

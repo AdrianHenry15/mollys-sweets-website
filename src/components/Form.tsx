@@ -234,7 +234,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
         return (
             // PROVIDES context for CONSUMER to take in
             <FormContext.Provider value={context}>
-                <form className="login-forms" noValidate={true}>
+                <form className="form-group" noValidate={true}>
                     {this.props.children}
                 </form>
             </FormContext.Provider>

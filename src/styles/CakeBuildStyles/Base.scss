@@ -1,8 +1,6 @@
 .base-cake-base-container {
     display: flex;
     flex-direction: column;
-    border-bottom: solid rgb(68, 68, 68) 1px;
-    padding-bottom: 30px;
 }
 
 .base-cake-make-container {
@@ -17,6 +15,8 @@
 
 .base-choice-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
@@ -42,8 +42,19 @@
 .base-title {
     font-size: 20px;
 }
+
+.base-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 10px;
+}
 .base-option {
-    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .base-cake-size-dropdown {
