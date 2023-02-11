@@ -172,18 +172,14 @@ class CCCount extends React.Component<ICCCountProps, {}> {
                     </h5>
                     <div className="ccc-choice-container">
                         <div className="ccc-option">
-                            <form action="">
-                                <select
-                                    onChange={(e) =>
-                                        this.getCupcakeQuantityInfo(e)
-                                    }
-                                    name="cake-size"
-                                    className="ccc-dropdown"
-                                    defaultValue={quantityCost}
-                                >
-                                    {this.renderCupcakeCount()}
-                                </select>
-                            </form>
+                            <select
+                                onChange={(e) => this.getCupcakeQuantityInfo(e)}
+                                name="cake-size"
+                                className="ccc-dropdown"
+                                defaultValue={quantityCost}
+                            >
+                                {this.renderCupcakeCount()}
+                            </select>
                         </div>
                     </div>
                 </div>

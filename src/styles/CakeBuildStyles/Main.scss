@@ -203,3 +203,27 @@
         font-size: 12px;
     }
 }
+
+/*
+    style classes:
+For Cake Build Main Component
+main-build-cake-wrapper = create-container
+main-build-cake-container = create-layout
+main-customize-cake-container = form-container
+main-create-cake-container = form-field-layouts
+cake-order-complete-container = submit-btn-container
+cake-order-complete = submit-btn-link
+byc-create-links-container = create-links-container
+byc-create-links = create-links (cupcakes-link, cookies-link, cake-link)
+byc-create-icons = create-icons
+byc-create-icons-label = create-labels
+
+Cake Base
+base-cake-base-container = form-field-section
+base-cake-make-container = form-field-container
+base-title = field-title
+base-choice-container = radio-input-wrapper
+base-option = radio-input-container
+base-label = radio-label
+base-cake-size-dropdown = select-tag
+*/

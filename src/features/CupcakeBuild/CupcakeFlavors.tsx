@@ -59,59 +59,55 @@ class CCFlavors extends React.Component<ICCFlavorsProps, {}> {
 
         if (genre === CakeTypes.FLAVORS) {
             return (
-                <form action="">
-                    <select
-                        onChange={(e) => this.getCupcakeFlavorInfo(e)}
-                        defaultValue={flavorCost}
-                        name="cake-size"
-                        className="ccf-dropdown"
-                    >
-                        {flavors.map(({ id, productName, price }) => {
-                            if (id === 0) {
-                                return (
-                                    <option key={productName} value="0">
-                                        Choose One
-                                    </option>
-                                );
-                            } else {
-                                return (
-                                    <option
-                                        key={productName}
-                                        value={id}
-                                    >{`${productName} ($${price})`}</option>
-                                );
-                            }
-                        })}
-                    </select>
-                </form>
+                <select
+                    onChange={(e) => this.getCupcakeFlavorInfo(e)}
+                    defaultValue={flavorCost}
+                    name="cake-size"
+                    className="ccf-dropdown"
+                >
+                    {flavors.map(({ id, productName, price }) => {
+                        if (id === 0) {
+                            return (
+                                <option key={productName} value="0">
+                                    Choose One
+                                </option>
+                            );
+                        } else {
+                            return (
+                                <option
+                                    key={productName}
+                                    value={id}
+                                >{`${productName} ($${price})`}</option>
+                            );
+                        }
+                    })}
+                </select>
             );
         } else if (genre === CakeTypes.FROSTINGS) {
             return (
-                <form action="">
-                    <select
-                        onChange={(e) => this.getCupcakeFrostingInfo(e)}
-                        value={frostingCost}
-                        name="cake-size"
-                        className="ccf-dropdown"
-                    >
-                        {frostings.map(({ id, productName, price }) => {
-                            if (id === 0) {
-                                return (
-                                    <option key={productName} value="0">
-                                        Choose One
-                                    </option>
-                                );
-                            } else {
-                                return (
-                                    <option
-                                        key={productName}
-                                        value={id}
-                                    >{`${productName} ($${price})`}</option>
-                                );
-                            }
-                        })}
-                    </select>
-                </form>
+                <select
+                    onChange={(e) => this.getCupcakeFrostingInfo(e)}
+                    value={frostingCost}
+                    name="cake-size"
+                    className="ccf-dropdown"
+                >
+                    {frostings.map(({ id, productName, price }) => {
+                        if (id === 0) {
+                            return (
+                                <option key={productName} value="0">
+                                    Choose One
+                                </option>
+                            );
+                        } else {
+                            return (
+                                <option
+                                    key={productName}
+                                    value={id}
+                                >{`${productName} ($${price})`}</option>
+                            );
+                        }
+                    })}
+                </select>
             );
         }
     };

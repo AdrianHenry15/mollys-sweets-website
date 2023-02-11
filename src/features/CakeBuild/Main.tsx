@@ -119,7 +119,7 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                                 colors: { validator: required },
                             }}
                         >
-                            <section>
+                            <section className="main-create-cake-container">
                                 <CustomerInfo />
                             </section>
                             <section className="main-create-cake-container">
