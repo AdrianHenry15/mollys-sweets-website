@@ -7,7 +7,7 @@ import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 
 //data
-import { ProductData } from "../../data/Products";
+import { ProductData } from "../../data/Data";
 
 interface IOptionsOverviewProps {
     store?: GlobalStateStore;

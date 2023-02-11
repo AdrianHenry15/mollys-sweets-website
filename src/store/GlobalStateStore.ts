@@ -1,5 +1,5 @@
 import { observable, makeAutoObservable, action, computed } from "mobx";
-import { ProductData } from "../data/Products";
+import { ProductData } from "../data/Data";
 import {
     CakeShapes,
     CakeTiers,

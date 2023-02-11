@@ -27,3 +27,28 @@
     width: 100%;
     padding: 10px;
 }
+
+.contact-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0 15px 0;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .contact-label {
+        font-weight: 500;
+    }
+}
+
+.contact-input {
+    width: 100%;
+}

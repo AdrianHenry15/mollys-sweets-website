@@ -8,7 +8,6 @@ import {
     ProductCategories,
 } from "../store/constants/Enums";
 import { GlobalStateStore } from "../store/GlobalStateStore";
-import { Form } from "./Form";
 
 /*
 everytime you click on a category
@@ -215,82 +214,65 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                     </section>
                 </div>
                 <div className="details-cake-make-container">
-                    <h5 className="details-title">When Is The Occasion?</h5>
-                    <section className="cake-calendar-container">
-                        {/* TODO: Create local state to get Date String and cast it to GlobalStateStore */}
-                        <DatePicker
-                            selected={this.state.occasionDate}
-                            onChange={(date) => this.getOccasionDate(date!)}
-                        />
-                    </section>
-                </div>
-                <div className="details-cake-make-container">
                     <h5 className="details-title">Pickup Or Delivery?</h5>
                     <div className="details-checkbox-container">
-                        <form
-                            name="delivery-option"
-                            className="cake-delivery-option-form"
-                            action=""
+                        <label
+                            className="cake-delivery-option-label"
+                            htmlFor="deliveryOption"
                         >
-                            <label
-                                className="cake-delivery-option-label"
-                                htmlFor="deliveryOption"
-                            >
-                                Pickup
-                            </label>
-                            <input
-                                onChange={(e) => this.getDeliveryOption(e)}
-                                name="delivery-option"
-                                type="radio"
-                                value={DeliveryOption.PICKUP}
-                            />
+                            Pickup
+                        </label>
+                        <input
+                            onChange={(e) => this.getDeliveryOption(e)}
+                            name="delivery-option"
+                            type="radio"
+                            value={DeliveryOption.PICKUP}
+                        />
 
-                            <label
-                                className="cake-delivery-option-label"
-                                htmlFor="deliveryOption"
-                            >
-                                Delivery
-                            </label>
-                            <input
-                                onChange={(e) => this.getDeliveryOption(e)}
-                                name="delivery-option"
-                                type="radio"
-                                value={DeliveryOption.DELIVERY}
-                            />
-                        </form>
+                        <label
+                            className="cake-delivery-option-label"
+                            htmlFor="deliveryOption"
+                        >
+                            Delivery
+                        </label>
+                        <input
+                            onChange={(e) => this.getDeliveryOption(e)}
+                            name="delivery-option"
+                            type="radio"
+                            value={DeliveryOption.DELIVERY}
+                        />
                     </div>
                 </div>
                 <div className="details-cake-make-container">
                     <h5 className="details-title">
                         What Is The {this.charToUpper(category)} For?
                     </h5>
-                    <form action="">
-                        <select
-                            // onChange={(e) => handleOccasion(e)}
-                            className="details-cake-size-dropdown"
-                            name="cake-size-dropdown"
-                        >
-                            {(
-                                Object.keys(Occasion) as Array<
-                                    keyof typeof Occasion
-                                >
-                            ).map((key) => {
-                                if (Occasion[key] === Occasion.NONE) {
-                                    return (
-                                        <option key={key} value="">
-                                            Choose One
-                                        </option>
-                                    );
-                                } else {
-                                    return (
-                                        <option key={key} value={Occasion[key]}>
-                                            {Occasion[key]}
-                                        </option>
-                                    );
-                                }
-                            })}
-                        </select>
-                    </form>
+
+                    <select
+                        // onChange={(e) => handleOccasion(e)}
+                        className="details-cake-size-dropdown"
+                        name="cake-size-dropdown"
+                    >
+                        {(
+                            Object.keys(Occasion) as Array<
+                                keyof typeof Occasion
+                            >
+                        ).map((key) => {
+                            if (Occasion[key] === Occasion.NONE) {
+                                return (
+                                    <option key={key} value="">
+                                        Choose One
+                                    </option>
+                                );
+                            } else {
+                                return (
+                                    <option key={key} value={Occasion[key]}>
+                                        {Occasion[key]}
+                                    </option>
+                                );
+                            }
+                        })}
+                    </select>
                 </div>
 
                 <div
@@ -299,14 +281,12 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                 >
                     <h5 className="details-title">Who Is The Cake For?</h5>
                     <div className="details-textbox-container">
-                        <form action="">
-                            <textarea
-                                onChange={(e) => this.getRecipient(e)}
-                                className="details-cake-size-dropdown"
-                                name="cake-recipient"
-                                placeholder="Enter Here..."
-                            />
-                        </form>
+                        <textarea
+                            onChange={(e) => this.getRecipient(e)}
+                            className="details-cake-size-dropdown"
+                            name="cake-recipient"
+                            placeholder="Enter Here..."
+                        />
                     </div>
                 </div>
                 <div className="details-cake-make-container">
@@ -314,14 +294,12 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                         List Preferred Colors For Cake
                     </h5>
                     <div className="details-textbox-container">
-                        <form action="">
-                            <textarea
-                                onChange={(e) => this.getPreferredColors(e)}
-                                className="details-cake-size-dropdown"
-                                name="cake-colors"
-                                placeholder="Enter Colors Here..."
-                            />
-                        </form>
+                        <textarea
+                            onChange={(e) => this.getPreferredColors(e)}
+                            className="details-cake-size-dropdown"
+                            name="cake-colors"
+                            placeholder="Enter Colors Here..."
+                        />
                     </div>
                 </div>
                 <div
@@ -332,15 +310,13 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                         Write Cake Inscription (If any)
                     </h5>
                     <div className="details-textbox-container">
-                        <form action="">
-                            <textarea
-                                onChange={(e) => this.getInscription(e)}
-                                className="details-cake-size-dropdown"
-                                name="cake-colors"
-                                placeholder="Enter Inscription Here..."
-                                maxLength={80}
-                            />
-                        </form>
+                        <textarea
+                            onChange={(e) => this.getInscription(e)}
+                            className="details-cake-size-dropdown"
+                            name="cake-colors"
+                            placeholder="Enter Inscription Here..."
+                            maxLength={80}
+                        />
                     </div>
                 </div>
                 <div
@@ -349,28 +325,26 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                 >
                     <h5 className="details-title">Photo Example Of Cake</h5>
                     <div className="details-textbox-container">
-                        <form action="">
-                            <input
-                                className="details-file-option"
-                                type="file"
-                                name="cake-colors"
-                                maxLength={80}
-                                onChange={(e) => this.getPhotoExample(e)}
-                            />
-                            <aside>
-                                Upload any photo example <br />
-                                of a cake design that you would like to copy for
-                                your cake. <br />
-                                You may also send a link in the field below.
-                            </aside>
-                            <textarea
-                                onChange={(e) => this.getLinkExample(e)}
-                                name="photo-link"
-                                id="details-photo-link"
-                                placeholder="Enter Link Of Cake Design Example Here..."
-                                maxLength={450}
-                            ></textarea>
-                        </form>
+                        <input
+                            className="details-file-option"
+                            type="file"
+                            name="cake-colors"
+                            maxLength={80}
+                            onChange={(e) => this.getPhotoExample(e)}
+                        />
+                        <aside>
+                            Upload any photo example <br />
+                            of a cake design that you would like to copy for
+                            your cake. <br />
+                            You may also send a link in the field below.
+                        </aside>
+                        <textarea
+                            onChange={(e) => this.getLinkExample(e)}
+                            name="photo-link"
+                            id="details-photo-link"
+                            placeholder="Enter Link Of Cake Design Example Here..."
+                            maxLength={450}
+                        ></textarea>
                     </div>
                 </div>
                 <div
@@ -381,14 +355,12 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                         Additional Design/Theme Details
                     </h5>
                     <div className="details-textbox-container">
-                        <form action="">
-                            <textarea
-                                onChange={(e) => this.getAdditionalDetails(e)}
-                                name="extra-details"
-                                id="details-extra-details"
-                                placeholder="Enter Details Here..."
-                            ></textarea>
-                        </form>
+                        <textarea
+                            onChange={(e) => this.getAdditionalDetails(e)}
+                            name="extra-details"
+                            id="details-extra-details"
+                            placeholder="Enter Details Here..."
+                        ></textarea>
                     </div>
                 </div>
             </section>

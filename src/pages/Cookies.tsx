@@ -13,7 +13,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 //store
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../store/GlobalStateStore";
-import { ProductData } from "../data/Products";
+import { ProductData } from "../data/Data";
 
 interface ICookiesProps {
     store?: GlobalStateStore;

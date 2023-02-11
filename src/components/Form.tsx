@@ -158,7 +158,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
             // CONSUMES context from PROVIDER
             <FormContext.Consumer>
                 {(context) => (
-                    <div className="form-group">
+                    <div className="forms">
                         {/* label rendered just before the input inside the div container, 
                             with the htmlFor attribute of the label referencing the id of the input. 
                         */}
@@ -234,7 +234,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
         return (
             // PROVIDES context for CONSUMER to take in
             <FormContext.Provider value={context}>
-                <form className="form-group" noValidate={true}>
+                <form className="form-group" noValidate={false}>
                     {this.props.children}
                 </form>
             </FormContext.Provider>

@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 // components
 import CookieCount from "./CookieCount";
-import CookieTotalCost from "./CookieTotalCost";
 import CookieDetails from "./CookieDetails";
 import CookieFlavors from "./CookieFlavors";
 import { inject, observer } from "mobx-react";
@@ -56,9 +55,6 @@ class ChooseYourCookies extends React.Component<
                         </section>
                         <section className="main-create-cookie-container">
                             <CookieDetails />
-                        </section>
-                        <section className="main-create-cookie-container">
-                            <CookieTotalCost />
                         </section>
                     </section>
                 </div>

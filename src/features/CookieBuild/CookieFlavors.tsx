@@ -7,7 +7,7 @@ import "../../styles/CookieBuildStyles/CookieFlavors.scss";
 
 //stores
 import { GlobalStateStore } from "../../store/GlobalStateStore";
-import { ProductData } from "../../data/Products";
+import { ProductData } from "../../data/Data";
 
 interface ICookieFlavorsProps {
     store?: GlobalStateStore;

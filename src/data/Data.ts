@@ -5,6 +5,89 @@ import {
     ProductTypes,
 } from "../store/constants/Enums";
 
+export const Flavors: string[] = [
+    "Vanilla",
+    "Almond",
+    "Carrot",
+    "Coconut",
+    "Chocolate",
+    "Strawberry",
+    "Strawberry Champagne",
+    "Red Velvet",
+    "Chocolate",
+    "Birthday",
+    "Oreo",
+    "Brown Butter",
+    "Lemon",
+    "Raspberry",
+    "Flavor Not Here",
+];
+
+export const Frostings: string[] = [
+    "Swiss Buttercream",
+    "Cream Cheese Buttercream",
+    "Buttercream",
+    "Lemon Buttercream",
+    "Frosting Not Here",
+];
+
+export const Fillings: string[] = [
+    "Blueberry Jam",
+    "Strawberry Jam",
+    "Ganache",
+    "Vanilla Mousse",
+    "Strawberry Mousse",
+    "Peanut Butter Mousse",
+    "Boston Cream",
+    "Fresh Fruit",
+    "Filling Not Here",
+];
+
+export const CookieFlavors: string[] = [
+    "Chocolate Chip",
+    "Sugar Cookie",
+    "Peanut Butter",
+    "Oatmeal Raisin",
+    "Snickerdoodle",
+    "Dark Chocolate",
+    "Red Velvet",
+    "Birthday Cake",
+    "Brownie",
+    "Oreo",
+    "Coconut",
+    "Cookie Flavor Not Here",
+];
+
+export const Fruits: string[] = [
+    "Banana",
+    "Apple",
+    "Blueberry",
+    "Strawberry",
+    "Fruit Not Here",
+];
+
+export const SheetSizes: string[] = [
+    "1/4 (Serves 28 People)",
+    "1/2 (Serves 48 People)",
+    "Full (Serves 98 People)",
+];
+
+export const RoundSizes: string[] = [
+    `6" (Serves 6-8 People)`,
+    `8" (Serves 10-18 People)`,
+    `10" (Serves 26-35 People)`,
+    `12" (Serves 35-48 People)`,
+    `14" (Serves 50-65 People)`,
+];
+
+export const PastryQuantity: string[] = [
+    "12 (Serves 12 People)",
+    "24 (Serves 12 People)",
+    "36 (Serves 12 People)",
+    "48 (Serves 12 People)",
+    "Quantity Not Here",
+];
+
 export const ProductData = {
     products: {
         flavors: [

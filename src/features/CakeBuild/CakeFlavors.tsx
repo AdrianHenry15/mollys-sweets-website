@@ -8,7 +8,7 @@ import "../../styles/CakeBuildStyles/Flavors.scss";
 import { CakeTypes } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
-import { ProductData } from "../../data/Products";
+import { ProductData } from "../../data/Data";
 import { action } from "mobx";
 
 //store
@@ -85,66 +85,60 @@ class CakeFlavors extends React.Component<
         switch (genre) {
             case CakeTypes.FLAVORS: {
                 return (
-                    <form action="">
-                        <select
-                            onChange={(e) => this.getCakeFlavorInfo(e)}
-                            defaultValue={
-                                this.props.store!.CakeStore.cakeCosts
-                                    .flavorsCost
+                    <select
+                        onChange={(e) => this.getCakeFlavorInfo(e)}
+                        defaultValue={
+                            this.props.store!.CakeStore.cakeCosts.flavorsCost
+                        }
+                        name="cake-flavor"
+                        className="flavors-cake-size-dropdown"
+                    >
+                        {flavors.map(({ id, productName, price }) => {
+                            if (id === 0) {
+                                return (
+                                    <option key={productName} value="0">
+                                        Choose One
+                                    </option>
+                                );
+                            } else {
+                                return (
+                                    <option
+                                        key={productName}
+                                        value={id}
+                                    >{`${productName} ($${price})`}</option>
+                                );
                             }
-                            name="cake-flavor"
-                            className="flavors-cake-size-dropdown"
-                        >
-                            {flavors.map(({ id, productName, price }) => {
-                                if (id === 0) {
-                                    return (
-                                        <option key={productName} value="0">
-                                            Choose One
-                                        </option>
-                                    );
-                                } else {
-                                    return (
-                                        <option
-                                            key={productName}
-                                            value={id}
-                                        >{`${productName} ($${price})`}</option>
-                                    );
-                                }
-                            })}
-                        </select>
-                    </form>
+                        })}
+                    </select>
                 );
             }
             case CakeTypes.FROSTINGS: {
                 return (
-                    <form action="">
-                        <select
-                            onChange={(e) => this.getCakeFrostingInfo(e)}
-                            defaultValue={
-                                this.props.store!.CakeStore.cakeCosts
-                                    .frostingsCost
+                    <select
+                        onChange={(e) => this.getCakeFrostingInfo(e)}
+                        defaultValue={
+                            this.props.store!.CakeStore.cakeCosts.frostingsCost
+                        }
+                        name="cake-frosting"
+                        className="flavors-cake-size-dropdown"
+                    >
+                        {frostings.map(({ id, productName, price }) => {
+                            if (id === 0) {
+                                return (
+                                    <option key={productName} value="0">
+                                        Choose One
+                                    </option>
+                                );
+                            } else {
+                                return (
+                                    <option
+                                        key={productName}
+                                        value={id}
+                                    >{`${productName} ($${price})`}</option>
+                                );
                             }
-                            name="cake-frosting"
-                            className="flavors-cake-size-dropdown"
-                        >
-                            {frostings.map(({ id, productName, price }) => {
-                                if (id === 0) {
-                                    return (
-                                        <option key={productName} value="0">
-                                            Choose One
-                                        </option>
-                                    );
-                                } else {
-                                    return (
-                                        <option
-                                            key={productName}
-                                            value={id}
-                                        >{`${productName} ($${price})`}</option>
-                                    );
-                                }
-                            })}
-                        </select>
-                    </form>
+                        })}
+                    </select>
                 );
             }
             case CakeTypes.FILLINGS: {
@@ -240,7 +234,7 @@ class CakeFlavors extends React.Component<
                         <input
                             value="yes"
                             type="radio"
-                            name="fruit"
+                            name="hasFruit"
                             id="flavors-fruit-input"
                             onClick={() => this.setFruit()}
                         ></input>
@@ -248,7 +242,7 @@ class CakeFlavors extends React.Component<
                         <input
                             value="no"
                             type="radio"
-                            name="fruit"
+                            name="hasfruit"
                             id="flavors-fruit-input"
                             onClick={() => this.setFruit()}
                         ></input>
@@ -263,36 +257,34 @@ class CakeFlavors extends React.Component<
                         <h5 className="flavors-title">What Fruits?</h5>
                         <div className="flavors-choice-container">
                             <div className="flavors-option">
-                                <form action="">
-                                    <select
-                                        onChange={(e) => this.getFruitInfo(e)}
-                                        defaultValue={fruitCost}
-                                        name="fruit"
-                                        className="flavors-cake-size-dropdown"
-                                    >
-                                        {fruits.map(
-                                            ({ id, productName, price }) => {
-                                                if (id === 0) {
-                                                    return (
-                                                        <option
-                                                            key={productName}
-                                                            value="0"
-                                                        >
-                                                            Choose One
-                                                        </option>
-                                                    );
-                                                } else {
-                                                    return (
-                                                        <option
-                                                            key={productName}
-                                                            value={id}
-                                                        >{`${productName} ($${price})`}</option>
-                                                    );
-                                                }
+                                <select
+                                    onChange={(e) => this.getFruitInfo(e)}
+                                    defaultValue={fruitCost}
+                                    name="fruit"
+                                    className="flavors-cake-size-dropdown"
+                                >
+                                    {fruits.map(
+                                        ({ id, productName, price }) => {
+                                            if (id === 0) {
+                                                return (
+                                                    <option
+                                                        key={productName}
+                                                        value="0"
+                                                    >
+                                                        Choose One
+                                                    </option>
+                                                );
+                                            } else {
+                                                return (
+                                                    <option
+                                                        key={productName}
+                                                        value={id}
+                                                    >{`${productName} ($${price})`}</option>
+                                                );
                                             }
-                                        )}
-                                    </select>
-                                </form>
+                                        }
+                                    )}
+                                </select>
                             </div>
                         </div>
                     </div>

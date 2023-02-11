@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import CupcakeCount from "./CupcakeCount";
 import CupcakeFlavors from "./CupcakeFlavors";
 import CupcakeDetails from "./CupcakeDetails";
-import CupcakeTotalCost from "./CupcakeTotalCost";
 
 //store
 import { GlobalStateStore } from "../../store/GlobalStateStore";
@@ -53,9 +52,6 @@ class ChooseYourCupcakes extends React.Component<IChooseYourCupcakesProps, {}> {
                         </section>
                         <section className="main-create-cupcake-container">
                             <CupcakeDetails />
-                        </section>
-                        <section className="main-create-cupcake-container">
-                            <CupcakeTotalCost />
                         </section>
                     </section>
                 </div>

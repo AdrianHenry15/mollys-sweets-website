@@ -8,7 +8,7 @@ import "../../styles/CupcakeBuildStyles/CCFlavors.scss";
 import { CakeTypes, ProductSizes } from "../../store/constants/Enums";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
-import { ProductData } from "../../data/Products";
+import { ProductData } from "../../data/Data";
 
 interface ICCFlavorsProps {
     store?: GlobalStateStore;

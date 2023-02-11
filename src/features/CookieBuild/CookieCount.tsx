@@ -8,7 +8,7 @@ import React from "react";
 import { ProductSizes } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
-import { ProductData } from "../../data/Products";
+import { ProductData } from "../../data/Data";
 import { action } from "mobx";
 
 interface ICookieCountProps {

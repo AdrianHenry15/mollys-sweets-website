@@ -11,7 +11,7 @@ import { SweetsImages } from "../data/ImageData";
 //store
 import { GlobalStateStore } from "../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
-import { ProductData } from "../data/Products";
+import { ProductData } from "../data/Data";
 
 interface ICupcakesProps {
     store?: GlobalStateStore;

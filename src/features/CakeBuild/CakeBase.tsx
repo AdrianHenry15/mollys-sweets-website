@@ -6,7 +6,7 @@ import React from "react";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { CakeTiers, CakeShapes } from "../../store/constants/Enums";
-import { ProductData } from "../../data/Products";
+import { ProductData } from "../../data/Data";
 import { action } from "mobx";
 import { Form, required } from "../../components/Form";
 
@@ -94,79 +94,62 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
                 <hr />
 
                 {/* Cake Tier */}
-                <Form
-                    defaultValues={{
-                        tier: cakeTier,
-                        shape: cakeShape,
-                        size: cakeSize,
-                    }}
-                    validationRules={{
-                        tier: { validator: required },
-                        shape: { validator: required },
-                        size: { validator: required },
-                    }}
-                >
-                    <div className="base-cake-make-container">
-                        <h5 className="base-title">Cake Tier</h5>
-                        <div className="base-choice-container">
-                            <div className="base-option">
-                                <input type="radio" name="tier" />
-                                <label className="base-label">Single</label>
-                            </div>
-                            <div className="base-option">
-                                <input type="radio" name="tier" />
-                                <label className="base-label">Multiple</label>
-                            </div>
-                        </div>
-                    </div>
 
-                    {/* Cake Shape */}
-                    <div className="base-cake-make-container">
-                        <h5 className="base-title">Cake Shape</h5>
-                        <div className="base-choice-container">
-                            <div className="base-option">
-                                <input
-                                    onClick={() =>
-                                        this.getShape(CakeShapes.ROUND)
-                                    }
-                                    type="radio"
-                                    name="shape"
-                                />
-                                <label className="base-label">Round</label>
-                            </div>
-                            <div className="base-option">
-                                <input
-                                    onClick={() =>
-                                        this.getShape(CakeShapes.SHEET)
-                                    }
-                                    type="radio"
-                                    name="shape"
-                                />
-                                <label className="base-label">Sheet</label>
-                            </div>
+                <div className="base-cake-make-container">
+                    <h5 className="base-title">Cake Tier</h5>
+                    <div className="base-choice-container">
+                        <div className="base-option">
+                            <input type="radio" name="tier" />
+                            <label className="base-label">Single</label>
+                        </div>
+                        <div className="base-option">
+                            <input type="radio" name="tier" />
+                            <label className="base-label">Multiple</label>
                         </div>
                     </div>
+                </div>
 
-                    {/* Cake Size */}
-                    <div className="base-cake-make-container">
-                        <h5 className="base-title">
-                            {cakeShape === CakeShapes.ROUND ? "Round" : "Sheet"}{" "}
-                            Cake Size
-                        </h5>
-                        <div className="base-choice-container">
-                            <div className="base-option">
-                                <select
-                                    onChange={(e) => this.getCakeSizeInfo(e)}
-                                    name="size"
-                                    defaultValue={sizeCost}
-                                    className="base-cake-size-dropdown"
-                                >
-                                    {this.renderCakeSizes()}
-                                </select>
-                            </div>
+                {/* Cake Shape */}
+                <div className="base-cake-make-container">
+                    <h5 className="base-title">Cake Shape</h5>
+                    <div className="base-choice-container">
+                        <div className="base-option">
+                            <input
+                                onClick={() => this.getShape(CakeShapes.ROUND)}
+                                type="radio"
+                                name="shape"
+                            />
+                            <label className="base-label">Round</label>
+                        </div>
+                        <div className="base-option">
+                            <input
+                                onClick={() => this.getShape(CakeShapes.SHEET)}
+                                type="radio"
+                                name="shape"
+                            />
+                            <label className="base-label">Sheet</label>
                         </div>
                     </div>
-                </Form>
+                </div>
+
+                {/* Cake Size */}
+                <div className="base-cake-make-container">
+                    <h5 className="base-title">
+                        {cakeShape === CakeShapes.ROUND ? "Round" : "Sheet"}{" "}
+                        Cake Size
+                    </h5>
+                    <div className="base-choice-container">
+                        <div className="base-option">
+                            <select
+                                onChange={(e) => this.getCakeSizeInfo(e)}
+                                name="size"
+                                className="base-cake-size-dropdown"
+                            >
+                                {this.renderCakeSizes()}
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </section>
         );
     }
