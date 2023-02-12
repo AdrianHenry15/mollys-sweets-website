@@ -38,42 +38,39 @@ class CakeFlavors extends React.Component<
     getCakeFlavorInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
-        // flavor name
+
         this.props.store!.CakeStore.cakeFlavors.flavor =
             ProductData.products.flavors[value].productName;
-        // price
-        this.props.store!.CakeStore.cakeCosts.flavorsCost =
-            ProductData.products.flavors[value].price;
+        console.log(
+            `Flavor: ${this.props.store!.CakeStore.cakeFlavors.flavor}`
+        );
     });
     getCakeFrostingInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
-        // flavor name
+
         this.props.store!.CakeStore.cakeFlavors.frosting =
             ProductData.products.frostings[value].productName;
-        // price
-        this.props.store!.CakeStore.cakeCosts.frostingsCost =
-            ProductData.products.frostings[value].price;
+        console.log(
+            `Frosting: ${this.props.store!.CakeStore.cakeFlavors.frosting}`
+        );
     });
     getCakeFillingInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
-        // flavor name
+
         this.props.store!.CakeStore.cakeFlavors.filling =
             ProductData.products.fillings[value].productName;
-        // price
-        this.props.store!.CakeStore.cakeCosts.fillingsCost =
-            ProductData.products.fillings[value].price;
+        console.log(
+            `Filling: ${this.props.store!.CakeStore.cakeFlavors.filling}`
+        );
     });
     getFruitInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
-        // flavor name
         this.props.store!.CakeStore.cakeFlavors.fruit =
             ProductData.products.fruit[value].productName;
-        // price
-        this.props.store!.CakeStore.cakeCosts.fruitCost =
-            ProductData.products.fruit[value].price;
+        console.log(`Fruit: ${this.props.store!.CakeStore.cakeFlavors.fruit}`);
     });
 
     // functions
@@ -176,9 +173,9 @@ class CakeFlavors extends React.Component<
         }
     };
 
-    setFruit = () => {
-        this.setState((state) => {
-            return { fruit: !state.fruit };
+    setFruit = (hasFruit: boolean) => {
+        this.setState({
+            fruit: hasFruit,
         });
     };
     // main render
@@ -187,12 +184,7 @@ class CakeFlavors extends React.Component<
         const fruits = ProductData.products.fruit;
 
         //store varaibles
-        const fruitCost = this.props.store!.CakeStore.cakeCosts.fruitCost;
-
-        // store methods
-        const updateFlavorsTotalCost =
-            this.props.store!.ComputedCakeCosts.computedCosts
-                .updateCakeFlavorsTotalCost;
+        const fruit = this.props.store!.CakeStore.cakeFlavors.fruit;
         return (
             <section className="flavors-custom-flavors-container">
                 <h3>Customize Flavors</h3>
@@ -236,15 +228,15 @@ class CakeFlavors extends React.Component<
                             type="radio"
                             name="hasFruit"
                             id="flavors-fruit-input"
-                            onClick={() => this.setFruit()}
+                            onClick={() => this.setFruit(true)}
                         ></input>
                         <label htmlFor="fruit">Yes (Extra Cost*)</label>
                         <input
                             value="no"
                             type="radio"
-                            name="hasfruit"
+                            name="hasFruit"
                             id="flavors-fruit-input"
-                            onClick={() => this.setFruit()}
+                            onClick={() => this.setFruit(false)}
                         ></input>
                         <label htmlFor="fruit">No</label>
                     </div>
@@ -259,7 +251,7 @@ class CakeFlavors extends React.Component<
                             <div className="flavors-option">
                                 <select
                                     onChange={(e) => this.getFruitInfo(e)}
-                                    defaultValue={fruitCost}
+                                    defaultValue={fruit}
                                     name="fruit"
                                     className="flavors-cake-size-dropdown"
                                 >
@@ -289,10 +281,6 @@ class CakeFlavors extends React.Component<
                         </div>
                     </div>
                 )}
-                <div className="flavors-cake-make-container">
-                    <h5 className="flavors-title">Flavors Cost</h5>
-                    <div>{`$${updateFlavorsTotalCost()}`}</div>
-                </div>
             </section>
         );
     }

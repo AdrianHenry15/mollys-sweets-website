@@ -46,44 +46,19 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             this.setState({
                 arrivalDate: d,
             });
+            console.log(`Arrival Date: ${this.props.store!.cakeArrivalDate}`);
         } else if (category === ProductCategories.COOKIES) {
             this.props.store!.cookieArrivalDate = d.toDateString();
             this.setState({
                 arrivalDate: d,
             });
+            console.log(`Arrival Date: ${this.props.store!.cakeArrivalDate}`);
         } else {
             this.props.store!.cupcakeArrivalDate = d.toDateString();
             this.setState({
                 arrivalDate: d,
             });
-        }
-    });
-    getOccasionDate = action((d: Date) => {
-        const category = this.props.category;
-        if (category === ProductCategories.CAKES) {
-            this.props.store!.cakeOcassionDate = d.toDateString();
-            this.setState({
-                occasionDate: d,
-            });
-        } else if (category === ProductCategories.COOKIES) {
-            this.props.store!.cookieOcassionDate = d.toDateString();
-            this.setState({
-                occasionDate: d,
-            });
-        } else {
-            this.props.store!.cupcakeOcassionDate = d.toDateString();
-        }
-    });
-    getOccasion = action((e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: string = select.value;
-        const category = this.props.category;
-        if (category === ProductCategories.CAKES) {
-            this.props.store!.cakeOccasion = value as Occasion;
-        } else if (category === ProductCategories.COOKIES) {
-            this.props.store!.cookieOccasion = value as Occasion;
-        } else {
-            this.props.store!.cupcakeOccasion = value as Occasion;
+            console.log(`Arrival Date: ${this.props.store!.cakeArrivalDate}`);
         }
     });
     getRecipient = action((e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -92,10 +67,13 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         const category = this.props.category;
         if (category === ProductCategories.CAKES) {
             this.props.store!.cakeRecipient = value;
+            console.log(`Recipient: ${this.props.store!.cakeRecipient}`);
         } else if (category === ProductCategories.COOKIES) {
             this.props.store!.cookieRecipient = value;
+            console.log(`Recipient: ${this.props.store!.cookieRecipient}`);
         } else {
             this.props.store!.cupcakeRecipient = value;
+            console.log(`Recipient: ${this.props.store!.cupcakeRecipient}`);
         }
     });
     getDeliveryOption = action((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,10 +83,19 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         const category = this.props.category;
         if (category === ProductCategories.CAKES) {
             this.props.store!.cakeDeliveryOption = value as DeliveryOption;
+            console.log(
+                `Delivery Option: ${this.props.store!.cakeDeliveryOption}`
+            );
         } else if (category === ProductCategories.COOKIES) {
             this.props.store!.cookieDeliveryOption = value as DeliveryOption;
+            console.log(
+                `Delivery Option: ${this.props.store!.cookieDeliveryOption}`
+            );
         } else {
             this.props.store!.cupcakeDeliveryOption = value as DeliveryOption;
+            console.log(
+                `Delivery Option: ${this.props.store!.cupcakeDeliveryOption}`
+            );
         }
     });
     getPreferredColors = action((e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -118,10 +105,19 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         const category = this.props.category;
         if (category === ProductCategories.CAKES) {
             this.props.store!.cakePreferredColors = value;
+            console.log(
+                `Preferred Colors: ${this.props.store!.cakePreferredColors}`
+            );
         } else if (category === ProductCategories.COOKIES) {
             this.props.store!.cookiePreferredColors = value;
+            console.log(
+                `Preferred Colors: ${this.props.store!.cookiePreferredColors}`
+            );
         } else {
             this.props.store!.cupcakePreferredColors = value;
+            console.log(
+                `Preferred Colors: ${this.props.store!.cupcakePreferredColors}`
+            );
         }
     });
     getInscription = action((e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -131,10 +127,13 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         const category = this.props.category;
         if (category === ProductCategories.CAKES) {
             this.props.store!.cakeInscription = value;
+            console.log(`Inscription: ${this.props.store!.cakeInscription}`);
         } else if (category === ProductCategories.COOKIES) {
             this.props.store!.cookieInscription = value;
+            console.log(`Inscription: ${this.props.store!.cookieInscription}`);
         } else {
             this.props.store!.cupcakeInscription = value;
+            console.log(`Inscription: ${this.props.store!.cupcakeInscription}`);
         }
     });
     // TODO: get photo for order and cart
@@ -145,10 +144,17 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         const category = this.props.category;
         if (category === ProductCategories.CAKES) {
             this.props.store!.cakePhotoExample = value;
+            console.log(`Photo Example: ${this.props.store!.cakePhotoExample}`);
         } else if (category === ProductCategories.COOKIES) {
             this.props.store!.cookiePhotoExample = value;
+            console.log(
+                `Photo Example: ${this.props.store!.cookiePhotoExample}`
+            );
         } else {
             this.props.store!.cupcakePhotoExample = value;
+            console.log(
+                `Photo Example: ${this.props.store!.cupcakePhotoExample}`
+            );
         }
     });
     // TODO: get link for order and cart
@@ -159,10 +165,15 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         const category = this.props.category;
         if (category === ProductCategories.CAKES) {
             this.props.store!.cakeLinkExample = value;
+            console.log(`Link Example: ${this.props.store!.cakeLinkExample}`);
         } else if (category === ProductCategories.COOKIES) {
             this.props.store!.cookieLinkExample = value;
+            console.log(`Link Example: ${this.props.store!.cookieLinkExample}`);
         } else {
             this.props.store!.cupcakeLinkExample = value;
+            console.log(
+                `Link Example: ${this.props.store!.cupcakeLinkExample}`
+            );
         }
     });
     getAdditionalDetails = action(
@@ -173,10 +184,25 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             const category = this.props.category;
             if (category === ProductCategories.CAKES) {
                 this.props.store!.cakeAdditionalDetails = value;
+                console.log(
+                    `Additional Details: ${
+                        this.props.store!.cakeAdditionalDetails
+                    }`
+                );
             } else if (category === ProductCategories.COOKIES) {
                 this.props.store!.cookieAdditionalDetails = value;
+                console.log(
+                    `Additional Details: ${
+                        this.props.store!.cookieAdditionalDetails
+                    }`
+                );
             } else {
                 this.props.store!.cupcakeAdditionalDetails = value;
+                console.log(
+                    `Additional Details: ${
+                        this.props.store!.cupcakeAdditionalDetails
+                    }`
+                );
             }
         }
     );

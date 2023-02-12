@@ -8,7 +8,6 @@ import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { CakeTiers, CakeShapes } from "../../store/constants/Enums";
 import { ProductData } from "../../data/Data";
 import { action } from "mobx";
-import { Form, required } from "../../components/Form";
 
 interface ICakeBaseProps {
     store?: GlobalStateStore;
@@ -45,13 +44,18 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
 
     getTierInfo = action((tier: string) => {
         this.props.store!.CakeStore.cakeBase.tier = tier as CakeTiers;
-        if (tier === CakeTiers.SINGLE) {
-            this.props.store!.CakeStore.cakeBase.tier = CakeTiers.SINGLE;
-            return;
-        } else if (tier === CakeTiers.MULTIPLE) {
-            this.props.store!.CakeStore.cakeBase.tier = CakeTiers.MULTIPLE;
-            return;
-        }
+
+        return tier === CakeTiers.SINGLE
+            ? (this.props.store!.CakeStore.cakeBase.tier = CakeTiers.SINGLE)
+            : (this.props.store!.CakeStore.cakeBase.tier = CakeTiers.MULTIPLE);
+
+        // if (tier === CakeTiers.SINGLE) {
+        //     this.props.store!.CakeStore.cakeBase.tier = CakeTiers.SINGLE;
+        //     return;
+        // } else if (tier === CakeTiers.MULTIPLE) {
+        //     this.props.store!.CakeStore.cakeBase.tier = CakeTiers.MULTIPLE;
+        //     return;
+        // }
     });
     getShape = action((shape: string) => {
         this.props.store!.CakeStore.cakeBase.shape = shape as CakeShapes;

@@ -21,6 +21,7 @@ import { inject, observer } from "mobx-react";
 import Cart from "./components/Cart/Cart";
 import { ProductCategories } from "./store/constants/Enums";
 import CustomerInfo from "./components/CustomerInfo";
+import { ISubmitResult, IValues } from "./components/Form";
 
 interface IAppProps {
     store: GlobalStateStore;
@@ -29,6 +30,18 @@ interface IAppProps {
 @inject("store")
 @observer
 class App extends Component<IAppProps, {}> {
+    private wait = (ms: number): Promise<void> => {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    };
+    private handleSubmit = async (values: IValues): Promise<ISubmitResult> => {
+        await this.wait(1000); // simulate asynchronous web API call
+        return {
+            errors: {
+                email: ["Some is wrong with this"],
+            },
+            success: false,
+        };
+    };
     render() {
         return (
             <div className="app snow">

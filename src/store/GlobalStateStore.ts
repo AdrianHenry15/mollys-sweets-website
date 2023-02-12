@@ -24,7 +24,6 @@ import { ICookieComputeds } from "./schemas/ComputedStore/ICookieComputeds";
 import { IProductComputeds } from "./schemas/ComputedStore/IProductComputeds";
 import { ICategory } from "./schemas/ICategoryStore";
 import { ICategoryActions } from "./schemas/ActionStore/ICategoryActions";
-import { persist, create } from "mobx-persist";
 
 export class GlobalStateStore {
     constructor() {
@@ -32,44 +31,44 @@ export class GlobalStateStore {
     }
     // ========================================================= OBSERVABLES =========================================================
     //CAKE DETAILS
-    @persist("object") @observable cakeArrivalDate = "";
-    @persist("object") @observable cakeOcassionDate = "";
-    @persist("object") @observable cakeDeliveryOption = DeliveryOption.NONE;
-    @persist("object") @observable cakeOccasion = Occasion.NONE;
-    @persist("object") @observable cakeRecipient = "";
-    @persist("object") @observable cakeCheckedState = false;
-    @persist("object") @observable cakePreferredColors = "";
-    @persist("object") @observable cakeInscription = "";
-    @persist("object") @observable cakePhotoExample = "";
-    @persist("object") @observable cakeLinkExample = "";
-    @persist("object") @observable cakeAdditionalDetails = "";
+    @observable cakeArrivalDate = "";
+    @observable cakeOcassionDate = "";
+    @observable cakeDeliveryOption = DeliveryOption.NONE;
+    @observable cakeOccasion = Occasion.NONE;
+    @observable cakeRecipient = "";
+    @observable cakeCheckedState = false;
+    @observable cakePreferredColors = "";
+    @observable cakeInscription = "";
+    @observable cakePhotoExample = "";
+    @observable cakeLinkExample = "";
+    @observable cakeAdditionalDetails = "";
     //CUPCAKE DETAILS
-    @persist("object") @observable cupcakeArrivalDate = "";
-    @persist("object") @observable cupcakeOcassionDate = "";
-    @persist("object") @observable cupcakeDeliveryOption = DeliveryOption.NONE;
-    @persist("object") @observable cupcakeOccasion = Occasion.NONE;
-    @persist("object") @observable cupcakeRecipient = "";
-    @persist("object") @observable cupcakeCheckedState = false;
-    @persist("object") @observable cupcakePreferredColors = "";
-    @persist("object") @observable cupcakeInscription = "";
-    @persist("object") @observable cupcakePhotoExample = "";
-    @persist("object") @observable cupcakeLinkExample = "";
-    @persist("object") @observable cupcakeAdditionalDetails = "";
+    @observable cupcakeArrivalDate = "";
+    @observable cupcakeOcassionDate = "";
+    @observable cupcakeDeliveryOption = DeliveryOption.NONE;
+    @observable cupcakeOccasion = Occasion.NONE;
+    @observable cupcakeRecipient = "";
+    @observable cupcakeCheckedState = false;
+    @observable cupcakePreferredColors = "";
+    @observable cupcakeInscription = "";
+    @observable cupcakePhotoExample = "";
+    @observable cupcakeLinkExample = "";
+    @observable cupcakeAdditionalDetails = "";
     //COOKIE DETAILS
-    @persist("object") @observable cookieArrivalDate = "";
-    @persist("object") @observable cookieOcassionDate = "";
-    @persist("object") @observable cookieDeliveryOption = DeliveryOption.NONE;
-    @persist("object") @observable cookieOccasion = Occasion.NONE;
-    @persist("object") @observable cookieRecipient = "";
-    @persist("object") @observable cookieCheckedState = false;
-    @persist("object") @observable cookiePreferredColors = "";
-    @persist("object") @observable cookieInscription = "";
-    @persist("object") @observable cookiePhotoExample = "";
-    @persist("object") @observable cookieLinkExample = "";
-    @persist("object") @observable cookieAdditionalDetails = "";
+    @observable cookieArrivalDate = "";
+    @observable cookieOcassionDate = "";
+    @observable cookieDeliveryOption = DeliveryOption.NONE;
+    @observable cookieOccasion = Occasion.NONE;
+    @observable cookieRecipient = "";
+    @observable cookieCheckedState = false;
+    @observable cookiePreferredColors = "";
+    @observable cookieInscription = "";
+    @observable cookiePhotoExample = "";
+    @observable cookieLinkExample = "";
+    @observable cookieAdditionalDetails = "";
 
     //CAKE
-    @persist("object") @observable CakeStore: ICakeStore = {
+    @observable CakeStore: ICakeStore = {
         cakeBase: {
             size: "",
             serves: "",
@@ -92,7 +91,7 @@ export class GlobalStateStore {
         },
     };
     //CUPCAKE
-    @persist("object")
+
     @observable
     CupcakeStore: ICupcakeStore = {
         cupcakeCount: {
@@ -111,7 +110,7 @@ export class GlobalStateStore {
         },
     };
     // COOKIE
-    @persist("object")
+
     @observable
     CookieStore: ICookieStore = {
         cookieCount: {
@@ -131,30 +130,30 @@ export class GlobalStateStore {
     };
 
     // PRODUCT
-    @persist("object")
+
     @observable
     ProductStore: IProductStore = {
         category: "",
         totalCost: 0,
     };
 
-    @persist("object") @observable CartStore: ICartStore = {
+    @observable CartStore: ICartStore = {
         carts: [],
         currentCart: [],
         cartEmpty: true,
     };
-    @persist("object") @observable OrderStore: IOrderStore = {
+    @observable OrderStore: IOrderStore = {
         orderFilled: false,
         orderInProgress: [false],
     };
-    @persist("object") @observable UserStore: IUserStore = {
+    @observable UserStore: IUserStore = {
         firstName: "",
         lastName: "",
         email: "",
         loggedIn: false,
     };
 
-    @persist("object") @observable CategoryStore: ICategory = {
+    @observable CategoryStore: ICategory = {
         cakeCategory: false,
         cookieCategory: false,
         cupcakeCategory: false,
@@ -275,12 +274,12 @@ export class GlobalStateStore {
 }
 
 // HYDRATION CREATE FUNCTION
-const hydrate = create({});
+// const hydrate = create({});
 
 // GLOBAL STORE INSTANCE
 export const globalStore = new GlobalStateStore();
 
-// HYDRATION TO GLOBALSTORE
-hydrate("GlobalStore", globalStore, GlobalStateStore).then(() =>
-    console.log("Application Hydrated")
-);
+// // HYDRATION TO GLOBALSTORE
+// hydrate("GlobalStore", globalStore, GlobalStateStore).then(() =>
+//     console.log("Application Hydrated")
+// );
