@@ -31,101 +31,109 @@ export class GlobalStateStore {
     }
     // ========================================================= OBSERVABLES =========================================================
     //CAKE DETAILS
-    @observable cakeArrivalDate = "";
-    @observable cakeOcassionDate = "";
-    @observable cakeDeliveryOption = DeliveryOption.NONE;
-    @observable cakeOccasion = Occasion.NONE;
-    @observable cakeRecipient = "";
-    @observable cakeCheckedState = false;
-    @observable cakePreferredColors = "";
-    @observable cakeInscription = "";
-    @observable cakePhotoExample = "";
-    @observable cakeLinkExample = "";
-    @observable cakeAdditionalDetails = "";
-    //CUPCAKE DETAILS
-    @observable cupcakeArrivalDate = "";
-    @observable cupcakeOcassionDate = "";
-    @observable cupcakeDeliveryOption = DeliveryOption.NONE;
-    @observable cupcakeOccasion = Occasion.NONE;
-    @observable cupcakeRecipient = "";
-    @observable cupcakeCheckedState = false;
-    @observable cupcakePreferredColors = "";
-    @observable cupcakeInscription = "";
-    @observable cupcakePhotoExample = "";
-    @observable cupcakeLinkExample = "";
-    @observable cupcakeAdditionalDetails = "";
-    //COOKIE DETAILS
-    @observable cookieArrivalDate = "";
-    @observable cookieOcassionDate = "";
-    @observable cookieDeliveryOption = DeliveryOption.NONE;
-    @observable cookieOccasion = Occasion.NONE;
-    @observable cookieRecipient = "";
-    @observable cookieCheckedState = false;
-    @observable cookiePreferredColors = "";
-    @observable cookieInscription = "";
-    @observable cookiePhotoExample = "";
-    @observable cookieLinkExample = "";
-    @observable cookieAdditionalDetails = "";
+
+    // //CUPCAKE DETAILS
+    // @observable cupcakeArrivalDate = "";
+    // @observable cupcakeOcassionDate = "";
+    // @observable cupcakeDeliveryOption = DeliveryOption.NONE;
+    // @observable cupcakeOccasion = Occasion.NONE;
+    // @observable cupcakeRecipient = "";
+    // @observable cupcakeCheckedState = false;
+    // @observable cupcakePreferredColors = "";
+    // @observable cupcakeInscription = "";
+    // @observable cupcakePhotoExample = "";
+    // @observable cupcakeLinkExample = "";
+    // @observable cupcakeAdditionalDetails = "";
+    // //COOKIE DETAILS
+    // @observable cookieArrivalDate = "";
+    // @observable cookieOcassionDate = "";
+    // @observable cookieDeliveryOption = DeliveryOption.NONE;
+    // @observable cookieOccasion = Occasion.NONE;
+    // @observable cookieRecipient = "";
+    // @observable cookieCheckedState = false;
+    // @observable cookiePreferredColors = "";
+    // @observable cookieInscription = "";
+    // @observable cookiePhotoExample = "";
+    // @observable cookieLinkExample = "";
+    // @observable cookieAdditionalDetails = "";
 
     //CAKE
     @observable CakeStore: ICakeStore = {
-        cakeBase: {
+        base: {
             size: "",
             serves: "",
             shape: CakeShapes.NONE,
             tier: CakeTiers.NONE,
         },
-        cakeFlavors: {
+        flavors: {
             flavor: "",
             filling: "",
             frosting: "",
             fruit: "",
         },
-        cakeCosts: {
-            tierCost: 0,
-            sizeCost: 0,
-            flavorsCost: 0,
-            frostingsCost: 0,
-            fillingsCost: 0,
-            fruitCost: 0,
+        details: {
+            arrivalDate: "",
+            deliveryOption: DeliveryOption.NONE,
+            occasion: Occasion.NONE,
+            recipient: "",
+            checkedState: false,
+            preferredColors: "",
+            inscription: "",
+            photoExample: "",
+            linkExample: "",
+            additionalDetails: "",
         },
     };
     //CUPCAKE
 
     @observable
     CupcakeStore: ICupcakeStore = {
-        cupcakeCount: {
+        base: {
             size: ProductSizes.NONE,
             serves: "",
             quantity: "",
         },
-        cupcakeFlavors: {
+        flavors: {
             flavor: "",
             frosting: "",
         },
-        cupcakeCosts: {
-            quantityCost: 0,
-            flavorsCost: 0,
-            frostingsCost: 0,
+        details: {
+            arrivalDate: "",
+            deliveryOption: DeliveryOption.NONE,
+            occasion: Occasion.NONE,
+            recipient: "",
+            checkedState: false,
+            preferredColors: "",
+            inscription: "",
+            photoExample: "",
+            linkExample: "",
+            additionalDetails: "",
         },
     };
     // COOKIE
 
     @observable
     CookieStore: ICookieStore = {
-        cookieCount: {
+        base: {
             size: ProductSizes.NONE,
             serves: "",
             quantity: "",
         },
-        cookieFlavors: {
+        flavors: {
             flavor: "",
             frosting: "",
         },
-        cookieCosts: {
-            quantityCost: 0,
-            flavorsCost: 0,
-            frostingsCost: 0,
+        details: {
+            arrivalDate: "",
+            deliveryOption: DeliveryOption.NONE,
+            occasion: Occasion.NONE,
+            recipient: "",
+            checkedState: false,
+            preferredColors: "",
+            inscription: "",
+            photoExample: "",
+            linkExample: "",
+            additionalDetails: "",
         },
     };
 
@@ -168,109 +176,109 @@ export class GlobalStateStore {
         },
     };
 
-    //computeds
-    @computed getTierCost = () => {
-        const tier = this.CakeStore.cakeBase.tier;
-        if (tier === CakeTiers.SINGLE) {
-            this.CakeStore.cakeCosts.tierCost =
-                ProductData.products.tiers.single[1].price;
-        } else if (tier === CakeTiers.MULTIPLE) {
-            this.CakeStore.cakeCosts.tierCost =
-                ProductData.products.tiers.multiple[1].price;
-        }
-    };
+    // //computeds
+    // @computed getTierCost = () => {
+    //     const tier = this.CakeStore.cakeBase.tier;
+    //     if (tier === CakeTiers.SINGLE) {
+    //         this.CakeStore.cakeCosts.tierCost =
+    //             ProductData.products.tiers.single[1].price;
+    //     } else if (tier === CakeTiers.MULTIPLE) {
+    //         this.CakeStore.cakeCosts.tierCost =
+    //             ProductData.products.tiers.multiple[1].price;
+    //     }
+    // };
 
-    @computed getCakeBaseCost = () => {
-        return (
-            this.CakeStore.cakeCosts.sizeCost +
-            this.CakeStore.cakeCosts.tierCost
-        );
-    };
+    // @computed getCakeBaseCost = () => {
+    //     return (
+    //         this.CakeStore.cakeCosts.sizeCost +
+    //         this.CakeStore.cakeCosts.tierCost
+    //     );
+    // };
 
-    //values derived from existing state
-    @computed ComputedCakeCosts: ICakeComputeds = {
-        computedCosts: {
-            updateCakeBaseCost: () => {
-                return (
-                    this.CakeStore.cakeCosts.sizeCost +
-                    this.CakeStore.cakeCosts.tierCost
-                );
-            },
-            updateCakeFlavorsTotalCost: () => {
-                return (
-                    this.CakeStore.cakeCosts.flavorsCost +
-                    this.CakeStore.cakeCosts.frostingsCost +
-                    this.CakeStore.cakeCosts.fillingsCost +
-                    this.CakeStore.cakeCosts.fruitCost
-                );
-            },
-            updateTotalCakeCost: () => {
-                return (
-                    this.CakeStore.cakeCosts.flavorsCost +
-                    this.CakeStore.cakeCosts.frostingsCost +
-                    this.CakeStore.cakeCosts.fillingsCost +
-                    this.CakeStore.cakeCosts.fruitCost +
-                    this.CakeStore.cakeCosts.sizeCost +
-                    this.CakeStore.cakeCosts.tierCost
-                );
-            },
-        },
-    };
+    // //values derived from existing state
+    // @computed ComputedCakeCosts: ICakeComputeds = {
+    //     computedCosts: {
+    //         updateCakeBaseCost: () => {
+    //             return (
+    //                 this.CakeStore.cakeCosts.sizeCost +
+    //                 this.CakeStore.cakeCosts.tierCost
+    //             );
+    //         },
+    //         updateCakeFlavorsTotalCost: () => {
+    //             return (
+    //                 this.CakeStore.cakeCosts.flavorsCost +
+    //                 this.CakeStore.cakeCosts.frostingsCost +
+    //                 this.CakeStore.cakeCosts.fillingsCost +
+    //                 this.CakeStore.cakeCosts.fruitCost
+    //             );
+    //         },
+    //         updateTotalCakeCost: () => {
+    //             return (
+    //                 this.CakeStore.cakeCosts.flavorsCost +
+    //                 this.CakeStore.cakeCosts.frostingsCost +
+    //                 this.CakeStore.cakeCosts.fillingsCost +
+    //                 this.CakeStore.cakeCosts.fruitCost +
+    //                 this.CakeStore.cakeCosts.sizeCost +
+    //                 this.CakeStore.cakeCosts.tierCost
+    //             );
+    //         },
+    //     },
+    // };
 
-    @computed ComputedCupcakeCosts: ICupcakeComputeds = {
-        computedCosts: {
-            updateCupcakeFlavorTotalCost: () => {
-                return (
-                    this.CupcakeStore.cupcakeCosts.flavorsCost +
-                    this.CupcakeStore.cupcakeCosts.frostingsCost
-                );
-            },
-            updateTotalCupcakeCost: () => {
-                return (
-                    this.CupcakeStore.cupcakeCosts.flavorsCost +
-                    this.CupcakeStore.cupcakeCosts.frostingsCost +
-                    this.CupcakeStore.cupcakeCosts.quantityCost
-                );
-            },
-        },
-    };
+    // @computed ComputedCupcakeCosts: ICupcakeComputeds = {
+    //     computedCosts: {
+    //         updateCupcakeFlavorTotalCost: () => {
+    //             return (
+    //                 this.CupcakeStore.cupcakeCosts.flavorsCost +
+    //                 this.CupcakeStore.cupcakeCosts.frostingsCost
+    //             );
+    //         },
+    //         updateTotalCupcakeCost: () => {
+    //             return (
+    //                 this.CupcakeStore.cupcakeCosts.flavorsCost +
+    //                 this.CupcakeStore.cupcakeCosts.frostingsCost +
+    //                 this.CupcakeStore.cupcakeCosts.quantityCost
+    //             );
+    //         },
+    //     },
+    // };
 
-    @computed ComputedCookieCosts: ICookieComputeds = {
-        computedCosts: {
-            updateCookieFlavorTotalCost: () => {
-                return (
-                    this.CookieStore.cookieCosts.flavorsCost +
-                    this.CookieStore.cookieCosts.frostingsCost
-                );
-            },
-            updateTotalCookieCost: () => {
-                return (
-                    this.CookieStore.cookieCosts.flavorsCost +
-                    this.CookieStore.cookieCosts.frostingsCost +
-                    this.CookieStore.cookieCosts.quantityCost
-                );
-            },
-        },
-    };
+    // @computed ComputedCookieCosts: ICookieComputeds = {
+    //     computedCosts: {
+    //         updateCookieFlavorTotalCost: () => {
+    //             return (
+    //                 this.CookieStore.cookieCosts.flavorsCost +
+    //                 this.CookieStore.cookieCosts.frostingsCost
+    //             );
+    //         },
+    //         updateTotalCookieCost: () => {
+    //             return (
+    //                 this.CookieStore.cookieCosts.flavorsCost +
+    //                 this.CookieStore.cookieCosts.frostingsCost +
+    //                 this.CookieStore.cookieCosts.quantityCost
+    //             );
+    //         },
+    //     },
+    // };
 
-    @computed ProductComputeds: IProductComputeds = {
-        updateProductTotal: () => {
-            return (
-                this.CupcakeStore.cupcakeCosts.flavorsCost +
-                this.CupcakeStore.cupcakeCosts.frostingsCost +
-                this.CupcakeStore.cupcakeCosts.quantityCost +
-                this.CookieStore.cookieCosts.flavorsCost +
-                this.CookieStore.cookieCosts.frostingsCost +
-                this.CookieStore.cookieCosts.quantityCost +
-                this.CakeStore.cakeCosts.flavorsCost +
-                this.CakeStore.cakeCosts.frostingsCost +
-                this.CakeStore.cakeCosts.fillingsCost +
-                this.CakeStore.cakeCosts.fruitCost +
-                this.CakeStore.cakeCosts.sizeCost +
-                this.CakeStore.cakeCosts.tierCost
-            );
-        },
-    };
+    // @computed ProductComputeds: IProductComputeds = {
+    //     updateProductTotal: () => {
+    //         return (
+    //             this.CupcakeStore.cupcakeCosts.flavorsCost +
+    //             this.CupcakeStore.cupcakeCosts.frostingsCost +
+    //             this.CupcakeStore.cupcakeCosts.quantityCost +
+    //             this.CookieStore.cookieCosts.flavorsCost +
+    //             this.CookieStore.cookieCosts.frostingsCost +
+    //             this.CookieStore.cookieCosts.quantityCost +
+    //             this.CakeStore.cakeCosts.flavorsCost +
+    //             this.CakeStore.cakeCosts.frostingsCost +
+    //             this.CakeStore.cakeCosts.fillingsCost +
+    //             this.CakeStore.cakeCosts.fruitCost +
+    //             this.CakeStore.cakeCosts.sizeCost +
+    //             this.CakeStore.cakeCosts.tierCost
+    //         );
+    //     },
+    // };
 }
 
 // HYDRATION CREATE FUNCTION

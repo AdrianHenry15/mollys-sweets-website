@@ -23,10 +23,7 @@ interface ICakeFlavorsState {
 
 @inject("store")
 @observer
-class CakeFlavors extends React.Component<
-    ICakeFlavorsProps,
-    ICakeFlavorsState
-> {
+class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
     constructor(props: ICakeFlavorsProps) {
         super(props);
 
@@ -39,38 +36,34 @@ class CakeFlavors extends React.Component<
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
 
-        this.props.store!.CakeStore.cakeFlavors.flavor =
+        this.props.store!.CakeStore.flavors.flavor =
             ProductData.products.flavors[value].productName;
-        console.log(
-            `Flavor: ${this.props.store!.CakeStore.cakeFlavors.flavor}`
-        );
+        console.log(`Flavor: ${this.props.store!.CakeStore.flavors.flavor}`);
     });
     getCakeFrostingInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
 
-        this.props.store!.CakeStore.cakeFlavors.frosting =
+        this.props.store!.CakeStore.flavors.frosting =
             ProductData.products.frostings[value].productName;
         console.log(
-            `Frosting: ${this.props.store!.CakeStore.cakeFlavors.frosting}`
+            `Frosting: ${this.props.store!.CakeStore.flavors.frosting}`
         );
     });
     getCakeFillingInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
 
-        this.props.store!.CakeStore.cakeFlavors.filling =
+        this.props.store!.CakeStore.flavors.filling =
             ProductData.products.fillings[value].productName;
-        console.log(
-            `Filling: ${this.props.store!.CakeStore.cakeFlavors.filling}`
-        );
+        console.log(`Filling: ${this.props.store!.CakeStore.flavors.filling}`);
     });
     getFruitInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
-        this.props.store!.CakeStore.cakeFlavors.fruit =
+        this.props.store!.CakeStore.flavors.fruit =
             ProductData.products.fruit[value].productName;
-        console.log(`Fruit: ${this.props.store!.CakeStore.cakeFlavors.fruit}`);
+        console.log(`Fruit: ${this.props.store!.CakeStore.flavors.fruit}`);
     });
 
     // functions
@@ -85,7 +78,7 @@ class CakeFlavors extends React.Component<
                     <select
                         onChange={(e) => this.getCakeFlavorInfo(e)}
                         defaultValue={
-                            this.props.store!.CakeStore.cakeCosts.flavorsCost
+                            this.props.store!.CakeStore.flavors.flavor
                         }
                         name="cake-flavor"
                         className="flavors-cake-size-dropdown"
@@ -114,7 +107,7 @@ class CakeFlavors extends React.Component<
                     <select
                         onChange={(e) => this.getCakeFrostingInfo(e)}
                         defaultValue={
-                            this.props.store!.CakeStore.cakeCosts.frostingsCost
+                            this.props.store!.CakeStore.flavors.frosting
                         }
                         name="cake-frosting"
                         className="flavors-cake-size-dropdown"
@@ -142,7 +135,7 @@ class CakeFlavors extends React.Component<
                 return (
                     <select
                         defaultValue={
-                            this.props.store!.CakeStore.cakeCosts.fillingsCost
+                            this.props.store!.CakeStore.flavors.filling
                         }
                         onChange={(e) => this.getCakeFillingInfo(e)}
                         name="cake-filling"
@@ -184,7 +177,7 @@ class CakeFlavors extends React.Component<
         const fruits = ProductData.products.fruit;
 
         //store varaibles
-        const fruit = this.props.store!.CakeStore.cakeFlavors.fruit;
+        const fruit = this.props.store!.CakeStore.flavors.fruit;
         return (
             <section className="flavors-custom-flavors-container">
                 <h3>Customize Flavors</h3>
@@ -286,4 +279,4 @@ class CakeFlavors extends React.Component<
     }
 }
 
-export default CakeFlavors;
+export default Flavors;

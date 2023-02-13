@@ -11,21 +11,18 @@ import { inject, observer } from "mobx-react";
 import { ProductData } from "../../data/Data";
 import { action } from "mobx";
 
-interface ICookieCountProps {
+interface IBaseProps {
     store?: GlobalStateStore;
 }
 
-interface ICookieCountState {
+interface IBaseState {
     cookieSize: string;
 }
 
 @inject("store")
 @observer
-class CookieCount extends React.Component<
-    ICookieCountProps,
-    ICookieCountState
-> {
-    constructor(props: ICookieCountProps) {
+class Base extends React.Component<IBaseProps, IBaseState> {
+    constructor(props: IBaseProps) {
         super(props);
 
         this.state = {
@@ -34,77 +31,64 @@ class CookieCount extends React.Component<
     }
 
     // functions
-    getCookieQuantity = action((e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-        if (
-            this.props.store!.CookieStore.cookieCount.size === ProductSizes.MINI
-        ) {
-            //size
-            this.props.store!.CookieStore.cookieCount.size =
-                ProductData.products.sizes.cupcake_cookie_sizes.mini[
-                    value
-                ].productSize!;
+    private getCookieQuantity = action(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            let select: HTMLSelectElement = e.target;
+            let value: number = parseInt(select.value);
+            if (this.props.store!.CookieStore.base.size === ProductSizes.MINI) {
+                //size
+                this.props.store!.CookieStore.base.size =
+                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                        value
+                    ].productSize!;
 
-            //quantity
-            this.props.store!.CookieStore.cookieCount.quantity =
-                ProductData.products.sizes.cupcake_cookie_sizes.mini[
-                    value
-                ].productQuantity;
+                //quantity
+                this.props.store!.CookieStore.base.quantity =
+                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                        value
+                    ].productQuantity;
 
-            //serves
-            this.props.store!.CookieStore.cookieCount.serves =
-                ProductData.products.sizes.cupcake_cookie_sizes.mini[
-                    value
-                ].productServes;
+                //serves
+                this.props.store!.CookieStore.base.serves =
+                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
+                        value
+                    ].productServes;
 
-            //price
-            this.props.store!.CookieStore.cookieCosts.quantityCost =
-                ProductData.products.sizes.cupcake_cookie_sizes.mini[
-                    value
-                ].price;
+                // cart state
+                this.props.store!.CartStore.cartEmpty = false;
+            } else if (
+                this.props.store!.CookieStore.base.size === ProductSizes.REGULAR
+            ) {
+                //size
+                this.props.store!.CookieStore.base.size =
+                    ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                        value
+                    ].productSize!;
 
-            // cart state
-            this.props.store!.CartStore.cartEmpty = false;
-        } else if (
-            this.props.store!.CookieStore.cookieCount.size ===
-            ProductSizes.REGULAR
-        ) {
-            //size
-            this.props.store!.CookieStore.cookieCount.size =
-                ProductData.products.sizes.cupcake_cookie_sizes.regular[
-                    value
-                ].productSize!;
+                //serves
+                this.props.store!.CookieStore.base.serves =
+                    ProductData.products.sizes.cupcake_cookie_sizes.regular[
+                        value
+                    ].productServes;
 
-            //serves
-            this.props.store!.CookieStore.cookieCount.serves =
-                ProductData.products.sizes.cupcake_cookie_sizes.regular[
-                    value
-                ].productServes;
-
-            //price
-            this.props.store!.CookieStore.cookieCosts.quantityCost =
-                ProductData.products.sizes.cupcake_cookie_sizes.regular[
-                    value
-                ].price;
-
-            // cart state
-            this.props.store!.CartStore.cartEmpty = false;
+                // cart state
+                this.props.store!.CartStore.cartEmpty = false;
+            }
         }
-    });
-    getCookieSize = action((e: React.ChangeEvent<HTMLInputElement>) => {
+    );
+    private getCookieSize = action((e: React.ChangeEvent<HTMLInputElement>) => {
         let select: HTMLInputElement = e.target;
         let value: string = select.value;
-        this.props.store!.CookieStore.cookieCount.size = value as ProductSizes;
+        this.props.store!.CookieStore.base.size = value as ProductSizes;
         console.log(value);
     });
-    renderCookieCount = () => {
+    private renderCookieCount = () => {
         //data variables
         const regCookieSizes =
             ProductData.products.sizes.cupcake_cookie_sizes.regular;
         const miniCookiesSizes =
             ProductData.products.sizes.cupcake_cookie_sizes.mini;
-        const cookieSize = this.props.store!.CookieStore.cookieCount.size;
+        const cookieSize = this.props.store!.CookieStore.base.size;
         if (cookieSize === ProductSizes.REGULAR) {
             return regCookieSizes.map(
                 ({ id, productQuantity, productServes, price }) => {
@@ -147,9 +131,7 @@ class CookieCount extends React.Component<
     };
     render() {
         // store variables
-        const quantityCost =
-            this.props.store!.CookieStore.cookieCosts.quantityCost;
-        const cookieSize = this.props.store!.CookieStore.cookieCount.size;
+        const cookieSize = this.props.store!.CookieStore.base.size;
         return (
             <section className="cookie-count-container">
                 <h3>Choose Cookies</h3>
@@ -189,7 +171,10 @@ class CookieCount extends React.Component<
                         <div className="cookie-option">
                             <form action="">
                                 <select
-                                    defaultValue={quantityCost}
+                                    defaultValue={
+                                        this.props.store!.CookieStore.base
+                                            .quantity
+                                    }
                                     onChange={(e) => this.getCookieQuantity(e)}
                                     name="cake-size"
                                     className="cookie-dropdown"
@@ -200,13 +185,9 @@ class CookieCount extends React.Component<
                         </div>
                     </div>
                 </div>
-                <div className="cookie-make-container">
-                    <h5 className="cookie-title">Cost</h5>
-                    <div>{`$${quantityCost}`}</div>
-                </div>
             </section>
         );
     }
 }
 
-export default CookieCount;
+export default Base;

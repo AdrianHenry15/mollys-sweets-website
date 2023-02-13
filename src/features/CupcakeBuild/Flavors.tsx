@@ -16,52 +16,43 @@ interface ICCFlavorsProps {
 
 @inject("store")
 @observer
-class CCFlavors extends React.Component<ICCFlavorsProps, {}> {
+class Flavors extends React.Component<ICCFlavorsProps, {}> {
     //functions
 
-    getCupcakeFlavorInfo = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    private getCupcakeFlavorInfo = (
+        e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
         // flavor
-        this.props.store!.CupcakeStore.cupcakeFlavors.flavor =
+        this.props.store!.CupcakeStore.flavors.flavor =
             ProductData.products.flavors[value].productName;
-        // price
-        this.props.store!.CupcakeStore.cupcakeCosts.flavorsCost =
-            ProductData.products.flavors[value].price;
     };
-    getCupcakeFrostingInfo = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    private getCupcakeFrostingInfo = (
+        e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
         // frosting
-        this.props.store!.CupcakeStore.cupcakeFlavors.frosting =
+        this.props.store!.CupcakeStore.flavors.frosting =
             ProductData.products.frostings[value].productName;
-        // price
-        this.props.store!.CupcakeStore.cupcakeCosts.frostingsCost =
-            ProductData.products.frostings[value].price;
     };
-    getCupcakeSize = (e: React.ChangeEvent<HTMLInputElement>) => {
+    private getCupcakeSize = (e: React.ChangeEvent<HTMLInputElement>) => {
         let select: HTMLInputElement = e.target;
         let value: string = select.value;
-        this.props.store!.CupcakeStore.cupcakeCount.size =
-            value as ProductSizes;
+        this.props.store!.CupcakeStore.base.size = value as ProductSizes;
     };
 
-    renderCakeTypes = (genre: CakeTypes) => {
+    private renderCakeTypes = (genre: CakeTypes) => {
         //variables
         const flavors = ProductData.products.flavors;
         const frostings = ProductData.products.frostings;
-
-        // store variables
-        const flavorCost =
-            this.props.store!.CupcakeStore.cupcakeCosts.flavorsCost;
-        const frostingCost =
-            this.props.store!.CupcakeStore.cupcakeCosts.frostingsCost;
 
         if (genre === CakeTypes.FLAVORS) {
             return (
                 <select
                     onChange={(e) => this.getCupcakeFlavorInfo(e)}
-                    defaultValue={flavorCost}
+                    defaultValue={this.props.store!.CupcakeStore.flavors.flavor}
                     name="cake-size"
                     className="ccf-dropdown"
                 >
@@ -87,7 +78,7 @@ class CCFlavors extends React.Component<ICCFlavorsProps, {}> {
             return (
                 <select
                     onChange={(e) => this.getCupcakeFrostingInfo(e)}
-                    value={frostingCost}
+                    value={this.props.store!.CupcakeStore.flavors.frosting}
                     name="cake-size"
                     className="ccf-dropdown"
                 >
@@ -112,10 +103,6 @@ class CCFlavors extends React.Component<ICCFlavorsProps, {}> {
         }
     };
     render() {
-        //store methods
-        const updateCupcakeTotalFlavorCost =
-            this.props.store!.ComputedCupcakeCosts.computedCosts
-                .updateCupcakeFlavorTotalCost;
         return (
             <section className="ccf-container">
                 <h3>Customize Flavors</h3>
@@ -148,13 +135,9 @@ class CCFlavors extends React.Component<ICCFlavorsProps, {}> {
                         }
                     }
                 )}
-                <div className="ccf-make-container">
-                    <h5 className="ccf-title">Cost</h5>
-                    <div>{`$${updateCupcakeTotalFlavorCost()}`}</div>
-                </div>
             </section>
         );
     }
 }
 
-export default CCFlavors;
+export default Flavors;

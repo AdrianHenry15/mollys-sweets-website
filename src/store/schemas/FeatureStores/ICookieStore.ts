@@ -1,9 +1,10 @@
-import { DeliveryOption, Occasion, ProductSizes } from "../../constants/Enums";
+import { ProductSizes } from "../../constants/Enums";
+import { ICategoryDetails } from "../../constants/Interfaces";
 
 export interface ICookieStore {
-    cookieCount: ICookieCount;
-    cookieFlavors: ICookieFlavors;
-    cookieCosts: ICookieCosts;
+    base: ICookieCount;
+    flavors: ICookieFlavors;
+    details: ICategoryDetails;
 }
 
 interface ICookieCount {
@@ -17,8 +18,8 @@ interface ICookieFlavors {
     frosting: string;
 }
 
-interface ICookieCosts {
-    quantityCost: number;
-    flavorsCost: number;
-    frostingsCost: number;
-}
+// interface ICookieCosts {
+//     quantityCost: number;
+//     flavorsCost: number;
+//     frostingsCost: number;
+// }

@@ -2,7 +2,6 @@ import { DeliveryOption, Occasion } from "./Enums";
 
 export interface ICategoryDetails {
     arrivalDate: string;
-    ocassionDate: string;
     deliveryOption: DeliveryOption;
     occasion: Occasion;
     recipient: string;

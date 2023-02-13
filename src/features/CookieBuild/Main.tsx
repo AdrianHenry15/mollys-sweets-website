@@ -6,9 +6,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // components
-import CookieCount from "./CookieCount";
-import CookieDetails from "./CookieDetails";
-import CookieFlavors from "./CookieFlavors";
+import Base from "./Base";
+import CookieDetails from "./Details";
+import Flavors from "./Flavors";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 
@@ -48,10 +48,10 @@ class ChooseYourCookies extends React.Component<
                             </p>
                         </aside>
                         <section className="main-create-cookie-container">
-                            <CookieCount />
+                            <Base />
                         </section>
                         <section className="main-create-cookie-container">
-                            <CookieFlavors />
+                            <Flavors />
                         </section>
                         <section className="main-create-cookie-container">
                             <CookieDetails />

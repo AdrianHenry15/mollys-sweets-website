@@ -17,19 +17,11 @@ interface ICupcakeOrderProps {
 @observer
 export class CupcakeOrder extends React.Component<ICupcakeOrderProps> {
     render() {
-        const cupcakeFlavor =
-            this.props.store!.CupcakeStore.cupcakeFlavors.flavor;
-        const cupcakeFrosting =
-            this.props.store!.CupcakeStore.cupcakeFlavors.frosting;
-        //store computeds
-        const updateCupcakeCost =
-            this.props.store!.ComputedCupcakeCosts.computedCosts
-                .updateTotalCupcakeCost;
         return (
             <div className="product-item-container">
                 <CupcakeIcon className="product-icon-display" />
                 <div className="product-info">
-                    <h4 className="product-title">{`${cupcakeFlavor} ${cupcakeFrosting} `}</h4>
+                    <h4 className="product-title"></h4>
                     <div className="info-btn-container">
                         <div className="info-btn remove-btn">Remove Item</div>
                         <Link to={"../../choose-your-cupcakes"}>
@@ -40,7 +32,7 @@ export class CupcakeOrder extends React.Component<ICupcakeOrderProps> {
                         </div>
                     </div>
                 </div>
-                <h2 className="product-price">{`$${updateCupcakeCost()}`}</h2>
+                <h2 className="product-price"></h2>
             </div>
         );
     }

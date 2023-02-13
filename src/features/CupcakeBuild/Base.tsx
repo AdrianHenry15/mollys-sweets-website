@@ -11,7 +11,7 @@ import { inject, observer } from "mobx-react";
 import { ProductData } from "../../data/Data";
 import { action } from "mobx";
 
-interface ICCCountProps {
+interface IBaseProps {
     store?: GlobalStateStore;
 }
 
@@ -19,76 +19,62 @@ interface ICCCountProps {
 
 @inject("store")
 @observer
-class CCCount extends React.Component<ICCCountProps, {}> {
+class Base extends React.Component<IBaseProps, {}> {
     // functions
-    getCupcakeQuantityInfo = action(
+    private getCupcakeQuantityInfo = action(
         (e: React.ChangeEvent<HTMLSelectElement>) => {
             let select: HTMLSelectElement = e.target;
             let value: number = parseInt(select.value);
             if (
-                this.props.store!.CupcakeStore.cupcakeCount.size ===
-                ProductSizes.MINI
+                this.props.store!.CupcakeStore.base.size === ProductSizes.MINI
             ) {
                 //size
-                this.props.store!.CupcakeStore.cupcakeCount.size =
+                this.props.store!.CupcakeStore.base.size =
                     ProductData.products.sizes.cupcake_cookie_sizes.mini[
                         value
                     ].productSize!;
 
                 //serves
-                this.props.store!.CupcakeStore.cupcakeCount.serves =
+                this.props.store!.CupcakeStore.base.serves =
                     ProductData.products.sizes.cupcake_cookie_sizes.mini[
                         value
                     ].productServes;
-
-                //price
-                this.props.store!.CupcakeStore.cupcakeCosts.quantityCost =
-                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
-                        value
-                    ].price;
 
                 // cart state
                 this.props.store!.CartStore.cartEmpty = false;
             } else if (
-                this.props.store!.CupcakeStore.cupcakeCount.size ===
+                this.props.store!.CupcakeStore.base.size ===
                 ProductSizes.REGULAR
             ) {
                 //size
-                this.props.store!.CupcakeStore.cupcakeCount.size =
+                this.props.store!.CupcakeStore.base.size =
                     ProductData.products.sizes.cupcake_cookie_sizes.regular[
                         value
                     ].productSize!;
 
                 //serves
-                this.props.store!.CupcakeStore.cupcakeCount.serves =
+                this.props.store!.CupcakeStore.base.serves =
                     ProductData.products.sizes.cupcake_cookie_sizes.regular[
                         value
                     ].productServes;
-
-                //price
-                this.props.store!.CupcakeStore.cupcakeCosts.quantityCost =
-                    ProductData.products.sizes.cupcake_cookie_sizes.regular[
-                        value
-                    ].price;
 
                 // cart state
                 this.props.store!.CartStore.cartEmpty = false;
             }
         }
     );
-    getCupcakeSize = (e: React.ChangeEvent<HTMLInputElement>) => {
+    private getCupcakeSize = (e: React.ChangeEvent<HTMLInputElement>) => {
         let select: HTMLInputElement = e.target;
         let value: string = select.value;
-        this.props.store!.CupcakeStore.cupcakeCount.size =
-            value as ProductSizes;
+        this.props.store!.CupcakeStore.base.size = value as ProductSizes;
     };
-    renderCupcakeCount = () => {
+    private renderCupcakeCount = () => {
         //variables
         const regCupcakeSizes =
             ProductData.products.sizes.cupcake_cookie_sizes.regular;
         const miniCupcakeSizes =
             ProductData.products.sizes.cupcake_cookie_sizes.mini;
-        const cupcakeSize = this.props.store!.CupcakeStore.cupcakeCount.size;
+        const cupcakeSize = this.props.store!.CupcakeStore.base.size;
         if (cupcakeSize === ProductSizes.REGULAR) {
             return regCupcakeSizes.map(
                 ({ id, productQuantity, productServes, price }) => {
@@ -131,9 +117,7 @@ class CCCount extends React.Component<ICCCountProps, {}> {
     };
     render() {
         // store variables
-        const quantityCost =
-            this.props.store!.CupcakeStore.cupcakeCosts.quantityCost;
-        const cupcakeSize = this.props.store!.CupcakeStore.cupcakeCount.size;
+        const cupcakeSize = this.props.store!.CupcakeStore.base.size;
 
         return (
             <section className="ccc-count-container">
@@ -176,20 +160,18 @@ class CCCount extends React.Component<ICCCountProps, {}> {
                                 onChange={(e) => this.getCupcakeQuantityInfo(e)}
                                 name="cake-size"
                                 className="ccc-dropdown"
-                                defaultValue={quantityCost}
+                                defaultValue={
+                                    this.props.store!.CookieStore.base.quantity
+                                }
                             >
                                 {this.renderCupcakeCount()}
                             </select>
                         </div>
                     </div>
                 </div>
-                <div className="ccc-make-container">
-                    <h5 className="ccc-title">Cost</h5>
-                    <div>{`$${quantityCost}`}</div>
-                </div>
             </section>
         );
     }
 }
 
-export default CCCount;
+export default Base;

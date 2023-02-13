@@ -62,41 +62,6 @@ class Cart extends React.Component<ICartProps, ICartState> {
         //store variables
         const emptyCartState = this.props.store!.CartStore.cartEmpty;
 
-        const tierCost = this.props.store!.CakeStore.cakeCosts.tierCost;
-        const sizeCost = this.props.store!.CakeStore.cakeCosts.sizeCost;
-        const flavorCost = this.props.store!.CakeStore.cakeCosts.flavorsCost;
-        const frostingCost =
-            this.props.store!.CakeStore.cakeCosts.frostingsCost;
-        const fillingCost = this.props.store!.CakeStore.cakeCosts.fillingsCost;
-        const fruitCost = this.props.store!.CakeStore.cakeCosts.fruitCost;
-        const updateTotalCakeCost =
-            this.props.store!.ComputedCakeCosts.computedCosts
-                .updateTotalCakeCost;
-        //cupcakes
-        const cupcakeQuantityCost =
-            this.props.store!.CupcakeStore.cupcakeCosts.quantityCost;
-        const cupcakeFlavorCost =
-            this.props.store!.CupcakeStore.cupcakeCosts.flavorsCost;
-        const cupcakeFrostingCost =
-            this.props.store!.CupcakeStore.cupcakeCosts.frostingsCost;
-        const updateTotalCupcakeCost =
-            this.props.store!.ComputedCupcakeCosts.computedCosts
-                .updateTotalCupcakeCost;
-        //cupcakes
-        const cookieQuantityCost =
-            this.props.store!.CookieStore.cookieCosts.quantityCost;
-        const cookieFlavorCost =
-            this.props.store!.CookieStore.cookieCosts.flavorsCost;
-        const cookieFrostingCost =
-            this.props.store!.CookieStore.cookieCosts.frostingsCost;
-        const updateTotalCookieCost =
-            this.props.store!.ComputedCookieCosts.computedCosts
-                .updateTotalCookieCost;
-
-        // total
-        const updateTotalCost =
-            this.props.store!.ProductComputeds.updateProductTotal;
-
         // categories
         const cakeCategory = this.props.store!.CategoryStore.cakeCategory;
         const cupcakeCategory = this.props.store!.CategoryStore.cupcakeCategory;
@@ -134,7 +99,7 @@ class Cart extends React.Component<ICartProps, ICartState> {
                                             Cakes
                                         </span>
                                     </div>
-                                    <div className="price">{`$${updateTotalCakeCost()}`}</div>
+                                    <div className="price"></div>
                                 </div>
                                 {/* tier */}
                                 {this.state.cakeDropdown && (
@@ -143,9 +108,7 @@ class Cart extends React.Component<ICartProps, ICartState> {
                                             <label className="item">
                                                 Tier:
                                             </label>
-                                            <div className="price">
-                                                {`$${tierCost}`}
-                                            </div>
+                                            <div className="price"></div>
                                         </div>
 
                                         {/* size */}
@@ -153,45 +116,35 @@ class Cart extends React.Component<ICartProps, ICartState> {
                                             <label className="item">
                                                 Size:
                                             </label>
-                                            <div className="price">
-                                                {`$${sizeCost}`}
-                                            </div>
+                                            <div className="price"></div>
                                         </div>
                                         {/* flavor */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Flavor:
                                             </label>
-                                            <div className="price">
-                                                {`$${flavorCost}`}
-                                            </div>
+                                            <div className="price"></div>
                                         </div>
                                         {/* frosting */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Frosting:
                                             </label>
-                                            <div className="price">
-                                                {`$${frostingCost}`}
-                                            </div>
+                                            <div className="price"></div>
                                         </div>
                                         {/* filling */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Filling:
                                             </label>
-                                            <div className="price">
-                                                {`$${fillingCost}`}
-                                            </div>
+                                            <div className="price"></div>
                                         </div>
                                         {/* fruit */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Fruit:
                                             </label>
-                                            <div className="price">
-                                                {`$${fruitCost}`}
-                                            </div>
+                                            <div className="price"></div>
                                         </div>
                                     </div>
                                 )}
@@ -210,7 +163,7 @@ class Cart extends React.Component<ICartProps, ICartState> {
                                             Cupcakes:
                                         </span>
                                     </div>
-                                    <div className="price">{`$${updateTotalCupcakeCost()}`}</div>
+                                    <div className="price"></div>
                                 </div>
                                 {/* quantity */}
                                 {this.state.cupcakeDropdown && (
@@ -219,21 +172,21 @@ class Cart extends React.Component<ICartProps, ICartState> {
                                             <label className="item">
                                                 Quantity:
                                             </label>
-                                            <div className="price">{`$${cupcakeQuantityCost}`}</div>
+                                            <div className="price"></div>
                                         </div>
                                         {/* flavor */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Flavor:
                                             </label>
-                                            <div className="price">{`$${cupcakeFlavorCost}`}</div>
+                                            <div className="price"></div>
                                         </div>
                                         {/* frosting */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Frosting:
                                             </label>
-                                            <div className="price">{`$${cupcakeFrostingCost}`}</div>
+                                            <div className="price"></div>
                                         </div>
                                     </div>
                                 )}
@@ -252,7 +205,7 @@ class Cart extends React.Component<ICartProps, ICartState> {
                                             Cookies:
                                         </span>
                                     </div>
-                                    <div className="price">{`$${updateTotalCookieCost()}`}</div>
+                                    <div className="price"></div>
                                 </div>
                                 {/* quantity */}
                                 {this.state.cookieDropdown && (
@@ -261,21 +214,21 @@ class Cart extends React.Component<ICartProps, ICartState> {
                                             <label className="item">
                                                 Quantity:
                                             </label>
-                                            <div className="price">{`$${cookieQuantityCost}`}</div>
+                                            <div className="price"></div>
                                         </div>
                                         {/* flavor */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Flavor:
                                             </label>
-                                            <div className="price">{`$${cookieFlavorCost}`}</div>
+                                            <div className="price"></div>
                                         </div>
                                         {/* frosting */}
                                         <div className="total-item-container">
                                             <label className="item">
                                                 Frosting:
                                             </label>
-                                            <div className="price">{`$${cookieFrostingCost}`}</div>
+                                            <div className="price"></div>
                                         </div>
                                     </div>
                                 )}
@@ -283,7 +236,7 @@ class Cart extends React.Component<ICartProps, ICartState> {
                             <section className="total-container">
                                 <div className="total-item-container full-item-container">
                                     <h5 className="full-total-label">Total:</h5>
-                                    <div className="full-price">{`$${updateTotalCost()}`}</div>
+                                    <div className="full-price"></div>
                                 </div>
                             </section>
                         </section>

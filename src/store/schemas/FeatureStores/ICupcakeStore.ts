@@ -1,9 +1,10 @@
 import { ProductSizes } from "../../constants/Enums";
+import { ICategoryDetails } from "../../constants/Interfaces";
 
 export interface ICupcakeStore {
-    cupcakeCount: ICupcakeCount;
-    cupcakeFlavors: ICupcakeFlavors;
-    cupcakeCosts: ICupcakeCosts;
+    base: ICupcakeCount;
+    flavors: ICupcakeFlavors;
+    details: ICategoryDetails;
 }
 
 interface ICupcakeCount {
@@ -17,8 +18,8 @@ interface ICupcakeFlavors {
     frosting: string;
 }
 
-interface ICupcakeCosts {
-    quantityCost: number;
-    flavorsCost: number;
-    frostingsCost: number;
-}
+// interface ICupcakeCosts {
+//     quantityCost: number;
+//     flavorsCost: number;
+//     frostingsCost: number;
+// }

@@ -9,15 +9,15 @@ import { CakeTiers, CakeShapes } from "../../store/constants/Enums";
 import { ProductData } from "../../data/Data";
 import { action } from "mobx";
 
-interface ICakeBaseProps {
+interface IBaseProps {
     store?: GlobalStateStore;
 }
 
 @inject("store")
 @observer
-class CakeBase extends React.Component<ICakeBaseProps, {}> {
+class Base extends React.Component<IBaseProps, {}> {
     renderCakeSizes = () => {
-        const cakeShape = this.props.store!.CakeStore.cakeBase.shape;
+        const cakeShape = this.props.store!.CakeStore.base.shape;
         let shape;
         cakeShape === CakeShapes.ROUND
             ? (shape = ProductData.products.sizes.roundSizes)
@@ -43,53 +43,53 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
     };
 
     getTierInfo = action((tier: string) => {
-        this.props.store!.CakeStore.cakeBase.tier = tier as CakeTiers;
+        this.props.store!.CakeStore.base.tier = tier as CakeTiers;
 
         return tier === CakeTiers.SINGLE
-            ? (this.props.store!.CakeStore.cakeBase.tier = CakeTiers.SINGLE)
-            : (this.props.store!.CakeStore.cakeBase.tier = CakeTiers.MULTIPLE);
+            ? (this.props.store!.CakeStore.base.tier = CakeTiers.SINGLE)
+            : (this.props.store!.CakeStore.base.tier = CakeTiers.MULTIPLE);
 
         // if (tier === CakeTiers.SINGLE) {
-        //     this.props.store!.CakeStore.cakeBase.tier = CakeTiers.SINGLE;
+        //     this.props.store!.CakeStore.base.tier = CakeTiers.SINGLE;
         //     return;
         // } else if (tier === CakeTiers.MULTIPLE) {
-        //     this.props.store!.CakeStore.cakeBase.tier = CakeTiers.MULTIPLE;
+        //     this.props.store!.CakeStore.base.tier = CakeTiers.MULTIPLE;
         //     return;
         // }
     });
     getShape = action((shape: string) => {
-        this.props.store!.CakeStore.cakeBase.shape = shape as CakeShapes;
+        this.props.store!.CakeStore.base.shape = shape as CakeShapes;
+        console.log(this.props.store!.CakeStore.base.shape);
     });
     getCakeSizeInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
 
-        if (this.props.store!.CakeStore.cakeBase.shape === CakeShapes.ROUND) {
+        if (this.props.store!.CakeStore.base.shape === CakeShapes.ROUND) {
             //size
-            this.props.store!.CakeStore.cakeBase.size =
+            this.props.store!.CakeStore.base.size =
                 ProductData.products.sizes.roundSizes[value].productSize!;
 
             //serves
-            this.props.store!.CakeStore.cakeBase.serves =
+            this.props.store!.CakeStore.base.serves =
                 ProductData.products.sizes.roundSizes[value].productServes!;
         } else if (
-            this.props.store!.CakeStore.cakeBase.shape === CakeShapes.SHEET
+            this.props.store!.CakeStore.base.shape === CakeShapes.SHEET
         ) {
             //size
-            this.props.store!.CakeStore.cakeBase.size =
+            this.props.store!.CakeStore.base.size =
                 ProductData.products.sizes.sheetSizes[value].productSize!;
 
             //serves
-            this.props.store!.CakeStore.cakeBase.serves =
+            this.props.store!.CakeStore.base.serves =
                 ProductData.products.sizes.sheetSizes[value].productServes!;
         }
     });
     render() {
         // store variables
-        const cakeTier = this.props.store!.CakeStore.cakeBase.tier;
-        const cakeShape = this.props.store!.CakeStore.cakeBase.shape;
-        const cakeSize = this.props.store!.CakeStore.cakeBase.size;
-        const sizeCost = this.props.store!.CakeStore.cakeCosts.sizeCost;
+        const cakeTier = this.props.store!.CakeStore.base.tier;
+        const cakeShape = this.props.store!.CakeStore.base.shape;
+        const cakeSize = this.props.store!.CakeStore.base.size;
 
         // main
         return (
@@ -159,4 +159,4 @@ class CakeBase extends React.Component<ICakeBaseProps, {}> {
     }
 }
 
-export default CakeBase;
+export default Base;

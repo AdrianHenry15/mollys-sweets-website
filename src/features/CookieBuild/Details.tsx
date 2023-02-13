@@ -15,26 +15,9 @@ interface ICookieDetailsProps {
     store?: GlobalStateStore;
 }
 
-interface ICookieDetailsState {
-    arrivalDate: Date;
-    occasionDate: Date;
-}
-
 @inject("store")
 @observer
-class CookieDetails extends React.Component<
-    ICookieDetailsProps,
-    ICookieDetailsState
-> {
-    constructor(props: ICookieDetailsProps) {
-        super(props);
-
-        this.state = {
-            arrivalDate: new Date(),
-            occasionDate: new Date(),
-        };
-    }
-
+class CookieDetails extends React.Component<ICookieDetailsProps> {
     render() {
         return <Details category={ProductCategories.COOKIES} />;
     }

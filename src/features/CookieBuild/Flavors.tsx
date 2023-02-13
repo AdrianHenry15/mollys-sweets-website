@@ -19,7 +19,7 @@ interface ICookieFlavorsState {
 
 @inject("store")
 @observer
-class CookieFlavors extends React.Component<
+class Flavors extends React.Component<
     ICookieFlavorsProps,
     ICookieFlavorsState
 > {
@@ -31,34 +31,30 @@ class CookieFlavors extends React.Component<
         };
     }
 
-    getCookieFlavorInfo = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    private getCookieFlavorInfo = (e: React.ChangeEvent<HTMLSelectElement>) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
         // flavor
-        this.props.store!.CookieStore.cookieFlavors.flavor =
+        this.props.store!.CookieStore.flavors.flavor =
             ProductData.products.cookies[value].productName;
-        // price
-        this.props.store!.CookieStore.cookieCosts.flavorsCost =
-            ProductData.products.flavors[value].price;
 
         // //local storage
         // localStorage.getItem(
-        //     this.CookieStore.cookieFlavors.flavor,
+        //     this.CookieStore.flavors.flavor,
         //     this.CookieStore.cookieCosts.flavorsCost.toString()
         // );
     };
-    getCookieFrostingInfo = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    private getCookieFrostingInfo = (
+        e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
         // frosting
-        this.props.store!.CookieStore.cookieFlavors.frosting =
+        this.props.store!.CookieStore.flavors.frosting =
             ProductData.products.frostings[value].productName;
-        // price
-        this.props.store!.CookieStore.cookieCosts.frostingsCost =
-            ProductData.products.frostings[value].price;
     };
 
-    getFrosting = () => {
+    private getFrosting = () => {
         this.setState((state) => {
             return { frosting: !state.frosting };
         });
@@ -69,17 +65,6 @@ class CookieFlavors extends React.Component<
         //data variables
         const cookies = ProductData.products.cookies;
         const frostings = ProductData.products.frostings;
-
-        //store variables
-        const flavorCost =
-            this.props.store!.CookieStore.cookieCosts.flavorsCost;
-        const frostingCost =
-            this.props.store!.CookieStore.cookieCosts.frostingsCost;
-
-        // computeds
-        const updateFlavorTotalCost =
-            this.props.store!.ComputedCookieCosts.computedCosts
-                .updateCookieFlavorTotalCost;
 
         return (
             <section className="cookie-f-container">
@@ -95,7 +80,10 @@ class CookieFlavors extends React.Component<
                         <div>
                             <form action="">
                                 <select
-                                    defaultValue={flavorCost}
+                                    defaultValue={
+                                        this.props.store!.CookieStore.flavors
+                                            .flavor
+                                    }
                                     onChange={(e) =>
                                         this.getCookieFlavorInfo(e)
                                     }
@@ -159,7 +147,10 @@ class CookieFlavors extends React.Component<
                             <div>
                                 <form action="">
                                     <select
-                                        defaultValue={frostingCost}
+                                        defaultValue={
+                                            this.props.store!.CookieStore
+                                                .flavors.frosting
+                                        }
                                         onChange={(e) =>
                                             this.getCookieFrostingInfo(e)
                                         }
@@ -193,13 +184,9 @@ class CookieFlavors extends React.Component<
                         </div>
                     </div>
                 )}
-                <div className="cookie-f-make-container">
-                    <h5 className="cookie-f-title">Cost</h5>
-                    <div>{`$${updateFlavorTotalCost()}`}</div>
-                </div>
             </section>
         );
     }
 }
 
-export default CookieFlavors;
+export default Flavors;

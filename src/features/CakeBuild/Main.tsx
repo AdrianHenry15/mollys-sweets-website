@@ -3,10 +3,10 @@ import "../../styles/CakeBuildStyles/Main.scss";
 // External Dependencies
 import React from "react";
 //components
-import CakeBase from "./CakeBase";
-import Flavors from "./CakeFlavors";
+import Base from "./Base";
+import Flavors from "./Flavors";
 import OptionsOverview from "./OptionsOverview";
-import CakeDetails from "./CakeDetails";
+import CakeDetails from "./Details";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { Link } from "react-router-dom";
@@ -54,7 +54,7 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                             <CustomerInfo />
                         </section>
                         <section className="main-create-cake-container">
-                            <CakeBase />
+                            <Base />
                         </section>
                         <section className="main-create-cake-container">
                             <Flavors />

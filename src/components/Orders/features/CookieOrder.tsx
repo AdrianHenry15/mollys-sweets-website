@@ -17,18 +17,11 @@ interface ICookieOrderProps {
 @observer
 export class CookieOrder extends React.Component<ICookieOrderProps> {
     render() {
-        const cookieFlavor = this.props.store!.CookieStore.cookieFlavors.flavor;
-        const cookieFrosting =
-            this.props.store!.CookieStore.cookieFlavors.frosting;
-        //store computeds
-        const updateCookieCost =
-            this.props.store!.ComputedCookieCosts.computedCosts
-                .updateTotalCookieCost;
         return (
             <div className="product-item-container">
                 <CookieIcon className="product-icon-display" />
                 <div className="product-info">
-                    <h4 className="product-title">{`${cookieFlavor} ${cookieFrosting} `}</h4>
+                    <h4 className="product-title"></h4>
                     <div className="info-btn-container">
                         <div className="info-btn remove-btn">Remove Item</div>
                         <Link to={"../../choose-your-cookies"}>
@@ -39,7 +32,7 @@ export class CookieOrder extends React.Component<ICookieOrderProps> {
                         </div>
                     </div>
                 </div>
-                <h2 className="product-price">{`$${updateCookieCost()}`}</h2>
+                <h2 className="product-price"></h2>
             </div>
         );
     }

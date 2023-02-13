@@ -17,18 +17,11 @@ interface ICakeOrderProps {
 @observer
 export class CakeOrder extends React.Component<ICakeOrderProps> {
     render() {
-        const cakeFlavor = this.props.store!.CakeStore.cakeFlavors.flavor;
-        const cakeFrosting = this.props.store!.CakeStore.cakeFlavors.frosting;
-        const cakeFilling = this.props.store!.CakeStore.cakeFlavors.filling;
-        //store computeds
-        const updateTotalCakeCost =
-            this.props.store!.ComputedCakeCosts.computedCosts
-                .updateTotalCakeCost;
         return (
             <div className="product-item-container">
                 <CakeIcon className="product-icon-display" />
                 <div className="product-info">
-                    <h4 className="product-title">{`${cakeFlavor} ${cakeFrosting} ${cakeFilling}`}</h4>
+                    <h4 className="product-title"></h4>
                     <div className="info-btn-container">
                         <div className="info-btn remove-btn">Remove Item</div>
                         <Link to={"../../build-your-cake"}>
@@ -39,7 +32,7 @@ export class CakeOrder extends React.Component<ICakeOrderProps> {
                         </div>
                     </div>
                 </div>
-                <h2 className="product-price">{`$${updateTotalCakeCost()}`}</h2>
+                <h2 className="product-price"></h2>
             </div>
         );
     }

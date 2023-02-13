@@ -4,9 +4,9 @@ import "../../styles/CupcakeBuildStyles/Main.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 // components
-import CupcakeCount from "./CupcakeCount";
-import CupcakeFlavors from "./CupcakeFlavors";
-import CupcakeDetails from "./CupcakeDetails";
+import Base from "./Base";
+import Flavors from "./Flavors";
+import CupcakeDetails from "./Details";
 
 //store
 import { GlobalStateStore } from "../../store/GlobalStateStore";
@@ -44,10 +44,10 @@ class ChooseYourCupcakes extends React.Component<IChooseYourCupcakesProps, {}> {
                             </p>
                         </aside>
                         <section className="main-create-cupcake-container">
-                            <CupcakeCount />
+                            <Base />
                         </section>
                         <section className="main-create-cupcake-container">
-                            <CupcakeFlavors />
+                            <Flavors />
                         </section>
                         <section className="main-create-cupcake-container">
                             <CupcakeDetails />
