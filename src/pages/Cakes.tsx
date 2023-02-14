@@ -1,6 +1,6 @@
 // Styles
-import "../styles/PageStyles/Cakes.scss";
-import "../styles/GlobalStyles.scss";
+import "./Cakes.scss";
+import "../GlobalStyles.scss";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";

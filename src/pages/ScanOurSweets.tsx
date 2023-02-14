@@ -1,6 +1,6 @@
 // Styles
-import "../styles/PageStyles/ScanOurSweets.scss";
-import "../styles/GlobalStyles.scss";
+import "./ScanOurSweets.scss";
+import "../GlobalStyles.scss";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";

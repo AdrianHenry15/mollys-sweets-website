@@ -1,0 +1,61 @@
+.order-form-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 50%;
+    border-radius: 10px;
+    height: min-content;
+    margin: 10px;
+}
+
+.order-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+.order-form-info-container {
+    display: flex;
+    flex-direction: column;
+    height: min-content;
+    padding: 10px;
+}
+
+.order-form-info {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 10px 0;
+}
+
+.weighted-label {
+    font-weight: 500;
+}
+
+.feather-label {
+    margin-left: 10px;
+}
+
+.details-icon {
+    cursor: pointer;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 30px 10px;
+}
+
+.send-message-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.send-message-btn h5 {
+    border: 1px solid black;
+    padding: 10px 200px 10px 200px;
+    border-radius: 10px;
+}

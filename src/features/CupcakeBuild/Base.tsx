@@ -1,5 +1,5 @@
 // styles
-import "../../styles/CupcakeBuildStyles/CCCount.scss";
+import "./Base.scss";
 
 //frameworks
 import React from "react";

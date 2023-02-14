@@ -15,9 +15,6 @@ import { Link } from "react-router-dom";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
-import CakeOrder from "../Orders/features/CakeOrder";
-import CupcakeOrder from "../Orders/features/CupcakeOrder";
-import CookieOrder from "../Orders/features/CookieOrder";
 
 interface ICartProps {
     store?: GlobalStateStore;
@@ -74,9 +71,9 @@ class Cart extends React.Component<ICartProps, ICartState> {
                     <div className="cart-filled-container">
                         <div className="cart-container">
                             <h1 className="filled-cart-label">Your Cart</h1>
-                            {!cakeCategory && <CakeOrder />}
+                            {/* {!cakeCategory && <CakeOrder />}
                             {!cupcakeCategory && <CupcakeOrder />}
-                            {!cookieCategory && <CookieOrder />}
+                            {!cookieCategory && <CookieOrder />} */}
                         </div>
                         <section className="checkout-total-container">
                             <Link to={"../../login"}>

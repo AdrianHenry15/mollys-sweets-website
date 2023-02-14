@@ -1,5 +1,5 @@
 //styles
-import "../../styles/CookieBuildStyles/Main.scss";
+import "./Main.scss";
 
 // External Dependencies
 import React from "react";

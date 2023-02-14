@@ -6,7 +6,6 @@ import {
     DeliveryOption,
     Occasion,
     ProductCategories,
-    Recipient,
 } from "../store/constants/Enums";
 import { GlobalStateStore } from "../store/GlobalStateStore";
 
@@ -39,59 +38,6 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             occasionDate: new Date(),
         };
     }
-
-    //TODO: consolidate all detail methods into 1 function
-
-    private handleTextAreaDetails = action(
-        (
-            e: React.ChangeEvent<HTMLTextAreaElement>,
-            value: // | "arrivalDate"
-            // | "deliveryOption"
-            // | "occasion"
-            | "recipient"
-                // | "checkedState"
-                | "preferredColors"
-                | "inscription"
-                // | "photoExample"
-                | "linkExample"
-                | "additionalDetails"
-        ) => {
-            const category = this.props.category;
-            const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
-
-            if (category === ProductCategories.CAKES) {
-                CakeStore.details[value] = e.target.value;
-                console.log(CakeStore.details[value]);
-            } else if (category === ProductCategories.CUPCAKES) {
-                CupcakeStore.details[value] = e.target.value;
-                console.log(CakeStore.details[value]);
-            } else if (category === ProductCategories.COOKIES) {
-                CookieStore.details[value] = e.target.value;
-                console.log(CakeStore.details[value]);
-            }
-        }
-    );
-
-    private handleInputDetails = action(
-        (
-            e: React.ChangeEvent<HTMLInputElement>,
-            value: "deliveryOption" | "photoExample"
-        ) => {
-            const category = this.props.category;
-            const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
-
-            if (category === ProductCategories.CAKES) {
-                CakeStore.details[value] = e.target.value as DeliveryOption;
-                console.log(CakeStore.details[value]);
-            } else if (category === ProductCategories.CUPCAKES) {
-                CupcakeStore.details[value] = e.target.value as DeliveryOption;
-                console.log(CakeStore.details[value]);
-            } else if (category === ProductCategories.COOKIES) {
-                CookieStore.details[value] = e.target.value as DeliveryOption;
-                console.log(CakeStore.details[value]);
-            }
-        }
-    );
 
     private handleOccasion = action(
         (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -147,153 +93,178 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             );
         }
     });
-    // getRecipient = action((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //     let select: HTMLTextAreaElement = e.target;
-    //     let value: string = select.value;
-    //     const category = this.props.category;
-    //     if (category === ProductCategories.CAKES) {
-    //         this.props.store!.cakeRecipient = value;
-    //         console.log(`Recipient: ${this.props.store!.cakeRecipient}`);
-    //     } else if (category === ProductCategories.COOKIES) {
-    //         this.props.store!.cookieRecipient = value;
-    //         console.log(`Recipient: ${this.props.store!.cookieRecipient}`);
-    //     } else {
-    //         this.props.store!.cupcakeRecipient = value;
-    //         console.log(`Recipient: ${this.props.store!.cupcakeRecipient}`);
-    //     }
-    // });
-    // getDeliveryOption = action((e: React.ChangeEvent<HTMLInputElement>) => {
-    //     let select: HTMLInputElement = e.target;
-    //     let value: string = select.value;
+    private handleRecipient = action(
+        (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            let select: HTMLTextAreaElement = e.target;
+            let value: string = select.value;
+            const category = this.props.category;
+            const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
+            if (category === ProductCategories.CAKES) {
+                CakeStore.details.recipient = value;
+                console.log(`Cake Recipient: ${CakeStore.details.recipient}`);
+            } else if (category === ProductCategories.CUPCAKES) {
+                CupcakeStore.details.recipient = value;
+                console.log(
+                    `Cupcake Recipient: ${CupcakeStore.details.recipient}`
+                );
+            } else {
+                CookieStore.details.recipient = value;
+                console.log(
+                    `Cookie Recipient: ${CookieStore.details.recipient}`
+                );
+            }
+        }
+    );
+    private handleDeliveryOption = action(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            let select: HTMLInputElement = e.target;
+            let value: string = select.value;
 
-    //     const category = this.props.category;
-    //     if (category === ProductCategories.CAKES) {
-    //         this.props.store!.cakeDeliveryOption = value as DeliveryOption;
-    //         console.log(
-    //             `Delivery Option: ${this.props.store!.cakeDeliveryOption}`
-    //         );
-    //     } else if (category === ProductCategories.COOKIES) {
-    //         this.props.store!.cookieDeliveryOption = value as DeliveryOption;
-    //         console.log(
-    //             `Delivery Option: ${this.props.store!.cookieDeliveryOption}`
-    //         );
-    //     } else {
-    //         this.props.store!.cupcakeDeliveryOption = value as DeliveryOption;
-    //         console.log(
-    //             `Delivery Option: ${this.props.store!.cupcakeDeliveryOption}`
-    //         );
-    //     }
-    // });
-    // getPreferredColors = action((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //     let select: HTMLTextAreaElement = e.target;
-    //     let value: string = select.value;
+            const category = this.props.category;
+            const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
+            if (category === ProductCategories.CAKES) {
+                CakeStore.details.deliveryOption = value as DeliveryOption;
+                console.log(
+                    `Cake Delivery Option: ${CakeStore.details.deliveryOption}`
+                );
+            } else if (category === ProductCategories.COOKIES) {
+                CookieStore.details.deliveryOption = value as DeliveryOption;
+                console.log(
+                    `Cookie Delivery Option: ${CookieStore.details.deliveryOption}`
+                );
+            } else {
+                CakeStore.details.deliveryOption = value as DeliveryOption;
+                console.log(
+                    `Cupcake Delivery Option: ${CupcakeStore.details.deliveryOption}`
+                );
+            }
+        }
+    );
+    private handlePreferredColors = action(
+        (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            let select: HTMLTextAreaElement = e.target;
+            let value: string = select.value;
 
-    //     const category = this.props.category;
-    //     if (category === ProductCategories.CAKES) {
-    //         this.props.store!.cakePreferredColors = value;
-    //         console.log(
-    //             `Preferred Colors: ${this.props.store!.cakePreferredColors}`
-    //         );
-    //     } else if (category === ProductCategories.COOKIES) {
-    //         this.props.store!.cookiePreferredColors = value;
-    //         console.log(
-    //             `Preferred Colors: ${this.props.store!.cookiePreferredColors}`
-    //         );
-    //     } else {
-    //         this.props.store!.cupcakePreferredColors = value;
-    //         console.log(
-    //             `Preferred Colors: ${this.props.store!.cupcakePreferredColors}`
-    //         );
-    //     }
-    // });
-    // getInscription = action((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //     let select: HTMLTextAreaElement = e.target;
-    //     let value: string = select.value;
+            const category = this.props.category;
+            const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
+            if (category === ProductCategories.CAKES) {
+                CakeStore.details.preferredColors = value;
+                console.log(
+                    `Preferred Colors: ${CakeStore.details.preferredColors}`
+                );
+            } else if (category === ProductCategories.COOKIES) {
+                CookieStore.details.preferredColors = value;
+                console.log(
+                    `Preferred Colors: ${CookieStore.details.preferredColors}`
+                );
+            } else {
+                CakeStore.details.preferredColors = value;
+                console.log(
+                    `Cupcake Preferred Colors: ${CupcakeStore.details.preferredColors}`
+                );
+            }
+        }
+    );
+    private handleInscription = action(
+        (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            let select: HTMLTextAreaElement = e.target;
+            let value: string = select.value;
 
-    //     const category = this.props.category;
-    //     if (category === ProductCategories.CAKES) {
-    //         this.props.store!.cakeInscription = value;
-    //         console.log(`Inscription: ${this.props.store!.cakeInscription}`);
-    //     } else if (category === ProductCategories.COOKIES) {
-    //         this.props.store!.cookieInscription = value;
-    //         console.log(`Inscription: ${this.props.store!.cookieInscription}`);
-    //     } else {
-    //         this.props.store!.cupcakeInscription = value;
-    //         console.log(`Inscription: ${this.props.store!.cupcakeInscription}`);
-    //     }
-    // });
-    // // TODO: get photo for order and cart
-    // getPhotoExample = action((e: React.ChangeEvent<HTMLInputElement>) => {
-    //     let select: HTMLInputElement = e.target;
-    //     let value: string = select.value;
+            const category = this.props.category;
+            const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
+            if (category === ProductCategories.CAKES) {
+                CakeStore.details.inscription = value;
+                console.log(
+                    `Cake Inscription: ${CakeStore.details.inscription}`
+                );
+            } else if (category === ProductCategories.COOKIES) {
+                CookieStore.details.inscription = value;
+                console.log(
+                    `Cookie Inscription: ${CookieStore.details.inscription}`
+                );
+            } else {
+                CupcakeStore.details.inscription = value;
+                console.log(
+                    `Cupcake Inscription: ${CupcakeStore.details.inscription}`
+                );
+            }
+        }
+    );
+    // TODO: get photo for order and cart
+    private handlePhotoExample = action(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            let select: HTMLInputElement = e.target;
+            let value: string = select.value;
 
-    //     const category = this.props.category;
-    //     if (category === ProductCategories.CAKES) {
-    //         this.props.store!.cakePhotoExample = value;
-    //         console.log(`Photo Example: ${this.props.store!.cakePhotoExample}`);
-    //     } else if (category === ProductCategories.COOKIES) {
-    //         this.props.store!.cookiePhotoExample = value;
-    //         console.log(
-    //             `Photo Example: ${this.props.store!.cookiePhotoExample}`
-    //         );
-    //     } else {
-    //         this.props.store!.cupcakePhotoExample = value;
-    //         console.log(
-    //             `Photo Example: ${this.props.store!.cupcakePhotoExample}`
-    //         );
-    //     }
-    // });
-    // // TODO: get link for order and cart
-    // getLinkExample = action((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //     let select: HTMLTextAreaElement = e.target;
-    //     let value: string = select.value;
+            const category = this.props.category;
+            const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
+            if (category === ProductCategories.CAKES) {
+                CakeStore.details.photoExample = value;
+                console.log(
+                    `Cake Photo Example: ${CakeStore.details.photoExample}`
+                );
+            } else if (category === ProductCategories.COOKIES) {
+                CookieStore.details.photoExample = value;
+                console.log(
+                    `Cookie Photo Example: ${CookieStore.details.photoExample}`
+                );
+            } else {
+                CupcakeStore.details.photoExample = value;
+                console.log(
+                    `Cupcake Photo Example: ${CupcakeStore.details.photoExample}`
+                );
+            }
+        }
+    );
+    // TODO: get link for order and cart
+    private handleLinkExample = action(
+        (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            let select: HTMLTextAreaElement = e.target;
+            let value: string = select.value;
 
-    //     const category = this.props.category;
-    //     if (category === ProductCategories.CAKES) {
-    //         this.props.store!.cakeLinkExample = value;
-    //         console.log(`Link Example: ${this.props.store!.cakeLinkExample}`);
-    //     } else if (category === ProductCategories.COOKIES) {
-    //         this.props.store!.cookieLinkExample = value;
-    //         console.log(`Link Example: ${this.props.store!.cookieLinkExample}`);
-    //     } else {
-    //         this.props.store!.cupcakeLinkExample = value;
-    //         console.log(
-    //             `Link Example: ${this.props.store!.cupcakeLinkExample}`
-    //         );
-    //     }
-    // });
-    // getAdditionalDetails = action(
-    //     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //         let select: HTMLTextAreaElement = e.target;
-    //         let value: string = select.value;
+            const category = this.props.category;
+            const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
+            if (category === ProductCategories.CAKES) {
+                CakeStore.details.linkExample = value;
+                console.log(`Link Example: ${CakeStore.details.linkExample}`);
+            } else if (category === ProductCategories.COOKIES) {
+                CookieStore.details.linkExample = value;
+                console.log(`Link Example: ${CookieStore.details.linkExample}`);
+            } else {
+                CupcakeStore.details.linkExample = value;
+                console.log(
+                    `Link Example: ${CupcakeStore.details.linkExample}`
+                );
+            }
+        }
+    );
+    private handleAdditionalDetails = action(
+        (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            let select: HTMLTextAreaElement = e.target;
+            let value: string = select.value;
 
-    //         const category = this.props.category;
-    //         if (category === ProductCategories.CAKES) {
-    //             this.props.store!.cakeAdditionalDetails = value;
-    //             console.log(
-    //                 `Additional Details: ${
-    //                     this.props.store!.cakeAdditionalDetails
-    //                 }`
-    //             );
-    //         } else if (category === ProductCategories.COOKIES) {
-    //             this.props.store!.cookieAdditionalDetails = value;
-    //             console.log(
-    //                 `Additional Details: ${
-    //                     this.props.store!.cookieAdditionalDetails
-    //                 }`
-    //             );
-    //         } else {
-    //             this.props.store!.cupcakeAdditionalDetails = value;
-    //             console.log(
-    //                 `Additional Details: ${
-    //                     this.props.store!.cupcakeAdditionalDetails
-    //                 }`
-    //             );
-    //         }
-    //     }
-    // );
+            const category = this.props.category;
+            const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
+            if (category === ProductCategories.CAKES) {
+                CakeStore.details.additionalDetails = value;
+                console.log(
+                    `Additional Details: ${CakeStore.details.additionalDetails}`
+                );
+            } else if (category === ProductCategories.COOKIES) {
+                CookieStore.details.additionalDetails = value;
+                console.log(
+                    `Additional Details: ${CookieStore.details.additionalDetails}`
+                );
+            } else {
+                CupcakeStore.details.additionalDetails = value;
+                console.log(
+                    `Additional Details: ${CupcakeStore.details.additionalDetails}`
+                );
+            }
+        }
+    );
 
-    charToUpper = (name: string) => {
+    private charToUpper = (name: string) => {
         let strLower = name.toLowerCase();
         const category = this.props.category;
 
@@ -305,10 +276,6 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
 
     render() {
         const category = this.props.category!;
-        const cakeDeliveryOptionValue =
-            this.props.store!.CakeStore.details.deliveryOption;
-        const cupcakeDeliveryOptionValue =
-            this.props.store!.CupcakeStore.details.deliveryOption;
         //main
         return (
             <section className="details-cake-details-container">
@@ -336,9 +303,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                             Pickup
                         </label>
                         <input
-                            onChange={(e) =>
-                                this.handleInputDetails(e, "deliveryOption")
-                            }
+                            onChange={(e) => this.handleDeliveryOption(e)}
                             name="delivery-option"
                             type="radio"
                             value={DeliveryOption.PICKUP}
@@ -351,9 +316,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                             Delivery
                         </label>
                         <input
-                            onChange={(e) =>
-                                this.handleInputDetails(e, "deliveryOption")
-                            }
+                            onChange={(e) => this.handleDeliveryOption(e)}
                             name="delivery-option"
                             type="radio"
                             value={DeliveryOption.DELIVERY}
@@ -399,9 +362,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                     <h5 className="details-title">Who Is The Cake For?</h5>
                     <div className="details-textbox-container">
                         <textarea
-                            onChange={(e) =>
-                                this.handleTextAreaDetails(e, "recipient")
-                            }
+                            onChange={(e) => this.handleRecipient(e)}
                             className="details-cake-size-dropdown"
                             name="cake-recipient"
                             placeholder="Enter Here..."
@@ -414,9 +375,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                     </h5>
                     <div className="details-textbox-container">
                         <textarea
-                            onChange={(e) =>
-                                this.handleTextAreaDetails(e, "preferredColors")
-                            }
+                            onChange={(e) => this.handlePreferredColors(e)}
                             className="details-cake-size-dropdown"
                             name="cake-colors"
                             placeholder="Enter Colors Here..."
@@ -432,9 +391,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                     </h5>
                     <div className="details-textbox-container">
                         <textarea
-                            onChange={(e) =>
-                                this.handleTextAreaDetails(e, "inscription")
-                            }
+                            onChange={(e) => this.handleInscription(e)}
                             className="details-cake-size-dropdown"
                             name="cake-colors"
                             placeholder="Enter Inscription Here..."
@@ -453,9 +410,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                             type="file"
                             name="cake-colors"
                             maxLength={80}
-                            onChange={(e) =>
-                                this.handleInputDetails(e, "photoExample")
-                            }
+                            onChange={(e) => this.handlePhotoExample(e)}
                         />
                         <aside>
                             Upload any photo example <br />
@@ -464,9 +419,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                             You may also send a link in the field below.
                         </aside>
                         <textarea
-                            onChange={(e) =>
-                                this.handleTextAreaDetails(e, "linkExample")
-                            }
+                            onChange={(e) => this.handleLinkExample(e)}
                             name="photo-link"
                             id="details-photo-link"
                             placeholder="Enter Link Of Cake Design Example Here..."
@@ -483,12 +436,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                     </h5>
                     <div className="details-textbox-container">
                         <textarea
-                            onChange={(e) =>
-                                this.handleTextAreaDetails(
-                                    e,
-                                    "additionalDetails"
-                                )
-                            }
+                            onChange={(e) => this.handleAdditionalDetails(e)}
                             name="extra-details"
                             id="details-extra-details"
                             placeholder="Enter Details Here..."

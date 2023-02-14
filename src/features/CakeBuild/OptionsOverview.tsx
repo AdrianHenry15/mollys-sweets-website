@@ -1,5 +1,5 @@
 //styles
-import "../../styles/CakeBuildStyles/OptionsOverview.scss";
+import "./OptionsOverview.scss";
 
 // External Dependencies
 import React from "react";

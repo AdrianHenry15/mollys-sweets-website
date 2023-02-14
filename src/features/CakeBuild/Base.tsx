@@ -1,5 +1,5 @@
 // styles
-import "../../styles/CakeBuildStyles/Base.scss";
+import "./Base.scss";
 // External Dependencies
 import React from "react";
 //data
@@ -45,17 +45,15 @@ class Base extends React.Component<IBaseProps, {}> {
     getTierInfo = action((tier: string) => {
         this.props.store!.CakeStore.base.tier = tier as CakeTiers;
 
-        return tier === CakeTiers.SINGLE
-            ? (this.props.store!.CakeStore.base.tier = CakeTiers.SINGLE)
-            : (this.props.store!.CakeStore.base.tier = CakeTiers.MULTIPLE);
-
-        // if (tier === CakeTiers.SINGLE) {
-        //     this.props.store!.CakeStore.base.tier = CakeTiers.SINGLE;
-        //     return;
-        // } else if (tier === CakeTiers.MULTIPLE) {
-        //     this.props.store!.CakeStore.base.tier = CakeTiers.MULTIPLE;
-        //     return;
-        // }
+        if (tier === CakeTiers.SINGLE) {
+            this.props.store!.CakeStore.base.tier = CakeTiers.SINGLE;
+            console.log(this.props.store!.CakeStore.base.tier);
+            return;
+        } else if (tier === CakeTiers.MULTIPLE) {
+            this.props.store!.CakeStore.base.tier = CakeTiers.MULTIPLE;
+            console.log(this.props.store!.CakeStore.base.tier);
+            return;
+        }
     });
     getShape = action((shape: string) => {
         this.props.store!.CakeStore.base.shape = shape as CakeShapes;
@@ -87,9 +85,8 @@ class Base extends React.Component<IBaseProps, {}> {
     });
     render() {
         // store variables
-        const cakeTier = this.props.store!.CakeStore.base.tier;
+
         const cakeShape = this.props.store!.CakeStore.base.shape;
-        const cakeSize = this.props.store!.CakeStore.base.size;
 
         // main
         return (
@@ -103,11 +100,25 @@ class Base extends React.Component<IBaseProps, {}> {
                     <h5 className="base-title">Cake Tier</h5>
                     <div className="base-choice-container">
                         <div className="base-option">
-                            <input type="radio" name="tier" />
+                            <input
+                                onClick={() =>
+                                    this.getTierInfo(CakeTiers.SINGLE)
+                                }
+                                value={CakeTiers.SINGLE}
+                                type="radio"
+                                name="tier"
+                            />
                             <label className="base-label">Single</label>
                         </div>
                         <div className="base-option">
-                            <input type="radio" name="tier" />
+                            <input
+                                onClick={() =>
+                                    this.getTierInfo(CakeTiers.MULTIPLE)
+                                }
+                                value={CakeTiers.MULTIPLE}
+                                type="radio"
+                                name="tier"
+                            />
                             <label className="base-label">Multiple</label>
                         </div>
                     </div>

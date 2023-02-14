@@ -1,6 +1,6 @@
 // Styles
-import "../styles/PageStyles/Cookies.scss";
-import "../styles/GlobalStyles.scss";
+import "./Cookies.scss";
+import "../GlobalStyles.scss";
 
 // Data
 import { SweetsImages } from "../data/ImageData";

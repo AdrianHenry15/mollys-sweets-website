@@ -3,7 +3,7 @@ import React from "react";
 import { inject, observer } from "mobx-react";
 
 //styles
-import "../../styles/CookieBuildStyles/CookieFlavors.scss";
+import "./Flavors.scss";
 
 //stores
 import { GlobalStateStore } from "../../store/GlobalStateStore";

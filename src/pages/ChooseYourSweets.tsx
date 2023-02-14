@@ -1,5 +1,5 @@
 //styles
-import "../styles/PageStyles/ChooseYourSweets.scss";
+import "./ChooseYourSweets.scss";
 // frameworks
 import React from "react";
 import { Link } from "react-router-dom";

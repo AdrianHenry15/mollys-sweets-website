@@ -2,7 +2,7 @@ import { action } from "mobx";
 import { inject, observer } from "mobx-react";
 import React from "react";
 import { GlobalStateStore } from "../store/GlobalStateStore";
-import "../styles/ComponentStyles/CustomerInfo.scss";
+import "./CustomerInfo.scss";
 
 interface ICustomerInfoProps {
     store?: GlobalStateStore;

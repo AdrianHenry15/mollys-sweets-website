@@ -1,18 +1,14 @@
 //styles
-import "../styles/ComponentStyles/Navbar.scss";
+import "./Navbar.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 //icons
 import { GiFallingLeaf } from "react-icons/gi";
 import { GiLeafSkeleton } from "react-icons/gi";
-import { AiOutlineShoppingCart as CartIcon } from "react-icons/ai";
 
 //stores
 import { GlobalStateStore } from "../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
-
-//components
-import Cart from "./Cart/Cart";
 
 export const pages = [
     {
@@ -40,11 +36,11 @@ export const pages = [
         name: "Create",
         path: "/choose-your-sweets",
     },
-    {
-        id: 6,
-        name: "Cart",
-        path: "/cart",
-    },
+    // {
+    //     id: 6,
+    //     name: "Cart",
+    //     path: "/cart",
+    // },
 ];
 
 interface INavbarProps {
@@ -93,13 +89,13 @@ class Navbar extends React.Component<INavbarProps, {}> {
                             }
                         })}
                     </nav>
-                    <nav className="cart-link">
+                    {/* <nav className="cart-link">
                         <Link key="cart" to="/cart" className="cart-btn">
                             <CartIcon className="cart-icon">
                                 <Cart />
                             </CartIcon>
                         </Link>
-                    </nav>
+                    </nav> */}
                 </header>
             </>
         );

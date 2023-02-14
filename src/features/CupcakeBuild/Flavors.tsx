@@ -2,7 +2,7 @@
 import React from "react";
 
 //styles
-import "../../styles/CupcakeBuildStyles/CCFlavors.scss";
+import "./Flavors.scss";
 
 //stores
 import { CakeTypes, ProductSizes } from "../../store/constants/Enums";

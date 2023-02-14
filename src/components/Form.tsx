@@ -1,6 +1,6 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import "../styles/ComponentStyles/Form.scss";
+import "./Form.scss";
 
 // same types as state
 interface IFormContext {

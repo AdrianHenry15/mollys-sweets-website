@@ -1,5 +1,5 @@
 //styles
-import "../../styles/CupcakeBuildStyles/Main.scss";
+import "./Main.scss";
 //frameworks
 import React from "react";
 import { Link } from "react-router-dom";
@@ -27,7 +27,7 @@ class ChooseYourCupcakes extends React.Component<IChooseYourCupcakesProps, {}> {
     render() {
         const onLinkClick = this.props.store!.CategoryActions.getCategory;
         return (
-            <section className="create-container">
+            <section className="main-build-cupcake-wrapper">
                 <div className="main-build-cupcake-container">
                     {/* <OptionsOverview /> */}
                     <section className="main-customize-cupcake-container">

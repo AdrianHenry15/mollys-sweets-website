@@ -1,5 +1,5 @@
 //styles
-import "../../styles/CakeBuildStyles/Main.scss";
+import "./Main.scss";
 // External Dependencies
 import React from "react";
 //components
@@ -67,7 +67,7 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                         <Link
                             onClick={() => this.fillOrder()}
                             className="cake-order-complete"
-                            to="/customer-info"
+                            to="/order"
                         >
                             <span>Submit Request</span>
                         </Link>

@@ -7,7 +7,7 @@ import { ProductCategories } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 
 //styles
-import "../../styles/CookieBuildStyles/CookieDetails.scss";
+import "./Details.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import Details from "../../components/Details";
 

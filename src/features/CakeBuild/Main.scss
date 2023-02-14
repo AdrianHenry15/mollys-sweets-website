@@ -76,10 +76,11 @@
         display: flex;
         text-align: center;
         text-decoration: none;
-        color: black;
+        color: white;
         border: black solid 1px;
         border-radius: 10px;
         padding: 10px;
+        background-color: black;
     }
 }
 
@@ -142,9 +143,8 @@
         display: flex;
         text-align: center;
         text-decoration: none;
-        color: black;
-        font-family: "Rubik Vinyl", cursive;
-        border: black solid 1px;
+        color: white;
+        border: white solid 1px;
         border-radius: 10px;
         padding: 10px;
     }
