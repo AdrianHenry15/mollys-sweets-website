@@ -1,4 +1,5 @@
 export interface IOrderStore {
-    orderInProgress: [boolean];
-    orderFilled: boolean;
+    validating: boolean;
+    errors: any;
+    status: string;
 }

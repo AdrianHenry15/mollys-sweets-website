@@ -46,13 +46,10 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
 
             if (category === ProductCategories.CAKES) {
                 CakeStore.details.occasion = e.target.value as Occasion;
-                console.log(CakeStore.details.occasion);
             } else if (category === ProductCategories.CUPCAKES) {
                 CupcakeStore.details.occasion = e.target.value as Occasion;
-                console.log(CakeStore.details.occasion);
             } else if (category === ProductCategories.COOKIES) {
                 CookieStore.details.occasion = e.target.value as Occasion;
-                console.log(CakeStore.details.occasion);
             }
         }
     );
@@ -64,33 +61,18 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             this.setState({
                 arrivalDate: d,
             });
-            console.log(
-                `Arrival Date: ${
-                    this.props.store!.CakeStore.details.arrivalDate
-                }`
-            );
         } else if (category === ProductCategories.COOKIES) {
             this.props.store!.CookieStore.details.arrivalDate =
                 d.toDateString();
             this.setState({
                 arrivalDate: d,
             });
-            console.log(
-                `Arrival Date: ${
-                    this.props.store!.CakeStore.details.arrivalDate
-                }`
-            );
         } else {
             this.props.store!.CupcakeStore.details.arrivalDate =
                 d.toDateString();
             this.setState({
                 arrivalDate: d,
             });
-            console.log(
-                `Arrival Date: ${
-                    this.props.store!.CakeStore.details.arrivalDate
-                }`
-            );
         }
     });
     private handleRecipient = action(
@@ -101,17 +83,10 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
             if (category === ProductCategories.CAKES) {
                 CakeStore.details.recipient = value;
-                console.log(`Cake Recipient: ${CakeStore.details.recipient}`);
             } else if (category === ProductCategories.CUPCAKES) {
                 CupcakeStore.details.recipient = value;
-                console.log(
-                    `Cupcake Recipient: ${CupcakeStore.details.recipient}`
-                );
             } else {
                 CookieStore.details.recipient = value;
-                console.log(
-                    `Cookie Recipient: ${CookieStore.details.recipient}`
-                );
             }
         }
     );
@@ -124,19 +99,10 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
             if (category === ProductCategories.CAKES) {
                 CakeStore.details.deliveryOption = value as DeliveryOption;
-                console.log(
-                    `Cake Delivery Option: ${CakeStore.details.deliveryOption}`
-                );
             } else if (category === ProductCategories.COOKIES) {
                 CookieStore.details.deliveryOption = value as DeliveryOption;
-                console.log(
-                    `Cookie Delivery Option: ${CookieStore.details.deliveryOption}`
-                );
             } else {
-                CakeStore.details.deliveryOption = value as DeliveryOption;
-                console.log(
-                    `Cupcake Delivery Option: ${CupcakeStore.details.deliveryOption}`
-                );
+                CupcakeStore.details.deliveryOption = value as DeliveryOption;
             }
         }
     );
@@ -149,19 +115,10 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
             if (category === ProductCategories.CAKES) {
                 CakeStore.details.preferredColors = value;
-                console.log(
-                    `Preferred Colors: ${CakeStore.details.preferredColors}`
-                );
             } else if (category === ProductCategories.COOKIES) {
                 CookieStore.details.preferredColors = value;
-                console.log(
-                    `Preferred Colors: ${CookieStore.details.preferredColors}`
-                );
             } else {
-                CakeStore.details.preferredColors = value;
-                console.log(
-                    `Cupcake Preferred Colors: ${CupcakeStore.details.preferredColors}`
-                );
+                CupcakeStore.details.preferredColors = value;
             }
         }
     );
@@ -174,19 +131,10 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
             if (category === ProductCategories.CAKES) {
                 CakeStore.details.inscription = value;
-                console.log(
-                    `Cake Inscription: ${CakeStore.details.inscription}`
-                );
             } else if (category === ProductCategories.COOKIES) {
                 CookieStore.details.inscription = value;
-                console.log(
-                    `Cookie Inscription: ${CookieStore.details.inscription}`
-                );
             } else {
                 CupcakeStore.details.inscription = value;
-                console.log(
-                    `Cupcake Inscription: ${CupcakeStore.details.inscription}`
-                );
             }
         }
     );
@@ -200,19 +148,10 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
             if (category === ProductCategories.CAKES) {
                 CakeStore.details.photoExample = value;
-                console.log(
-                    `Cake Photo Example: ${CakeStore.details.photoExample}`
-                );
             } else if (category === ProductCategories.COOKIES) {
                 CookieStore.details.photoExample = value;
-                console.log(
-                    `Cookie Photo Example: ${CookieStore.details.photoExample}`
-                );
             } else {
                 CupcakeStore.details.photoExample = value;
-                console.log(
-                    `Cupcake Photo Example: ${CupcakeStore.details.photoExample}`
-                );
             }
         }
     );
@@ -226,15 +165,10 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
             if (category === ProductCategories.CAKES) {
                 CakeStore.details.linkExample = value;
-                console.log(`Link Example: ${CakeStore.details.linkExample}`);
             } else if (category === ProductCategories.COOKIES) {
                 CookieStore.details.linkExample = value;
-                console.log(`Link Example: ${CookieStore.details.linkExample}`);
             } else {
                 CupcakeStore.details.linkExample = value;
-                console.log(
-                    `Link Example: ${CupcakeStore.details.linkExample}`
-                );
             }
         }
     );
@@ -247,19 +181,10 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
             const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
             if (category === ProductCategories.CAKES) {
                 CakeStore.details.additionalDetails = value;
-                console.log(
-                    `Additional Details: ${CakeStore.details.additionalDetails}`
-                );
             } else if (category === ProductCategories.COOKIES) {
                 CookieStore.details.additionalDetails = value;
-                console.log(
-                    `Additional Details: ${CookieStore.details.additionalDetails}`
-                );
             } else {
                 CupcakeStore.details.additionalDetails = value;
-                console.log(
-                    `Additional Details: ${CupcakeStore.details.additionalDetails}`
-                );
             }
         }
     );

@@ -1,10 +1,12 @@
 import { CakeShapes, CakeTiers } from "../../constants/Enums";
-import { ICategoryDetails } from "../../constants/Interfaces";
+import { ICategoryDetails, IErrors, IValues } from "../../constants/Interfaces";
 
 export interface ICakeStore {
     base: ICakeBase;
     flavors: ICakeFlavors;
     details: ICategoryDetails;
+    // form: ICakeForm;
+    // computedCosts: IComputedCakeCosts;
 }
 
 // interface ICakeCosts {
@@ -15,6 +17,13 @@ export interface ICakeStore {
 //     fillingsCost: number;
 //     fruitCost: number;
 // }
+
+interface ICakeForm {
+    errors: IErrors;
+    values: IValues;
+    setValues?: (fieldName: string, value: any) => void;
+    validate?: (fieldName: string, value: any) => void;
+}
 
 interface ICakeBase {
     size: string;
@@ -28,4 +37,10 @@ interface ICakeFlavors {
     filling: string;
     frosting: string;
     fruit: string;
+}
+
+export interface IComputedCakeCosts {
+    updateCakeBaseCost: () => void;
+    updateCakeFlavorsTotalCost: () => void;
+    updateTotalCakeCost: () => void;
 }

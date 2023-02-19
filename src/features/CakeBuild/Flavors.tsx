@@ -32,45 +32,44 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
         };
     }
 
-    getCakeFlavorInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
+    private getCakeFlavorInfo = action(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            let select: HTMLSelectElement = e.target;
+            let value: number = parseInt(select.value);
+
+            this.props.store!.CakeStore.flavors.flavor =
+                ProductData.products.flavors[value].productName;
+        }
+    );
+    private getCakeFrostingInfo = action(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            let select: HTMLSelectElement = e.target;
+            let value: number = parseInt(select.value);
+
+            this.props.store!.CakeStore.flavors.frosting =
+                ProductData.products.frostings[value].productName;
+        }
+    );
+    private getCakeFillingInfo = action(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            let select: HTMLSelectElement = e.target;
+            let value: number = parseInt(select.value);
+
+            this.props.store!.CakeStore.flavors.filling =
+                ProductData.products.fillings[value].productName;
+        }
+    );
+    private getFruitInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
         let select: HTMLSelectElement = e.target;
         let value: number = parseInt(select.value);
 
-        this.props.store!.CakeStore.flavors.flavor =
-            ProductData.products.flavors[value].productName;
-        console.log(`Flavor: ${this.props.store!.CakeStore.flavors.flavor}`);
-    });
-    getCakeFrostingInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-
-        this.props.store!.CakeStore.flavors.frosting =
-            ProductData.products.frostings[value].productName;
-        console.log(
-            `Frosting: ${this.props.store!.CakeStore.flavors.frosting}`
-        );
-    });
-    getCakeFillingInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-
-        this.props.store!.CakeStore.flavors.filling =
-            ProductData.products.fillings[value].productName;
-        console.log(`Filling: ${this.props.store!.CakeStore.flavors.filling}`);
-    });
-    getFruitInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
         this.props.store!.CakeStore.flavors.fruit =
             ProductData.products.fruit[value].productName;
-        console.log(`Fruit: ${this.props.store!.CakeStore.flavors.fruit}`);
     });
 
     // functions
-    renderCakeTypes = (genre: CakeTypes): JSX.Element => {
-        const flavors = ProductData.products.flavors;
-        const fillings = ProductData.products.fillings;
-        const frostings = ProductData.products.frostings;
+    private renderCakeTypes = (genre: CakeTypes): JSX.Element => {
+        const { flavors, fillings, frostings } = ProductData.products;
 
         switch (genre) {
             case CakeTypes.FLAVORS: {
@@ -166,7 +165,7 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
         }
     };
 
-    setFruit = (hasFruit: boolean) => {
+    private setFruit = (hasFruit: boolean) => {
         this.setState({
             fruit: hasFruit,
         });

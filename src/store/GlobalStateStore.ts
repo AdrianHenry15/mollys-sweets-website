@@ -1,11 +1,11 @@
-import { observable, makeAutoObservable, action, computed } from "mobx";
-import { ProductData } from "../data/Data";
+import { observable, makeAutoObservable, action } from "mobx";
 import {
     CakeShapes,
     CakeTiers,
     DeliveryOption,
     Occasion,
     ProductSizes,
+    Status,
 } from "./constants/Enums";
 
 // stores
@@ -16,48 +16,15 @@ import { ICookieStore } from "./schemas/FeatureStores/ICookieStore";
 import { IUserStore } from "./schemas/IUserStore";
 import { ICartStore } from "./schemas/ICartStore";
 import { IOrderStore } from "./schemas/IOrderStore";
-
-// computeds
-import { ICakeComputeds } from "./schemas/ComputedStore/ICakeComputeds";
-import { ICupcakeComputeds } from "./schemas/ComputedStore/ICupcakeComputeds";
-import { ICookieComputeds } from "./schemas/ComputedStore/ICookieComputeds";
-import { IProductComputeds } from "./schemas/ComputedStore/IProductComputeds";
 import { ICategory } from "./schemas/ICategoryStore";
-import { ICategoryActions } from "./schemas/ActionStore/ICategoryActions";
 
 export class GlobalStateStore {
     constructor() {
         makeAutoObservable(this);
     }
     // ========================================================= OBSERVABLES =========================================================
-    //CAKE DETAILS
-
-    // //CUPCAKE DETAILS
-    // @observable cupcakeArrivalDate = "";
-    // @observable cupcakeOcassionDate = "";
-    // @observable cupcakeDeliveryOption = DeliveryOption.NONE;
-    // @observable cupcakeOccasion = Occasion.NONE;
-    // @observable cupcakeRecipient = "";
-    // @observable cupcakeCheckedState = false;
-    // @observable cupcakePreferredColors = "";
-    // @observable cupcakeInscription = "";
-    // @observable cupcakePhotoExample = "";
-    // @observable cupcakeLinkExample = "";
-    // @observable cupcakeAdditionalDetails = "";
-    // //COOKIE DETAILS
-    // @observable cookieArrivalDate = "";
-    // @observable cookieOcassionDate = "";
-    // @observable cookieDeliveryOption = DeliveryOption.NONE;
-    // @observable cookieOccasion = Occasion.NONE;
-    // @observable cookieRecipient = "";
-    // @observable cookieCheckedState = false;
-    // @observable cookiePreferredColors = "";
-    // @observable cookieInscription = "";
-    // @observable cookiePhotoExample = "";
-    // @observable cookieLinkExample = "";
-    // @observable cookieAdditionalDetails = "";
-
     //CAKE
+
     @observable CakeStore: ICakeStore = {
         base: {
             size: "",
@@ -142,7 +109,6 @@ export class GlobalStateStore {
     @observable
     ProductStore: IProductStore = {
         category: "",
-        totalCost: 0,
     };
 
     @observable CartStore: ICartStore = {
@@ -151,14 +117,17 @@ export class GlobalStateStore {
         cartEmpty: true,
     };
     @observable OrderStore: IOrderStore = {
-        orderFilled: false,
-        orderInProgress: [false],
+        validating: false,
+        errors: null,
+        status: "none",
     };
     @observable UserStore: IUserStore = {
         firstName: "",
         lastName: "",
         email: "",
-        loggedIn: false,
+        validating: false,
+        errors: null,
+        status: Status.NONE,
     };
 
     @observable CategoryStore: ICategory = {
@@ -166,14 +135,10 @@ export class GlobalStateStore {
         cookieCategory: false,
         cupcakeCategory: false,
         category: "",
-    };
-
-    //ACTION
-    @action CategoryActions: ICategoryActions = {
-        getCategory: (category: string) => {
+        getCategory: action((category: string) => {
             this.CategoryStore.category = category;
             console.log(this.CategoryStore.category);
-        },
+        }),
     };
 
     // //computeds

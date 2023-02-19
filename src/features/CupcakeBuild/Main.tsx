@@ -16,6 +16,8 @@ import { inject, observer } from "mobx-react";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RxCookie as CookieIcon } from "react-icons/rx";
 import { ProductCategories } from "../../store/constants/Enums";
+import SubmitBtn from "../../components/SubmitBtn";
+import CustomerInfo from "../../components/CustomerInfo";
 
 interface IChooseYourCupcakesProps {
     store?: GlobalStateStore;
@@ -25,7 +27,7 @@ interface IChooseYourCupcakesProps {
 @observer
 class ChooseYourCupcakes extends React.Component<IChooseYourCupcakesProps, {}> {
     render() {
-        const onLinkClick = this.props.store!.CategoryActions.getCategory;
+        const onLinkClick = this.props.store!.CategoryStore.getCategory;
         return (
             <section className="main-build-cupcake-wrapper">
                 <div className="main-build-cupcake-container">
@@ -43,6 +45,9 @@ class ChooseYourCupcakes extends React.Component<IChooseYourCupcakesProps, {}> {
                                 </i>
                             </p>
                         </aside>
+                        <section className="main-create-cake-container">
+                            <CustomerInfo />
+                        </section>
                         <section className="main-create-cupcake-container">
                             <Base />
                         </section>
@@ -53,6 +58,7 @@ class ChooseYourCupcakes extends React.Component<IChooseYourCupcakesProps, {}> {
                             <CupcakeDetails />
                         </section>
                     </section>
+                    <SubmitBtn />
                 </div>
                 <nav className="cc-create-links-container">
                     <Link

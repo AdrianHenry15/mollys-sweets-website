@@ -8,13 +8,14 @@ import "./Flavors.scss";
 //stores
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { ProductData } from "../../data/Data";
+import { action } from "mobx";
 
 interface ICookieFlavorsProps {
     store?: GlobalStateStore;
 }
 
 interface ICookieFlavorsState {
-    frosting: boolean;
+    frosting: string;
 }
 
 @inject("store")
@@ -27,36 +28,38 @@ class Flavors extends React.Component<
         super(props);
 
         this.state = {
-            frosting: false,
+            frosting: "",
         };
     }
 
-    private getCookieFlavorInfo = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-        // flavor
-        this.props.store!.CookieStore.flavors.flavor =
-            ProductData.products.cookies[value].productName;
+    private getCookieFlavorInfo = action(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            let select: HTMLSelectElement = e.target;
+            let value: number = parseInt(select.value);
+            // flavor
+            this.props.store!.CookieStore.flavors.flavor =
+                ProductData.products.cookies[value].productName;
 
-        // //local storage
-        // localStorage.getItem(
-        //     this.CookieStore.flavors.flavor,
-        //     this.CookieStore.cookieCosts.flavorsCost.toString()
-        // );
-    };
-    private getCookieFrostingInfo = (
-        e: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-        // frosting
-        this.props.store!.CookieStore.flavors.frosting =
-            ProductData.products.frostings[value].productName;
-    };
+            // //local storage
+            // localStorage.getItem(
+            //     this.CookieStore.flavors.flavor,
+            //     this.CookieStore.cookieCosts.flavorsCost.toString()
+            // );
+        }
+    );
+    private getCookieFrostingInfo = action(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            let select: HTMLSelectElement = e.target;
+            let value: number = parseInt(select.value);
+            // frosting
+            this.props.store!.CookieStore.flavors.frosting =
+                ProductData.products.frostings[value].productName;
+        }
+    );
 
-    private getFrosting = () => {
-        this.setState((state) => {
-            return { frosting: !state.frosting };
+    private getFrosting = (option: "yes" | "no") => {
+        this.setState({
+            frosting: option,
         });
     };
 
@@ -124,20 +127,20 @@ class Flavors extends React.Component<
                                 type="radio"
                                 value="yes"
                                 name="cookie-frosting"
-                                onChange={() => this.getFrosting()}
+                                onChange={() => this.getFrosting("yes")}
                             />
                             <label htmlFor="cookie-frosting">Yes</label>
                             <input
                                 type="radio"
                                 value="no"
                                 name="cookie-frosting"
-                                onChange={() => this.getFrosting()}
+                                onChange={() => this.getFrosting("no")}
                             />
                             <label htmlFor="cookie-frosting">No</label>
                         </div>
                     </form>
                 </div>
-                {this.state.frosting && (
+                {this.state.frosting === "yes" && (
                     <div
                         id="cookie-f-custom-flavors"
                         className="cookie-f-make-container"

@@ -2,5 +2,7 @@ export interface IUserStore {
     firstName: string;
     lastName: string;
     email: string;
-    loggedIn: boolean;
+    validating: boolean;
+    errors: any;
+    status: string;
 }

@@ -21,7 +21,7 @@ interface IChooseYourSweetsProps {
 class ChooseYourSweets extends React.Component<IChooseYourSweetsProps, {}> {
     render() {
         //store actions
-        const onLinkClick = this.props.store!.CategoryActions.getCategory;
+        const onLinkClick = this.props.store!.CategoryStore.getCategory;
         return (
             <nav className="choose-your-sweets-wrapper">
                 <Link

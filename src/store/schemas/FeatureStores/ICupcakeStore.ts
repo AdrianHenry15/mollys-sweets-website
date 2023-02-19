@@ -5,6 +5,7 @@ export interface ICupcakeStore {
     base: ICupcakeCount;
     flavors: ICupcakeFlavors;
     details: ICategoryDetails;
+    // computedCosts: IComputedCupcakeCosts;
 }
 
 interface ICupcakeCount {
@@ -16,6 +17,11 @@ interface ICupcakeCount {
 interface ICupcakeFlavors {
     flavor: string;
     frosting: string;
+}
+
+export interface IComputedCupcakeCosts {
+    updateCupcakeFlavorTotalCost: () => void;
+    updateTotalCupcakeCost: () => void;
 }
 
 // interface ICupcakeCosts {

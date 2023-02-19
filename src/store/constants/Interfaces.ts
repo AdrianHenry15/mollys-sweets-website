@@ -12,3 +12,11 @@ export interface ICategoryDetails {
     linkExample: string;
     additionalDetails: string;
 }
+
+export interface IErrors {
+    [key: string]: string[];
+}
+
+export interface IValues {
+    [key: string]: any;
+}

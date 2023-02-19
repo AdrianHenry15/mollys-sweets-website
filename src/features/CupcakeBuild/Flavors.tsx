@@ -5,10 +5,11 @@ import React from "react";
 import "./Flavors.scss";
 
 //stores
-import { CakeTypes, ProductSizes } from "../../store/constants/Enums";
+import { CakeTypes } from "../../store/constants/Enums";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { ProductData } from "../../data/Data";
+import { action } from "mobx";
 
 interface ICCFlavorsProps {
     store?: GlobalStateStore;
@@ -19,29 +20,24 @@ interface ICCFlavorsProps {
 class Flavors extends React.Component<ICCFlavorsProps, {}> {
     //functions
 
-    private getCupcakeFlavorInfo = (
-        e: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-        // flavor
-        this.props.store!.CupcakeStore.flavors.flavor =
-            ProductData.products.flavors[value].productName;
-    };
-    private getCupcakeFrostingInfo = (
-        e: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-        // frosting
-        this.props.store!.CupcakeStore.flavors.frosting =
-            ProductData.products.frostings[value].productName;
-    };
-    private getCupcakeSize = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let select: HTMLInputElement = e.target;
-        let value: string = select.value;
-        this.props.store!.CupcakeStore.base.size = value as ProductSizes;
-    };
+    private getCupcakeFlavorInfo = action(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            let select: HTMLSelectElement = e.target;
+            let value: number = parseInt(select.value);
+            // flavor
+            this.props.store!.CupcakeStore.flavors.flavor =
+                ProductData.products.flavors[value].productName;
+        }
+    );
+    private getCupcakeFrostingInfo = action(
+        (e: React.ChangeEvent<HTMLSelectElement>) => {
+            let select: HTMLSelectElement = e.target;
+            let value: number = parseInt(select.value);
+            // frosting
+            this.props.store!.CupcakeStore.flavors.frosting =
+                ProductData.products.frostings[value].productName;
+        }
+    );
 
     private renderCakeTypes = (genre: CakeTypes) => {
         //variables
@@ -78,7 +74,9 @@ class Flavors extends React.Component<ICCFlavorsProps, {}> {
             return (
                 <select
                     onChange={(e) => this.getCupcakeFrostingInfo(e)}
-                    value={this.props.store!.CupcakeStore.flavors.frosting}
+                    defaultValue={
+                        this.props.store!.CupcakeStore.flavors.frosting
+                    }
                     name="cake-size"
                     className="ccf-dropdown"
                 >

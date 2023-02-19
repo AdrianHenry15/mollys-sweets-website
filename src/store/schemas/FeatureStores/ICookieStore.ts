@@ -18,6 +18,11 @@ interface ICookieFlavors {
     frosting: string;
 }
 
+export interface IComputedCookieCosts {
+    updateCookieFlavorTotalCost: () => void;
+    updateTotalCookieCost: () => void;
+}
+
 // interface ICookieCosts {
 //     quantityCost: number;
 //     flavorsCost: number;

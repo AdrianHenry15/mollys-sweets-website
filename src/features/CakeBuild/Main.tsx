@@ -15,8 +15,8 @@ import { Link } from "react-router-dom";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
 import { ProductCategories } from "../../store/constants/Enums";
-import { action } from "mobx";
 import CustomerInfo from "../../components/CustomerInfo";
+import SubmitBtn from "../../components/SubmitBtn";
 
 interface IBuildYourCakeProps {
     store?: GlobalStateStore;
@@ -25,13 +25,9 @@ interface IBuildYourCakeProps {
 @inject("store")
 @observer
 class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
-    private fillOrder = action(() => {
-        this.props.store!.OrderStore.orderFilled = true;
-    });
-
     render() {
         //store actions
-        const onLinkClick = this.props.store!.CategoryActions.getCategory;
+        const onLinkClick = this.props.store!.CategoryStore.getCategory;
         return (
             <section className="main-build-cake-wrapper">
                 <div className="main-build-cake-container">
@@ -63,15 +59,7 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                             <CakeDetails />
                         </section>
                     </section>
-                    <nav className="cake-order-complete-container">
-                        <Link
-                            onClick={() => this.fillOrder()}
-                            className="cake-order-complete"
-                            to="/order"
-                        >
-                            <span>Submit Request</span>
-                        </Link>
-                    </nav>
+                    <SubmitBtn />
                 </div>
                 <nav className="byc-create-links-container">
                     <Link

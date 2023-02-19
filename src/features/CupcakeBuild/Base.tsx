@@ -63,11 +63,13 @@ class Base extends React.Component<IBaseProps, {}> {
             }
         }
     );
-    private getCupcakeSize = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let select: HTMLInputElement = e.target;
-        let value: string = select.value;
-        this.props.store!.CupcakeStore.base.size = value as ProductSizes;
-    };
+    private getCupcakeSize = action(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            let select: HTMLInputElement = e.target;
+            let value: string = select.value;
+            this.props.store!.CupcakeStore.base.size = value as ProductSizes;
+        }
+    );
     private renderCupcakeCount = () => {
         //variables
         const regCupcakeSizes =

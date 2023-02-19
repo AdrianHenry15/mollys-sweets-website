@@ -1,4 +1,5 @@
 export interface IProductStore {
     category: string;
-    totalCost: number;
+    // totalCost: number;
+    // pdateProductTotal: () => void;
 }

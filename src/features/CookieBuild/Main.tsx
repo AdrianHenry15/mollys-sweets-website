@@ -16,6 +16,8 @@ import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { ProductCategories } from "../../store/constants/Enums";
+import SubmitBtn from "../../components/SubmitBtn";
+import CustomerInfo from "../../components/CustomerInfo";
 
 interface IChooseYourChooseYourCookiesProps {
     store?: GlobalStateStore;
@@ -29,7 +31,7 @@ class ChooseYourCookies extends React.Component<
 > {
     render() {
         //store actions
-        const onLinkClick = this.props.store!.CategoryActions.getCategory;
+        const onLinkClick = this.props.store!.CategoryStore.getCategory;
         return (
             <section className="main-build-cookie-wrapper">
                 <div className="main-build-cookie-container">
@@ -47,6 +49,9 @@ class ChooseYourCookies extends React.Component<
                                 </i>
                             </p>
                         </aside>
+                        <section className="main-create-cake-container">
+                            <CustomerInfo />
+                        </section>
                         <section className="main-create-cookie-container">
                             <Base />
                         </section>
@@ -57,6 +62,7 @@ class ChooseYourCookies extends React.Component<
                             <CookieDetails />
                         </section>
                     </section>
+                    <SubmitBtn />
                 </div>
                 <nav className="c-create-links-container">
                     <Link

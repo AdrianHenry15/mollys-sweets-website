@@ -25,7 +25,7 @@ class EmptyCart extends React.Component<IEmptyCartProps, {}> {
         //store observables
         const emptyCartState = this.props.store!.CartStore.cartEmpty;
         //store actions
-        const onLinkClick = this.props.store!.CategoryActions.getCategory;
+        const onLinkClick = this.props.store!.CategoryStore.getCategory;
         return (
             <>
                 {emptyCartState && (

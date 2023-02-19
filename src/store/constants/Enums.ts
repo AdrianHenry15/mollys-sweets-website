@@ -71,17 +71,9 @@ export enum Recipient {
     ADULT = "Adult",
 }
 
-// export enum CakeCosts {
-//     TIER,
-//     SIZE,
-//     FLAVOR,
-//     FROSTING,
-//     FILLING,
-//     FRUIT,
-// }
-
-// export enum CupcakeCosts {
-//     QUANTITY,
-//     FLAVORS,
-//     FROSTINGS,
-// }
+export enum Status {
+    NONE = "none",
+    PENDING = "pending",
+    COMPLETED = "completed",
+    FAILED = "failed",
+}
