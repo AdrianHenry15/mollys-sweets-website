@@ -15,7 +15,11 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react"
+        "jsx": "react",
+        "outDir": "../../builds/dev/public",
+        "useDefineForClassFields": true,
+        "rootDir": ".",
+        "composite": true
     },
     "include": ["src"]
 }

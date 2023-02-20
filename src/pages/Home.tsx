@@ -1,4 +1,7 @@
-import "../styles/Home.scss";
+//styles
+import "./Home.scss";
+
+//frameworks
 import { Link } from "react-router-dom";
 import React from "react";
 

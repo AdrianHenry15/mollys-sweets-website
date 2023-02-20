@@ -1,0 +1,213 @@
+// MAIN
+.main-build-cake-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 16px;
+    background-color: rgb(102, 121, 100);
+
+    .main-build-cake-container {
+        display: flex;
+        width: 100%;
+        margin: 30px;
+        height: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        padding-left: 200px;
+        padding-right: 200px;
+
+        .main-customize-cake-container {
+            display: flex;
+            flex-direction: column;
+            flex: 3.5;
+            margin-left: 50px;
+
+            strong {
+                margin-right: 10px;
+            }
+
+            .main-create-cake-container {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.byc-create-links-container {
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    margin-top: 105px;
+    margin-right: 20px;
+}
+
+.byc-create-links {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    border: solid 3px black;
+    border-radius: 7px;
+    margin-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.byc-create-links:hover {
+    color: rgb(97, 25, 25);
+}
+
+.byc-create-icons {
+    font-size: 16px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+    .main-build-cake-wrapper {
+        justify-content: center;
+    }
+    .main-build-cake-container {
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 0;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-top: 90px !important;
+    }
+
+    .main-customize-cake-container {
+        margin-left: 0 !important;
+    }
+
+    .byc-create-links-container {
+        margin-right: 0;
+        margin-top: 0;
+        justify-content: space-around;
+        right: auto;
+        display: flex;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .byc-create-links {
+        text-align: center;
+    }
+
+    .byc-cupcakes-link {
+        left: 0 !important;
+        margin-left: 0;
+    }
+
+    .byc-cookies-link {
+        right: 0 !important;
+    }
+
+    .byc-create-icons {
+        font-size: 25px;
+    }
+
+    .byc-create-icons-label {
+        font-size: 12px;
+    }
+}
+
+.cake-order-complete-container {
+    display: flex;
+    align-items: flex-end;
+
+    .cake-order-complete {
+        display: flex;
+        text-align: center;
+        text-decoration: none;
+        color: white;
+        border: white solid 1px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .main-build-cake-wrapper {
+        justify-content: center;
+    }
+    .main-build-cake-container {
+        width: 100% !important;
+        flex-direction: column;
+        width: 100%;
+        padding: 0px !important;
+        padding-top: 100px !important;
+    }
+
+    .main-customize-cake-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0 !important;
+    }
+
+    .main-note {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+
+    .byc-create-links-container {
+        margin-right: 0;
+        margin-top: 0;
+        justify-content: space-between;
+        right: auto;
+        display: flex;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .byc-create-links {
+        text-align: center;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .byc-cake-link {
+        left: 0 !important;
+    }
+
+    .byc-create-icons {
+        font-size: 25px;
+    }
+
+    .byc-create-icons-label {
+        font-size: 12px;
+    }
+}
+
+/*
+    style classes:
+For Cake Build Main Component
+main-build-cake-wrapper = create-container
+main-build-cake-container = create-layout
+main-customize-cake-container = form-container
+main-create-cake-container = form-field-layouts
+cake-order-complete-container = submit-btn-container
+cake-order-complete = submit-btn-link
+byc-create-links-container = create-links-container
+byc-create-links = create-links (cupcakes-link, cookies-link, cake-link)
+byc-create-icons = create-icons
+byc-create-icons-label = create-labels
+
+Cake Base
+base-cake-base-container = form-field-section
+base-cake-make-container = form-field-container
+base-title = field-title
+base-choice-container = radio-input-wrapper
+base-option = radio-input-container
+base-label = radio-label
+base-cake-size-dropdown = select-tag
+*/

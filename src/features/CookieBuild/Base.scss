@@ -1,0 +1,91 @@
+.cookie-count-container {
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid rgb(68, 68, 68) 1px;
+    padding-bottom: 30px;
+}
+
+.cookie-kind-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0 15px 0;
+}
+
+.cookie-choice-container {
+    display: flex;
+    text-align: center;
+
+    label {
+        margin-left: 2px;
+        margin-right: 10px;
+    }
+}
+
+.cookie-make-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0 15px 0;
+}
+
+.cookie-choice-container {
+    display: flex;
+    text-align: center;
+}
+
+.cookie-choice {
+    width: 125px;
+    border: 1px black solid;
+    border-radius: 30px;
+    margin: 10px;
+}
+
+.cookie-title {
+    font-size: 15px;
+}
+.cookie-option {
+    font-size: 15px;
+}
+
+.cookie-dropdown {
+    display: flex;
+    width: 285px;
+    height: 33px;
+    margin-left: 10px;
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .cookie-count-container {
+        align-items: center;
+    }
+
+    .cookie-kind-container {
+        flex-direction: column;
+        width: 100%;
+    }
+    .cookie-make-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 15px 0 15px 0;
+    }
+
+    .cookie-choice-container {
+        flex-direction: row;
+    }
+
+    .cookie-dropdown {
+        width: 230px !important;
+    }
+}

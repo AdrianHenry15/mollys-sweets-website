@@ -1,0 +1,136 @@
+.cookie-d-make-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0 15px 0;
+}
+
+.cookie-d-dropdown {
+    display: flex;
+    width: 285px;
+    height: 33px;
+    margin-left: 10px;
+}
+
+#cookie-d-checkbox-wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.cookie-d-checkbox-container {
+    display: flex;
+
+    .cookie-d-checkbox {
+        display: flex;
+        flex-direction: column;
+        margin: 0px 10px 0px 10px;
+    }
+}
+
+#cookie-d-photo-example-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 50px;
+
+    aside {
+        font-size: 11px;
+        margin-bottom: 20px;
+    }
+
+    textarea {
+        border-radius: 5px;
+        width: 400px;
+        height: 30px;
+    }
+}
+
+.cookie-d-file-option {
+    margin-bottom: 30px;
+}
+
+#cookie-d-extra-details {
+    font-size: 12px;
+    width: 350px;
+    height: 100px;
+}
+
+.cookie-d-title {
+    font-size: 15px;
+}
+
+.cookie-d-delivery-option-form {
+    display: flex;
+    align-items: center;
+    margin: 0 10px 0 10px;
+}
+.cookie-d-delivery-option-label {
+    margin: 0 10px 0 10px;
+}
+
+.cookie-d-calendar-container {
+    display: flex;
+}
+
+.react-datepicker__aria-live {
+    display: none;
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .cookie-d-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cookie-d-make-container {
+        flex-direction: column;
+        margin: 15px 0 15px 0;
+        width: 100%;
+    }
+
+    .cookie-d-dropdown {
+        height: 33px;
+        line-height: 26px;
+        font-size: 12px;
+    }
+
+    #cookie-d-checkbox-wrapper {
+        margin: 15px 0 15px 0;
+    }
+
+    #cookie-d-photo-example-container {
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        margin-top: 15px;
+        textarea {
+            width: 290px;
+        }
+        textarea::placeholder {
+            line-height: 22px;
+        }
+        aside {
+            font-size: 10px;
+        }
+    }
+
+    #details-cake-inscription-container {
+        align-items: center;
+    }
+
+    #cookie-d-extra-details {
+        width: 290px;
+    }
+
+    .cookie-d-textbox-container {
+        textarea::placeholder {
+            font-size: 10px;
+        }
+    }
+}

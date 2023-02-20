@@ -1,8 +1,14 @@
-import "../styles/Navbar.scss";
+//styles
+import "./Navbar.scss";
 import React from "react";
 import { Link } from "react-router-dom";
+//icons
 import { GiFallingLeaf } from "react-icons/gi";
 import { GiLeafSkeleton } from "react-icons/gi";
+
+//stores
+import { GlobalStateStore } from "../store/GlobalStateStore";
+import { inject, observer } from "mobx-react";
 
 export const pages = [
     {
@@ -25,43 +31,75 @@ export const pages = [
         name: "Cupcakes",
         path: "/cupcakes",
     },
+    {
+        id: 5,
+        name: "Create",
+        path: "/choose-your-sweets",
+    },
+    // {
+    //     id: 6,
+    //     name: "Cart",
+    //     path: "/cart",
+    // },
 ];
 
-const Navbar = () => {
-    return (
-        <>
-            <header className="navbar-container shadow-sm">
-                <nav className="title-container">
-                    <Link className="title-link" to={"/"}>
-                        <GiFallingLeaf className="leaf" />
-                        <h4>Molly's Specialty Sweets</h4>
-                        <GiLeafSkeleton className="leaf" />
-                    </Link>
-                </nav>
-                <nav className="navigation-links">
-                    {pages.map(({ id, name, path }) => {
-                        if (name === "Create A Cake") {
-                            return (
-                                <Link
-                                    key={id}
-                                    className="nav-btns create-a-cake"
-                                    to={path}
-                                >
-                                    {name}
-                                </Link>
-                            );
-                        } else {
-                            return (
-                                <Link key={id} className="nav-btns" to={path}>
-                                    {name}
-                                </Link>
-                            );
-                        }
-                    })}
-                </nav>
-            </header>
-        </>
-    );
-};
+interface INavbarProps {
+    store?: GlobalStateStore;
+}
+
+@inject("store")
+@observer
+class Navbar extends React.Component<INavbarProps, {}> {
+    //main
+    render() {
+        return (
+            <>
+                <header className="navbar-container shadow-sm">
+                    <nav className="title-container">
+                        <Link className="title-link" to={"/"}>
+                            <GiFallingLeaf className="leaf" />
+                            <h4>Molly's Specialty Sweets</h4>
+                            <GiLeafSkeleton className="leaf" />
+                        </Link>
+                    </nav>
+                    <nav className="navigation-links">
+                        {pages.map(({ id, name, path }) => {
+                            if (name === "Create A Cake") {
+                                return (
+                                    <Link
+                                        key={id}
+                                        className="nav-btns create-a-cake"
+                                        to={path}
+                                    >
+                                        {name}
+                                    </Link>
+                                );
+                            } else if (name === "Cart") {
+                                return <div key={id}></div>;
+                            } else {
+                                return (
+                                    <Link
+                                        key={id}
+                                        className="nav-btns"
+                                        to={path}
+                                    >
+                                        {name}
+                                    </Link>
+                                );
+                            }
+                        })}
+                    </nav>
+                    {/* <nav className="cart-link">
+                        <Link key="cart" to="/cart" className="cart-btn">
+                            <CartIcon className="cart-icon">
+                                <Cart />
+                            </CartIcon>
+                        </Link>
+                    </nav> */}
+                </header>
+            </>
+        );
+    }
+}
 
 export default Navbar;
