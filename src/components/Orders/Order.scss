@@ -29,6 +29,15 @@
     color: white;
 }
 
+.send-order-btn button:hover {
+    background-color: white;
+    color: blue;
+}
+.send-order-btn button:active {
+    background-color: rgba(255, 255, 255, 0);
+    color: blue;
+}
+
 .order-icon-container {
     display: flex;
     justify-content: space-evenly;

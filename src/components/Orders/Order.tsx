@@ -162,6 +162,7 @@ class Order extends React.Component<IOrderProps, {}> {
             } else {
                 throw new Error("Public Key Enviorment Variable is invalid");
             }
+            alert("Your Order Has Been Submitted!");
 
             emailjs.send(serviceID, templateID, templateParams, publicKey).then(
                 (result: { text: any }) => {
