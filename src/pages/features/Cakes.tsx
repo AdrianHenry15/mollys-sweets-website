@@ -1,44 +1,44 @@
 // Styles
-import "./Cupcakes.scss";
-import "../GlobalStyles.scss";
+import "./Cakes.scss";
+import "../../GlobalStyles.scss";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import React from "react";
-import { SweetsImages } from "../data/ImageData";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 //store
-import { GlobalStateStore } from "../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
-import { ProductData } from "../data/Data";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
+import { ProductData } from "../../data/Data";
+import { SweetsImages } from "../../data/ImageData";
 
-interface ICupcakesProps {
+interface ICakesProps {
     store?: GlobalStateStore;
 }
 
 @inject("store")
 @observer
-class Cupcakes extends React.Component<ICupcakesProps, {}> {
+class Cakes extends React.Component<ICakesProps, {}> {
     //main
     render() {
         //variables
         const flavors = ProductData.products.flavors;
+        const fillings = ProductData.products.fillings;
         const frostings = ProductData.products.frostings;
-
-        //main
         return (
             <section className="row-container">
-                <h1>Cupcakes</h1>
+                <h1>Cakes</h1>
                 <section className="scroll-wrapper">
                     <div className="dev-scroll-container">
-                        <h3 className="scroll-items-title">Cupcakes</h3>
+                        <h3 className="scroll-items-title">Cakes</h3>
+
                         <ScrollContainer
                             horizontal
                             className="scroll-container"
                         >
                             <div className="scroll-items-container">
-                                {SweetsImages.Cupcakes.map(
+                                {SweetsImages.Cakes.map(
                                     ({ id, name, description, src }) => {
                                         return (
                                             <div
@@ -46,6 +46,7 @@ class Cupcakes extends React.Component<ICupcakesProps, {}> {
                                                 className="scroll-items-wrapper"
                                             >
                                                 <LazyLoadImage
+                                                    key={name}
                                                     src={src}
                                                     alt={name}
                                                     className="scroll-items"
@@ -95,10 +96,25 @@ class Cupcakes extends React.Component<ICupcakesProps, {}> {
                             })}
                         </div>
                     </div>
+                    <div className="fillings-container">
+                        <h4>Fillings</h4>
+                        <div className="fillings-items-container">
+                            {fillings.map(({ id, productName }) => {
+                                return (
+                                    <span
+                                        key={`${id}${productName}`}
+                                        className="fillings-items"
+                                    >
+                                        {productName}
+                                    </span>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </section>
             </section>
         );
     }
 }
 
-export default Cupcakes;
+export default Cakes;

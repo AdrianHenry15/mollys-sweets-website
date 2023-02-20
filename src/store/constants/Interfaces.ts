@@ -1,5 +1,6 @@
 import { DeliveryOption, Occasion } from "./Enums";
 
+// FOR FEATURE STORES
 export interface ICategoryDetails {
     arrivalDate: string;
     deliveryOption: DeliveryOption;
@@ -11,12 +12,4 @@ export interface ICategoryDetails {
     photoExample: string;
     linkExample: string;
     additionalDetails: string;
-}
-
-export interface IErrors {
-    [key: string]: string[];
-}
-
-export interface IValues {
-    [key: string]: any;
 }

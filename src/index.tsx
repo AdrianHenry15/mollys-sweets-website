@@ -23,7 +23,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <BrowserRouter>
         <Provider store={globalStore}>
-            <App store={globalStore} />
+            <App />
         </Provider>
     </BrowserRouter>
 );

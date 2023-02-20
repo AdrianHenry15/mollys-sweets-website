@@ -72,7 +72,7 @@ export enum Recipient {
 }
 
 export enum Status {
-    NONE = "none",
+    NONE = "",
     PENDING = "pending",
     COMPLETED = "completed",
     FAILED = "failed",

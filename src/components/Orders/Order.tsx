@@ -1,8 +1,14 @@
+// EXTERNAL DEPENDENCIES
 import { inject, observer } from "mobx-react";
 import React from "react";
+import emailjs from "@emailjs/browser";
+import { action } from "mobx";
+
+// COMPONENTS
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { ContactDetails } from "./Features/ContactDetails";
 import RequestDetails from "./Features/RequestDetails";
+import { ProductCategories } from "../../store/constants/Enums";
 
 // styles
 import "./Order.scss";
@@ -11,9 +17,6 @@ import "./Order.scss";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
-import { ProductCategories } from "../../store/constants/Enums";
-import emailjs from "@emailjs/browser";
-import { action } from "mobx";
 
 interface IOrderProps {
     store?: GlobalStateStore;
@@ -74,6 +77,7 @@ class Order extends React.Component<IOrderProps, {}> {
                 photo: CakeStore.details.photoExample,
                 link: CakeStore.details.linkExample,
                 additionalDetails: CakeStore.details.additionalDetails,
+                reply_to: UserStore.email,
             };
             const cupcakeParams = {
                 // CONTACT INFO
@@ -101,6 +105,7 @@ class Order extends React.Component<IOrderProps, {}> {
                 photo: CupcakeStore.details.photoExample,
                 link: CupcakeStore.details.linkExample,
                 additionalDetails: CupcakeStore.details.additionalDetails,
+                reply_to: UserStore.email,
             };
             const cookieParams = {
                 // CONTACT INFO
@@ -128,6 +133,7 @@ class Order extends React.Component<IOrderProps, {}> {
                 photo: CookieStore.details.photoExample,
                 link: CookieStore.details.linkExample,
                 additionalDetails: CookieStore.details.additionalDetails,
+                reply_to: UserStore.email,
             };
             if (category === ProductCategories.CAKES) {
                 templateParams = cakeParams;
@@ -137,21 +143,34 @@ class Order extends React.Component<IOrderProps, {}> {
                 templateParams = cookieParams;
             }
 
-            emailjs
-                .send(
-                    "service_xy138l8",
-                    "template_qtym3op",
-                    templateParams,
-                    "340q1bfh33iywOzBH"
-                )
-                .then(
-                    (result: { text: any }) => {
-                        console.log(result.text);
-                    },
-                    (error: { text: any }) => {
-                        console.log(error.text);
-                    }
-                );
+            // ENVIORMENT VARIABLES
+            let serviceID: string;
+            if (process.env.REACT_APP_SERVICE_ID) {
+                serviceID = process.env.REACT_APP_SERVICE_ID;
+            } else {
+                throw new Error("Service ID Enviorment Variable is invalid");
+            }
+            let templateID: string;
+            if (process.env.REACT_APP_TEMPLATE_ID) {
+                templateID = process.env.REACT_APP_TEMPLATE_ID;
+            } else {
+                throw new Error("Template ID Enviorment Variable is invalid");
+            }
+            let publicKey: string;
+            if (process.env.REACT_APP_PUBLIC_KEY) {
+                publicKey = process.env.REACT_APP_PUBLIC_KEY;
+            } else {
+                throw new Error("Public Key Enviorment Variable is invalid");
+            }
+
+            emailjs.send(serviceID, templateID, templateParams, publicKey).then(
+                (result: { text: any }) => {
+                    console.log(result.text);
+                },
+                (error: { text: any }) => {
+                    console.log(error.text);
+                }
+            );
         }
     );
 

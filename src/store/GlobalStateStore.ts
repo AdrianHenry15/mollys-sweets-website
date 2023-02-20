@@ -9,13 +9,10 @@ import {
 } from "./constants/Enums";
 
 // stores
-import { IProductStore } from "./schemas/IProductStore";
 import { ICakeStore } from "./schemas/FeatureStores/ICakeStore";
 import { ICupcakeStore } from "./schemas/FeatureStores/ICupcakeStore";
 import { ICookieStore } from "./schemas/FeatureStores/ICookieStore";
 import { IUserStore } from "./schemas/IUserStore";
-import { ICartStore } from "./schemas/ICartStore";
-import { IOrderStore } from "./schemas/IOrderStore";
 import { ICategory } from "./schemas/ICategoryStore";
 
 export class GlobalStateStore {
@@ -104,23 +101,6 @@ export class GlobalStateStore {
         },
     };
 
-    // PRODUCT
-
-    @observable
-    ProductStore: IProductStore = {
-        category: "",
-    };
-
-    @observable CartStore: ICartStore = {
-        carts: [],
-        currentCart: [],
-        cartEmpty: true,
-    };
-    @observable OrderStore: IOrderStore = {
-        validating: false,
-        errors: null,
-        status: "none",
-    };
     @observable UserStore: IUserStore = {
         firstName: "",
         lastName: "",
@@ -131,9 +111,6 @@ export class GlobalStateStore {
     };
 
     @observable CategoryStore: ICategory = {
-        cakeCategory: false,
-        cookieCategory: false,
-        cupcakeCategory: false,
         category: "",
         getCategory: action((category: string) => {
             this.CategoryStore.category = category;

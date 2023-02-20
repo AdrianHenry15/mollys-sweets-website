@@ -27,7 +27,7 @@ interface IBuildYourCakeProps {
 class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
     render() {
         //store actions
-        const onLinkClick = this.props.store!.CategoryStore.getCategory;
+        const getCategory = this.props.store!.CategoryStore.getCategory;
         return (
             <section className="main-build-cake-wrapper">
                 <div className="main-build-cake-container">
@@ -40,8 +40,9 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                                     The form below is only to request a custom
                                     cake quote. Final cake order details will
                                     still need further discussion. All prices
-                                    are subject to change without further
-                                    notice.
+                                    are subject to change without further notice
+                                    and will be presented in an email after your
+                                    order is submitted.
                                 </i>
                             </p>
                         </aside>
@@ -63,7 +64,7 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                 </div>
                 <nav className="byc-create-links-container">
                     <Link
-                        onClick={() => onLinkClick(ProductCategories.CUPCAKES)}
+                        onClick={() => getCategory(ProductCategories.CUPCAKES)}
                         className="byc-create-links byc-cupcakes-link"
                         to="/choose-your-cupcakes"
                     >
@@ -74,7 +75,7 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                         <CupcakeIcon className="byc-create-icons" />
                     </Link>
                     <Link
-                        onClick={() => onLinkClick(ProductCategories.COOKIES)}
+                        onClick={() => getCategory(ProductCategories.COOKIES)}
                         className="byc-create-links byc-cookies-link"
                         to="/choose-your-cookies"
                     >

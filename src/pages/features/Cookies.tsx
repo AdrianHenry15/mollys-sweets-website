@@ -1,44 +1,44 @@
 // Styles
-import "./Cakes.scss";
-import "../GlobalStyles.scss";
+import "./Cookies.scss";
+import "../../GlobalStyles.scss";
+
+// Data
+import { SweetsImages } from "../../data/ImageData";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { SweetsImages } from "../data/ImageData";
 
 //store
 import { inject, observer } from "mobx-react";
-import { GlobalStateStore } from "../store/GlobalStateStore";
-import { ProductData } from "../data/Data";
+import { GlobalStateStore } from "../../store/GlobalStateStore";
+import { ProductData } from "../../data/Data";
 
-interface ICakesProps {
+interface ICookiesProps {
     store?: GlobalStateStore;
 }
 
 @inject("store")
 @observer
-class Cakes extends React.Component<ICakesProps, {}> {
+class Cookies extends React.Component<ICookiesProps, {}> {
     //main
     render() {
         //variables
-        const flavors = ProductData.products.flavors;
-        const fillings = ProductData.products.fillings;
-        const frostings = ProductData.products.frostings;
+        const cookies = ProductData.products.cookies;
+        //main
         return (
             <section className="row-container">
-                <h1>Cakes</h1>
+                <h1>Cookies</h1>
                 <section className="scroll-wrapper">
                     <div className="dev-scroll-container">
-                        <h3 className="scroll-items-title">Cakes</h3>
-
+                        <h3 className="scroll-items-title">Cookies</h3>
                         <ScrollContainer
                             horizontal
                             className="scroll-container"
                         >
                             <div className="scroll-items-container">
-                                {SweetsImages.Cakes.map(
+                                {SweetsImages.Cookies.map(
                                     ({ id, name, description, src }) => {
                                         return (
                                             <div
@@ -46,7 +46,6 @@ class Cakes extends React.Component<ICakesProps, {}> {
                                                 className="scroll-items-wrapper"
                                             >
                                                 <LazyLoadImage
-                                                    key={name}
                                                     src={src}
                                                     alt={name}
                                                     className="scroll-items"
@@ -69,41 +68,11 @@ class Cakes extends React.Component<ICakesProps, {}> {
                     <div className="flavors-container">
                         <h4>Flavors</h4>
                         <div className="flavors-items-container">
-                            {flavors.map(({ id, productName }) => {
+                            {cookies.map(({ id, productName }) => {
                                 return (
                                     <span
                                         key={`${id}${productName}`}
                                         className="flavors-items"
-                                    >
-                                        {productName}
-                                    </span>
-                                );
-                            })}
-                        </div>
-                    </div>
-                    <div className="frostings-container">
-                        <h4>Frostings</h4>
-                        <div className="frostings-items-container">
-                            {frostings.map(({ id, productName }) => {
-                                return (
-                                    <span
-                                        key={`${id}${productName}`}
-                                        className="frostings-items"
-                                    >
-                                        {productName}
-                                    </span>
-                                );
-                            })}
-                        </div>
-                    </div>
-                    <div className="fillings-container">
-                        <h4>Fillings</h4>
-                        <div className="fillings-items-container">
-                            {fillings.map(({ id, productName }) => {
-                                return (
-                                    <span
-                                        key={`${id}${productName}`}
-                                        className="fillings-items"
                                     >
                                         {productName}
                                     </span>
@@ -117,4 +86,4 @@ class Cakes extends React.Component<ICakesProps, {}> {
     }
 }
 
-export default Cakes;
+export default Cookies;

@@ -1,44 +1,44 @@
 // Styles
-import "./Cookies.scss";
-import "../GlobalStyles.scss";
-
-// Data
-import { SweetsImages } from "../data/ImageData";
+import "./Cupcakes.scss";
+import "../../GlobalStyles.scss";
 
 // Frameworks
 import ScrollContainer from "react-indiana-drag-scroll";
-import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import React from "react";
+import { SweetsImages } from "../../data/ImageData";
 
 //store
+import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
-import { GlobalStateStore } from "../store/GlobalStateStore";
-import { ProductData } from "../data/Data";
+import { ProductData } from "../../data/Data";
 
-interface ICookiesProps {
+interface ICupcakesProps {
     store?: GlobalStateStore;
 }
 
 @inject("store")
 @observer
-class Cookies extends React.Component<ICookiesProps, {}> {
+class Cupcakes extends React.Component<ICupcakesProps, {}> {
     //main
     render() {
         //variables
-        const cookies = ProductData.products.cookies;
+        const flavors = ProductData.products.flavors;
+        const frostings = ProductData.products.frostings;
+
         //main
         return (
             <section className="row-container">
-                <h1>Cookies</h1>
+                <h1>Cupcakes</h1>
                 <section className="scroll-wrapper">
                     <div className="dev-scroll-container">
-                        <h3 className="scroll-items-title">Cookies</h3>
+                        <h3 className="scroll-items-title">Cupcakes</h3>
                         <ScrollContainer
                             horizontal
                             className="scroll-container"
                         >
                             <div className="scroll-items-container">
-                                {SweetsImages.Cookies.map(
+                                {SweetsImages.Cupcakes.map(
                                     ({ id, name, description, src }) => {
                                         return (
                                             <div
@@ -68,11 +68,26 @@ class Cookies extends React.Component<ICookiesProps, {}> {
                     <div className="flavors-container">
                         <h4>Flavors</h4>
                         <div className="flavors-items-container">
-                            {cookies.map(({ id, productName }) => {
+                            {flavors.map(({ id, productName }) => {
                                 return (
                                     <span
                                         key={`${id}${productName}`}
                                         className="flavors-items"
+                                    >
+                                        {productName}
+                                    </span>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div className="frostings-container">
+                        <h4>Frostings</h4>
+                        <div className="frostings-items-container">
+                            {frostings.map(({ id, productName }) => {
+                                return (
+                                    <span
+                                        key={`${id}${productName}`}
+                                        className="frostings-items"
                                     >
                                         {productName}
                                     </span>
@@ -86,4 +101,4 @@ class Cookies extends React.Component<ICookiesProps, {}> {
     }
 }
 
-export default Cookies;
+export default Cupcakes;

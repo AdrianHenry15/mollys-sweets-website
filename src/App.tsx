@@ -7,9 +7,9 @@ import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
-import Cupcakes from "./pages/Cupcakes";
-import Cookies from "./pages/Cookies";
-import Cakes from "./pages/Cakes";
+import Cupcakes from "./pages/features/Cupcakes";
+import Cookies from "./pages/features/Cookies";
+import Cakes from "./pages/features/Cakes";
 import Footer from "./components/Footer";
 import SampleOurSweets from "./pages/ScanOurSweets";
 import ChooseYourSweets from "./pages/ChooseYourSweets";
@@ -20,28 +20,15 @@ import { GlobalStateStore } from "./store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 import { ProductCategories } from "./store/constants/Enums";
 import CustomerInfo from "./components/CustomerInfo";
-import { ISubmitResult, IValues } from "./components/Form";
 import Order from "./components/Orders/Order";
 
 interface IAppProps {
-    store: GlobalStateStore;
+    store?: GlobalStateStore;
 }
 
 @inject("store")
 @observer
 class App extends Component<IAppProps, {}> {
-    private wait = (ms: number): Promise<void> => {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-    };
-    private handleSubmit = async (values: IValues): Promise<ISubmitResult> => {
-        await this.wait(1000); // simulate asynchronous web API call
-        return {
-            errors: {
-                email: ["Some is wrong with this"],
-            },
-            success: false,
-        };
-    };
     render() {
         return (
             <div className="app snow">

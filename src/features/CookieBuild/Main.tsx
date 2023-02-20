@@ -31,7 +31,7 @@ class ChooseYourCookies extends React.Component<
 > {
     render() {
         //store actions
-        const onLinkClick = this.props.store!.CategoryStore.getCategory;
+        const getCategory = this.props.store!.CategoryStore.getCategory;
         return (
             <section className="main-build-cookie-wrapper">
                 <div className="main-build-cookie-container">
@@ -42,10 +42,11 @@ class ChooseYourCookies extends React.Component<
                                 <strong>NOTE: </strong>
                                 <i>
                                     The form below is only to request a custom
-                                    cookies quote. Final cookie order details
-                                    will still need further discussion. All
-                                    prices are subject to change without further
-                                    notice.
+                                    cake quote. Final cake order details will
+                                    still need further discussion. All prices
+                                    are subject to change without further notice
+                                    and will be presented in an email after your
+                                    order is submitted.
                                 </i>
                             </p>
                         </aside>
@@ -66,7 +67,7 @@ class ChooseYourCookies extends React.Component<
                 </div>
                 <nav className="c-create-links-container">
                     <Link
-                        onClick={() => onLinkClick(ProductCategories.CAKES)}
+                        onClick={() => getCategory(ProductCategories.CAKES)}
                         className="c-create-links c-cake-link"
                         to="/build-your-cake"
                     >
@@ -77,7 +78,7 @@ class ChooseYourCookies extends React.Component<
                         <CakeIcon className="c-create-icons" />
                     </Link>
                     <Link
-                        onClick={() => onLinkClick(ProductCategories.CUPCAKES)}
+                        onClick={() => getCategory(ProductCategories.CUPCAKES)}
                         className="c-create-links c-cupcake-link"
                         to="/choose-your-cupcakes"
                     >

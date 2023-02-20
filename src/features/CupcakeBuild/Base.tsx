@@ -39,9 +39,6 @@ class Base extends React.Component<IBaseProps, {}> {
                     ProductData.products.sizes.cupcake_cookie_sizes.mini[
                         value
                     ].productServes;
-
-                // cart state
-                this.props.store!.CartStore.cartEmpty = false;
             } else if (
                 this.props.store!.CupcakeStore.base.size ===
                 ProductSizes.REGULAR
@@ -57,9 +54,6 @@ class Base extends React.Component<IBaseProps, {}> {
                     ProductData.products.sizes.cupcake_cookie_sizes.regular[
                         value
                     ].productServes;
-
-                // cart state
-                this.props.store!.CartStore.cartEmpty = false;
             }
         }
     );
