@@ -1,0 +1,54 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-header {
+    font-family: "Italianno", cursive;
+    font-size: 100px;
+    text-align: center;
+}
+
+.login-forms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    margin-bottom: 30px;
+    border: black solid 5px;
+    border-radius: 20px;
+}
+
+.login-form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+}
+
+.contact-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0 15px 0;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .contact-label {
+        font-weight: 500;
+    }
+}
+
+.contact-input {
+    width: 100%;
+}

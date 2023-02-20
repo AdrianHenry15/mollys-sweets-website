@@ -1,0 +1,164 @@
+// MAIN
+.main-build-cupcake-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 16px;
+    background-color: rgb(102, 121, 100);
+
+    .main-build-cupcake-container {
+        display: flex;
+        width: 60%;
+        margin: 30px;
+        height: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        .main-customize-cupcake-container {
+            display: flex;
+            flex-direction: column;
+            flex: 3.5;
+            margin-left: 50px;
+
+            strong {
+                margin-right: 10px;
+            }
+
+            .main-create-cupcake-container {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.cc-create-links-container {
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    margin-top: 105px;
+    margin-right: 20px;
+}
+
+.cc-create-links {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    border: solid 3px black;
+    border-radius: 7px;
+    margin-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.cc-create-links:hover {
+    color: rgb(97, 25, 25);
+}
+
+.cc-create-icons {
+    font-size: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+    .main-build-cupcake-wrapper {
+        justify-content: center;
+    }
+    .main-build-cupcake-container {
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 0;
+        padding-top: 90px !important;
+    }
+
+    .main-customize-cupcake-container {
+        margin-left: 0 !important;
+    }
+
+    .cc-create-links-container {
+        margin-right: 0;
+        margin-top: 0;
+        justify-content: space-around;
+        right: auto;
+        display: flex;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .cc-create-links {
+        text-align: center;
+    }
+
+    .cc-cake-link {
+        left: 0 !important;
+        margin-left: 0;
+    }
+
+    .cc-create-icons {
+        font-size: 25px;
+    }
+
+    .cc-create-icons-label {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .main-build-cupcake-wrapper {
+        justify-content: center;
+    }
+    .main-build-cupcake-container {
+        width: 100% !important;
+        flex-direction: column;
+        padding-top: 75px !important;
+    }
+
+    .main-customize-cupcake-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0 !important;
+    }
+
+    .main-cc-note {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+
+    .cc-create-links-container {
+        margin-right: 0;
+        margin-top: 0;
+        justify-content: space-between;
+        right: auto;
+        display: flex;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .cc-create-links {
+        text-align: center;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .cc-cake-link {
+        left: 0 !important;
+    }
+
+    .cc-create-icons {
+        font-size: 25px;
+    }
+
+    .cc-create-icons-label {
+        font-size: 12px;
+    }
+}

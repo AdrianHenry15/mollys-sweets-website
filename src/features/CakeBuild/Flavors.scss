@@ -1,0 +1,81 @@
+.flavors-cake-size-dropdown {
+    display: flex;
+    width: 285px;
+    height: 33px;
+    margin-left: 10px;
+}
+
+.flavors-custom-flavors-container {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#flavors-custom-flavors {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.flavors-cake-make-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0 15px 0;
+
+    input {
+        display: flex;
+        width: 100%;
+        margin-left: 10px;
+    }
+
+    input[type="radio"] {
+        color: black;
+        width: 15px;
+    }
+
+    label {
+        margin-left: 20px;
+        margin-left: 20px;
+    }
+}
+
+.flavors-choice-container {
+    display: flex;
+    text-align: center;
+}
+
+#flavors-fruits-section-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.flavors-title {
+    font-size: 15px;
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .flavors-custom-flavors-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .flavors-cake-make-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #flavors-custom-flavors {
+        margin-top: 15px;
+    }
+
+    #flavors-fruits-section-container {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}
