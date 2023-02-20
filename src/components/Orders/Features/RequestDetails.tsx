@@ -76,10 +76,7 @@ export class RequestDetails extends React.Component<
                     </div>
                 </>
             );
-        } else if (
-            category === ProductCategories.COOKIES ||
-            category === ProductCategories.CUPCAKES
-        ) {
+        } else {
             return (
                 <>
                     <div className="order-form-info">
@@ -136,8 +133,6 @@ export class RequestDetails extends React.Component<
                     </div>
                 </>
             );
-        } else {
-            return <div></div>;
         }
     };
 
@@ -179,7 +174,7 @@ export class RequestDetails extends React.Component<
                     {this.renderRequestBaseAndFlavors()}
                     <div className="order-form-info">
                         <span className="weighted-label">
-                            When Do You Need Your Cake?:{" "}
+                            Pickup/Delivery Date:{" "}
                         </span>
                         {category === ProductCategories.CAKES && (
                             <span className="feather-label">

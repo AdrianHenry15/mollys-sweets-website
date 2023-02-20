@@ -13,3 +13,13 @@
         background-color: black;
     }
 }
+
+// tablets
+@media (min-width: 481px) and (max-width: 1200px) {
+}
+
+@media (max-width: 480px) {
+    .submit-btn-container {
+        justify-content: center;
+    }
+}

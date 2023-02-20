@@ -61,3 +61,77 @@
     flex-direction: column;
     padding: 10px 10px 30px 10px;
 }
+
+// tablets
+@media (min-width: 481px) and (max-width: 1200px) {
+    .order-container {
+        padding: 50px !important;
+    }
+    .component-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .order-form-container {
+        width: 100%;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .order-icon-container {
+        font-size: 55px !important;
+    }
+
+    .icon-btn-label {
+        font-size: 45px !important;
+    }
+
+    .send-order-btn button {
+        white-space: nowrap;
+        padding: 5px 110px 2px 110px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-container {
+        padding: 30px !important;
+    }
+    .component-container {
+        flex-direction: column;
+    }
+
+    .order-form-container {
+        width: 100%;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .order-icon-container {
+        font-size: 65px !important;
+    }
+
+    .icon-btn-label {
+        font-size: 40px !important;
+    }
+
+    .send-order-btn button {
+        white-space: nowrap;
+        padding: 5px 50px 2px 50px !important;
+    }
+
+    .order-form-header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .order-form-header span {
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -115,9 +115,13 @@
     .nav-btns {
         margin: 10px !important;
     }
+
+    .title-container .leaf {
+        font-size: 30px;
+    }
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (max-width: 480px) {
     .navbar-container {
         flex-direction: column !important;
         padding-bottom: 10px !important;
@@ -125,5 +129,22 @@
 
     .nav-btns {
         margin: 10px !important;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .navigation-links {
+        flex-wrap: wrap;
+        font-size: 15px;
+        justify-content: center;
+    }
+
+    .title-container h4 {
+        font-size: 35px;
+        text-align: center;
+    }
+
+    .title-container .leaf {
+        font-size: 30px;
     }
 }
