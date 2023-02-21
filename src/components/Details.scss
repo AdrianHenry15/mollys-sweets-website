@@ -49,6 +49,7 @@
 }
 
 .details-file-option {
+    font-size: 12px;
     margin-bottom: 30px;
 }
 
@@ -83,6 +84,11 @@
 
 .react-datepicker__aria-live {
     display: none;
+}
+
+.details-text-box-container input {
+    display: flex;
+    align-items: center;
 }
 
 @media (min-width: 481px) and (max-width: 1200px) {

@@ -3,7 +3,7 @@
     font-family: "Rubik Vinyl", cursive;
     font-weight: 900;
     font-size: 65px;
-    background-color: var(--tertiary-bg-color);
+    background-color: #606c4e;
 
     .home-sweets-options-container {
         display: flex;
@@ -55,6 +55,10 @@
         display: flex;
         height: 350px !important;
         width: 350px !important;
+    }
+
+    .home-sweets-option span {
+        font-size: 40px;
     }
 }
 

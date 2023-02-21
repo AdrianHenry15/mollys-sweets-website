@@ -52,8 +52,11 @@ table {
     }
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (max-width: 480px) {
     .cake-options-container {
-        padding: 45px 30px 30px 30px;
+        padding: 30px;
+        margin: 15px;
+        justify-content: center;
+        align-items: center;
     }
 }

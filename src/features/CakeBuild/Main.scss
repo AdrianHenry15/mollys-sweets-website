@@ -134,9 +134,13 @@
     }
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (max-width: 480px) {
+    .main-create-cake-container {
+        width: 100%;
+    }
     .main-build-cake-wrapper {
         justify-content: center;
+        padding-bottom: 50px;
     }
     .main-build-cake-container {
         width: 100% !important;
@@ -151,6 +155,7 @@
         flex-direction: column;
         align-items: center;
         margin-left: 0 !important;
+        padding: 20px;
     }
 
     .main-note {

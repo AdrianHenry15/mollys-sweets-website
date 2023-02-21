@@ -111,7 +111,7 @@
     }
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (max-width: 480px) {
     .main-build-cupcake-wrapper {
         justify-content: center;
     }
@@ -126,6 +126,7 @@
         flex-direction: column;
         align-items: center;
         margin-left: 0 !important;
+        padding: 20px;
     }
 
     .main-cc-note {

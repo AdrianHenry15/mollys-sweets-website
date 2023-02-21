@@ -115,6 +115,7 @@ export class GlobalStateStore {
         firstName: "",
         lastName: "",
         email: "",
+        phone: "",
         validating: false,
         errors: null,
         status: Status.NONE,

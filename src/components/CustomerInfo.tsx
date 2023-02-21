@@ -14,7 +14,7 @@ export class CustomerInfo extends React.Component<ICustomerInfoProps> {
     private handleUserInput = action(
         (
             e: React.ChangeEvent<HTMLInputElement>,
-            value: "firstName" | "lastName" | "email"
+            value: "firstName" | "lastName" | "email" | "phone"
         ) => {
             this.props.store!.UserStore[value] = e.target.value;
             console.log(`${value}: ${this.props.store!.UserStore[value]}`);
@@ -24,6 +24,7 @@ export class CustomerInfo extends React.Component<ICustomerInfoProps> {
         const firstName = this.props.store!.UserStore.firstName;
         const lastName = this.props.store!.UserStore.lastName;
         const email = this.props.store!.UserStore.email;
+        const phone = this.props.store!.UserStore.phone;
         return (
             <section className="base-cake-base-container">
                 <h3>Your Details</h3>
@@ -63,6 +64,18 @@ export class CustomerInfo extends React.Component<ICustomerInfoProps> {
                             defaultValue={email}
                             className="contact-input"
                             name="email"
+                        />
+                    </div>
+                    <div className="input-field">
+                        <label className="contact-label" htmlFor="firstName">
+                            Phone Number
+                        </label>
+                        <input
+                            onChange={(e) => this.handleUserInput(e, "phone")}
+                            defaultValue={phone}
+                            className="contact-input"
+                            name="email"
+                            type="tel"
                         />
                     </div>
                 </div>

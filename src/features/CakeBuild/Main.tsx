@@ -15,7 +15,7 @@ import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
 import { ProductCategories } from "../../store/constants/Enums";
 import CustomerInfo from "../../components/CustomerInfo";
-import SubmitBtn from "../../components/SubmitBtn";
+import SubmitBtn from "../../components/SubmitOrderBtn";
 import Details from "../../components/Details";
 
 interface IBuildYourCakeProps {

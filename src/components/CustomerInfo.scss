@@ -52,3 +52,13 @@
 .contact-input {
     width: 100%;
 }
+
+// tablets
+@media (min-width: 481px) and (max-width: 1200px) {
+}
+
+@media (max-width: 480px) {
+    .contact-info-container {
+        width: 100%;
+    }
+}

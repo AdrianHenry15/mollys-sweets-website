@@ -33,7 +33,8 @@ class Order extends React.Component<IOrderProps, {}> {
             ? (style = {
                   borderBottom: "4px solid black",
               })
-            : (style = {});
+            : // eslint-disable-next-line
+              (style = {});
     };
 
     private sendOrder = action(
@@ -162,6 +163,7 @@ class Order extends React.Component<IOrderProps, {}> {
             } else {
                 throw new Error("Public Key Enviorment Variable is invalid");
             }
+            alert("Your Order Has Been Submitted!");
 
             emailjs.send(serviceID, templateID, templateParams, publicKey).then(
                 (result: { text: any }) => {
@@ -211,7 +213,10 @@ class Order extends React.Component<IOrderProps, {}> {
                     <RequestDetails />
                 </div>
                 <div className="send-order-btn">
-                    <button onClick={(e) => this.sendOrder(e)}>
+                    <button
+                        onPointerUp={(e) => this.sendOrder(e)}
+                        onClick={(e) => this.sendOrder(e)}
+                    >
                         <h5>Send Order</h5>
                     </button>
                 </div>
