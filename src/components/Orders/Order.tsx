@@ -210,9 +210,9 @@ class Order extends React.Component<IOrderProps, {}> {
                     <RequestDetails />
                 </div>
                 <div className="send-order-btn">
-                    <button onClick={() => this.sendOrder()}>
+                    <div onClick={() => this.sendOrder()}>
                         <h5>Send Order</h5>
-                    </button>
+                    </div>
                 </div>
             </section>
         );
