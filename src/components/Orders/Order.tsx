@@ -17,6 +17,7 @@ import "./Order.scss";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
+import SubmitBtn from "../SubmitOrderBtn";
 
 interface IOrderProps {
     store?: GlobalStateStore;
@@ -210,7 +211,7 @@ class Order extends React.Component<IOrderProps, {}> {
                     <RequestDetails />
                 </div>
                 <div className="send-order-btn">
-                    <button onPointerUp={(e) => this.sendOrder(e)}>
+                    <button onMouseUp={(e) => this.sendOrder(e)}>
                         <h5>Send Order</h5>
                     </button>
                 </div>

@@ -16,7 +16,7 @@ import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { ProductCategories } from "../../store/constants/Enums";
-import SubmitBtn from "../../components/SubmitBtn";
+import SubmitBtn from "../../components/SubmitOrderBtn";
 import CustomerInfo from "../../components/CustomerInfo";
 
 interface IChooseYourChooseYourCookiesProps {

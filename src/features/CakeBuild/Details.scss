@@ -85,6 +85,11 @@
     display: none;
 }
 
+.details-text-box-container input {
+    display: flex;
+    align-items: center;
+}
+
 @media (min-width: 481px) and (max-width: 1200px) {
 }
 

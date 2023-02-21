@@ -1,35 +1,19 @@
 {
-<<<<<<< HEAD
     "short_name": "Mollys Specialty Sweets",
     "name": "Mollys Specialty Sweets",
     "icons": [
         {
             "src": "favicon.ico",
-=======
-    "short_name": "React App",
-    "name": "Create React App Sample",
-    "icons": [
-        {
-            "src": "./favicon.png",
->>>>>>> b39967c472317c45572d606a07c417967c5384c1
             "sizes": "64x64 32x32 24x24 16x16",
             "type": "image/x-icon"
         },
         {
-<<<<<<< HEAD
             "src": "logo192.png",
-=======
-            "src": "./favicon.png",
->>>>>>> b39967c472317c45572d606a07c417967c5384c1
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-<<<<<<< HEAD
             "src": "logo512.png",
-=======
-            "src": "./favicon.png",
->>>>>>> b39967c472317c45572d606a07c417967c5384c1
             "type": "image/png",
             "sizes": "512x512"
         }

@@ -16,7 +16,7 @@ import { inject, observer } from "mobx-react";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RxCookie as CookieIcon } from "react-icons/rx";
 import { ProductCategories } from "../../store/constants/Enums";
-import SubmitBtn from "../../components/SubmitBtn";
+import SubmitBtn from "../../components/SubmitOrderBtn";
 import CustomerInfo from "../../components/CustomerInfo";
 
 interface IChooseYourCupcakesProps {
