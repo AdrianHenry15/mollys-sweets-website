@@ -69,4 +69,9 @@
     .icon-btn {
         width: 25%;
     }
+
+    .send-order-btn button:focus {
+        background-color: rgb(0, 0, 0);
+        color: white;
+    }
 }
