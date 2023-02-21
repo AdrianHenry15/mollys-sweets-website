@@ -38,7 +38,7 @@ class Order extends React.Component<IOrderProps, {}> {
     };
 
     private sendOrder = action(
-        (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
             e.preventDefault();
             const {
                 CakeStore,
@@ -213,9 +213,12 @@ class Order extends React.Component<IOrderProps, {}> {
                     <RequestDetails />
                 </div>
                 <div className="send-order-btn">
-                    <div onClick={(e) => this.sendOrder(e)}>
+                    <button
+                        onPointerUp={(e) => this.sendOrder(e)}
+                        onClick={(e) => this.sendOrder(e)}
+                    >
                         <h5>Send Order</h5>
-                    </div>
+                    </button>
                 </div>
             </section>
         );
