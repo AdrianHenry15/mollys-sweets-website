@@ -6,7 +6,6 @@ import React from "react";
 import Base from "./Base";
 import Flavors from "./Flavors";
 import OptionsOverview from "./OptionsOverview";
-import CakeDetails from "./Details";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { Link } from "react-router-dom";
@@ -17,6 +16,7 @@ import { RxCookie as CookieIcon } from "react-icons/rx";
 import { ProductCategories } from "../../store/constants/Enums";
 import CustomerInfo from "../../components/CustomerInfo";
 import SubmitBtn from "../../components/SubmitBtn";
+import Details from "../../components/Details";
 
 interface IBuildYourCakeProps {
     store?: GlobalStateStore;
@@ -57,7 +57,7 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                             <Flavors />
                         </section>
                         <section className="main-create-cake-container">
-                            <CakeDetails />
+                            <Details category={ProductCategories.CAKES} />
                         </section>
                     </section>
                     <SubmitBtn />

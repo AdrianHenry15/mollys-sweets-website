@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 // components
 import Base from "./Base";
-import CookieDetails from "./Details";
 import Flavors from "./Flavors";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
@@ -18,6 +17,7 @@ import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { ProductCategories } from "../../store/constants/Enums";
 import SubmitBtn from "../../components/SubmitBtn";
 import CustomerInfo from "../../components/CustomerInfo";
+import Details from "../../components/Details";
 
 interface IChooseYourChooseYourCookiesProps {
     store?: GlobalStateStore;
@@ -60,7 +60,7 @@ class ChooseYourCookies extends React.Component<
                             <Flavors />
                         </section>
                         <section className="main-create-cookie-container">
-                            <CookieDetails />
+                            <Details category={ProductCategories.COOKIES} />
                         </section>
                     </section>
                     <SubmitBtn />

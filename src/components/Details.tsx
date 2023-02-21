@@ -8,6 +8,7 @@ import {
     ProductCategories,
 } from "../store/constants/Enums";
 import { GlobalStateStore } from "../store/GlobalStateStore";
+import "./Details.scss";
 
 /*
 everytime you click on a category
@@ -189,26 +190,17 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
         }
     );
 
-    private charToUpper = (name: string) => {
-        let strLower = name.toLowerCase();
-        const category = this.props.category;
-
-        // if the category is Cakes make sure to include the 's' at the end of the property value
-        return category === ProductCategories.CAKES
-            ? strLower.charAt(0).toUpperCase() + name.slice(1).replace("s", "")
-            : strLower.charAt(0).toUpperCase() + name.slice(1);
-    };
-
     render() {
         const category = this.props.category!;
+        const charToUpper = this.props.store!.charToUpper(category);
         //main
         return (
             <section className="details-cake-details-container">
-                <h3>{this.charToUpper(category)} Details</h3>
+                <h3>{charToUpper} Details</h3>
                 <hr />
                 <div className="details-cake-make-container">
                     <h5 className="details-title">
-                        When Do You Need Your {this.charToUpper(category)}?
+                        When Do You Need Your {charToUpper}?
                     </h5>
                     <section className="cake-calendar-container">
                         {/* TODO: Create local state to get Date String and cast it to GlobalStateStore */}
@@ -250,7 +242,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                 </div>
                 <div className="details-cake-make-container">
                     <h5 className="details-title">
-                        What Is The {this.charToUpper(category)} For?
+                        What Is The {charToUpper} For?
                     </h5>
 
                     <select
@@ -284,7 +276,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                     id="details-checkbox-wrapper"
                     className="details-cake-make-container"
                 >
-                    <h5 className="details-title">Who Is The Cake For?</h5>
+                    <h5 className="details-title">Who Are We Celebrating?</h5>
                     <div className="details-textbox-container">
                         <textarea
                             onChange={(e) => this.handleRecipient(e)}
@@ -296,7 +288,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                 </div>
                 <div className="details-cake-make-container">
                     <h5 className="details-title">
-                        List Preferred Colors For Cake
+                        List Preferred Colors For Product
                     </h5>
                     <div className="details-textbox-container">
                         <textarea
@@ -312,7 +304,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                     className="details-cake-make-container"
                 >
                     <h5 className="details-title">
-                        Write Cake Inscription (If any)
+                        Write Inscription (If any)
                     </h5>
                     <div className="details-textbox-container">
                         <textarea
@@ -328,7 +320,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                     id="details-photo-example-container"
                     className="details-cake-make-container"
                 >
-                    <h5 className="details-title">Photo Example Of Cake</h5>
+                    <h5 className="details-title">Photo Example</h5>
                     <div className="details-textbox-container">
                         <input
                             className="details-file-option"
@@ -339,8 +331,8 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                         />
                         <aside>
                             Upload any photo example <br />
-                            of a cake design that you would like to copy for
-                            your cake. <br />
+                            of a design that you would like to copy for your
+                            product. <br />
                             You may also send a link in the field below.
                         </aside>
                         <textarea

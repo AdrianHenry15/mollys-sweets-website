@@ -4,6 +4,7 @@ import {
     CakeTiers,
     DeliveryOption,
     Occasion,
+    ProductCategories,
     ProductSizes,
     Status,
 } from "./constants/Enums";
@@ -21,6 +22,15 @@ export class GlobalStateStore {
     }
     // ========================================================= OBSERVABLES =========================================================
     //CAKE
+    @observable charToUpper = (name: string) => {
+        let strLower = name.toLowerCase();
+        const category = this.CategoryStore.category;
+
+        // if the category is Cakes make sure to include the 's' at the end of the property value
+        return category === ProductCategories.CAKES
+            ? strLower.charAt(0).toUpperCase() + name.slice(1).replace("s", "")
+            : strLower.charAt(0).toUpperCase() + name.slice(1);
+    };
 
     @observable CakeStore: ICakeStore = {
         base: {

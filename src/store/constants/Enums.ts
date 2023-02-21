@@ -77,3 +77,7 @@ export enum Status {
     COMPLETED = "completed",
     FAILED = "failed",
 }
+
+export enum OrderFormBase {}
+export enum OrderFormFlavors {}
+export enum OrderFormDetails {}

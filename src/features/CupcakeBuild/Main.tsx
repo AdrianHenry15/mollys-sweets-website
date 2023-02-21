@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 // components
 import Base from "./Base";
 import Flavors from "./Flavors";
-import CupcakeDetails from "./Details";
 
 //store
 import { GlobalStateStore } from "../../store/GlobalStateStore";
@@ -18,6 +17,7 @@ import { RxCookie as CookieIcon } from "react-icons/rx";
 import { ProductCategories } from "../../store/constants/Enums";
 import SubmitBtn from "../../components/SubmitBtn";
 import CustomerInfo from "../../components/CustomerInfo";
+import Details from "../../components/Details";
 
 interface IChooseYourCupcakesProps {
     store?: GlobalStateStore;
@@ -56,7 +56,7 @@ class ChooseYourCupcakes extends React.Component<IChooseYourCupcakesProps, {}> {
                             <Flavors />
                         </section>
                         <section className="main-create-cupcake-container">
-                            <CupcakeDetails />
+                            <Details category={ProductCategories.CUPCAKES} />
                         </section>
                     </section>
                     <SubmitBtn />
