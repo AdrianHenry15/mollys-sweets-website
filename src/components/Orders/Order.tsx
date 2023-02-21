@@ -33,7 +33,8 @@ class Order extends React.Component<IOrderProps, {}> {
             ? (style = {
                   borderBottom: "4px solid black",
               })
-            : (style = {});
+            : // eslint-disable-next-line
+              (style = {});
     };
 
     private sendOrder = action(() => {
