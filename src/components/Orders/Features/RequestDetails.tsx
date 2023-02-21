@@ -34,45 +34,43 @@ export class RequestDetails extends React.Component<
                 <>
                     <div className="order-form-info">
                         <span className="weighted-label">Cake Tier: </span>
-                        <span className="feather-label">
+                        <i className="feather-label">
                             {CakeStore.base.tier.toString()}
-                        </span>
+                        </i>
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Cake Shape: </span>
-                        <span className="feather-label">
-                            {CakeStore.base.shape}
-                        </span>
+                        <i className="feather-label">{CakeStore.base.shape}</i>
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Cake Size: </span>
-                        <span className="feather-label">
+                        <i className="feather-label">
                             {`${CakeStore.base.size} Serves: ( ${CakeStore.base.serves} )`}
-                        </span>
+                        </i>
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Cake Flavor: </span>
-                        <span className="feather-label">
+                        <i className="feather-label">
                             {CakeStore.flavors.flavor}
-                        </span>
+                        </i>
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Cake Filling: </span>
-                        <span className="feather-label">
+                        <i className="feather-label">
                             {CakeStore.flavors.filling}
-                        </span>
+                        </i>
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Cake Frosting: </span>
-                        <span className="feather-label">
+                        <i className="feather-label">
                             {CakeStore.flavors.frosting}
-                        </span>
+                        </i>
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Fruit: </span>
-                        <span className="feather-label">
+                        <i className="feather-label">
                             {CakeStore.flavors.fruit}
-                        </span>
+                        </i>
                     </div>
                 </>
             );
@@ -82,22 +80,22 @@ export class RequestDetails extends React.Component<
                     <div className="order-form-info">
                         <span className="weighted-label">Size: </span>
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.base.size}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.base.size}
-                            </span>
+                            </i>
                         )}
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Quantity: </span>
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.base.quantity}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
                             <span className="feather-label">
@@ -108,27 +106,27 @@ export class RequestDetails extends React.Component<
                     <div className="order-form-info">
                         <span className="weighted-label">Flavor: </span>
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.flavors.flavor}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.flavors.flavor}
-                            </span>
+                            </i>
                         )}
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Frosting: </span>
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.flavors.frosting}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.flavors.frosting}
-                            </span>
+                            </i>
                         )}
                     </div>
                 </>
@@ -177,19 +175,19 @@ export class RequestDetails extends React.Component<
                             Pickup/Delivery Date:{" "}
                         </span>
                         {category === ProductCategories.CAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CakeStore.details.arrivalDate}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.details.arrivalDate}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.details.arrivalDate}
-                            </span>
+                            </i>
                         )}
                     </div>
                     <div className="order-form-info">
@@ -197,19 +195,19 @@ export class RequestDetails extends React.Component<
                             Pickup Or Delivery?:{" "}
                         </span>
                         {category === ProductCategories.CAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CakeStore.details.deliveryOption}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.details.deliveryOption}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.details.deliveryOption}
-                            </span>
+                            </i>
                         )}
                     </div>
                     <div className="order-form-info">
@@ -217,19 +215,19 @@ export class RequestDetails extends React.Component<
                             What Is The Cake For?:{" "}
                         </span>
                         {category === ProductCategories.CAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CakeStore.details.occasion}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.details.occasion}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.details.occasion}
-                            </span>
+                            </i>
                         )}
                     </div>
                     <div className="order-form-info">
@@ -237,19 +235,19 @@ export class RequestDetails extends React.Component<
                             Who Is The Cake For?:{" "}
                         </span>
                         {category === ProductCategories.CAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CakeStore.details.recipient}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.details.recipient}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.details.recipient}
-                            </span>
+                            </i>
                         )}
                     </div>
                     <div className="order-form-info">
@@ -257,19 +255,19 @@ export class RequestDetails extends React.Component<
                             List Of Preferred Colors:{" "}
                         </span>
                         {category === ProductCategories.CAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CakeStore.details.preferredColors}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.details.preferredColors}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.details.preferredColors}
-                            </span>
+                            </i>
                         )}
                     </div>
                     <div className="order-form-info">
@@ -277,55 +275,55 @@ export class RequestDetails extends React.Component<
                             Cake Inscription:{" "}
                         </span>
                         {category === ProductCategories.CAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CakeStore.details.inscription!}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.details.inscription!}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.details.inscription!}
-                            </span>
+                            </i>
                         )}
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Photo Example: </span>
                         {category === ProductCategories.CAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CakeStore.details.photoExample}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.details.photoExample}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.details.photoExample}
-                            </span>
+                            </i>
                         )}
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Link Example: </span>
                         {category === ProductCategories.CAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CakeStore.details.linkExample}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.details.linkExample}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.details.linkExample}
-                            </span>
+                            </i>
                         )}
                     </div>
                     <div className="order-form-info">
@@ -333,19 +331,19 @@ export class RequestDetails extends React.Component<
                             Additional Details:{" "}
                         </span>
                         {category === ProductCategories.CAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CakeStore.details.additionalDetails}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.CUPCAKES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CupcakeStore.details.additionalDetails}
-                            </span>
+                            </i>
                         )}
                         {category === ProductCategories.COOKIES && (
-                            <span className="feather-label">
+                            <i className="feather-label">
                                 {CookieStore.details.additionalDetails}
-                            </span>
+                            </i>
                         )}
                     </div>
                 </div>

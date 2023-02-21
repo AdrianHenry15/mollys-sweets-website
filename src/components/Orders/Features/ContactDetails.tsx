@@ -54,7 +54,8 @@ export class ContactDetails extends React.Component<
                         id="order-form"
                         className="weighted-label"
                     >{`${UserStore.firstName} ${UserStore.lastName}`}</span>
-                    <span>{`${UserStore.email}`}</span>
+                    <i>{`${UserStore.email}`}</i>
+                    <i>{`${UserStore.phone}`}</i>
                 </div>
             </form>
         );
