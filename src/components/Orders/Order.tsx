@@ -36,7 +36,7 @@ class Order extends React.Component<IOrderProps, {}> {
             : (style = {});
     };
 
-    private sendOrder = action((e: React.FormEvent<HTMLButtonElement>) => {
+    private sendOrder = action(() => {
         const {
             CakeStore,
             CupcakeStore,
@@ -209,7 +209,7 @@ class Order extends React.Component<IOrderProps, {}> {
                     <RequestDetails />
                 </div>
                 <div className="send-order-btn">
-                    <button onMouseDown={(e) => this.sendOrder(e)}>
+                    <button onClick={() => this.sendOrder()}>
                         <h5>Send Order</h5>
                     </button>
                 </div>
