@@ -37,141 +37,144 @@ class Order extends React.Component<IOrderProps, {}> {
               (style = {});
     };
 
-    private sendOrder = action(() => {
-        const {
-            CakeStore,
-            CupcakeStore,
-            UserStore,
-            CookieStore,
-            CategoryStore,
-        } = this.props.store!;
-        let templateParams;
-        const category = CategoryStore.category;
-        const cakeParams = {
-            // CONTACT INFO
-            category: category,
-            name: `${UserStore.firstName} ${UserStore.lastName}`,
-            email: UserStore.email,
-            phone: "", // TODO: create state for phone number
+    private sendOrder = action(
+        (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+            e.preventDefault();
+            const {
+                CakeStore,
+                CupcakeStore,
+                UserStore,
+                CookieStore,
+                CategoryStore,
+            } = this.props.store!;
+            let templateParams;
+            const category = CategoryStore.category;
+            const cakeParams = {
+                // CONTACT INFO
+                category: category,
+                name: `${UserStore.firstName} ${UserStore.lastName}`,
+                email: UserStore.email,
+                phone: "", // TODO: create state for phone number
 
-            // BASE
-            size: CakeStore.base.size,
-            serves: CakeStore.base.serves,
-            shape: CakeStore.base.shape,
-            tier: CakeStore.base.tier,
+                // BASE
+                size: CakeStore.base.size,
+                serves: CakeStore.base.serves,
+                shape: CakeStore.base.shape,
+                tier: CakeStore.base.tier,
 
-            // FLAVORS
-            flavor: CakeStore.flavors.flavor,
-            frosting: CakeStore.flavors.frosting,
-            filling: CakeStore.flavors.filling,
-            fruit: CakeStore.flavors.fruit,
+                // FLAVORS
+                flavor: CakeStore.flavors.flavor,
+                frosting: CakeStore.flavors.frosting,
+                filling: CakeStore.flavors.filling,
+                fruit: CakeStore.flavors.fruit,
 
-            // DETAILS
-            date: CakeStore.details.arrivalDate,
-            occasion: CakeStore.details.occasion,
-            deliveryOption: CakeStore.details.deliveryOption,
-            recipient: CakeStore.details.recipient,
-            colors: CakeStore.details.preferredColors,
-            inscription: CakeStore.details.inscription,
-            photo: CakeStore.details.photoExample,
-            link: CakeStore.details.linkExample,
-            additionalDetails: CakeStore.details.additionalDetails,
-            reply_to: UserStore.email,
-        };
-        const cupcakeParams = {
-            // CONTACT INFO
-            category: category,
-            name: `${UserStore.firstName} ${UserStore.lastName}`,
-            email: UserStore.email,
-            phone: "", // TODO: create state for phone number
+                // DETAILS
+                date: CakeStore.details.arrivalDate,
+                occasion: CakeStore.details.occasion,
+                deliveryOption: CakeStore.details.deliveryOption,
+                recipient: CakeStore.details.recipient,
+                colors: CakeStore.details.preferredColors,
+                inscription: CakeStore.details.inscription,
+                photo: CakeStore.details.photoExample,
+                link: CakeStore.details.linkExample,
+                additionalDetails: CakeStore.details.additionalDetails,
+                reply_to: UserStore.email,
+            };
+            const cupcakeParams = {
+                // CONTACT INFO
+                category: category,
+                name: `${UserStore.firstName} ${UserStore.lastName}`,
+                email: UserStore.email,
+                phone: "", // TODO: create state for phone number
 
-            // BASE
-            size: CupcakeStore.base.size,
-            serves: CupcakeStore.base.serves,
-            quantity: CupcakeStore.base.quantity,
+                // BASE
+                size: CupcakeStore.base.size,
+                serves: CupcakeStore.base.serves,
+                quantity: CupcakeStore.base.quantity,
 
-            // FLAVORS
-            flavor: CupcakeStore.flavors.flavor,
-            frosting: CupcakeStore.flavors.frosting,
+                // FLAVORS
+                flavor: CupcakeStore.flavors.flavor,
+                frosting: CupcakeStore.flavors.frosting,
 
-            // DETAILS
-            date: CupcakeStore.details.arrivalDate,
-            occasion: CupcakeStore.details.occasion,
-            deliveryOption: CupcakeStore.details.deliveryOption,
-            recipient: CupcakeStore.details.recipient,
-            colors: CupcakeStore.details.preferredColors,
-            inscription: CupcakeStore.details.inscription,
-            photo: CupcakeStore.details.photoExample,
-            link: CupcakeStore.details.linkExample,
-            additionalDetails: CupcakeStore.details.additionalDetails,
-            reply_to: UserStore.email,
-        };
-        const cookieParams = {
-            // CONTACT INFO
-            category: category,
-            name: `${UserStore.firstName} ${UserStore.lastName}`,
-            email: UserStore.email,
-            phone: "", // TODO: create state for phone number
+                // DETAILS
+                date: CupcakeStore.details.arrivalDate,
+                occasion: CupcakeStore.details.occasion,
+                deliveryOption: CupcakeStore.details.deliveryOption,
+                recipient: CupcakeStore.details.recipient,
+                colors: CupcakeStore.details.preferredColors,
+                inscription: CupcakeStore.details.inscription,
+                photo: CupcakeStore.details.photoExample,
+                link: CupcakeStore.details.linkExample,
+                additionalDetails: CupcakeStore.details.additionalDetails,
+                reply_to: UserStore.email,
+            };
+            const cookieParams = {
+                // CONTACT INFO
+                category: category,
+                name: `${UserStore.firstName} ${UserStore.lastName}`,
+                email: UserStore.email,
+                phone: "", // TODO: create state for phone number
 
-            // BASE
-            size: CookieStore.base.size,
-            serves: CookieStore.base.serves,
-            quantity: CookieStore.base.quantity,
+                // BASE
+                size: CookieStore.base.size,
+                serves: CookieStore.base.serves,
+                quantity: CookieStore.base.quantity,
 
-            // FLAVORS
-            flavor: CookieStore.flavors.flavor,
-            frosting: CookieStore.flavors.frosting,
+                // FLAVORS
+                flavor: CookieStore.flavors.flavor,
+                frosting: CookieStore.flavors.frosting,
 
-            // DETAILS
-            date: CookieStore.details.arrivalDate,
-            occasion: CookieStore.details.occasion,
-            deliveryOption: CookieStore.details.deliveryOption,
-            recipient: CookieStore.details.recipient,
-            colors: CookieStore.details.preferredColors,
-            inscription: CookieStore.details.inscription,
-            photo: CookieStore.details.photoExample,
-            link: CookieStore.details.linkExample,
-            additionalDetails: CookieStore.details.additionalDetails,
-            reply_to: UserStore.email,
-        };
-        if (category === ProductCategories.CAKES) {
-            templateParams = cakeParams;
-        } else if (category === ProductCategories.CUPCAKES) {
-            templateParams = cupcakeParams;
-        } else {
-            templateParams = cookieParams;
-        }
-
-        // ENVIORMENT VARIABLES
-        let serviceID: string;
-        if (process.env.REACT_APP_SERVICE_ID) {
-            serviceID = process.env.REACT_APP_SERVICE_ID;
-        } else {
-            throw new Error("Service ID Enviorment Variable is invalid");
-        }
-        let templateID: string;
-        if (process.env.REACT_APP_TEMPLATE_ID) {
-            templateID = process.env.REACT_APP_TEMPLATE_ID;
-        } else {
-            throw new Error("Template ID Enviorment Variable is invalid");
-        }
-        let publicKey: string;
-        if (process.env.REACT_APP_PUBLIC_KEY) {
-            publicKey = process.env.REACT_APP_PUBLIC_KEY;
-        } else {
-            throw new Error("Public Key Enviorment Variable is invalid");
-        }
-        alert("Your Order Has Been Submitted!");
-
-        emailjs.send(serviceID, templateID, templateParams, publicKey).then(
-            (result: { text: any }) => {
-                console.log(result.text);
-            },
-            (error: { text: any }) => {
-                console.log(error.text);
+                // DETAILS
+                date: CookieStore.details.arrivalDate,
+                occasion: CookieStore.details.occasion,
+                deliveryOption: CookieStore.details.deliveryOption,
+                recipient: CookieStore.details.recipient,
+                colors: CookieStore.details.preferredColors,
+                inscription: CookieStore.details.inscription,
+                photo: CookieStore.details.photoExample,
+                link: CookieStore.details.linkExample,
+                additionalDetails: CookieStore.details.additionalDetails,
+                reply_to: UserStore.email,
+            };
+            if (category === ProductCategories.CAKES) {
+                templateParams = cakeParams;
+            } else if (category === ProductCategories.CUPCAKES) {
+                templateParams = cupcakeParams;
+            } else {
+                templateParams = cookieParams;
             }
-        );
-    });
+
+            // ENVIORMENT VARIABLES
+            let serviceID: string;
+            if (process.env.REACT_APP_SERVICE_ID) {
+                serviceID = process.env.REACT_APP_SERVICE_ID;
+            } else {
+                throw new Error("Service ID Enviorment Variable is invalid");
+            }
+            let templateID: string;
+            if (process.env.REACT_APP_TEMPLATE_ID) {
+                templateID = process.env.REACT_APP_TEMPLATE_ID;
+            } else {
+                throw new Error("Template ID Enviorment Variable is invalid");
+            }
+            let publicKey: string;
+            if (process.env.REACT_APP_PUBLIC_KEY) {
+                publicKey = process.env.REACT_APP_PUBLIC_KEY;
+            } else {
+                throw new Error("Public Key Enviorment Variable is invalid");
+            }
+            alert("Your Order Has Been Submitted!");
+
+            emailjs.send(serviceID, templateID, templateParams, publicKey).then(
+                (result: { text: any }) => {
+                    console.log(result.text);
+                },
+                (error: { text: any }) => {
+                    console.log(error.text);
+                }
+            );
+        }
+    );
 
     render() {
         return (
@@ -210,7 +213,7 @@ class Order extends React.Component<IOrderProps, {}> {
                     <RequestDetails />
                 </div>
                 <div className="send-order-btn">
-                    <div onClick={() => this.sendOrder()}>
+                    <div onClick={(e) => this.sendOrder(e)}>
                         <h5>Send Order</h5>
                     </div>
                 </div>

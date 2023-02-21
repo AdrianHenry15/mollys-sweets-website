@@ -19,7 +19,7 @@
     padding-top: 40px;
 }
 
-.send-order-btn button {
+.send-order-btn div {
     display: flex;
     border: 1px solid black;
     padding: 10px 200px 5px 200px;
@@ -29,11 +29,11 @@
     cursor: pointer;
 }
 
-.send-order-btn button:hover {
+.send-order-btn div:hover {
     background-color: white;
     color: blue;
 }
-.send-order-btn button:active {
+.send-order-btn div:active {
     background-color: rgba(255, 255, 255, 0);
     color: blue;
 }
