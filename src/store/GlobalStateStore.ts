@@ -15,21 +15,26 @@ import { ICupcakeStore } from "./schemas/FeatureStores/ICupcakeStore";
 import { ICookieStore } from "./schemas/FeatureStores/ICookieStore";
 import { IUserStore } from "./schemas/IUserStore";
 import { ICategory } from "./schemas/ICategoryStore";
+import { IHelperStore } from "./schemas/IHelperStore";
 
 export class GlobalStateStore {
     constructor() {
         makeAutoObservable(this);
     }
     // ========================================================= OBSERVABLES =========================================================
-    //CAKE
-    @observable charToUpper = (name: string) => {
-        let strLower = name.toLowerCase();
-        const category = this.CategoryStore.category;
 
-        // if the category is Cakes make sure to include the 's' at the end of the property value
-        return category === ProductCategories.CAKES
-            ? strLower.charAt(0).toUpperCase() + name.slice(1).replace("s", "")
-            : strLower.charAt(0).toUpperCase() + name.slice(1);
+    @observable HelperStore: IHelperStore = {
+        errors: { title: "" },
+        charToUpper: (name: string) => {
+            let strLower = name.toLowerCase();
+            const category = this.CategoryStore.category;
+
+            // if the category is Cakes make sure to include the 's' at the end of the property value
+            return category === ProductCategories.CAKES
+                ? strLower.charAt(0).toUpperCase() +
+                      name.slice(1).replace("s", "")
+                : strLower.charAt(0).toUpperCase() + name.slice(1);
+        },
     };
 
     @observable CakeStore: ICakeStore = {
@@ -128,110 +133,6 @@ export class GlobalStateStore {
             console.log(this.CategoryStore.category);
         }),
     };
-
-    // //computeds
-    // @computed getTierCost = () => {
-    //     const tier = this.CakeStore.cakeBase.tier;
-    //     if (tier === CakeTiers.SINGLE) {
-    //         this.CakeStore.cakeCosts.tierCost =
-    //             ProductData.products.tiers.single[1].price;
-    //     } else if (tier === CakeTiers.MULTIPLE) {
-    //         this.CakeStore.cakeCosts.tierCost =
-    //             ProductData.products.tiers.multiple[1].price;
-    //     }
-    // };
-
-    // @computed getCakeBaseCost = () => {
-    //     return (
-    //         this.CakeStore.cakeCosts.sizeCost +
-    //         this.CakeStore.cakeCosts.tierCost
-    //     );
-    // };
-
-    // //values derived from existing state
-    // @computed ComputedCakeCosts: ICakeComputeds = {
-    //     computedCosts: {
-    //         updateCakeBaseCost: () => {
-    //             return (
-    //                 this.CakeStore.cakeCosts.sizeCost +
-    //                 this.CakeStore.cakeCosts.tierCost
-    //             );
-    //         },
-    //         updateCakeFlavorsTotalCost: () => {
-    //             return (
-    //                 this.CakeStore.cakeCosts.flavorsCost +
-    //                 this.CakeStore.cakeCosts.frostingsCost +
-    //                 this.CakeStore.cakeCosts.fillingsCost +
-    //                 this.CakeStore.cakeCosts.fruitCost
-    //             );
-    //         },
-    //         updateTotalCakeCost: () => {
-    //             return (
-    //                 this.CakeStore.cakeCosts.flavorsCost +
-    //                 this.CakeStore.cakeCosts.frostingsCost +
-    //                 this.CakeStore.cakeCosts.fillingsCost +
-    //                 this.CakeStore.cakeCosts.fruitCost +
-    //                 this.CakeStore.cakeCosts.sizeCost +
-    //                 this.CakeStore.cakeCosts.tierCost
-    //             );
-    //         },
-    //     },
-    // };
-
-    // @computed ComputedCupcakeCosts: ICupcakeComputeds = {
-    //     computedCosts: {
-    //         updateCupcakeFlavorTotalCost: () => {
-    //             return (
-    //                 this.CupcakeStore.cupcakeCosts.flavorsCost +
-    //                 this.CupcakeStore.cupcakeCosts.frostingsCost
-    //             );
-    //         },
-    //         updateTotalCupcakeCost: () => {
-    //             return (
-    //                 this.CupcakeStore.cupcakeCosts.flavorsCost +
-    //                 this.CupcakeStore.cupcakeCosts.frostingsCost +
-    //                 this.CupcakeStore.cupcakeCosts.quantityCost
-    //             );
-    //         },
-    //     },
-    // };
-
-    // @computed ComputedCookieCosts: ICookieComputeds = {
-    //     computedCosts: {
-    //         updateCookieFlavorTotalCost: () => {
-    //             return (
-    //                 this.CookieStore.cookieCosts.flavorsCost +
-    //                 this.CookieStore.cookieCosts.frostingsCost
-    //             );
-    //         },
-    //         updateTotalCookieCost: () => {
-    //             return (
-    //                 this.CookieStore.cookieCosts.flavorsCost +
-    //                 this.CookieStore.cookieCosts.frostingsCost +
-    //                 this.CookieStore.cookieCosts.quantityCost
-    //             );
-    //         },
-    //     },
-    // };
-
-    // @computed ProductComputeds: IProductComputeds = {
-    //     updateProductTotal: () => {
-    //         return (
-    //             this.CupcakeStore.cupcakeCosts.flavorsCost +
-    //             this.CupcakeStore.cupcakeCosts.frostingsCost +
-    //             this.CupcakeStore.cupcakeCosts.quantityCost +
-    //             this.CookieStore.cookieCosts.flavorsCost +
-    //             this.CookieStore.cookieCosts.frostingsCost +
-    //             this.CookieStore.cookieCosts.quantityCost +
-    //             this.CakeStore.cakeCosts.flavorsCost +
-    //             this.CakeStore.cakeCosts.frostingsCost +
-    //             this.CakeStore.cakeCosts.fillingsCost +
-    //             this.CakeStore.cakeCosts.fruitCost +
-    //             this.CakeStore.cakeCosts.sizeCost +
-    //             this.CakeStore.cakeCosts.tierCost
-    //         );
-    //     },
-    // };
 }
 
 // HYDRATION CREATE FUNCTION

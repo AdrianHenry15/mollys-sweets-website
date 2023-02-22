@@ -192,15 +192,15 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
 
     render() {
         const category = this.props.category!;
-        const charToUpper = this.props.store!.charToUpper(category);
+        const charToUpper = this.props.store!.HelperStore.charToUpper(category);
         //main
         return (
             <section className="details-cake-details-container">
-                <h3>{charToUpper} Details</h3>
+                <h3>{charToUpper!} Details</h3>
                 <hr />
                 <div className="details-cake-make-container">
                     <h5 className="details-title">
-                        When Do You Need Your {charToUpper}?
+                        When Do You Need Your {charToUpper!}?
                     </h5>
                     <section className="cake-calendar-container">
                         {/* TODO: Create local state to get Date String and cast it to GlobalStateStore */}
@@ -242,7 +242,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                 </div>
                 <div className="details-cake-make-container">
                     <h5 className="details-title">
-                        What Is The {charToUpper} For?
+                        What Is The {charToUpper!} For?
                     </h5>
 
                     <select
@@ -288,7 +288,7 @@ class Details extends React.Component<IDetailsProps, IDetailsState> {
                 </div>
                 <div className="details-cake-make-container">
                     <h5 className="details-title">
-                        List Preferred Colors For Product
+                        List Preferred Colors For {charToUpper!}
                     </h5>
                     <div className="details-textbox-container">
                         <textarea

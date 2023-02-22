@@ -153,7 +153,7 @@ export class RequestDetails extends React.Component<
     render() {
         const category = this.props.store!.CategoryStore.category;
         const { CakeStore, CupcakeStore, CookieStore } = this.props.store!;
-        const charToUpper = this.props.store!.charToUpper(category);
+        const charToUpper = this.props.store!.HelperStore.charToUpper(category);
         return (
             <section className="order-form-container">
                 <div className="order-form-header">
@@ -173,7 +173,7 @@ export class RequestDetails extends React.Component<
                     {this.renderRequestBaseAndFlavors()}
                     <div className="order-form-info">
                         <span className="weighted-label">
-                            When Do You Need Your {charToUpper}?:{" "}
+                            When Do You Need Your {charToUpper!}?:{" "}
                         </span>
                         {category === ProductCategories.CAKES && (
                             <i className="feather-label">
@@ -213,7 +213,7 @@ export class RequestDetails extends React.Component<
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">
-                            What Is The {charToUpper} For?:{" "}
+                            What Is The {charToUpper!} For?:{" "}
                         </span>
                         {category === ProductCategories.CAKES && (
                             <i className="feather-label">
