@@ -33,7 +33,7 @@ export const pages = [
     },
     {
         id: 5,
-        name: "Create",
+        name: "Order",
         path: "/choose-your-sweets",
     },
     // {

@@ -15,7 +15,7 @@ import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { ProductCategories } from "../../store/constants/Enums";
-import SubmitBtn from "../../components/SubmitOrderBtn";
+import { SubmitBtn } from "../../components/SubmitBtn";
 import CustomerInfo from "../../components/CustomerInfo";
 import Details from "../../components/Details";
 
@@ -62,8 +62,10 @@ class ChooseYourCookies extends React.Component<
                         <section className="main-create-cookie-container">
                             <Details category={ProductCategories.COOKIES} />
                         </section>
+                        <section className="main-create-cookie-container">
+                            <SubmitBtn />
+                        </section>
                     </section>
-                    <SubmitBtn />
                 </div>
                 <nav className="c-create-links-container">
                     <Link
@@ -73,7 +75,7 @@ class ChooseYourCookies extends React.Component<
                     >
                         <CakeIcon className="c-create-icons" />
                         <span className="c-create-icons-label">
-                            Create Cakes
+                            Order Cakes
                         </span>
                         <CakeIcon className="c-create-icons" />
                     </Link>
@@ -84,7 +86,7 @@ class ChooseYourCookies extends React.Component<
                     >
                         <CupcakeIcon className="c-create-icons" />
                         <span className="c-create-icons-label">
-                            Create Cupcakes
+                            Order Cupcakes
                         </span>
                         <CupcakeIcon className="c-create-icons" />
                     </Link>

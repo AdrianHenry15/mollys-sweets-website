@@ -1,11 +1,16 @@
 // styles
 import "./Base.scss";
+import "../../GlobalStyles.scss";
 // External Dependencies
 import React from "react";
 //data
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
-import { CakeTiers, CakeShapes } from "../../store/constants/Enums";
+import {
+    CakeTiers,
+    CakeShapes,
+    ProductCategories,
+} from "../../store/constants/Enums";
 import { ProductData } from "../../data/Data";
 import { action } from "mobx";
 
@@ -82,6 +87,20 @@ class Base extends React.Component<IBaseProps, {}> {
             }
         }
     );
+
+    private catchError = (): string => {
+        const { category } = this.props.store!.CategoryStore;
+        const { tier, size, shape } = this.props.store!.CakeStore.base;
+        if (
+            (category === ProductCategories.CAKES && tier === "") ||
+            size === "" ||
+            shape === ""
+        ) {
+            return "Please Finish The Cake Base Form";
+        } else {
+            return "";
+        }
+    };
     render() {
         // store variables
         const cakeShape = this.props.store!.CakeStore.base.shape;
@@ -162,6 +181,9 @@ class Base extends React.Component<IBaseProps, {}> {
                         </div>
                     </div>
                 </div>
+                <aside>
+                    <i className="error-text">{this.catchError()}</i>
+                </aside>
             </section>
         );
     }

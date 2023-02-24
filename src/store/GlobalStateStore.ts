@@ -24,7 +24,6 @@ export class GlobalStateStore {
     // ========================================================= OBSERVABLES =========================================================
 
     @observable HelperStore: IHelperStore = {
-        errors: { title: "" },
         charToUpper: (name: string) => {
             let strLower = name.toLowerCase();
             const category = this.CategoryStore.category;

@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import { GlobalStateStore } from "../store/GlobalStateStore";
 import "./CustomerInfo.scss";
+import "../GlobalStyles.scss";
 
 interface ICustomerInfoProps {
     store?: GlobalStateStore;
@@ -20,14 +21,26 @@ export class CustomerInfo extends React.Component<ICustomerInfoProps> {
             console.log(`${value}: ${this.props.store!.UserStore[value]}`);
         }
     );
+
+    private catchError = (): string => {
+        const { firstName, lastName, email, phone } =
+            this.props.store!.UserStore;
+        if (
+            firstName === "" ||
+            lastName === "" ||
+            (email === "" && phone === "")
+        ) {
+            return "Please Finish The Contact Form";
+        } else {
+            return "";
+        }
+    };
     render() {
-        const firstName = this.props.store!.UserStore.firstName;
-        const lastName = this.props.store!.UserStore.lastName;
-        const email = this.props.store!.UserStore.email;
-        const phone = this.props.store!.UserStore.phone;
+        const { firstName, lastName, email, phone } =
+            this.props.store!.UserStore;
         return (
             <section className="base-cake-base-container">
-                <h3>Your Details</h3>
+                <h3>Your Contact Info</h3>
                 <div className="contact-info-container">
                     <div className="input-field">
                         <label className="contact-label" htmlFor="firstName">
@@ -78,6 +91,9 @@ export class CustomerInfo extends React.Component<ICustomerInfoProps> {
                             type="tel"
                         />
                     </div>
+                    <aside>
+                        <i className="error-text">{this.catchError()}</i>
+                    </aside>
                 </div>
             </section>
         );

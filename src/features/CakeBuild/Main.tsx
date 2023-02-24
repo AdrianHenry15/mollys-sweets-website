@@ -15,7 +15,7 @@ import { RiCake3Line as CupcakeIcon } from "react-icons/ri";
 import { RxCookie as CookieIcon } from "react-icons/rx";
 import { ProductCategories } from "../../store/constants/Enums";
 import CustomerInfo from "../../components/CustomerInfo";
-import SubmitBtn from "../../components/SubmitOrderBtn";
+import { SubmitBtn } from "../../components/SubmitBtn";
 import Details from "../../components/Details";
 
 interface IBuildYourCakeProps {
@@ -59,8 +59,11 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                         <section className="main-create-cake-container">
                             <Details category={ProductCategories.CAKES} />
                         </section>
+
+                        <section className="main-create-cake-container">
+                            <SubmitBtn />
+                        </section>
                     </section>
-                    <SubmitBtn />
                 </div>
                 <nav className="byc-create-links-container">
                     <Link
@@ -70,7 +73,7 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                     >
                         <CupcakeIcon className="byc-create-icons" />
                         <span className="byc-create-icons-label">
-                            Create Cupcakes
+                            Order Cupcakes
                         </span>
                         <CupcakeIcon className="byc-create-icons" />
                     </Link>
@@ -81,7 +84,7 @@ class BuildYourCake extends React.Component<IBuildYourCakeProps, {}> {
                     >
                         <CookieIcon className="byc-create-icons" />
                         <span className="byc-create-icons-label">
-                            Create Cookies
+                            Order Cookies
                         </span>
                         <CookieIcon className="byc-create-icons" />
                     </Link>

@@ -8,14 +8,17 @@ import {
     ProductCategories,
 } from "../store/constants/Enums";
 import { GlobalStateStore } from "../store/GlobalStateStore";
+//styles
+import "react-datepicker/dist/react-datepicker.css";
 import "./Details.scss";
+import "../GlobalStyles.scss";
 
 /*
-everytime you click on a category
+    everytime you click on a category
     the forms change to specified category
     the date state changes for spcified category
-     some text fields change according to each category
-     categories = cakes, cupcakes, cookies
+    some text fields change according to each category
+    categories = cakes, cupcakes, cookies
 */
 
 interface IDetailsProps {

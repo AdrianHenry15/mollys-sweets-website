@@ -101,6 +101,10 @@
     }
 }
 
+.error-text {
+    color: rgb(134, 0, 0);
+}
+
 @media (min-width: 481px) and (max-width: 1200px) {
     .genres-container {
         flex-direction: row;

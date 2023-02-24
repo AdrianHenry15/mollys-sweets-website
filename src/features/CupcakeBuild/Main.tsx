@@ -15,7 +15,7 @@ import { inject, observer } from "mobx-react";
 import { GiStairsCake as CakeIcon } from "react-icons/gi";
 import { RxCookie as CookieIcon } from "react-icons/rx";
 import { ProductCategories } from "../../store/constants/Enums";
-import SubmitBtn from "../../components/SubmitOrderBtn";
+import { SubmitBtn } from "../../components/SubmitBtn";
 import CustomerInfo from "../../components/CustomerInfo";
 import Details from "../../components/Details";
 
@@ -58,8 +58,10 @@ class ChooseYourCupcakes extends React.Component<IChooseYourCupcakesProps, {}> {
                         <section className="main-create-cupcake-container">
                             <Details category={ProductCategories.CUPCAKES} />
                         </section>
+                        <section className="main-create-cupcake-container">
+                            <SubmitBtn />
+                        </section>
                     </section>
-                    <SubmitBtn />
                 </div>
                 <nav className="cc-create-links-container">
                     <Link
@@ -69,7 +71,7 @@ class ChooseYourCupcakes extends React.Component<IChooseYourCupcakesProps, {}> {
                     >
                         <CakeIcon className="cc-create-icons" />
                         <span className="cc-create-icons-label">
-                            Create Cakes
+                            Order Cakes
                         </span>
                         <CakeIcon className="cc-create-icons" />
                     </Link>
@@ -80,7 +82,7 @@ class ChooseYourCupcakes extends React.Component<IChooseYourCupcakesProps, {}> {
                     >
                         <CookieIcon className="cc-create-icons" />
                         <span className="cc-create-icons-label">
-                            Create Cookies
+                            Order Cookies
                         </span>
                         <CookieIcon className="cc-create-icons" />
                     </Link>

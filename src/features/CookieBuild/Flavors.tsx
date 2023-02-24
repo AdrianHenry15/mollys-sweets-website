@@ -9,6 +9,7 @@ import "./Flavors.scss";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { ProductData } from "../../data/Data";
 import { action } from "mobx";
+import { ProductCategories } from "../../store/constants/Enums";
 
 interface ICookieFlavorsProps {
     store?: GlobalStateStore;
@@ -61,6 +62,13 @@ class Flavors extends React.Component<
         this.setState({
             frosting: option,
         });
+    };
+
+    private catchError = () => {
+        const { category } = this.props.store!.CategoryStore;
+        const { flavor } = this.props.store!.CookieStore.flavors;
+        if (category === ProductCategories.COOKIES && flavor === "")
+            return "Please Finish Customizing Your Flavors";
     };
 
     //main
@@ -187,6 +195,9 @@ class Flavors extends React.Component<
                         </div>
                     </div>
                 )}
+                <aside>
+                    <i className="error-text">{this.catchError()}</i>
+                </aside>
             </section>
         );
     }

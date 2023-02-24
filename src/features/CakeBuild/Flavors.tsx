@@ -3,9 +3,10 @@ import React from "react";
 
 //styles
 import "./Flavors.scss";
+import "../../GlobalStyles.scss";
 
 //data
-import { CakeTypes } from "../../store/constants/Enums";
+import { CakeTypes, ProductCategories } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 import { ProductData } from "../../data/Data";
@@ -170,6 +171,21 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
             fruit: hasFruit,
         });
     };
+
+    private catchError = (): string => {
+        const { category } = this.props.store!.CategoryStore;
+        const { flavor, frosting, filling } =
+            this.props.store!.CakeStore.flavors;
+        if (
+            (category === ProductCategories.CAKES && flavor === "") ||
+            frosting === "" ||
+            filling === ""
+        ) {
+            return "Please Finish Customizing Your Flavors";
+        } else {
+            return "";
+        }
+    };
     // main render
     render() {
         // data variables
@@ -273,6 +289,9 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
                         </div>
                     </div>
                 )}
+                <aside>
+                    <i className="error-text">{this.catchError()}</i>
+                </aside>
             </section>
         );
     }

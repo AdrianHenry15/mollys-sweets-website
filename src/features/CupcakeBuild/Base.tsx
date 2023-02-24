@@ -5,7 +5,7 @@ import "./Base.scss";
 import React from "react";
 
 //store
-import { ProductSizes } from "../../store/constants/Enums";
+import { ProductCategories, ProductSizes } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 import { ProductData } from "../../data/Data";
@@ -111,6 +111,21 @@ class Base extends React.Component<IBaseProps, {}> {
             );
         }
     };
+
+    private catchError = (): string => {
+        const { category } = this.props.store!.CategoryStore;
+        const { size, quantity } = this.props.store!.CupcakeStore.base;
+
+        if (
+            category === ProductCategories.CUPCAKES &&
+            size === "" &&
+            quantity === ""
+        ) {
+            return "Please Finish The Cupcake Base Form";
+        } else {
+            return "";
+        }
+    };
     render() {
         // store variables
         const cupcakeSize = this.props.store!.CupcakeStore.base.size;
@@ -165,6 +180,9 @@ class Base extends React.Component<IBaseProps, {}> {
                         </div>
                     </div>
                 </div>
+                <aside>
+                    <i className="error-text">{this.catchError()}</i>
+                </aside>
             </section>
         );
     }

@@ -5,7 +5,7 @@ import React from "react";
 import "./Flavors.scss";
 
 //stores
-import { CakeTypes } from "../../store/constants/Enums";
+import { CakeTypes, ProductCategories } from "../../store/constants/Enums";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { ProductData } from "../../data/Data";
@@ -100,6 +100,21 @@ class Flavors extends React.Component<ICCFlavorsProps, {}> {
             );
         }
     };
+
+    private catchError = (): string => {
+        const { category } = this.props.store!.CategoryStore;
+        const { flavor, frosting } = this.props.store!.CupcakeStore.flavors;
+
+        if (
+            category === ProductCategories.CUPCAKES &&
+            flavor === "" &&
+            frosting === ""
+        ) {
+            return "Please Finish Customizing Your Flavors";
+        } else {
+            return "";
+        }
+    };
     render() {
         return (
             <section className="ccf-container">
@@ -133,6 +148,9 @@ class Flavors extends React.Component<ICCFlavorsProps, {}> {
                         }
                     }
                 )}
+                <aside>
+                    <i className="error-text">{this.catchError()}</i>
+                </aside>
             </section>
         );
     }
