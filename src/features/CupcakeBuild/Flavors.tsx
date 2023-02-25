@@ -106,8 +106,7 @@ class Flavors extends React.Component<ICCFlavorsProps, {}> {
         const { flavor, frosting } = this.props.store!.CupcakeStore.flavors;
 
         if (
-            category === ProductCategories.CUPCAKES &&
-            flavor === "" &&
+            (category === ProductCategories.CUPCAKES && flavor === "") ||
             frosting === ""
         ) {
             return "Please Finish Customizing Your Flavors";

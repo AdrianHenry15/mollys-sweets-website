@@ -22,103 +22,28 @@ interface IBaseProps {
 class Base extends React.Component<IBaseProps, {}> {
     // functions
     private getCupcakeQuantityInfo = action(
-        (e: React.ChangeEvent<HTMLSelectElement>) => {
-            let select: HTMLSelectElement = e.target;
-            let value: number = parseInt(select.value);
-            if (
-                this.props.store!.CupcakeStore.base.size === ProductSizes.MINI
-            ) {
-                //size
-                this.props.store!.CupcakeStore.base.size =
-                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
-                        value
-                    ].productSize!;
-
-                //serves
-                this.props.store!.CupcakeStore.base.serves =
-                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
-                        value
-                    ].productServes;
-            } else if (
-                this.props.store!.CupcakeStore.base.size ===
-                ProductSizes.REGULAR
-            ) {
-                //size
-                this.props.store!.CupcakeStore.base.size =
-                    ProductData.products.sizes.cupcake_cookie_sizes.regular[
-                        value
-                    ].productSize!;
-
-                //serves
-                this.props.store!.CupcakeStore.base.serves =
-                    ProductData.products.sizes.cupcake_cookie_sizes.regular[
-                        value
-                    ].productServes;
-            }
+        (e: React.ChangeEvent<HTMLTextAreaElement>): string => {
+            let select: HTMLTextAreaElement = e.target;
+            let value: string = select.value;
+            return (this.props.store!.CupcakeStore.base.quantity = value);
         }
     );
+
     private getCupcakeSize = action(
-        (e: React.ChangeEvent<HTMLInputElement>) => {
+        (e: React.ChangeEvent<HTMLInputElement>): ProductSizes => {
             let select: HTMLInputElement = e.target;
             let value: string = select.value;
-            this.props.store!.CupcakeStore.base.size = value as ProductSizes;
+            return (this.props.store!.CupcakeStore.base.size =
+                value as ProductSizes);
         }
     );
-    private renderCupcakeCount = () => {
-        //variables
-        const regCupcakeSizes =
-            ProductData.products.sizes.cupcake_cookie_sizes.regular;
-        const miniCupcakeSizes =
-            ProductData.products.sizes.cupcake_cookie_sizes.mini;
-        const cupcakeSize = this.props.store!.CupcakeStore.base.size;
-        if (cupcakeSize === ProductSizes.REGULAR) {
-            return regCupcakeSizes.map(
-                ({ id, productQuantity, productServes, price }) => {
-                    if (id === 0) {
-                        return (
-                            <option key={productQuantity} value="0">
-                                Choose One
-                            </option>
-                        );
-                    } else {
-                        return (
-                            <option
-                                key={productQuantity}
-                                value={id}
-                            >{`${productQuantity} (${productServes}) ($${price})`}</option>
-                        );
-                    }
-                }
-            );
-        } else {
-            return miniCupcakeSizes.map(
-                ({ id, productQuantity, productServes, price }) => {
-                    if (id === 0) {
-                        return (
-                            <option key={productQuantity} value="0">
-                                Choose One
-                            </option>
-                        );
-                    } else {
-                        return (
-                            <option
-                                key={productQuantity}
-                                value={id}
-                            >{`${productQuantity} (${productServes}) ($${price})`}</option>
-                        );
-                    }
-                }
-            );
-        }
-    };
 
     private catchError = (): string => {
         const { category } = this.props.store!.CategoryStore;
         const { size, quantity } = this.props.store!.CupcakeStore.base;
 
         if (
-            category === ProductCategories.CUPCAKES &&
-            size === "" &&
+            (category === ProductCategories.CUPCAKES && size === "") ||
             quantity === ""
         ) {
             return "Please Finish The Cupcake Base Form";
@@ -167,16 +92,12 @@ class Base extends React.Component<IBaseProps, {}> {
                     </h5>
                     <div className="ccc-choice-container">
                         <div className="ccc-option">
-                            <select
+                            <textarea
                                 onChange={(e) => this.getCupcakeQuantityInfo(e)}
                                 name="cake-size"
                                 className="ccc-dropdown"
-                                defaultValue={
-                                    this.props.store!.CookieStore.base.quantity
-                                }
-                            >
-                                {this.renderCupcakeCount()}
-                            </select>
+                                placeholder="Amount Of Cupcakes..."
+                            />
                         </div>
                     </div>
                 </div>

@@ -44,10 +44,10 @@ export class GlobalStateStore {
             tier: CakeTiers.NONE,
         },
         flavors: {
-            flavor: "",
-            filling: "",
-            frosting: "",
-            fruit: "",
+            flavor: [""],
+            filling: [""],
+            frosting: [""],
+            fruit: [""],
         },
         details: {
             arrivalDate: "",
