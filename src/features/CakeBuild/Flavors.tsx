@@ -1,5 +1,7 @@
 // External Dependencies
 import React from "react";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
 //styles
 import "./Flavors.scss";
@@ -11,6 +13,9 @@ import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
 import { ProductData } from "../../data/Data";
 import { action } from "mobx";
+import { FlavorsList } from "../../data/Data";
+
+const animatedComponents = makeAnimated();
 
 //store
 
@@ -83,31 +88,38 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
         switch (genre) {
             case CakeTypes.FLAVORS: {
                 return (
-                    <select
-                        onChange={(e) => this.getCakeFlavorInfo(e)}
-                        defaultValue={
-                            this.props.store!.CakeStore.flavors.flavor
-                        }
-                        name="cake-flavor"
-                        className="flavors-cake-size-dropdown"
-                    >
-                        {flavors.map(({ id, productName, price }) => {
-                            if (id === 0) {
-                                return (
-                                    <option key={productName} value="0">
-                                        Choose One
-                                    </option>
-                                );
-                            } else {
-                                return (
-                                    <option
-                                        key={productName}
-                                        value={id}
-                                    >{`${productName} ($${price})`}</option>
-                                );
-                            }
-                        })}
-                    </select>
+                    <Select
+                        closeMenuOnSelect={false}
+                        components={animatedComponents}
+                        defaultValue={[FlavorsList[1], FlavorsList[2]]}
+                        isMulti
+                        options={FlavorsList}
+                    />
+                    // <select
+                    //     onChange={(e) => this.getCakeFlavorInfo(e)}
+                    //     defaultValue={
+                    //         this.props.store!.CakeStore.flavors.flavor
+                    //     }
+                    //     name="cake-flavor"
+                    //     className="flavors-cake-size-dropdown"
+                    // >
+                    //     {flavors.map(({ id, productName, price }) => {
+                    //         if (id === 0) {
+                    //             return (
+                    //                 <option key={productName} value="0">
+                    //                     Choose One
+                    //                 </option>
+                    //             );
+                    //         } else {
+                    //             return (
+                    //                 <option
+                    //                     key={productName}
+                    //                     value={id}
+                    //                 >{`${productName} ($${price})`}</option>
+                    //             );
+                    //         }
+                    //     })}
+                    // </select>
                 );
             }
             case CakeTypes.FROSTINGS: {
