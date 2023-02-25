@@ -40,9 +40,9 @@ export class SubmitBtn extends React.Component<IButtonHelperProps> {
             CakeStore.base.tier === "" &&
             CakeStore.base.shape === "" &&
             CakeStore.base.size === "" &&
-            CakeStore.flavors.flavor[0] === "" &&
-            CakeStore.flavors.frosting[0] === "" &&
-            CakeStore.flavors.filling[0] === "" &&
+            CakeStore.flavors.flavor === undefined &&
+            CakeStore.flavors.frosting === undefined &&
+            CakeStore.flavors.filling === undefined &&
             CakeStore.details.arrivalDate === "" &&
             CakeStore.details.deliveryOption === ""
         ) {

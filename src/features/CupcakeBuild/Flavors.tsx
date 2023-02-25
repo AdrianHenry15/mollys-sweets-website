@@ -39,6 +39,13 @@ class Flavors extends React.Component<ICCFlavorsProps, {}> {
         }
     );
 
+    private getFlavorInfo = (
+        e: React.ChangeEvent<HTMLTextAreaElement>,
+        type: "flavor" | "frosting"
+    ) => {
+        this.props.store!.CupcakeStore.flavors[type] = e.target.value;
+    };
+
     private renderCakeTypes = (genre: CakeTypes) => {
         //variables
         const flavors = ProductData.products.flavors;

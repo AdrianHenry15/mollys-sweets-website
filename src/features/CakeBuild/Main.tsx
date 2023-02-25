@@ -5,7 +5,7 @@ import React from "react";
 //components
 import Base from "./Base";
 import Flavors from "./Flavors";
-import OptionsOverview from "./OptionsOverview";
+import OptionsOverview from "../../components/OptionsOverview";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { Link } from "react-router-dom";

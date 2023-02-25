@@ -1,6 +1,6 @@
 // External Dependencies
 import React from "react";
-import Select from "react-select";
+import Select, { ActionMeta } from "react-select";
 import makeAnimated from "react-select/animated";
 
 //styles
@@ -11,9 +11,14 @@ import "../../GlobalStyles.scss";
 import { CakeTypes, ProductCategories } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
-import { ProductData } from "../../data/Data";
+import {
+    CakeFillingsList,
+    CakeFrostingsList,
+    ProductData,
+    SweetsList,
+} from "../../data/Data";
 import { action } from "mobx";
-import { FlavorsList } from "../../data/Data";
+import { CakeFlavorsList } from "../../data/Data";
 
 const animatedComponents = makeAnimated();
 
@@ -25,6 +30,7 @@ interface ICakeFlavorsProps {
 
 interface ICakeFlavorsState {
     fruit: boolean;
+    flavor: [];
 }
 
 @inject("store")
@@ -35,156 +41,18 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
 
         this.state = {
             fruit: false,
+            flavor: [],
         };
     }
 
-    private getCakeFlavorInfo = action(
-        (e: React.ChangeEvent<HTMLSelectElement>) => {
-            let select: HTMLSelectElement = e.target;
-            let value: number = parseInt(select.value);
-            const flavorState = this.props.store!.CakeStore.flavors.flavor;
-            const flavor = ProductData.products.flavors[value].productName;
-
-            flavorState.includes("")
-                ? flavorState.shift()
-                : flavorState.push(flavor);
-            console.log(flavorState);
-            return;
+    private getFlavorsInfo = action(
+        (
+            e: React.ChangeEvent<HTMLTextAreaElement>,
+            type: "flavor" | "frosting" | "filling" | "fruit"
+        ) => {
+            this.props.store!.CakeStore.flavors[type] = e.target.value;
         }
     );
-    private getCakeFrostingInfo = action(
-        (e: React.ChangeEvent<HTMLSelectElement>) => {
-            let select: HTMLSelectElement = e.target;
-            let value: number = parseInt(select.value);
-            const frostingState = this.props.store!.CakeStore.flavors.frosting;
-            const frosting = ProductData.products.frostings[value].productName;
-
-            return frostingState.splice(0, 1, frosting);
-        }
-    );
-    private getCakeFillingInfo = action(
-        (e: React.ChangeEvent<HTMLSelectElement>) => {
-            let select: HTMLSelectElement = e.target;
-            let value: number = parseInt(select.value);
-            const fillingState = this.props.store!.CakeStore.flavors.filling;
-            const filling = ProductData.products.fillings[value].productName;
-
-            return fillingState.splice(0, 1, filling);
-        }
-    );
-    private getFruitInfo = action((e: React.ChangeEvent<HTMLSelectElement>) => {
-        let select: HTMLSelectElement = e.target;
-        let value: number = parseInt(select.value);
-        const fruitState = this.props.store!.CakeStore.flavors.frosting;
-        const fruit = ProductData.products.frostings[value].productName;
-
-        return fruitState.splice(0, 1, fruit);
-    });
-
-    // functions
-    private renderCakeTypes = (genre: CakeTypes): JSX.Element => {
-        const { flavors, fillings, frostings } = ProductData.products;
-
-        switch (genre) {
-            case CakeTypes.FLAVORS: {
-                return (
-                    <Select
-                        closeMenuOnSelect={false}
-                        components={animatedComponents}
-                        defaultValue={[FlavorsList[1], FlavorsList[2]]}
-                        isMulti
-                        options={FlavorsList}
-                    />
-                    // <select
-                    //     onChange={(e) => this.getCakeFlavorInfo(e)}
-                    //     defaultValue={
-                    //         this.props.store!.CakeStore.flavors.flavor
-                    //     }
-                    //     name="cake-flavor"
-                    //     className="flavors-cake-size-dropdown"
-                    // >
-                    //     {flavors.map(({ id, productName, price }) => {
-                    //         if (id === 0) {
-                    //             return (
-                    //                 <option key={productName} value="0">
-                    //                     Choose One
-                    //                 </option>
-                    //             );
-                    //         } else {
-                    //             return (
-                    //                 <option
-                    //                     key={productName}
-                    //                     value={id}
-                    //                 >{`${productName} ($${price})`}</option>
-                    //             );
-                    //         }
-                    //     })}
-                    // </select>
-                );
-            }
-            case CakeTypes.FROSTINGS: {
-                return (
-                    <select
-                        onChange={(e) => this.getCakeFrostingInfo(e)}
-                        defaultValue={
-                            this.props.store!.CakeStore.flavors.frosting
-                        }
-                        name="cake-frosting"
-                        className="flavors-cake-size-dropdown"
-                    >
-                        {frostings.map(({ id, productName, price }) => {
-                            if (id === 0) {
-                                return (
-                                    <option key={productName} value="0">
-                                        Choose One
-                                    </option>
-                                );
-                            } else {
-                                return (
-                                    <option
-                                        key={productName}
-                                        value={id}
-                                    >{`${productName} ($${price})`}</option>
-                                );
-                            }
-                        })}
-                    </select>
-                );
-            }
-            case CakeTypes.FILLINGS: {
-                return (
-                    <select
-                        defaultValue={
-                            this.props.store!.CakeStore.flavors.filling
-                        }
-                        onChange={(e) => this.getCakeFillingInfo(e)}
-                        name="cake-filling"
-                        className="flavors-cake-size-dropdown"
-                    >
-                        {fillings.map(({ id, productName, price }) => {
-                            if (id === 0) {
-                                return (
-                                    <option key={productName} value={id}>
-                                        Choose One
-                                    </option>
-                                );
-                            } else {
-                                return (
-                                    <option
-                                        key={productName}
-                                        value={id}
-                                    >{`${productName} ($${price})`}</option>
-                                );
-                            }
-                        })}
-                    </select>
-                );
-            }
-            default: {
-                return <div></div>;
-            }
-        }
-    };
 
     private setFruit = (hasFruit: boolean) => {
         this.setState({
@@ -197,9 +65,9 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
         const { flavor, frosting, filling } =
             this.props.store!.CakeStore.flavors;
         if (
-            (category === ProductCategories.CAKES && flavor[0] === "") ||
-            frosting[0] === "" ||
-            filling[0] === ""
+            (category === ProductCategories.CAKES && flavor === "") ||
+            frosting === "" ||
+            filling === ""
         ) {
             return "Please Finish Customizing Your Flavors";
         } else {
@@ -217,29 +85,57 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
             <section className="flavors-custom-flavors-container">
                 <h3>Customize Flavors</h3>
                 <hr />
-                {(Object.keys(CakeTypes) as Array<keyof typeof CakeTypes>).map(
-                    (key) => {
-                        // Flavor, Filling and Frosting
-                        return (
-                            <div
-                                key={key}
-                                id="flavors-custom-flavors"
-                                className="flavors-cake-make-container"
-                            >
-                                <h5 className="flavors-title">
-                                    Main{" "}
-                                    {CakeTypes[key].toString().slice(0, -1)}
-                                    {}
-                                </h5>
-                                <div className="flavors-choice-container">
-                                    <div className="flavors-option">
-                                        {this.renderCakeTypes(CakeTypes[key])}
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    }
-                )}
+                <div
+                    id="flavors-custom-flavors"
+                    className="flavors-cake-make-container"
+                >
+                    <h5 className="flavors-title">Main Flavor</h5>
+                    <div className="flavors-choice-container">
+                        <div className="flavors-option">
+                            <textarea
+                                className="flavor-textarea"
+                                placeholder={`Choose Your Flavor`}
+                                onChange={(e) =>
+                                    this.getFlavorsInfo(e, "flavor")
+                                }
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div
+                    id="flavors-custom-flavors"
+                    className="flavors-cake-make-container"
+                >
+                    <h5 className="flavors-title">Main Frosting</h5>
+                    <div className="flavors-choice-container">
+                        <div className="flavors-option">
+                            <textarea
+                                className="flavor-textarea"
+                                placeholder={`Choose Your Frosting`}
+                                onChange={(e) =>
+                                    this.getFlavorsInfo(e, "frosting")
+                                }
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div
+                    id="flavors-custom-flavors"
+                    className="flavors-cake-make-container"
+                >
+                    <h5 className="flavors-title">Main Filling</h5>
+                    <div className="flavors-choice-container">
+                        <div className="flavors-option">
+                            <textarea
+                                className="flavor-textarea"
+                                placeholder={`Choose Your Filling`}
+                                onChange={(e) =>
+                                    this.getFlavorsInfo(e, "filling")
+                                }
+                            />
+                        </div>
+                    </div>
+                </div>
 
                 {/* Fresh Fruit */}
                 <div
@@ -277,34 +173,14 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
                         <h5 className="flavors-title">What Fruits?</h5>
                         <div className="flavors-choice-container">
                             <div className="flavors-option">
-                                <select
-                                    onChange={(e) => this.getFruitInfo(e)}
-                                    defaultValue={fruit}
+                                <textarea
+                                    onChange={(e) =>
+                                        this.getFlavorsInfo(e, "fruit")
+                                    }
                                     name="fruit"
                                     className="flavors-cake-size-dropdown"
-                                >
-                                    {fruits.map(
-                                        ({ id, productName, price }) => {
-                                            if (id === 0) {
-                                                return (
-                                                    <option
-                                                        key={productName}
-                                                        value="0"
-                                                    >
-                                                        Choose One
-                                                    </option>
-                                                );
-                                            } else {
-                                                return (
-                                                    <option
-                                                        key={productName}
-                                                        value={id}
-                                                    >{`${productName} ($${price})`}</option>
-                                                );
-                                            }
-                                        }
-                                    )}
-                                </select>
+                                    placeholder="Choose Fruits..."
+                                />
                             </div>
                         </div>
                     </div>

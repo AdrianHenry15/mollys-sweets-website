@@ -5,7 +5,12 @@ import {
     ProductTypes,
 } from "../store/constants/Enums";
 
-export const FlavorsList = [
+export interface SweetsList {
+    value: string;
+    label: string;
+}
+
+export const CakeFlavorsList: SweetsList[] = [
     { value: "vanilla", label: "Vanilla" },
     { value: "almond", label: "Almond" },
     { value: "carrot", label: "Carrot" },
@@ -13,69 +18,62 @@ export const FlavorsList = [
     { value: "strawberry", label: "Strawberry" },
     { value: "strawberry champagne", label: "Strawberry Champagne" },
     { value: "red velvet", label: "Red Velvet" },
-    { value: "funfetti", label: "Funfetti" },
-    { value: "vanilla birthday", label: "Vanilla Birthday" },
-    { value: "chocolate birthday", label: "Chocolate Birthday" },
+    { value: "birthday", label: "Birthday" },
     { value: "decadent chocolate", label: "Decadent Chocolate" },
-    { value: "chocolate", label: "Chocolate" },
     { value: "oreo", label: "Oreo" },
-    { value: "tiramisu", label: "Tiramisu" },
-    { value: "chai tea latte", label: "Chai Tea Latte" },
-    { value: "bourbon maple banana", label: "Bourbon Maple Banana" },
     { value: "carrot", label: "Carrot" },
-    { value: "mocha madness", label: "Mocha Madness" },
-    { value: "mexican hot chocolate", label: "Mexican Hot Chocolate" },
+    { value: "coffee", label: "Coffee" },
     { value: "tuxedo", label: "Tuxedo" },
-    { value: "churro", label: "Churro" },
     { value: "lemon blossom", label: "Lemon Blossom" },
-    { value: "lemon elderflower", label: "Lemon Elderflower" },
     { value: "dreamsicle", label: "Dreamsicle" },
-    { value: "rose garden", label: "Rose Garden" },
-    { value: "lavender earl gray", label: "Lavender Earl Gray" },
-    { value: "Honey Lavender", label: "Honey Lavender" },
+    { value: "additional flavor", label: "Additional Flavor" },
 ];
 
-export const FrostingsList: string[] = [
-    "Swiss Buttercream",
-    "Cream Cheese Buttercream",
-    "Buttercream",
-    "Lemon Buttercream",
-    "Frosting Not Here",
+export const CakeFrostingsList = [
+    {
+        value: "swiss meringue buttercream",
+        label: "Swiss Meringue Buttercream",
+    },
+    { value: "cream cheese buttercream", label: "Cream Cheese Buttercream" },
+    { value: "vanilla buttercream", label: "Vanilla Buttercream" },
+    { value: "chocolate buttercream", label: "Chocolate Buttercream" },
+    { value: "Lemon buttercream", label: "Lemon Buttercream" },
+    { value: "additional frosting", label: "Additional Frosting" },
 ];
 
-export const FillingsList: string[] = [
-    "Blueberry Jam",
-    "Strawberry Jam",
-    "Ganache",
-    "Vanilla Mousse",
-    "Strawberry Mousse",
-    "Peanut Butter Mousse",
-    "Boston Cream",
-    "Fresh Fruit",
-    "Filling Not Here",
+export const CakeFillingsList = [
+    { value: "blueberry jam", label: "Blueberry Jam" },
+    { value: "strawberry jam", label: "Strawberry Jam" },
+    { value: "ganache", label: "Ganache" },
+    { value: "vanilla mousse", label: "Vanilla Mousse" },
+    { value: "strawberry mousse", label: "Strawberry Mousse" },
+    { value: "peanut butter mousse", label: "Peanut Butter Mousse" },
+    { value: "boston cream", label: "Boston Cream" },
+    { value: "fresh fruit", label: "Fresh Fruit" },
+    { value: "additional fillings", label: "Additional Fillings" },
 ];
 
-export const CookieFlavorsList: string[] = [
-    "Chocolate Chip",
-    "Sugar Cookie",
-    "Peanut Butter",
-    "Oatmeal Raisin",
-    "Snickerdoodle",
-    "Dark Chocolate",
-    "Red Velvet",
-    "Birthday Cake",
-    "Brownie",
-    "Oreo",
-    "Coconut",
-    "Cookie Flavor Not Here",
+export const CookieFlavorsList = [
+    { value: "chocolate chip", label: "Chocolate Chip" },
+    { value: "sugar", label: "Sugar" },
+    { value: "peanut butter", label: "Peanut Butter" },
+    { value: "oatmeal raisin", label: "Oatmeal Raisin" },
+    { value: "snickerdoodle", label: "Snickerdoodle" },
+    { value: "dark chocolate", label: "Dark Chocolate" },
+    { value: "red velvet", label: "Red Velvet" },
+    { value: "birthday cake", label: "Birthday Cake" },
+    { value: "brownie", label: "Brownie" },
+    { value: "oreo", label: "Oreo" },
+    { value: "coconut", label: "Coconut" },
+    { value: "additional flavor", label: "Additional Flavor" },
 ];
 
-export const FruitsList: string[] = [
-    "Banana",
-    "Apple",
-    "Blueberry",
-    "Strawberry",
-    "Fruit Not Here",
+export const FruitsList = [
+    { value: "banana", label: "Banana" },
+    { value: "apple", label: "Apple" },
+    { value: "blueberry", label: "Blueberry" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "additional fruits", label: "Additional Fruits" },
 ];
 
 export const SheetSizesList: string[] = [
