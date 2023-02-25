@@ -15,10 +15,10 @@ interface ICakeBase {
 }
 
 interface ICakeFlavors {
-    flavor: string;
-    filling: string;
-    frosting: string;
-    fruit: string;
+    flavor: [string];
+    filling: [string];
+    frosting: [string];
+    fruit: [string];
 }
 
 export interface IComputedCakeCosts {

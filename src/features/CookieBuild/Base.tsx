@@ -32,104 +32,27 @@ class Base extends React.Component<IBaseProps, IBaseState> {
 
     // functions
     private getCookieQuantity = action(
-        (e: React.ChangeEvent<HTMLSelectElement>) => {
-            let select: HTMLSelectElement = e.target;
-            let value: number = parseInt(select.value);
-            if (this.props.store!.CookieStore.base.size === ProductSizes.MINI) {
-                //size
-                this.props.store!.CookieStore.base.size =
-                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
-                        value
-                    ].productSize!;
+        (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            let select: HTMLTextAreaElement = e.target;
+            let value: string = select.value;
 
-                //quantity
-                this.props.store!.CookieStore.base.quantity =
-                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
-                        value
-                    ].productQuantity;
-
-                //serves
-                this.props.store!.CookieStore.base.serves =
-                    ProductData.products.sizes.cupcake_cookie_sizes.mini[
-                        value
-                    ].productServes;
-            } else if (
-                this.props.store!.CookieStore.base.size === ProductSizes.REGULAR
-            ) {
-                //size
-                this.props.store!.CookieStore.base.size =
-                    ProductData.products.sizes.cupcake_cookie_sizes.regular[
-                        value
-                    ].productSize!;
-
-                //serves
-                this.props.store!.CookieStore.base.serves =
-                    ProductData.products.sizes.cupcake_cookie_sizes.regular[
-                        value
-                    ].productServes;
-            }
+            this.props.store!.CookieStore.base.quantity = value;
         }
     );
     private getCookieSize = action((e: React.ChangeEvent<HTMLInputElement>) => {
         let select: HTMLInputElement = e.target;
         let value: string = select.value;
+
         this.props.store!.CookieStore.base.size = value as ProductSizes;
     });
-    private renderCookieCount = () => {
-        //data variables
-        const regCookieSizes =
-            ProductData.products.sizes.cupcake_cookie_sizes.regular;
-        const miniCookiesSizes =
-            ProductData.products.sizes.cupcake_cookie_sizes.mini;
-        const cookieSize = this.props.store!.CookieStore.base.size;
-        if (cookieSize === ProductSizes.REGULAR) {
-            return regCookieSizes.map(
-                ({ id, productQuantity, productServes, price }) => {
-                    if (productQuantity === "") {
-                        return (
-                            <option key={productQuantity} value="0">
-                                Choose One
-                            </option>
-                        );
-                    } else {
-                        return (
-                            <option
-                                key={productQuantity}
-                                value={id}
-                            >{`${productQuantity} (${productServes}) ($${price})`}</option>
-                        );
-                    }
-                }
-            );
-        } else {
-            return miniCookiesSizes.map(
-                ({ id, productQuantity, productServes, price }) => {
-                    if (productQuantity === "") {
-                        return (
-                            <option key={productQuantity} value="0">
-                                Choose One
-                            </option>
-                        );
-                    } else {
-                        return (
-                            <option
-                                key={productQuantity}
-                                value={id}
-                            >{`${productQuantity} (${productServes}) ($${price})`}</option>
-                        );
-                    }
-                }
-            );
-        }
-    };
 
     private catchError = (): string => {
         const { category } = this.props.store!.CategoryStore;
         const { size, quantity } = this.props.store!.CookieStore.base;
+        console.log(size, quantity);
 
         if (
-            category === ProductCategories.COOKIES &&
-            size === "" &&
+            (category === ProductCategories.COOKIES && size === "") ||
             quantity === ""
         ) {
             return "Please Finish The Cookie Base Form";
@@ -139,7 +62,7 @@ class Base extends React.Component<IBaseProps, IBaseState> {
     };
     render() {
         // store variables
-        const cookieSize = this.props.store!.CookieStore.base.size;
+        const { size } = this.props.store!.CookieStore.base;
         return (
             <section className="cookie-count-container">
                 <h3>Choose Cookies</h3>
@@ -168,28 +91,15 @@ class Base extends React.Component<IBaseProps, IBaseState> {
 
                 {/* How many cupcakes */}
                 <div className="cookie-make-container">
-                    <h5 className="cookie-title">
-                        How Many
-                        {cookieSize === ProductSizes.REGULAR
-                            ? " Regular"
-                            : " Mini"}{" "}
-                        Cookies
-                    </h5>
+                    <h5 className="cookie-title">How Many Cookies</h5>
                     <div className="cookie-choice-container">
                         <div className="cookie-option">
-                            <form action="">
-                                <select
-                                    defaultValue={
-                                        this.props.store!.CookieStore.base
-                                            .quantity
-                                    }
-                                    onChange={(e) => this.getCookieQuantity(e)}
-                                    name="cake-size"
-                                    className="cookie-dropdown"
-                                >
-                                    {this.renderCookieCount()}
-                                </select>
-                            </form>
+                            <textarea
+                                onChange={(e) => this.getCookieQuantity(e)}
+                                name="cake-size"
+                                className="cookie-dropdown"
+                                placeholder="Amount Of Cookies..."
+                            />
                         </div>
                     </div>
                 </div>

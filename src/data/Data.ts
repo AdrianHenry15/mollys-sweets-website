@@ -5,25 +5,37 @@ import {
     ProductTypes,
 } from "../store/constants/Enums";
 
-export const Flavors: string[] = [
-    "Vanilla",
-    "Almond",
-    "Carrot",
-    "Coconut",
-    "Chocolate",
-    "Strawberry",
-    "Strawberry Champagne",
-    "Red Velvet",
-    "Chocolate",
-    "Birthday",
-    "Oreo",
-    "Brown Butter",
-    "Lemon",
-    "Raspberry",
-    "Flavor Not Here",
+export const FlavorsList = [
+    { value: "vanilla", label: "Vanilla" },
+    { value: "almond", label: "Almond" },
+    { value: "carrot", label: "Carrot" },
+    { value: "coconut", label: "Coconut" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "strawberry champagne", label: "Strawberry Champagne" },
+    { value: "red velvet", label: "Red Velvet" },
+    { value: "funfetti", label: "Funfetti" },
+    { value: "vanilla birthday", label: "Vanilla Birthday" },
+    { value: "chocolate birthday", label: "Chocolate Birthday" },
+    { value: "decadent chocolate", label: "Decadent Chocolate" },
+    { value: "chocolate", label: "Chocolate" },
+    { value: "oreo", label: "Oreo" },
+    { value: "tiramisu", label: "Tiramisu" },
+    { value: "chai tea latte", label: "Chai Tea Latte" },
+    { value: "bourbon maple banana", label: "Bourbon Maple Banana" },
+    { value: "carrot", label: "Carrot" },
+    { value: "mocha madness", label: "Mocha Madness" },
+    { value: "mexican hot chocolate", label: "Mexican Hot Chocolate" },
+    { value: "tuxedo", label: "Tuxedo" },
+    { value: "churro", label: "Churro" },
+    { value: "lemon blossom", label: "Lemon Blossom" },
+    { value: "lemon elderflower", label: "Lemon Elderflower" },
+    { value: "dreamsicle", label: "Dreamsicle" },
+    { value: "rose garden", label: "Rose Garden" },
+    { value: "lavender earl gray", label: "Lavender Earl Gray" },
+    { value: "Honey Lavender", label: "Honey Lavender" },
 ];
 
-export const Frostings: string[] = [
+export const FrostingsList: string[] = [
     "Swiss Buttercream",
     "Cream Cheese Buttercream",
     "Buttercream",
@@ -31,7 +43,7 @@ export const Frostings: string[] = [
     "Frosting Not Here",
 ];
 
-export const Fillings: string[] = [
+export const FillingsList: string[] = [
     "Blueberry Jam",
     "Strawberry Jam",
     "Ganache",
@@ -43,7 +55,7 @@ export const Fillings: string[] = [
     "Filling Not Here",
 ];
 
-export const CookieFlavors: string[] = [
+export const CookieFlavorsList: string[] = [
     "Chocolate Chip",
     "Sugar Cookie",
     "Peanut Butter",
@@ -58,7 +70,7 @@ export const CookieFlavors: string[] = [
     "Cookie Flavor Not Here",
 ];
 
-export const Fruits: string[] = [
+export const FruitsList: string[] = [
     "Banana",
     "Apple",
     "Blueberry",
@@ -66,13 +78,13 @@ export const Fruits: string[] = [
     "Fruit Not Here",
 ];
 
-export const SheetSizes: string[] = [
+export const SheetSizesList: string[] = [
     "1/4 (Serves 28 People)",
     "1/2 (Serves 48 People)",
     "Full (Serves 98 People)",
 ];
 
-export const RoundSizes: string[] = [
+export const RoundSizesList: string[] = [
     `6" (Serves 6-8 People)`,
     `8" (Serves 10-18 People)`,
     `10" (Serves 26-35 People)`,
@@ -80,7 +92,7 @@ export const RoundSizes: string[] = [
     `14" (Serves 50-65 People)`,
 ];
 
-export const PastryQuantity: string[] = [
+export const PastryQuantityList: string[] = [
     "12 (Serves 12 People)",
     "24 (Serves 12 People)",
     "36 (Serves 12 People)",
