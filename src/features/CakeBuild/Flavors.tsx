@@ -94,7 +94,7 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
                         <div className="flavors-option">
                             <textarea
                                 className="flavor-textarea"
-                                placeholder={`Choose Your Flavor`}
+                                placeholder={`List Your Flavor`}
                                 onChange={(e) =>
                                     this.getFlavorsInfo(e, "flavor")
                                 }
@@ -111,7 +111,7 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
                         <div className="flavors-option">
                             <textarea
                                 className="flavor-textarea"
-                                placeholder={`Choose Your Frosting`}
+                                placeholder={`List Your Frosting`}
                                 onChange={(e) =>
                                     this.getFlavorsInfo(e, "frosting")
                                 }
@@ -128,7 +128,7 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
                         <div className="flavors-option">
                             <textarea
                                 className="flavor-textarea"
-                                placeholder={`Choose Your Filling`}
+                                placeholder={`List Your Filling`}
                                 onChange={(e) =>
                                     this.getFlavorsInfo(e, "filling")
                                 }
@@ -179,7 +179,7 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
                                     }
                                     name="fruit"
                                     className="flavors-cake-size-dropdown"
-                                    placeholder="Choose Fruits..."
+                                    placeholder="List Fruits..."
                                 />
                             </div>
                         </div>
