@@ -50,7 +50,9 @@ export class RequestDetails extends React.Component<
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Cake Flavor: </span>
-                        <i className="feather-label"></i>
+                        <i className="feather-label">
+                            {CakeStore.flavors.flavor}
+                        </i>
                     </div>
                     <div className="order-form-info">
                         <span className="weighted-label">Cake Filling: </span>

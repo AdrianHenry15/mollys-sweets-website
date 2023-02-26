@@ -8,7 +8,6 @@ import React from "react";
 import { ProductCategories, ProductSizes } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
-import { ProductData } from "../../data/Data";
 import { action } from "mobx";
 
 interface IBaseProps {
@@ -61,8 +60,6 @@ class Base extends React.Component<IBaseProps, IBaseState> {
         }
     };
     render() {
-        // store variables
-        const { size } = this.props.store!.CookieStore.base;
         return (
             <section className="cookie-count-container">
                 <h3>Choose Cookies</h3>

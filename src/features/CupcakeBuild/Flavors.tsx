@@ -65,7 +65,7 @@ class Flavors extends React.Component<ICCFlavorsProps, {}> {
                             <textarea
                                 placeholder="Vanilla Buttercream, Chocolate Buttercream, etc."
                                 onChange={(e) =>
-                                    this.getFlavorInfo(e, "flavor")
+                                    this.getFlavorInfo(e, "frosting")
                                 }
                                 name="cake-size"
                                 className="ccf-dropdown"
