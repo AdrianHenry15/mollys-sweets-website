@@ -5,11 +5,9 @@ import React from "react";
 import "./Flavors.scss";
 
 //stores
-import { CakeTypes, ProductCategories } from "../../store/constants/Enums";
+import { ProductCategories } from "../../store/constants/Enums";
 import { inject, observer } from "mobx-react";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
-import { ProductData } from "../../data/Data";
-import { action } from "mobx";
 
 interface ICCFlavorsProps {
     store?: GlobalStateStore;
@@ -20,92 +18,11 @@ interface ICCFlavorsProps {
 class Flavors extends React.Component<ICCFlavorsProps, {}> {
     //functions
 
-    private getCupcakeFlavorInfo = action(
-        (e: React.ChangeEvent<HTMLSelectElement>) => {
-            let select: HTMLSelectElement = e.target;
-            let value: number = parseInt(select.value);
-            // flavor
-            this.props.store!.CupcakeStore.flavors.flavor =
-                ProductData.products.flavors[value].productName;
-        }
-    );
-    private getCupcakeFrostingInfo = action(
-        (e: React.ChangeEvent<HTMLSelectElement>) => {
-            let select: HTMLSelectElement = e.target;
-            let value: number = parseInt(select.value);
-            // frosting
-            this.props.store!.CupcakeStore.flavors.frosting =
-                ProductData.products.frostings[value].productName;
-        }
-    );
-
     private getFlavorInfo = (
         e: React.ChangeEvent<HTMLTextAreaElement>,
         type: "flavor" | "frosting"
     ) => {
         this.props.store!.CupcakeStore.flavors[type] = e.target.value;
-    };
-
-    private renderCakeTypes = (genre: CakeTypes) => {
-        //variables
-        const flavors = ProductData.products.flavors;
-        const frostings = ProductData.products.frostings;
-
-        if (genre === CakeTypes.FLAVORS) {
-            return (
-                <select
-                    onChange={(e) => this.getCupcakeFlavorInfo(e)}
-                    defaultValue={this.props.store!.CupcakeStore.flavors.flavor}
-                    name="cake-size"
-                    className="ccf-dropdown"
-                >
-                    {flavors.map(({ id, productName, price }) => {
-                        if (id === 0) {
-                            return (
-                                <option key={productName} value="0">
-                                    Choose One
-                                </option>
-                            );
-                        } else {
-                            return (
-                                <option
-                                    key={productName}
-                                    value={id}
-                                >{`${productName} ($${price})`}</option>
-                            );
-                        }
-                    })}
-                </select>
-            );
-        } else if (genre === CakeTypes.FROSTINGS) {
-            return (
-                <select
-                    onChange={(e) => this.getCupcakeFrostingInfo(e)}
-                    defaultValue={
-                        this.props.store!.CupcakeStore.flavors.frosting
-                    }
-                    name="cake-size"
-                    className="ccf-dropdown"
-                >
-                    {frostings.map(({ id, productName, price }) => {
-                        if (id === 0) {
-                            return (
-                                <option key={productName} value="0">
-                                    Choose One
-                                </option>
-                            );
-                        } else {
-                            return (
-                                <option
-                                    key={productName}
-                                    value={id}
-                                >{`${productName} ($${price})`}</option>
-                            );
-                        }
-                    })}
-                </select>
-            );
-        }
     };
 
     private catchError = (): string => {
@@ -126,34 +43,37 @@ class Flavors extends React.Component<ICCFlavorsProps, {}> {
             <section className="ccf-container">
                 <h3>Customize Flavors</h3>
                 <hr />
-                {(Object.keys(CakeTypes) as Array<keyof typeof CakeTypes>).map(
-                    (key) => {
-                        if (CakeTypes[key] === CakeTypes.FILLINGS) {
-                            return <div key={key}></div>;
-                        } else {
-                            return (
-                                <div
-                                    key={key}
-                                    id="ccf-custom-flavors"
-                                    className="ccf-make-container"
-                                >
-                                    <h5 className="flavors-title">
-                                        Main{" "}
-                                        {CakeTypes[key].toString().slice(0, -1)}
-                                        {}
-                                    </h5>
-                                    <div className="ccf-choice-container">
-                                        <div>
-                                            {this.renderCakeTypes(
-                                                CakeTypes[key]
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        }
-                    }
-                )}
+                <div id="ccf-custom-flavors" className="ccf-make-container">
+                    <h5 className="flavors-title">Main Flavor</h5>
+                    <div className="ccf-choice-container">
+                        <div>
+                            <textarea
+                                placeholder="Vanilla, Almond, Carrot, etc."
+                                onChange={(e) =>
+                                    this.getFlavorInfo(e, "flavor")
+                                }
+                                name="cake-size"
+                                className="ccf-dropdown"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div id="ccf-custom-flavors" className="ccf-make-container">
+                    <h5 className="flavors-title">Main Frosting</h5>
+                    <div className="ccf-choice-container">
+                        <div>
+                            <textarea
+                                placeholder="Vanilla Buttercream, Chocolate Buttercream, etc."
+                                onChange={(e) =>
+                                    this.getFlavorInfo(e, "flavor")
+                                }
+                                name="cake-size"
+                                className="ccf-dropdown"
+                            />
+                        </div>
+                    </div>
+                </div>
+
                 <aside>
                     <i className="error-text">{this.catchError()}</i>
                 </aside>

@@ -7,7 +7,6 @@ import "./Flavors.scss";
 
 //stores
 import { GlobalStateStore } from "../../store/GlobalStateStore";
-import { ProductData } from "../../data/Data";
 import { action } from "mobx";
 import { ProductCategories } from "../../store/constants/Enums";
 
@@ -32,29 +31,12 @@ class Flavors extends React.Component<
             frosting: "",
         };
     }
-
-    private getCookieFlavorInfo = action(
-        (e: React.ChangeEvent<HTMLSelectElement>) => {
-            let select: HTMLSelectElement = e.target;
-            let value: number = parseInt(select.value);
-            // flavor
-            this.props.store!.CookieStore.flavors.flavor =
-                ProductData.products.cookies[value].productName;
-
-            // //local storage
-            // localStorage.getItem(
-            //     this.CookieStore.flavors.flavor,
-            //     this.CookieStore.cookieCosts.flavorsCost.toString()
-            // );
-        }
-    );
-    private getCookieFrostingInfo = action(
-        (e: React.ChangeEvent<HTMLSelectElement>) => {
-            let select: HTMLSelectElement = e.target;
-            let value: number = parseInt(select.value);
-            // frosting
-            this.props.store!.CookieStore.flavors.frosting =
-                ProductData.products.frostings[value].productName;
+    private getFlavorInfo = action(
+        (
+            e: React.ChangeEvent<HTMLTextAreaElement>,
+            type: "flavor" | "frosting"
+        ) => {
+            this.props.store!.CookieStore.flavors[type] = e.target.value;
         }
     );
 
@@ -73,10 +55,6 @@ class Flavors extends React.Component<
 
     //main
     render() {
-        //data variables
-        const cookies = ProductData.products.cookies;
-        const frostings = ProductData.products.frostings;
-
         return (
             <section className="cookie-f-container">
                 <h3>Customize Flavors</h3>
@@ -89,41 +67,14 @@ class Flavors extends React.Component<
                     <h5 className="flavors-title">Main Flavor</h5>
                     <div className="cookie-f-choice-container">
                         <div>
-                            <form action="">
-                                <select
-                                    defaultValue={
-                                        this.props.store!.CookieStore.flavors
-                                            .flavor
-                                    }
-                                    onChange={(e) =>
-                                        this.getCookieFlavorInfo(e)
-                                    }
-                                    name="cake-size"
-                                    className="cookie-f-dropdown"
-                                >
-                                    {cookies.map(
-                                        ({ id, productName, price }) => {
-                                            if (id === 0) {
-                                                return (
-                                                    <option
-                                                        key={productName}
-                                                        value="0"
-                                                    >
-                                                        Choose One
-                                                    </option>
-                                                );
-                                            } else {
-                                                return (
-                                                    <option
-                                                        key={productName}
-                                                        value={id}
-                                                    >{`${productName} ($${price})`}</option>
-                                                );
-                                            }
-                                        }
-                                    )}
-                                </select>
-                            </form>
+                            <textarea
+                                onChange={(e) =>
+                                    this.getFlavorInfo(e, "flavor")
+                                }
+                                name="cake-size"
+                                className="cookie-f-dropdown"
+                                placeholder="Vanilla, Almond, Carrot, etc."
+                            />
                         </div>
                     </div>
                 </div>
@@ -156,41 +107,14 @@ class Flavors extends React.Component<
                         <h5 className="flavors-title">Frosting</h5>
                         <div className="cookie-f-choice-container">
                             <div>
-                                <form action="">
-                                    <select
-                                        defaultValue={
-                                            this.props.store!.CookieStore
-                                                .flavors.frosting
-                                        }
-                                        onChange={(e) =>
-                                            this.getCookieFrostingInfo(e)
-                                        }
-                                        name="cake-size"
-                                        className="cookie-f-dropdown"
-                                    >
-                                        {frostings.map(
-                                            ({ id, productName, price }) => {
-                                                if (id === 0) {
-                                                    return (
-                                                        <option
-                                                            key={productName}
-                                                            value="0"
-                                                        >
-                                                            Choose One
-                                                        </option>
-                                                    );
-                                                } else {
-                                                    return (
-                                                        <option
-                                                            key={productName}
-                                                            value={id}
-                                                        >{`${productName} ($${price})`}</option>
-                                                    );
-                                                }
-                                            }
-                                        )}
-                                    </select>
-                                </form>
+                                <textarea
+                                    onChange={(e) =>
+                                        this.getFlavorInfo(e, "frosting")
+                                    }
+                                    name="cake-size"
+                                    className="cookie-f-dropdown"
+                                    placeholder="Vanilla Buttercream, Chocolate Buttercream, etc."
+                                />
                             </div>
                         </div>
                     </div>

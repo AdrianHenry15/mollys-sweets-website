@@ -21,7 +21,6 @@ export const CakeFlavorsList: SweetsList[] = [
     { value: "birthday", label: "Birthday" },
     { value: "decadent chocolate", label: "Decadent Chocolate" },
     { value: "oreo", label: "Oreo" },
-    { value: "carrot", label: "Carrot" },
     { value: "coffee", label: "Coffee" },
     { value: "tuxedo", label: "Tuxedo" },
     { value: "lemon blossom", label: "Lemon Blossom" },

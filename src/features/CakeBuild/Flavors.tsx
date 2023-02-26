@@ -1,26 +1,15 @@
 // External Dependencies
 import React from "react";
-import Select, { ActionMeta } from "react-select";
-import makeAnimated from "react-select/animated";
 
 //styles
 import "./Flavors.scss";
 import "../../GlobalStyles.scss";
 
 //data
-import { CakeTypes, ProductCategories } from "../../store/constants/Enums";
+import { ProductCategories } from "../../store/constants/Enums";
 import { GlobalStateStore } from "../../store/GlobalStateStore";
 import { inject, observer } from "mobx-react";
-import {
-    CakeFillingsList,
-    CakeFrostingsList,
-    ProductData,
-    SweetsList,
-} from "../../data/Data";
 import { action } from "mobx";
-import { CakeFlavorsList } from "../../data/Data";
-
-const animatedComponents = makeAnimated();
 
 //store
 
@@ -76,11 +65,6 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
     };
     // main render
     render() {
-        // data variables
-        const fruits = ProductData.products.fruit;
-
-        //store varaibles
-        const fruit = this.props.store!.CakeStore.flavors.fruit;
         return (
             <section className="flavors-custom-flavors-container">
                 <h3>Customize Flavors</h3>
@@ -94,7 +78,7 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
                         <div className="flavors-option">
                             <textarea
                                 className="flavor-textarea"
-                                placeholder={`List Your Flavor`}
+                                placeholder="Vanilla, Almond, Carrot, etc."
                                 onChange={(e) =>
                                     this.getFlavorsInfo(e, "flavor")
                                 }
@@ -111,7 +95,7 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
                         <div className="flavors-option">
                             <textarea
                                 className="flavor-textarea"
-                                placeholder={`List Your Frosting`}
+                                placeholder="Vanilla Buttercream, Chocolate Buttercream, etc."
                                 onChange={(e) =>
                                     this.getFlavorsInfo(e, "frosting")
                                 }
@@ -128,7 +112,7 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
                         <div className="flavors-option">
                             <textarea
                                 className="flavor-textarea"
-                                placeholder={`List Your Filling`}
+                                placeholder="Blueberry Jam, Ganache, etc."
                                 onChange={(e) =>
                                     this.getFlavorsInfo(e, "filling")
                                 }
@@ -179,7 +163,7 @@ class Flavors extends React.Component<ICakeFlavorsProps, ICakeFlavorsState> {
                                     }
                                     name="fruit"
                                     className="flavors-cake-size-dropdown"
-                                    placeholder="List Fruits..."
+                                    placeholder="Bananas, Apples, Strawberries, etc."
                                 />
                             </div>
                         </div>
