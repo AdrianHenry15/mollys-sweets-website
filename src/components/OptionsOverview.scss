@@ -24,8 +24,16 @@
 .flavors-list-container {
     display: flex;
     flex-direction: column;
-    border-top: solid black 1px;
+
     padding-top: 10px;
+}
+
+.flavors-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 .list-title {

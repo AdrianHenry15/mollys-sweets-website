@@ -67,52 +67,55 @@ class OptionsOverview extends React.Component<IOptionsOverviewProps, {}> {
                             )}
                         </tbody>
                     </table>
-                    <section className="flavors-list-container">
-                        <h5 className="list-title">Flavors</h5>
+                    <section className="flavors-list-wrapper">
+                        <div className="flavors-list-container">
+                            <hr />
+                            <h5 className="list-title">Flavors</h5>
 
-                        <div className="flavors-name-container">
-                            {CakeFlavorsList.map(({ label }) => {
-                                return (
-                                    <div
-                                        className="flavors-list"
-                                        key={`${label}`}
-                                    >
-                                        <span>{label}</span>
-                                    </div>
-                                );
-                            })}
+                            <div className="flavors-name-container">
+                                {CakeFlavorsList.map(({ label }) => {
+                                    return (
+                                        <div
+                                            className="flavors-list"
+                                            key={`${label}`}
+                                        >
+                                            <span>{label}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
-                    </section>
-                    <section className="flavors-list-container">
-                        <h5 className="list-title">Frostings</h5>
+                        <div className="flavors-list-container">
+                            <h5 className="list-title">Frostings</h5>
 
-                        <div className="flavors-name-container">
-                            {CakeFrostingsList.map(({ label }) => {
-                                return (
-                                    <div
-                                        className="flavors-list"
-                                        key={`${label}`}
-                                    >
-                                        <span>{label}</span>
-                                    </div>
-                                );
-                            })}
+                            <div className="flavors-name-container">
+                                {CakeFrostingsList.map(({ label }) => {
+                                    return (
+                                        <div
+                                            className="flavors-list"
+                                            key={`${label}`}
+                                        >
+                                            <span>{label}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
-                    </section>
-                    <section className="flavors-list-container">
-                        <h5 className="list-title">Fillings</h5>
+                        <div className="flavors-list-container">
+                            <h5 className="list-title">Fillings</h5>
 
-                        <div className="flavors-name-container">
-                            {CakeFillingsList.map(({ label }) => {
-                                return (
-                                    <div
-                                        className="flavors-list"
-                                        key={`${label}`}
-                                    >
-                                        <span>{label}</span>
-                                    </div>
-                                );
-                            })}
+                            <div className="flavors-name-container">
+                                {CakeFillingsList.map(({ label }) => {
+                                    return (
+                                        <div
+                                            className="flavors-list"
+                                            key={`${label}`}
+                                        >
+                                            <span>{label}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </section>
                 </div>
