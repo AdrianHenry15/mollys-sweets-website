@@ -80,24 +80,22 @@ class Flavors extends React.Component<
                 </div>
                 <div className="cookie-f-make-container">
                     <h5 className="flavors-title">Would You Like Frosting?</h5>
-                    <form action="">
-                        <div className="ccc-choice-container">
-                            <input
-                                type="radio"
-                                value="yes"
-                                name="cookie-frosting"
-                                onChange={() => this.getFrosting("yes")}
-                            />
-                            <label htmlFor="cookie-frosting">Yes</label>
-                            <input
-                                type="radio"
-                                value="no"
-                                name="cookie-frosting"
-                                onChange={() => this.getFrosting("no")}
-                            />
-                            <label htmlFor="cookie-frosting">No</label>
-                        </div>
-                    </form>
+                    <div className="ccc-choice-container">
+                        <input
+                            type="radio"
+                            value="yes"
+                            name="cookie-frosting"
+                            onChange={() => this.getFrosting("yes")}
+                        />
+                        <label htmlFor="cookie-frosting">Yes</label>
+                        <input
+                            type="radio"
+                            value="no"
+                            name="cookie-frosting"
+                            onChange={() => this.getFrosting("no")}
+                        />
+                        <label htmlFor="cookie-frosting">No</label>
+                    </div>
                 </div>
                 {this.state.frosting === "yes" && (
                     <div
